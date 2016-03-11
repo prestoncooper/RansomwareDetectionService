@@ -545,6 +545,19 @@ namespace RansomwareDetection
 
         }
 
+        private bool _detailedLogging = false;
+        public bool DetailedLogging
+        {
+            get
+            {
+                return _detailedLogging;
+            }
+            set
+            {
+                _detailedLogging = value;
+            }
+        }
+
         #endregion
 
 
@@ -658,6 +671,7 @@ namespace RansomwareDetection
             SendEmailOnSuccess = Common.FixNullbool(row["SendEmailOnSuccess"]);
             ExcludeFolders = Common.FixNullstring(row["ExcludeFolders"]);
             Comment = Common.FixNullstring(row["Comment"]);
+            DetailedLogging = Common.FixNullbool(row["DetailedLogging"]);
             FileFilters = dtFileFilters;
         }
 
@@ -753,6 +767,7 @@ namespace RansomwareDetection
             dtFindFilesConfig.Columns.Add(new DataColumn("StartDate", typeof(String)));
             dtFindFilesConfig.Columns.Add(new DataColumn("EndDate", typeof(String)));
             dtFindFilesConfig.Columns.Add(new DataColumn("Comment", typeof(String)));
+            dtFindFilesConfig.Columns.Add(new DataColumn("DetailedLogging", typeof(String)));
 
             dtFindFilesConfig.Columns["Enabled"].DefaultValue = "true";
             dtFindFilesConfig.Columns["Time"].DefaultValue = "01:00";
@@ -783,6 +798,7 @@ namespace RansomwareDetection
             dtFindFilesConfig.Columns["Comment"].DefaultValue = "";
             dtFindFilesConfig.Columns["SendEmailOnFailure"].DefaultValue = "false";
             dtFindFilesConfig.Columns["SendEmailOnSuccess"].DefaultValue = "false";
+            dtFindFilesConfig.Columns["DetailedLogging"].DefaultValue = "false";
             dtFindFilesConfig.Columns["ExcludeFolders"].DefaultValue = "";
             dtFindFilesConfig.Columns["StartDate"].DefaultValue = DateTime.Now.ToString("d");
             return dtFindFilesConfig;
@@ -838,13 +854,7 @@ namespace RansomwareDetection
             {
                 if (Enabled)
                 {
-                    //multi threaded so _evt sometimes is not always allocated.  
-                    if (_evt == null)
-                    {
-                        _evt = Common.GetEventLog;
-                    }
-                    _evt.WriteEntry("Ransomware Detection Service, Files Found: Started", System.Diagnostics.EventLogEntryType.Information, 9000, 90);
-
+                    WriteError("Ransomware Detection Service, Files Found: Started", System.Diagnostics.EventLogEntryType.Information, 9000, 90, false);
 
                     FilesFound = new System.Collections.Generic.List<string>();
 
@@ -868,36 +878,26 @@ namespace RansomwareDetection
                                 {
                                     //Keep overall list of all files found
                                     FilesFound.Add(strfile1);
-                                    if (_evt == null)
-                                    {
-                                        _evt = Common.GetEventLog;
-                                    }
+                                    
                                     //Log error for ransomware file found
                                     string strerror = "Ransomware Detection Service, Files Found: Ransomware File Found: " + strfile1;
-                                    _evt.WriteEntry(strerror, System.Diagnostics.EventLogEntryType.Error, 9001, 90);
+                                    WriteError(strerror, System.Diagnostics.EventLogEntryType.Error, 9001, 90, false);
                                 }
                                 AllFiles.Clear();
                             }
                             else
                             {
-                                if (_evt == null)
-                                {
-                                    _evt = Common.GetEventLog;
-                                }
-                                string strerror = "Ransomware Detection Service, File Path Error: " + FilePathToCheck;
-                                _evt.WriteEntry(strerror, System.Diagnostics.EventLogEntryType.Error, 9010, 90);
+                                string strerror = "Ransomware Detection Service, File Path Error: " + FilePathToCheck;   
+                                WriteError(strerror, System.Diagnostics.EventLogEntryType.Error, 9010, 90, false);
                             }
                             
 
                         }
                         catch (Exception ex)
                         {
-                            if (_evt == null)
-                            {
-                                _evt = Common.GetEventLog;
-                            }
+                            
                             string strerror = "Ransomware Detection Service, Files Found: " + FilePathToCheck + " Error: " + ex.Message + " Source: " + ex.Source + " Stack Trace: " + ex.StackTrace;
-                            _evt.WriteEntry(strerror, System.Diagnostics.EventLogEntryType.Error, 9002, 90);
+                            WriteError(strerror, System.Diagnostics.EventLogEntryType.Error, 9002, 90, false);
 
                         }
                     }
@@ -928,7 +928,9 @@ namespace RansomwareDetection
                                 //Loop through files that are different and list them
                                 foreach (string strFile in FilesFound)
                                 {
-                                    sbbody1.AppendLine(strFile);
+                                    Delimon.Win32.IO.FileInfo filef = new Delimon.Win32.IO.FileInfo(strFile);
+                                    sbbody1.AppendLine("\"" + strFile + "\"");
+                                    sbbody1.AppendLine("<"+ filef.Directory.FullName + ">");
                                     sbbody1.Append("\n");
                                 }
                                 sbbody1.AppendLine("\n");
@@ -941,17 +943,13 @@ namespace RansomwareDetection
                             {
                                 Send_Email(strSubject, strBody);
                             }
-                            if (_evt == null)
-                            {
-                                _evt = Common.GetEventLog;
-                            }
+                            
                             if (strBody.Length > 32765)
                             {
                                 strBody = strBody.Substring(0, 32760) + " ...";
                             }
                             
-                            _evt.WriteEntry(strBody, System.Diagnostics.EventLogEntryType.Error, 9004, 90);
-
+                            WriteError(strBody, System.Diagnostics.EventLogEntryType.Error, 9004, 90, false);
 
                         }
                         else
@@ -962,7 +960,7 @@ namespace RansomwareDetection
                             strSubject = "Ransomware Detection Service, File Found: Success! No Ransomware Files Found.";
                             sbbody2.AppendLine("Ransomware Detection Service, File Found: Success! - No Ransomware Files Found. \n");
 
-                            sbbody2.AppendLine(" \nFilePathToCheck: " + FilePathToCheck);
+                            sbbody2.AppendLine(" \nFilePathToCheck: <" + FilePathToCheck + ">");
 
                             sbbody2.AppendLine(" \nCheck Sub Folders: " + CheckSubFolders.ToString());
                             strBody = sbbody2.ToString();
@@ -972,11 +970,8 @@ namespace RansomwareDetection
                             {
                                 Send_Email(strSubject, strBody);
                             }
-                            if (_evt == null)
-                            {
-                                _evt = Common.GetEventLog;
-                            }
-                            _evt.WriteEntry(strBody, System.Diagnostics.EventLogEntryType.Information, 9003, 90);
+                            
+                            WriteError(strBody, System.Diagnostics.EventLogEntryType.Information, 9003, 90, true);
                         }
 
 
@@ -986,12 +981,8 @@ namespace RansomwareDetection
             }
             catch (Exception ex)
             {
-                if (_evt == null)
-                {
-                    _evt = Common.GetEventLog;
-                }
-                string strerror = ex.Message + " Source: " + ex.Source + " StackTrace: " + ex.StackTrace;
-                _evt.WriteEntry(strerror, System.Diagnostics.EventLogEntryType.Error);
+                string strErr = ex.Message + " Source: " + ex.Source + " StackTrace: " + ex.StackTrace; 
+                WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 9000, 90, false);
             }
             finally
             {
@@ -1024,7 +1015,26 @@ namespace RansomwareDetection
         }
 
 
+        private void WriteError(string strErrorMessage, System.Diagnostics.EventLogEntryType entrytype, int eventid, short category, bool blIsDetailedLoggingError)
+        {
+            //multi threaded so _evt sometimes is not allocated. 
+            if (_evt == null)
+            {
+                _evt = Common.GetEventLog;
+            }
+            if (blIsDetailedLoggingError == false)
+            {
+                _evt.WriteEntry(strErrorMessage, entrytype, eventid, category);
+            }
+            else
+            {
+                if (DetailedLogging)
+                {
+                    _evt.WriteEntry(strErrorMessage, entrytype, eventid, category);
+                }
+            }
 
+        }
 
         /// <summary>
         /// Send Email
@@ -1053,7 +1063,7 @@ namespace RansomwareDetection
                 {
                     mail.To.Add(strEmailTo);
                 }
-                mail.IsBodyHtml = false;
+                mail.IsBodyHtml = true;
                 mail.Body = strBody;
                 mail.Subject = strSubject;
 

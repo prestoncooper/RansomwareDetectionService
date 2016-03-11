@@ -595,6 +595,18 @@ namespace RansomwareDetection
         
         }
 
+        private bool _detailedLogging = false;
+        public bool DetailedLogging
+        {
+            get
+            {
+                return _detailedLogging;
+            }
+            set
+            {
+                _detailedLogging = value;
+            }
+        }
         #endregion
 
 
@@ -712,6 +724,7 @@ namespace RansomwareDetection
             SendEmailOnSuccess = Common.FixNullbool(row["SendEmailOnSuccess"]);
             ExcludeFolders = Common.FixNullstring(row["ExcludeFolders"]);
             Comment = Common.FixNullstring(row["Comment"]);
+            DetailedLogging = Common.FixNullbool(row["DetailedLogging"]);
 
         }
 
@@ -820,6 +833,7 @@ namespace RansomwareDetection
             dtCompareConfig.Columns.Add(new DataColumn("EndDate", typeof(String)));
             
             dtCompareConfig.Columns.Add(new DataColumn("Comment", typeof(String)));
+            dtCompareConfig.Columns.Add(new DataColumn("DetailedLogging", typeof(String)));
 
             dtCompareConfig.Columns["Enabled"].DefaultValue = "true";
             dtCompareConfig.Columns["Time"].DefaultValue = "01:00";
@@ -854,6 +868,7 @@ namespace RansomwareDetection
             dtCompareConfig.Columns["CopySourceFilesSubFolders"].DefaultValue = "false";
             dtCompareConfig.Columns["SendEmailOnFailure"].DefaultValue = "false";
             dtCompareConfig.Columns["SendEmailOnSuccess"].DefaultValue = "false";
+            dtCompareConfig.Columns["DetailedLogging"].DefaultValue = "false";
             dtCompareConfig.Columns["ExcludeFolders"].DefaultValue = "";
             dtCompareConfig.Columns["StartDate"].DefaultValue = DateTime.Now.ToString("d");
             return dtCompareConfig;
@@ -873,12 +888,8 @@ namespace RansomwareDetection
             {
                 if (Enabled)
                 {
-                    //multi threaded so _evt sometimes is not allocated. 
-                    if (_evt == null)
-                    {
-                        _evt = Common.GetEventLog;
-                    }
-                    _evt.WriteEntry("Ransomware Detection Service, File Compare: Started", System.Diagnostics.EventLogEntryType.Information, 8000, 80);
+                    
+                    WriteError("Ransomware Detection Service, File Compare: Started", System.Diagnostics.EventLogEntryType.Information, 8000, 80, false);
 
                     AllFiles = new System.Collections.Generic.List<Delimon.Win32.IO.FileInfo>();
                     FilesDifferent = new System.Collections.Generic.List<string>();
@@ -915,12 +926,8 @@ namespace RansomwareDetection
                                     //this only copies the file if it does not exist
                                     //We are coping files for detection of changes we do not want.
                                     Delimon.Win32.IO.File.Copy(SourceFile, FileToCheck,false);
-                                    string strError = "FileCompare: File Compare Failed! FileToCheck File Did Not Exist Yet, File Copied: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
-                                    if (_evt == null)
-                                    {
-                                        _evt = Common.GetEventLog;
-                                    }
-                                    _evt.WriteEntry(strError, System.Diagnostics.EventLogEntryType.Error, 8003, 80);
+                                    string strErr = "FileCompare: File Compare Failed! (Possible Ransomware Change Detected, user delete or new sub folder) FileToCheck File Did Not Exist Yet, File Copied: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
+                                    WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8003, 80, false);
                                 }
                                 else
                                 {
@@ -933,21 +940,14 @@ namespace RansomwareDetection
                                         {
                                             //Add file to File Different list for emailing later!
                                             FilesDifferent.Add(FileToCheck);
-                                            if (_evt == null)
-                                            {
-                                                _evt = Common.GetEventLog;
-                                            }
-                                            string strError = "FileCompare: File Compare Failed! SourceFile: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
-                                            _evt.WriteEntry(strError, System.Diagnostics.EventLogEntryType.Error, 8002, 80);
+
+                                            string strErr = "FileCompare: File Compare Failed! (Possible Ransomware Change Detected) SourceFile: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
+                                            WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8002, 80, false);
                                         }
                                         else
                                         {
-                                            if (_evt == null)
-                                            {
-                                                _evt = Common.GetEventLog;
-                                            }
-                                            string strError = "FileCompare: File Compare Succeeded SourceFile: " + SourceFile + " Same as FileToCheck: " + FileToCheck;
-                                            _evt.WriteEntry(strError, System.Diagnostics.EventLogEntryType.Information, 8001, 80);
+                                            string strErr = "FileCompare: File Compare Succeeded SourceFile: " + SourceFile + " Same as FileToCheck: " + FileToCheck;   
+                                            WriteError(strErr, System.Diagnostics.EventLogEntryType.Information, 8001, 80, true);
                                         }
                                     }
                                     else
@@ -956,12 +956,9 @@ namespace RansomwareDetection
                                         if (CheckMainFolder)//(CopySourceFiles == false && CopySourceFilesSubFolders == true )  
                                         {
                                             FilesMissing.Add(FileToCheck);
-                                            if (_evt == null)
-                                            {
-                                                _evt = Common.GetEventLog;
-                                            }
-                                            string strError = "FileCompare: File Compare Failed! FileToCheck File Did Not Exist: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
-                                            _evt.WriteEntry(strError, System.Diagnostics.EventLogEntryType.Error, 8004, 80);
+
+                                            string strErr = "FileCompare: File Compare Failed! (Possible Ransomware Change Detected, user delete or new sub folder) FileToCheck File Did Not Exist: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
+                                            WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8004, 80, false);
                                         }
                                     }
                                 }
@@ -1035,12 +1032,8 @@ namespace RansomwareDetection
                                             }
                                             catch (Exception ex)
                                             {
-                                                if (_evt == null)
-                                                {
-                                                    _evt = Common.GetEventLog;
-                                                }
                                                 string strErr = ex.Message + ": " + ex.Source + " Sourcedirs  " + ex.StackTrace;
-                                                _evt.WriteEntry(strErr, System.Diagnostics.EventLogEntryType.Error, 8000, 80);
+                                                WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8000, 80, false);
                                             }
                                             
                                             
@@ -1058,12 +1051,9 @@ namespace RansomwareDetection
                                                     Common.CreateDestinationFolders(SourcePath, dir1.FullName);
                                                     //Only copy the file to a 1st layer sub folder if it does not exist.  (We want to keep source files there for checking of changes)
                                                     Delimon.Win32.IO.File.Copy(SourceFile, FileToCheck,false);
-                                                    if (_evt == null)
-                                                    {
-                                                        _evt = Common.GetEventLog;
-                                                    }
-                                                    string strError = "FileCompare: File Compare Failed! FileToCheck in subfolder, File Did Not Exist! and File Copied: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
-                                                    _evt.WriteEntry(strError, System.Diagnostics.EventLogEntryType.Error, 8003, 80);
+                                                    
+                                                    string strErr = "FileCompare: File Compare Failed! FileToCheck in subfolder, File Did Not Exist! (Possible Ransomware, unless user deleted) and File Copied: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
+                                                    WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8003, 80, false);
                                                 }
                                                 else  //file exists, contents need to be checked
                                                 {
@@ -1073,21 +1063,14 @@ namespace RansomwareDetection
                                                     {
                                                         //Add file to list for emailing later!
                                                         FilesDifferent.Add(FileToCheck);
-                                                        if (_evt == null)
-                                                        {
-                                                            _evt = Common.GetEventLog;
-                                                        }
-                                                        string strError = "FileCompare: File Compare Failed! SourceFile: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
-                                                        _evt.WriteEntry(strError, System.Diagnostics.EventLogEntryType.Error, 8002, 80);
+                                                        
+                                                        string strErr = "FileCompare: File Compare Failed! (Possible Ransomware Change Detected) SourceFile: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
+                                                        WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8002, 80, false);
                                                     }
                                                     else    //File is the same
                                                     {
-                                                        if (_evt == null)
-                                                        {
-                                                            _evt = Common.GetEventLog;
-                                                        }
-                                                        string strError = "FileCompare: File Compare Succeeded SourceFile: " + SourceFile + " Same as FileToCheck: " + FileToCheck;
-                                                        _evt.WriteEntry(strError, System.Diagnostics.EventLogEntryType.Information, 8001, 80);
+                                                        string strErr = "FileCompare: File Compare Succeeded SourceFile: " + SourceFile + " Same as FileToCheck: " + FileToCheck;
+                                                        WriteError(strErr, System.Diagnostics.EventLogEntryType.Information, 8001, 80, true);
                                                     }
                                                 }
                                             }
@@ -1096,12 +1079,9 @@ namespace RansomwareDetection
                                                 if (Common.FileExists(FileToCheck) == false)  //file is missing
                                                 {
                                                     FilesMissing.Add(FileToCheck);
-                                                    if (_evt == null)
-                                                    {
-                                                        _evt = Common.GetEventLog;
-                                                    }
-                                                    string strError = "FileCompare: File Compare Failed! FileToCheck in subfolder, File Did Not Exist!: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
-                                                    _evt.WriteEntry(strError, System.Diagnostics.EventLogEntryType.Error, 8003, 80);
+                                                    
+                                                    string strErr = "FileCompare: File Compare Failed! FileToCheck in subfolder, File Did Not Exist!: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
+                                                    WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8003, 80, false);
                                                 }
                                                 else  //file exists, check contents of the file
                                                 {
@@ -1111,33 +1091,22 @@ namespace RansomwareDetection
                                                     {
                                                         //Add file to list for emailing later!
                                                         FilesDifferent.Add(FileToCheck);
-                                                        if (_evt == null)
-                                                        {
-                                                            _evt = Common.GetEventLog;
-                                                        }
-                                                        string strError = "FileCompare: File Compare Failed! SourceFile: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
-                                                        _evt.WriteEntry(strError, System.Diagnostics.EventLogEntryType.Error, 8002, 80);
+                                                        
+                                                        string strErr = "FileCompare: File Compare Failed! SourceFile: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
+                                                        WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8002, 80, false);
                                                     }
                                                     else    //file contents are the same
                                                     {
-                                                        if (_evt == null)
-                                                        {
-                                                            _evt = Common.GetEventLog;
-                                                        }
-                                                        string strError = "FileCompare: File Compare Succeeded SourceFile: " + SourceFile + " Same as FileToCheck: " + FileToCheck;
-                                                        _evt.WriteEntry(strError, System.Diagnostics.EventLogEntryType.Information, 8001, 80);
+                                                        string strErr = "FileCompare: File Compare Succeeded SourceFile: " + SourceFile + " Same as FileToCheck: " + FileToCheck;
+                                                        WriteError(strErr, System.Diagnostics.EventLogEntryType.Information, 8001, 80, true);
                                                     }
                                                 }
                                             }
                                         }
                                         catch (Exception ex)
                                         {
-                                            if (_evt == null)
-                                            {
-                                                _evt = Common.GetEventLog;
-                                            }
                                             string strErr = ex.Message + ": " + ex.Source + " foreach sub folder  " + ex.StackTrace;
-                                            _evt.WriteEntry(strErr, System.Diagnostics.EventLogEntryType.Error, 8000, 80);
+                                            WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8000, 80, false);
                                             
                                         }
                                         
@@ -1153,12 +1122,8 @@ namespace RansomwareDetection
                                     if (Common.DirectoryExists(FilePathToCheck) == false)
                                     {
                                         FilesMissing.Add(FilePathToCheck);
-                                        if (_evt == null)
-                                        {
-                                            _evt = Common.GetEventLog;
-                                        }
-                                        string strError = "FileCompare: File Compare Failed Directory for FilePathToCheck Does not Exist: " + FilePathToCheck;
-                                        _evt.WriteEntry(strError, System.Diagnostics.EventLogEntryType.Error, 8007, 80);
+                                        string strErr = "FileCompare: File Compare Failed Directory for FilePathToCheck Does not Exist: " + FilePathToCheck;
+                                        WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8007, 80, false);
                                     }
                                 }
 
@@ -1167,12 +1132,8 @@ namespace RansomwareDetection
                             }
                             catch (Exception ex1)      //unknown error
                             {
-                                if (_evt == null)
-                                {
-                                    _evt = Common.GetEventLog;
-                                }
                                 string strErr = ex1.Message + ": " + ex1.Source + " inside main for each  " + ex1.StackTrace;
-                                _evt.WriteEntry(strErr, System.Diagnostics.EventLogEntryType.Error, 8000, 80);
+                                WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8000, 80, false);
                             }
                         }
                     }
@@ -1193,8 +1154,8 @@ namespace RansomwareDetection
                         
                         StringBuilder sbbody1 = new StringBuilder();
                         strSubject = "Ransomware Detection Service, File Compare - Files Different!: " + FilesDifferent.Count.ToString() + " Files Missing: " + FilesMissing.Count.ToString();
-                        sbbody1.AppendLine(" \n\nSourcePath: " + SourcePath);
-                        sbbody1.AppendLine(" \nFilePathToCheck: " + FilePathToCheck);
+                        sbbody1.AppendLine(" \n\nSourcePath: " + SourcePath );
+                        sbbody1.AppendLine(" \nFilePathToCheck: <" + FilePathToCheck + ">");
                         sbbody1.AppendLine(" \nCheck Sub Folders: " + CheckSubFolders.ToString());
                         sbbody1.AppendLine(" \nCheck MainFolder Folder: " + CheckMainFolder.ToString());
                         if (FilesDifferent.Count > 0)
@@ -1203,7 +1164,10 @@ namespace RansomwareDetection
                             //Loop through files that are different and list them
                             foreach (string strFileDiff in FilesDifferent)
                             {
-                                sbbody1.AppendLine(strFileDiff + "\n");
+                                Delimon.Win32.IO.FileInfo filef = new Delimon.Win32.IO.FileInfo(strFileDiff);
+                                sbbody1.AppendLine("\"" + strFileDiff + "\"\n");
+                                sbbody1.AppendLine("<" + filef.Directory.FullName + ">");
+                                
                             }
                             sbbody1.AppendLine("\n");
                         }
@@ -1213,7 +1177,7 @@ namespace RansomwareDetection
                             //Loop through the files that are missing and list them
                             foreach (string strFileMissing in FilesMissing)
                             {
-                                sbbody1.AppendLine(strFileMissing + "\n");
+                                sbbody1.AppendLine("\"" + strFileMissing + "\"\n");
                             }
                         }
                      
@@ -1224,16 +1188,12 @@ namespace RansomwareDetection
                         {
                             Send_Email(strSubject, strBody);
                         }
-                        if (_evt == null)
-                        {
-                            _evt = Common.GetEventLog;
-                        }
                         if (strBody.Length > 32765)
                         {
                             strBody = strBody.Substring(0, 32760) + " ...";
                         }
-                        _evt.WriteEntry(strBody, System.Diagnostics.EventLogEntryType.Error, 8000, 80);
                         
+                        WriteError(strBody, System.Diagnostics.EventLogEntryType.Error, 8000, 80, false);
 
                     }
                     else
@@ -1243,7 +1203,7 @@ namespace RansomwareDetection
                         strSubject = "Ransomware Detection Service, File Compare: Success! (all files are the same and exist)";
                         sbbody2.Append("Ransomware Detection Service, File Compare: Success! - All Files from SourcePath Files are the Same on FilePathToCheck Files Different: " + FilesDifferent.Count.ToString() + " Files Missing: " + FilesMissing.Count.ToString() + "\n\n");
                         sbbody2.Append(" \n\nSourcePath: " + SourcePath);
-                        sbbody2.Append(" \nFilePathToCheck: " + FilePathToCheck);
+                        sbbody2.Append(" \nFilePathToCheck: <" + FilePathToCheck + ">");
                         sbbody2.Append(" \nCheck MainFolder Folder: " + CheckMainFolder.ToString());
                         sbbody2.Append(" \nCheck Sub Folders: " + CheckSubFolders.ToString());
                         strBody = sbbody2.ToString();
@@ -1253,11 +1213,8 @@ namespace RansomwareDetection
                         {
                             Send_Email(strSubject, strBody);
                         }
-                        if (_evt == null)
-                        {
-                            _evt = Common.GetEventLog;
-                        }
-                        _evt.WriteEntry(strBody, System.Diagnostics.EventLogEntryType.Information, 8000, 80);
+                        
+                        WriteError(strBody, System.Diagnostics.EventLogEntryType.Information, 8000, 80, true);
                     }
                     
 
@@ -1266,11 +1223,7 @@ namespace RansomwareDetection
             }
             catch (Exception ex)
             {
-                if (_evt == null)
-                {
-                    _evt = Common.GetEventLog;
-                }
-                _evt.WriteEntry(ex.Message, System.Diagnostics.EventLogEntryType.Error);
+                WriteError(ex.Message + " source: " + ex.Source + " Stacktrace: " + ex.StackTrace, System.Diagnostics.EventLogEntryType.Error, 8000, 80, false);
             }
             finally
             {
@@ -1308,7 +1261,28 @@ namespace RansomwareDetection
 
         }
 
-        
+
+        private void WriteError(string strErrorMessage, System.Diagnostics.EventLogEntryType entrytype, int eventid, short category, bool blIsDetailedLoggingError)
+        {
+            //multi threaded so _evt sometimes is not allocated. 
+            if (_evt == null)
+            {
+                _evt = Common.GetEventLog;
+            }
+            if (blIsDetailedLoggingError == false)
+            {
+                _evt.WriteEntry(strErrorMessage, entrytype, eventid, category);
+            }
+            else
+            {
+                if (DetailedLogging)
+                {
+                    _evt.WriteEntry(strErrorMessage, entrytype, eventid, category);
+                }
+            }
+
+        }
+
         /// <summary>
         /// Compares two Streams for binary differences
         /// </summary>
@@ -1433,7 +1407,7 @@ namespace RansomwareDetection
                 {
                     mail.To.Add(strEmailTo);
                 }
-                mail.IsBodyHtml = false;
+                mail.IsBodyHtml = true;
                 mail.Body = strBody;
                 mail.Subject = strSubject;
 

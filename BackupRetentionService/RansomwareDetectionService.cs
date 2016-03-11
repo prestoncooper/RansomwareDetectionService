@@ -345,13 +345,7 @@ namespace RansomwareDetection
                 CompareThread = new Thread(new ThreadStart(CompareExecute));
                 FindFilesThread = new Thread(new ThreadStart(FindFilesExecute));
                 
-
-
-                if (_evt == null)
-                {
-                    _evt = Common.GetEventLog;
-                }
-                _evt.WriteEntry("RansomwareDetectionService Started", System.Diagnostics.EventLogEntryType.Information, 0, 0);
+                WriteError("RansomwareDetectionService Started", System.Diagnostics.EventLogEntryType.Information, 6000, 60);
                   
             }
             catch (Exception ex)
@@ -359,12 +353,9 @@ namespace RansomwareDetection
 
                 _t.Elapsed += TimerFired;
                 _t.Enabled = false;
-                if (_evt == null)
-                {
-                    _evt = Common.GetEventLog;
-                }
+                
                 string strErr = ex.Message + ": " + ex.Source + "  " + ex.StackTrace;
-                _evt.WriteEntry(strErr);
+                WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 6000, 60);
             }
 
         }
@@ -409,17 +400,17 @@ namespace RansomwareDetection
                 FindFilesThread = null;
                 if (lwait > 3600)
                 {
-                    _evt.WriteEntry("RansomwareDetectionService Forced Stopped: " + lwait.ToString(), System.Diagnostics.EventLogEntryType.Information, 0, 0);
+                    WriteError("RansomwareDetectionService Forced Stopped: " + lwait.ToString(), System.Diagnostics.EventLogEntryType.Information, 6000, 60);
                 }
                 else
                 {
-                    _evt.WriteEntry("RansomwareDetectionService Stopped", System.Diagnostics.EventLogEntryType.Information, 0, 0);
+                    WriteError("RansomwareDetectionService Stopped", System.Diagnostics.EventLogEntryType.Information, 6000, 60);
                 }
             }
             catch (Exception ex)
             {
                 string strErr = ex.Message + ": " + ex.Source + "  " + ex.StackTrace;
-                _evt.WriteEntry(strErr);
+                WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 6000, 60);
             }
             
 
@@ -435,7 +426,17 @@ namespace RansomwareDetection
             Timer_Execute();
         }
 
-        
+        private void WriteError(string strErrorMessage, System.Diagnostics.EventLogEntryType entrytype, int eventid, short category)
+        {
+            //multi threaded so _evt sometimes is not allocated. 
+            if (_evt == null)
+            {
+                _evt = Common.GetEventLog;
+            }
+            
+            _evt.WriteEntry(strErrorMessage, entrytype, eventid, category);
+
+        }
 
         /// <summary>
         /// Checks to see of the current time is within the appropriate time window to execute per RetentionExecutionTime or CompressExecutionTime
@@ -537,7 +538,7 @@ namespace RansomwareDetection
             catch (Exception ex)
             {
                 string strErr = ex.Message + ": " + ex.Source + "  " + ex.StackTrace;
-                _evt.WriteEntry(strErr);
+                WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 6000, 60);
                 return false;
             }
                
@@ -830,7 +831,7 @@ namespace RansomwareDetection
                 catch (Exception ex)
                 {
                     string strErr = ex.Message + ": " + ex.Source + "  " + ex.StackTrace;
-                    _evt.WriteEntry(strErr);
+                    WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 6000, 60);
                     
                 }
                 
@@ -869,7 +870,7 @@ namespace RansomwareDetection
                 catch (Exception ex)
                 {
                     string strErr = ex.Message + ": " + ex.Source + "  " + ex.StackTrace;
-                    _evt.WriteEntry(strErr);
+                    WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 6000, 60);
 
                 }
 
@@ -895,13 +896,13 @@ namespace RansomwareDetection
                 }
                 else
                 {
-                    _evt.WriteEntry("RansomwareDetectionService Compare: Timer Code has not finished running. This is an additional firing of the TimerFired event. This is normal while compressing, Remote Sync, or Sync if large files or many files are present. Alternatively the Service Interval could be too short.", System.Diagnostics.EventLogEntryType.Information, 6000, 60);
+                    WriteError("RansomwareDetectionService Compare: Timer Code has not finished running. This is an additional firing of the TimerFired event. This is normal while compressing, Remote Sync, or Sync if large files or many files are present. Alternatively the Service Interval could be too short.", System.Diagnostics.EventLogEntryType.Information, 6000, 60);
                 }
             }
             catch (Exception ex)
             {
                 string strErr = ex.Message + ": " + ex.Source + "  " + ex.StackTrace;
-                _evt.WriteEntry(strErr);
+                WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 6000, 60);
             }
             
             

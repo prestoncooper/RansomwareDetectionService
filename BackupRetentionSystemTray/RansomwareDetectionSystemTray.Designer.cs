@@ -67,8 +67,6 @@
             this.lblServiceIntervalMinutes = new System.Windows.Forms.Label();
             this.btnStart = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
-            this.gbTime = new System.Windows.Forms.GroupBox();
-            this.lblTimeInfo = new System.Windows.Forms.Label();
             this.btnSaveApply = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.lblServiceInterval = new System.Windows.Forms.Label();
@@ -104,6 +102,8 @@
             this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvtxtFileFilter = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnSendTestEmail = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -142,6 +142,7 @@
             this.calendarColumn1 = new System.Windows.Forms.CalendarColumn();
             this.calendarColumn2 = new System.Windows.Forms.CalendarColumn();
             this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chkDetailedLogging = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewCheckBoxColumn21 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -176,9 +177,9 @@
             this.calendarColumn3 = new System.Windows.Forms.CalendarColumn();
             this.calendarColumn4 = new System.Windows.Forms.CalendarColumn();
             this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewCheckBoxColumn43 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.gbTime.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbRightIcon)).BeginInit();
             this.tabEvents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEvents)).BeginInit();
@@ -198,7 +199,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(789, 27);
+            this.menuStrip1.Size = new System.Drawing.Size(784, 27);
             this.menuStrip1.TabIndex = 19;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -286,6 +287,8 @@
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.btnSendTestEmail);
             this.panel1.Controls.Add(this.txtEmailTo);
             this.panel1.Controls.Add(this.txtSMTPPassword);
             this.panel1.Controls.Add(this.txtSMTPUsername);
@@ -304,7 +307,6 @@
             this.panel1.Controls.Add(this.lblServiceIntervalMinutes);
             this.panel1.Controls.Add(this.btnStart);
             this.panel1.Controls.Add(this.btnStop);
-            this.panel1.Controls.Add(this.gbTime);
             this.panel1.Controls.Add(this.btnSaveApply);
             this.panel1.Controls.Add(this.btnSave);
             this.panel1.Controls.Add(this.lblServiceInterval);
@@ -313,13 +315,13 @@
             this.panel1.Controls.Add(this.pbRightIcon);
             this.panel1.Location = new System.Drawing.Point(0, 30);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(789, 370);
+            this.panel1.Size = new System.Drawing.Size(784, 360);
             this.panel1.TabIndex = 20;
             // 
             // txtEmailTo
             // 
             this.txtEmailTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmailTo.Location = new System.Drawing.Point(192, 263);
+            this.txtEmailTo.Location = new System.Drawing.Point(265, 260);
             this.txtEmailTo.Name = "txtEmailTo";
             this.txtEmailTo.Size = new System.Drawing.Size(252, 24);
             this.txtEmailTo.TabIndex = 9;
@@ -327,7 +329,7 @@
             // txtSMTPPassword
             // 
             this.txtSMTPPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSMTPPassword.Location = new System.Drawing.Point(192, 213);
+            this.txtSMTPPassword.Location = new System.Drawing.Point(265, 210);
             this.txtSMTPPassword.Name = "txtSMTPPassword";
             this.txtSMTPPassword.PasswordChar = '*';
             this.txtSMTPPassword.Size = new System.Drawing.Size(252, 24);
@@ -336,7 +338,7 @@
             // txtSMTPUsername
             // 
             this.txtSMTPUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSMTPUsername.Location = new System.Drawing.Point(192, 188);
+            this.txtSMTPUsername.Location = new System.Drawing.Point(265, 185);
             this.txtSMTPUsername.Name = "txtSMTPUsername";
             this.txtSMTPUsername.Size = new System.Drawing.Size(252, 24);
             this.txtSMTPUsername.TabIndex = 6;
@@ -344,7 +346,7 @@
             // txtEmailFrom
             // 
             this.txtEmailFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmailFrom.Location = new System.Drawing.Point(192, 238);
+            this.txtEmailFrom.Location = new System.Drawing.Point(265, 235);
             this.txtEmailFrom.Name = "txtEmailFrom";
             this.txtEmailFrom.Size = new System.Drawing.Size(252, 24);
             this.txtEmailFrom.TabIndex = 8;
@@ -353,7 +355,7 @@
             // 
             this.lblSMTPUsername.AutoSize = true;
             this.lblSMTPUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSMTPUsername.Location = new System.Drawing.Point(68, 191);
+            this.lblSMTPUsername.Location = new System.Drawing.Point(141, 188);
             this.lblSMTPUsername.Name = "lblSMTPUsername";
             this.lblSMTPUsername.Size = new System.Drawing.Size(127, 18);
             this.lblSMTPUsername.TabIndex = 48;
@@ -363,7 +365,7 @@
             // 
             this.lblSMTPPassword.AutoSize = true;
             this.lblSMTPPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSMTPPassword.Location = new System.Drawing.Point(68, 216);
+            this.lblSMTPPassword.Location = new System.Drawing.Point(141, 213);
             this.lblSMTPPassword.Name = "lblSMTPPassword";
             this.lblSMTPPassword.Size = new System.Drawing.Size(125, 18);
             this.lblSMTPPassword.TabIndex = 46;
@@ -373,7 +375,7 @@
             // 
             this.chkSMTPUseDefaultCredentials.AutoSize = true;
             this.chkSMTPUseDefaultCredentials.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkSMTPUseDefaultCredentials.Location = new System.Drawing.Point(192, 164);
+            this.chkSMTPUseDefaultCredentials.Location = new System.Drawing.Point(265, 161);
             this.chkSMTPUseDefaultCredentials.Name = "chkSMTPUseDefaultCredentials";
             this.chkSMTPUseDefaultCredentials.Size = new System.Drawing.Size(218, 21);
             this.chkSMTPUseDefaultCredentials.TabIndex = 5;
@@ -384,7 +386,7 @@
             // 
             this.chkSMTPUseSSL.AutoSize = true;
             this.chkSMTPUseSSL.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkSMTPUseSSL.Location = new System.Drawing.Point(192, 135);
+            this.chkSMTPUseSSL.Location = new System.Drawing.Point(265, 132);
             this.chkSMTPUseSSL.Name = "chkSMTPUseSSL";
             this.chkSMTPUseSSL.Size = new System.Drawing.Size(124, 21);
             this.chkSMTPUseSSL.TabIndex = 4;
@@ -394,7 +396,7 @@
             // txtSMTPPort
             // 
             this.txtSMTPPort.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSMTPPort.Location = new System.Drawing.Point(192, 106);
+            this.txtSMTPPort.Location = new System.Drawing.Point(265, 103);
             this.txtSMTPPort.Name = "txtSMTPPort";
             this.txtSMTPPort.Size = new System.Drawing.Size(252, 24);
             this.txtSMTPPort.TabIndex = 3;
@@ -403,7 +405,7 @@
             // 
             this.lblSMTPPort.AutoSize = true;
             this.lblSMTPPort.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSMTPPort.Location = new System.Drawing.Point(68, 109);
+            this.lblSMTPPort.Location = new System.Drawing.Point(141, 106);
             this.lblSMTPPort.Name = "lblSMTPPort";
             this.lblSMTPPort.Size = new System.Drawing.Size(86, 18);
             this.lblSMTPPort.TabIndex = 42;
@@ -413,7 +415,7 @@
             // 
             this.lblEmailTo.AutoSize = true;
             this.lblEmailTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmailTo.Location = new System.Drawing.Point(68, 266);
+            this.lblEmailTo.Location = new System.Drawing.Point(141, 263);
             this.lblEmailTo.Name = "lblEmailTo";
             this.lblEmailTo.Size = new System.Drawing.Size(71, 18);
             this.lblEmailTo.TabIndex = 40;
@@ -423,7 +425,7 @@
             // 
             this.lblEmailFrom.AutoSize = true;
             this.lblEmailFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmailFrom.Location = new System.Drawing.Point(68, 241);
+            this.lblEmailFrom.Location = new System.Drawing.Point(141, 238);
             this.lblEmailFrom.Name = "lblEmailFrom";
             this.lblEmailFrom.Size = new System.Drawing.Size(89, 18);
             this.lblEmailFrom.TabIndex = 38;
@@ -432,7 +434,7 @@
             // txtSMTPHost
             // 
             this.txtSMTPHost.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSMTPHost.Location = new System.Drawing.Point(192, 80);
+            this.txtSMTPHost.Location = new System.Drawing.Point(265, 77);
             this.txtSMTPHost.Name = "txtSMTPHost";
             this.txtSMTPHost.Size = new System.Drawing.Size(252, 24);
             this.txtSMTPHost.TabIndex = 2;
@@ -441,7 +443,7 @@
             // 
             this.lblSMTPHost.AutoSize = true;
             this.lblSMTPHost.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSMTPHost.Location = new System.Drawing.Point(68, 83);
+            this.lblSMTPHost.Location = new System.Drawing.Point(141, 80);
             this.lblSMTPHost.Name = "lblSMTPHost";
             this.lblSMTPHost.Size = new System.Drawing.Size(90, 18);
             this.lblSMTPHost.TabIndex = 36;
@@ -450,17 +452,17 @@
             // txtServiceStatus
             // 
             this.txtServiceStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtServiceStatus.Location = new System.Drawing.Point(383, 338);
+            this.txtServiceStatus.Location = new System.Drawing.Point(519, 330);
             this.txtServiceStatus.Name = "txtServiceStatus";
             this.txtServiceStatus.ReadOnly = true;
             this.txtServiceStatus.Size = new System.Drawing.Size(107, 24);
-            this.txtServiceStatus.TabIndex = 14;
+            this.txtServiceStatus.TabIndex = 15;
             // 
             // lblServiceIntervalMinutes
             // 
             this.lblServiceIntervalMinutes.AutoSize = true;
             this.lblServiceIntervalMinutes.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblServiceIntervalMinutes.Location = new System.Drawing.Point(362, 54);
+            this.lblServiceIntervalMinutes.Location = new System.Drawing.Point(435, 51);
             this.lblServiceIntervalMinutes.Name = "lblServiceIntervalMinutes";
             this.lblServiceIntervalMinutes.Size = new System.Drawing.Size(82, 18);
             this.lblServiceIntervalMinutes.TabIndex = 32;
@@ -469,10 +471,10 @@
             // btnStart
             // 
             this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStart.Location = new System.Drawing.Point(302, 334);
+            this.btnStart.Location = new System.Drawing.Point(438, 326);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(75, 30);
-            this.btnStart.TabIndex = 13;
+            this.btnStart.TabIndex = 14;
             this.btnStart.Text = "S&tart";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
@@ -480,42 +482,21 @@
             // btnStop
             // 
             this.btnStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStop.Location = new System.Drawing.Point(220, 334);
+            this.btnStop.Location = new System.Drawing.Point(356, 326);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(75, 30);
-            this.btnStop.TabIndex = 12;
+            this.btnStop.TabIndex = 13;
             this.btnStop.Text = "Sto&p";
             this.btnStop.UseVisualStyleBackColor = true;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
-            // gbTime
-            // 
-            this.gbTime.Controls.Add(this.lblTimeInfo);
-            this.gbTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbTime.Location = new System.Drawing.Point(8, 282);
-            this.gbTime.Name = "gbTime";
-            this.gbTime.Size = new System.Drawing.Size(495, 50);
-            this.gbTime.TabIndex = 31;
-            this.gbTime.TabStop = false;
-            this.gbTime.Text = "Times:";
-            // 
-            // lblTimeInfo
-            // 
-            this.lblTimeInfo.AutoSize = true;
-            this.lblTimeInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTimeInfo.Location = new System.Drawing.Point(6, 19);
-            this.lblTimeInfo.Name = "lblTimeInfo";
-            this.lblTimeInfo.Size = new System.Drawing.Size(476, 17);
-            this.lblTimeInfo.TabIndex = 13;
-            this.lblTimeInfo.Text = "Time can be blank. If blank then execution will occur every service interval.";
-            // 
             // btnSaveApply
             // 
             this.btnSaveApply.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveApply.Location = new System.Drawing.Point(90, 335);
+            this.btnSaveApply.Location = new System.Drawing.Point(226, 327);
             this.btnSaveApply.Name = "btnSaveApply";
             this.btnSaveApply.Size = new System.Drawing.Size(124, 29);
-            this.btnSaveApply.TabIndex = 11;
+            this.btnSaveApply.TabIndex = 12;
             this.btnSaveApply.Text = "Save and &Apply";
             this.btnSaveApply.UseVisualStyleBackColor = true;
             this.btnSaveApply.Click += new System.EventHandler(this.btnSaveApply_Click);
@@ -523,10 +504,10 @@
             // btnSave
             // 
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(8, 335);
+            this.btnSave.Location = new System.Drawing.Point(144, 327);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 30);
-            this.btnSave.TabIndex = 10;
+            this.btnSave.TabIndex = 11;
             this.btnSave.Text = "&Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -535,7 +516,7 @@
             // 
             this.lblServiceInterval.AutoSize = true;
             this.lblServiceInterval.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblServiceInterval.Location = new System.Drawing.Point(68, 57);
+            this.lblServiceInterval.Location = new System.Drawing.Point(141, 54);
             this.lblServiceInterval.Name = "lblServiceInterval";
             this.lblServiceInterval.Size = new System.Drawing.Size(111, 18);
             this.lblServiceInterval.TabIndex = 25;
@@ -544,7 +525,7 @@
             // txtServiceInterval
             // 
             this.txtServiceInterval.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtServiceInterval.Location = new System.Drawing.Point(192, 54);
+            this.txtServiceInterval.Location = new System.Drawing.Point(265, 51);
             this.txtServiceInterval.Name = "txtServiceInterval";
             this.txtServiceInterval.ReadOnly = true;
             this.txtServiceInterval.Size = new System.Drawing.Size(164, 24);
@@ -556,7 +537,7 @@
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(86, 12);
+            this.lblTitle.Location = new System.Drawing.Point(159, 9);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(480, 29);
             this.lblTitle.TabIndex = 23;
@@ -566,7 +547,7 @@
             // 
             this.pbRightIcon.Image = global::RansomwareDetection.Properties.Resources.ImgWoodDriveTime;
             this.pbRightIcon.InitialImage = global::RansomwareDetection.Properties.Resources.ImgWoodDriveTime;
-            this.pbRightIcon.Location = new System.Drawing.Point(447, 47);
+            this.pbRightIcon.Location = new System.Drawing.Point(520, 44);
             this.pbRightIcon.Name = "pbRightIcon";
             this.pbRightIcon.Size = new System.Drawing.Size(118, 127);
             this.pbRightIcon.TabIndex = 34;
@@ -758,7 +739,7 @@
             this.tabCompare.Location = new System.Drawing.Point(4, 25);
             this.tabCompare.Name = "tabCompare";
             this.tabCompare.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCompare.Size = new System.Drawing.Size(774, 358);
+            this.tabCompare.Size = new System.Drawing.Size(769, 140);
             this.tabCompare.TabIndex = 6;
             this.tabCompare.Text = "Compare (Detect Ransomware)";
             this.tabCompare.ToolTipText = "Entrapment Ransomware Detection; Compares files by binary comparison and if files" +
@@ -807,11 +788,12 @@
             this.chkSendEmailOnSuccess,
             this.calendarColumn1,
             this.calendarColumn2,
-            this.dataGridViewTextBoxColumn15});
+            this.dataGridViewTextBoxColumn15,
+            this.chkDetailedLogging});
             this.dgvCompare.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvCompare.Location = new System.Drawing.Point(3, 3);
             this.dgvCompare.Name = "dgvCompare";
-            this.dgvCompare.Size = new System.Drawing.Size(768, 352);
+            this.dgvCompare.Size = new System.Drawing.Size(763, 134);
             this.dgvCompare.TabIndex = 16;
             this.dgvCompare.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCompare_CellDoubleClick);
             this.dgvCompare.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvCompare_CellValidating);
@@ -826,11 +808,11 @@
             this.tabControl.Controls.Add(this.tabFilesToFind);
             this.tabControl.Controls.Add(this.tabEvents);
             this.tabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl.Location = new System.Drawing.Point(1, 406);
+            this.tabControl.Location = new System.Drawing.Point(1, 392);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(782, 387);
-            this.tabControl.TabIndex = 15;
+            this.tabControl.Size = new System.Drawing.Size(777, 169);
+            this.tabControl.TabIndex = 16;
             // 
             // tabFindFiles
             // 
@@ -838,7 +820,7 @@
             this.tabFindFiles.Location = new System.Drawing.Point(4, 25);
             this.tabFindFiles.Name = "tabFindFiles";
             this.tabFindFiles.Padding = new System.Windows.Forms.Padding(3);
-            this.tabFindFiles.Size = new System.Drawing.Size(774, 358);
+            this.tabFindFiles.Size = new System.Drawing.Size(769, 140);
             this.tabFindFiles.TabIndex = 7;
             this.tabFindFiles.Text = "Find Ransomware Files (Off Hours Only)";
             this.tabFindFiles.ToolTipText = "Only run this outside of business hours.  Large file shares can take a long time." +
@@ -883,11 +865,12 @@
             this.dataGridViewCheckBoxColumn46,
             this.calendarColumn3,
             this.calendarColumn4,
-            this.dataGridViewTextBoxColumn17});
+            this.dataGridViewTextBoxColumn17,
+            this.dataGridViewCheckBoxColumn43});
             this.dgvFindFiles.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvFindFiles.Location = new System.Drawing.Point(3, 3);
             this.dgvFindFiles.Name = "dgvFindFiles";
-            this.dgvFindFiles.Size = new System.Drawing.Size(768, 352);
+            this.dgvFindFiles.Size = new System.Drawing.Size(763, 134);
             this.dgvFindFiles.TabIndex = 17;
             this.dgvFindFiles.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFindFiles_CellDoubleClick);
             this.dgvFindFiles.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvFindFiles_CellValidating);
@@ -962,6 +945,27 @@
             this.dataGridViewTextBoxColumn24.Name = "dataGridViewTextBoxColumn24";
             this.dataGridViewTextBoxColumn24.ToolTipText = "Comment for this task";
             this.dataGridViewTextBoxColumn24.Width = 92;
+            // 
+            // btnSendTestEmail
+            // 
+            this.btnSendTestEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSendTestEmail.Location = new System.Drawing.Point(265, 290);
+            this.btnSendTestEmail.Name = "btnSendTestEmail";
+            this.btnSendTestEmail.Size = new System.Drawing.Size(124, 26);
+            this.btnSendTestEmail.TabIndex = 10;
+            this.btnSendTestEmail.Text = "Send &Test Email";
+            this.btnSendTestEmail.UseVisualStyleBackColor = true;
+            this.btnSendTestEmail.Click += new System.EventHandler(this.btnSendTestEmail_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(519, 309);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(103, 18);
+            this.label1.TabIndex = 49;
+            this.label1.Text = "Service Status";
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -1279,6 +1283,14 @@
             this.dataGridViewTextBoxColumn15.ToolTipText = "Comment for this task";
             this.dataGridViewTextBoxColumn15.Width = 92;
             // 
+            // chkDetailedLogging
+            // 
+            this.chkDetailedLogging.DataPropertyName = "DetailedLogging";
+            this.chkDetailedLogging.HeaderText = "DetailedLogging";
+            this.chkDetailedLogging.Name = "chkDetailedLogging";
+            this.chkDetailedLogging.ToolTipText = "Detailed Error Logging even on successful check of files.";
+            this.chkDetailedLogging.Width = 117;
+            // 
             // dataGridViewTextBoxColumn6
             // 
             this.dataGridViewTextBoxColumn6.DataPropertyName = "ID";
@@ -1561,11 +1573,19 @@
             this.dataGridViewTextBoxColumn17.ToolTipText = "Comment for this task";
             this.dataGridViewTextBoxColumn17.Width = 92;
             // 
+            // dataGridViewCheckBoxColumn43
+            // 
+            this.dataGridViewCheckBoxColumn43.DataPropertyName = "DetailedLogging";
+            this.dataGridViewCheckBoxColumn43.HeaderText = "DetailedLogging";
+            this.dataGridViewCheckBoxColumn43.Name = "dataGridViewCheckBoxColumn43";
+            this.dataGridViewCheckBoxColumn43.ToolTipText = "Detailed error logging of information events.";
+            this.dataGridViewCheckBoxColumn43.Width = 117;
+            // 
             // RansomwareDetectionSystemTray
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(789, 793);
+            this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.menuStrip1);
@@ -1579,8 +1599,6 @@
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.gbTime.ResumeLayout(false);
-            this.gbTime.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbRightIcon)).EndInit();
             this.tabEvents.ResumeLayout(false);
             this.tabEvents.PerformLayout();
@@ -1611,8 +1629,6 @@
         private System.Windows.Forms.Label lblServiceIntervalMinutes;
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Button btnStop;
-        private System.Windows.Forms.GroupBox gbTime;
-        private System.Windows.Forms.Label lblTimeInfo;
         private System.Windows.Forms.Button btnSaveApply;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Label lblServiceInterval;
@@ -1667,6 +1683,8 @@
         private System.Windows.Forms.CheckBox chkSMTPUseDefaultCredentials;
         private System.Windows.Forms.TextBox txtSMTPUsername;
         private System.Windows.Forms.Label lblSMTPUsername;
+        private System.Windows.Forms.Button btnSendTestEmail;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
@@ -1705,6 +1723,7 @@
         private System.Windows.Forms.CalendarColumn calendarColumn1;
         private System.Windows.Forms.CalendarColumn calendarColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn chkDetailedLogging;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn21;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
@@ -1739,6 +1758,7 @@
         private System.Windows.Forms.CalendarColumn calendarColumn3;
         private System.Windows.Forms.CalendarColumn calendarColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn17;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn43;
     }
 }
 

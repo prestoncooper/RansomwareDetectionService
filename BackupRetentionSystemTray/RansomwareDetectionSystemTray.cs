@@ -1814,7 +1814,7 @@ namespace RansomwareDetection
                 {
                     mail.To.Add(strEmailTo);
                 }
-                mail.IsBodyHtml = false;
+                mail.IsBodyHtml = true;
                 mail.Body = strBody;
                 mail.Subject = strSubject;
 
@@ -1865,12 +1865,25 @@ namespace RansomwareDetection
         }
         
 
-       
-
-
+        private void btnSendTestEmail_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Save();
+                Send_Email("Test", "Ransomware Detection Email Test");
+            }
+            catch (Exception ex)
+            {
+                if (_evt == null)
+                {
+                    _evt = Common.GetEventLog;
+                }
+                string strErr = ex.Message + ": " + ex.Source + "  " + ex.StackTrace;
+                _evt.WriteEntry(strErr);
+            }
+        }
         #endregion
 
-        
 
 
 
