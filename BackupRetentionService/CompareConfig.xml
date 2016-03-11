@@ -1,0 +1,39 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <CompareConfig>
+    <ID>1</ID>
+    <Enabled>true</Enabled>
+    <Title>test reg</Title>
+    <Time>13:33</Time>
+    <IntervalType>Daily</IntervalType>
+    <Interval>0</Interval>
+    <Monday>true</Monday>
+    <Tuesday>true</Tuesday>
+    <Wednesday>true</Wednesday>
+    <Thursday>true</Thursday>
+    <Friday>true</Friday>
+    <Saturday>true</Saturday>
+    <Sunday>true</Sunday>
+    <January>true</January>
+    <February>true</February>
+    <March>true</March>
+    <April>true</April>
+    <May>true</May>
+    <June>true</June>
+    <July>true</July>
+    <August>true</August>
+    <September>true</September>
+    <October>true</October>
+    <November>true</November>
+    <December>true</December>
+    <DayOfMonth>0</DayOfMonth>
+    <SourcePath>C:\TEMP\source</SourcePath>
+    <FilePathToCheck>C:\TEMP\filestocheck</FilePathToCheck>
+    <CheckSubFolders>True</CheckSubFolders>
+    <CopySourceFilesSubFolders>false</CopySourceFilesSubFolders>
+    <SendEmailOnFailure>True</SendEmailOnFailure>
+    <SendEmailOnSuccess>True</SendEmailOnSuccess>
+    <StartDate>2/15/2016</StartDate>
+    <Comment />
+  </CompareConfig>
+</DocumentElement>
