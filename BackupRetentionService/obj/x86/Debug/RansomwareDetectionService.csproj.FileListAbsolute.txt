@@ -1,0 +1,11 @@
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetentionService\bin\Debug\RansomwareDetectionService.exe.config
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetentionService\bin\Debug\RansomwareDetectionService.exe
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetentionService\bin\Debug\RansomwareDetectionService.pdb
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetentionService\bin\Debug\RansomwareDetection.dll
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetentionService\bin\Debug\Delimon.Win32.IO.dll
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetentionService\bin\Debug\RansomwareDetection.pdb
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetentionService\obj\x86\Debug\RansomwareDetectionService.csprojResolveAssemblyReference.cache
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetentionService\obj\x86\Debug\RansomwareDetectionService.ProjectInstaller.resources
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetentionService\obj\x86\Debug\RansomwareDetectionService.csproj.GenerateResource.Cache
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetentionService\obj\x86\Debug\RansomwareDetectionService.exe
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetentionService\obj\x86\Debug\RansomwareDetectionService.pdb

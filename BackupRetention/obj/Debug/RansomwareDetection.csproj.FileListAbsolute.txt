@@ -1,0 +1,6 @@
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetention\bin\Debug\RansomwareDetection.dll.config
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetention\bin\Debug\RansomwareDetection.dll
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetention\bin\Debug\RansomwareDetection.pdb
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetention\bin\Debug\Delimon.Win32.IO.dll
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetention\obj\Debug\RansomwareDetection.dll
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetention\obj\Debug\RansomwareDetection.pdb

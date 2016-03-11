@@ -1,0 +1,13 @@
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetentionSystemTray\bin\Debug\RansomwareDetectionSystemTray.exe.config
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetentionSystemTray\bin\Debug\RansomwareDetectionSystemTray.exe
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetentionSystemTray\bin\Debug\RansomwareDetectionSystemTray.pdb
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetentionSystemTray\bin\Debug\Delimon.Win32.IO.dll
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetentionSystemTray\bin\Debug\RansomwareDetection.dll
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetentionSystemTray\bin\Debug\RansomwareDetection.pdb
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetentionSystemTray\obj\x86\Debug\RansomwareDetectionSystemTray.csprojResolveAssemblyReference.cache
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetentionSystemTray\obj\x86\Debug\RansomwareDetection.AboutBox.resources
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetentionSystemTray\obj\x86\Debug\RansomwareDetection.RansomwareDetectionSystemTray.resources
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetentionSystemTray\obj\x86\Debug\RansomwareDetection.Properties.Resources.resources
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetentionSystemTray\obj\x86\Debug\RansomwareDetectionSystemTray.csproj.GenerateResource.Cache
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetentionSystemTray\obj\x86\Debug\RansomwareDetectionSystemTray.exe
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetentionSystemTray\obj\x86\Debug\RansomwareDetectionSystemTray.pdb
