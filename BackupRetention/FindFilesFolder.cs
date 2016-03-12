@@ -960,8 +960,8 @@ namespace RansomwareDetection
                             StringBuilder sbbody2 = new StringBuilder();
                             strBody = "";
                             strSubject = "Ransomware Detection Service, File Found: Success! No Ransomware Files Found.";
-                            sbbody2.AppendLine("Ransomware Detection Service, File Found: Success! - No Ransomware Files Found. <br />\r\n");
-                            string strline = "<br />\r\n<ul><li>FilePathToCheck: " + FilePathToCheck + "</li>";
+                            sbbody2.AppendLine("Ransomware Detection Service, File Found: Success! - No Ransomware Files Found. <br />");
+                            string strline = "<br /><ul><li>FilePathToCheck: " + FilePathToCheck + "</li>";
                             sbbody2.AppendLine(strline);
 
                             sbbody2.AppendLine("<li>Check Sub Folders: " + CheckSubFolders.ToString() + "</li></ul>");

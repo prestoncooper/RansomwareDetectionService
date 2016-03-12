@@ -1155,9 +1155,9 @@ namespace RansomwareDetection
                         StringBuilder sbbody1 = new StringBuilder();
                         string strline = "";
                         strSubject = "Ransomware Detection Service, File Compare - Files Different!: " + FilesDifferent.Count.ToString() + " Files Missing: " + FilesMissing.Count.ToString();
-                        sbbody1.AppendLine("Ransomware Detection Service, Possible Ransomware Found<br />\r\n<br />\r\n");
+                        sbbody1.AppendLine("Ransomware Detection Service, Possible Ransomware Found<br />\r\n<br />");
                         sbbody1.AppendLine("<br /><ul><li>SourcePath: " + SourcePath + "</li>");
-                        strline = "<li>FilePathToCheck:</strong> " + Common.GetPathToHTMLAnchor(FilePathToCheck) + "</li>";
+                        strline = "<li>FilePathToCheck: " + Common.GetPathToHTMLAnchor(FilePathToCheck) + "</li>";
                         sbbody1.AppendLine(strline);
                         strline = "<li>Check Sub Folders: " + CheckSubFolders.ToString()+ "</li>";
                         sbbody1.AppendLine(strline);
@@ -1169,13 +1169,13 @@ namespace RansomwareDetection
                             //Loop through files that are different and list them
                             foreach (string strFileDiff in FilesDifferent)
                             {
-                                sbbody1.AppendLine("<a href=\"#\" style=\"text-decoration:none !important; text-decoration:none;\">\"" + strFileDiff + "\"</a><br />"); 
+                                sbbody1.AppendLine("<a href=\"#\" style=\"text-decoration:none !important; text-decoration:none;color:black;\">\"" + strFileDiff + "\"</a><br />"); 
                             }
                             sbbody1.AppendLine("<br />");
                         }
                         if (FilesMissing.Count > 0)
                         {
-                            sbbody1.Append("<br /><br /><strong>Files Missing:</srong><br />");
+                            sbbody1.Append("<br /><br /><strong>Files Missing:</strong><br />");
                             //Loop through the files that are missing and list them
                             foreach (string strFileMissing in FilesMissing)
                             {
@@ -1203,8 +1203,8 @@ namespace RansomwareDetection
                         StringBuilder sbbody2 = new StringBuilder();
                         strBody = "";
                         strSubject = "Ransomware Detection Service, File Compare: Success! (all files are the same and exist)";
-                        sbbody2.Append("Ransomware Detection Service, File Compare: Success! - All Files from SourcePath Files are the Same on FilePathToCheck Files Different: " + FilesDifferent.Count.ToString() + " Files Missing: " + FilesMissing.Count.ToString() + "<br /><br />r\n\r\n");
-                        sbbody2.Append("<br />\r\n\nSourcePath: " + SourcePath);
+                        sbbody2.Append("Ransomware Detection Service, File Compare: Success! - All Files from SourcePath Files are the Same on FilePathToCheck Files Different: " + FilesDifferent.Count.ToString() + " Files Missing: " + FilesMissing.Count.ToString() + "<br /><br />\r\n");
+                        sbbody2.Append("SourcePath: " + SourcePath);
                         sbbody2.Append("<br />\r\n<strong>FilePathToCheck:</strong> " + FilePathToCheck);
                         sbbody2.Append("<br />\r\nCheck MainFolder Folder: " + CheckMainFolder.ToString());
                         sbbody2.Append("<br />\r\nCheck Sub Folders: " + CheckSubFolders.ToString());
