@@ -1884,9 +1884,14 @@ namespace RansomwareDetection
                 _evt.WriteEntry(strErr);
             }
         }
+        
+
+        private void ransomwareDetectionServiceCodePlexPageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://ransomwaredetectionservice.codeplex.com");
+        }
+
         #endregion
-
-
 
 
 

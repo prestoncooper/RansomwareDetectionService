@@ -49,6 +49,8 @@
             this.authorPostRegardingRansomwareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.websiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnSendTestEmail = new System.Windows.Forms.Button();
             this.txtEmailTo = new System.Windows.Forms.TextBox();
             this.txtSMTPPassword = new System.Windows.Forms.TextBox();
             this.txtSMTPUsername = new System.Windows.Forms.TextBox();
@@ -92,18 +94,6 @@
             this.dgvColEventEventID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabCompare = new System.Windows.Forms.TabPage();
             this.dgvCompare = new System.Windows.Forms.DataGridView();
-            this.tabControl = new System.Windows.Forms.TabControl();
-            this.tabFindFiles = new System.Windows.Forms.TabPage();
-            this.dgvFindFiles = new System.Windows.Forms.DataGridView();
-            this.tabFilesToFind = new System.Windows.Forms.TabPage();
-            this.dgvFileFilters = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewCheckBoxColumn41 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvtxtFileFilter = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnSendTestEmail = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -143,6 +133,9 @@
             this.calendarColumn2 = new System.Windows.Forms.CalendarColumn();
             this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chkDetailedLogging = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.tabControl = new System.Windows.Forms.TabControl();
+            this.tabFindFiles = new System.Windows.Forms.TabPage();
+            this.dgvFindFiles = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewCheckBoxColumn21 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -178,6 +171,14 @@
             this.calendarColumn4 = new System.Windows.Forms.CalendarColumn();
             this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewCheckBoxColumn43 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.tabFilesToFind = new System.Windows.Forms.TabPage();
+            this.dgvFileFilters = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewCheckBoxColumn41 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvtxtFileFilter = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ransomwareDetectionServiceCodePlexPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbRightIcon)).BeginInit();
@@ -241,6 +242,7 @@
             this.aboutToolStripMenuItem1,
             this.helpToolStripMenuItem1,
             this.licenseToolStripMenuItem,
+            this.ransomwareDetectionServiceCodePlexPageToolStripMenuItem,
             this.authorPostRegardingRansomwareToolStripMenuItem,
             this.websiteToolStripMenuItem});
             this.helpToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10F);
@@ -251,35 +253,35 @@
             // aboutToolStripMenuItem1
             // 
             this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
-            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(299, 24);
+            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(359, 24);
             this.aboutToolStripMenuItem1.Text = "&About";
             this.aboutToolStripMenuItem1.Click += new System.EventHandler(this.aboutToolStripMenuItem1_Click);
             // 
             // helpToolStripMenuItem1
             // 
             this.helpToolStripMenuItem1.Name = "helpToolStripMenuItem1";
-            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(299, 24);
+            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(359, 24);
             this.helpToolStripMenuItem1.Text = "&Help PDF Document";
             this.helpToolStripMenuItem1.Click += new System.EventHandler(this.helpToolStripMenuItem1_Click);
             // 
             // licenseToolStripMenuItem
             // 
             this.licenseToolStripMenuItem.Name = "licenseToolStripMenuItem";
-            this.licenseToolStripMenuItem.Size = new System.Drawing.Size(299, 24);
+            this.licenseToolStripMenuItem.Size = new System.Drawing.Size(359, 24);
             this.licenseToolStripMenuItem.Text = "License";
             this.licenseToolStripMenuItem.Click += new System.EventHandler(this.licenseToolStripMenuItem_Click);
             // 
             // authorPostRegardingRansomwareToolStripMenuItem
             // 
             this.authorPostRegardingRansomwareToolStripMenuItem.Name = "authorPostRegardingRansomwareToolStripMenuItem";
-            this.authorPostRegardingRansomwareToolStripMenuItem.Size = new System.Drawing.Size(299, 24);
+            this.authorPostRegardingRansomwareToolStripMenuItem.Size = new System.Drawing.Size(359, 24);
             this.authorPostRegardingRansomwareToolStripMenuItem.Text = "Author Post Regarding Ransomware";
             this.authorPostRegardingRansomwareToolStripMenuItem.Click += new System.EventHandler(this.authorPostRegardingRansomwareToolStripMenuItem_Click);
             // 
             // websiteToolStripMenuItem
             // 
             this.websiteToolStripMenuItem.Name = "websiteToolStripMenuItem";
-            this.websiteToolStripMenuItem.Size = new System.Drawing.Size(299, 24);
+            this.websiteToolStripMenuItem.Size = new System.Drawing.Size(359, 24);
             this.websiteToolStripMenuItem.Text = "Author Site QuestionDriven.com";
             this.websiteToolStripMenuItem.Click += new System.EventHandler(this.websiteToolStripMenuItem_Click);
             // 
@@ -317,6 +319,27 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(784, 360);
             this.panel1.TabIndex = 20;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(519, 309);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(103, 18);
+            this.label1.TabIndex = 49;
+            this.label1.Text = "Service Status";
+            // 
+            // btnSendTestEmail
+            // 
+            this.btnSendTestEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSendTestEmail.Location = new System.Drawing.Point(265, 290);
+            this.btnSendTestEmail.Name = "btnSendTestEmail";
+            this.btnSendTestEmail.Size = new System.Drawing.Size(124, 26);
+            this.btnSendTestEmail.TabIndex = 10;
+            this.btnSendTestEmail.Text = "Send &Test Email";
+            this.btnSendTestEmail.UseVisualStyleBackColor = true;
+            this.btnSendTestEmail.Click += new System.EventHandler(this.btnSendTestEmail_Click);
             // 
             // txtEmailTo
             // 
@@ -572,7 +595,7 @@
             this.tabEvents.Location = new System.Drawing.Point(4, 25);
             this.tabEvents.Name = "tabEvents";
             this.tabEvents.Padding = new System.Windows.Forms.Padding(3);
-            this.tabEvents.Size = new System.Drawing.Size(774, 358);
+            this.tabEvents.Size = new System.Drawing.Size(769, 140);
             this.tabEvents.TabIndex = 4;
             this.tabEvents.Text = "Log";
             this.tabEvents.ToolTipText = "Event Log for this service.";
@@ -797,175 +820,6 @@
             this.dgvCompare.TabIndex = 16;
             this.dgvCompare.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCompare_CellDoubleClick);
             this.dgvCompare.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvCompare_CellValidating);
-            // 
-            // tabControl
-            // 
-            this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl.Controls.Add(this.tabCompare);
-            this.tabControl.Controls.Add(this.tabFindFiles);
-            this.tabControl.Controls.Add(this.tabFilesToFind);
-            this.tabControl.Controls.Add(this.tabEvents);
-            this.tabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl.Location = new System.Drawing.Point(1, 392);
-            this.tabControl.Name = "tabControl";
-            this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(777, 169);
-            this.tabControl.TabIndex = 16;
-            // 
-            // tabFindFiles
-            // 
-            this.tabFindFiles.Controls.Add(this.dgvFindFiles);
-            this.tabFindFiles.Location = new System.Drawing.Point(4, 25);
-            this.tabFindFiles.Name = "tabFindFiles";
-            this.tabFindFiles.Padding = new System.Windows.Forms.Padding(3);
-            this.tabFindFiles.Size = new System.Drawing.Size(769, 140);
-            this.tabFindFiles.TabIndex = 7;
-            this.tabFindFiles.Text = "Find Ransomware Files (Off Hours Only)";
-            this.tabFindFiles.ToolTipText = "Only run this outside of business hours.  Large file shares can take a long time." +
-    "";
-            this.tabFindFiles.UseVisualStyleBackColor = true;
-            // 
-            // dgvFindFiles
-            // 
-            this.dgvFindFiles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgvFindFiles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvFindFiles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewCheckBoxColumn21,
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8,
-            this.dataGridViewTextBoxColumn9,
-            this.dataGridViewComboBoxColumn2,
-            this.dataGridViewTextBoxColumn10,
-            this.dataGridViewCheckBoxColumn22,
-            this.dataGridViewCheckBoxColumn23,
-            this.dataGridViewCheckBoxColumn24,
-            this.dataGridViewCheckBoxColumn25,
-            this.dataGridViewCheckBoxColumn26,
-            this.dataGridViewCheckBoxColumn27,
-            this.dataGridViewCheckBoxColumn28,
-            this.dataGridViewCheckBoxColumn29,
-            this.dataGridViewCheckBoxColumn30,
-            this.dataGridViewCheckBoxColumn31,
-            this.dataGridViewCheckBoxColumn32,
-            this.dataGridViewCheckBoxColumn33,
-            this.dataGridViewCheckBoxColumn34,
-            this.dataGridViewCheckBoxColumn35,
-            this.dataGridViewCheckBoxColumn36,
-            this.dataGridViewCheckBoxColumn37,
-            this.dataGridViewCheckBoxColumn38,
-            this.dataGridViewCheckBoxColumn39,
-            this.dataGridViewCheckBoxColumn40,
-            this.dataGridViewTextBoxColumn14,
-            this.dataGridViewCheckBoxColumn42,
-            this.dataGridViewTextBoxColumn16,
-            this.dataGridViewCheckBoxColumn45,
-            this.dataGridViewCheckBoxColumn46,
-            this.calendarColumn3,
-            this.calendarColumn4,
-            this.dataGridViewTextBoxColumn17,
-            this.dataGridViewCheckBoxColumn43});
-            this.dgvFindFiles.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvFindFiles.Location = new System.Drawing.Point(3, 3);
-            this.dgvFindFiles.Name = "dgvFindFiles";
-            this.dgvFindFiles.Size = new System.Drawing.Size(763, 134);
-            this.dgvFindFiles.TabIndex = 17;
-            this.dgvFindFiles.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFindFiles_CellDoubleClick);
-            this.dgvFindFiles.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvFindFiles_CellValidating);
-            // 
-            // tabFilesToFind
-            // 
-            this.tabFilesToFind.Controls.Add(this.dgvFileFilters);
-            this.tabFilesToFind.Location = new System.Drawing.Point(4, 25);
-            this.tabFilesToFind.Name = "tabFilesToFind";
-            this.tabFilesToFind.Padding = new System.Windows.Forms.Padding(3);
-            this.tabFilesToFind.Size = new System.Drawing.Size(774, 358);
-            this.tabFilesToFind.TabIndex = 8;
-            this.tabFilesToFind.Text = "Ransomware File Filters";
-            this.tabFilesToFind.ToolTipText = "Ransomware files to search for via the Find Ransomware Files tab.";
-            this.tabFilesToFind.UseVisualStyleBackColor = true;
-            // 
-            // dgvFileFilters
-            // 
-            this.dgvFileFilters.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgvFileFilters.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvFileFilters.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn13,
-            this.dataGridViewCheckBoxColumn41,
-            this.dataGridViewTextBoxColumn18,
-            this.dgvtxtFileFilter,
-            this.dataGridViewTextBoxColumn24});
-            this.dgvFileFilters.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvFileFilters.Location = new System.Drawing.Point(3, 3);
-            this.dgvFileFilters.Name = "dgvFileFilters";
-            this.dgvFileFilters.Size = new System.Drawing.Size(768, 352);
-            this.dgvFileFilters.TabIndex = 18;
-            this.dgvFileFilters.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvFileFilters_CellValidating);
-            // 
-            // dataGridViewTextBoxColumn13
-            // 
-            this.dataGridViewTextBoxColumn13.DataPropertyName = "ID";
-            this.dataGridViewTextBoxColumn13.HeaderText = "ID";
-            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
-            this.dataGridViewTextBoxColumn13.ReadOnly = true;
-            this.dataGridViewTextBoxColumn13.Width = 46;
-            // 
-            // dataGridViewCheckBoxColumn41
-            // 
-            this.dataGridViewCheckBoxColumn41.DataPropertyName = "Enabled";
-            this.dataGridViewCheckBoxColumn41.FalseValue = "false";
-            this.dataGridViewCheckBoxColumn41.HeaderText = "Enabled";
-            this.dataGridViewCheckBoxColumn41.IndeterminateValue = "";
-            this.dataGridViewCheckBoxColumn41.Name = "dataGridViewCheckBoxColumn41";
-            this.dataGridViewCheckBoxColumn41.TrueValue = "true";
-            this.dataGridViewCheckBoxColumn41.Width = 66;
-            // 
-            // dataGridViewTextBoxColumn18
-            // 
-            this.dataGridViewTextBoxColumn18.DataPropertyName = "Title";
-            this.dataGridViewTextBoxColumn18.HeaderText = "Title";
-            this.dataGridViewTextBoxColumn18.Name = "dataGridViewTextBoxColumn18";
-            this.dataGridViewTextBoxColumn18.Width = 60;
-            // 
-            // dgvtxtFileFilter
-            // 
-            this.dgvtxtFileFilter.DataPropertyName = "FileFilter";
-            this.dgvtxtFileFilter.HeaderText = "FileFilter";
-            this.dgvtxtFileFilter.Name = "dgvtxtFileFilter";
-            this.dgvtxtFileFilter.ToolTipText = "File Filter in windows search format (e.g. *, *.*, *file*.txt, file*.txt, file.*)" +
-    " ";
-            this.dgvtxtFileFilter.Width = 86;
-            // 
-            // dataGridViewTextBoxColumn24
-            // 
-            this.dataGridViewTextBoxColumn24.DataPropertyName = "Comment";
-            this.dataGridViewTextBoxColumn24.HeaderText = "Comment";
-            this.dataGridViewTextBoxColumn24.Name = "dataGridViewTextBoxColumn24";
-            this.dataGridViewTextBoxColumn24.ToolTipText = "Comment for this task";
-            this.dataGridViewTextBoxColumn24.Width = 92;
-            // 
-            // btnSendTestEmail
-            // 
-            this.btnSendTestEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSendTestEmail.Location = new System.Drawing.Point(265, 290);
-            this.btnSendTestEmail.Name = "btnSendTestEmail";
-            this.btnSendTestEmail.Size = new System.Drawing.Size(124, 26);
-            this.btnSendTestEmail.TabIndex = 10;
-            this.btnSendTestEmail.Text = "Send &Test Email";
-            this.btnSendTestEmail.UseVisualStyleBackColor = true;
-            this.btnSendTestEmail.Click += new System.EventHandler(this.btnSendTestEmail_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(519, 309);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(103, 18);
-            this.label1.TabIndex = 49;
-            this.label1.Text = "Service Status";
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -1291,6 +1145,83 @@
             this.chkDetailedLogging.ToolTipText = "Detailed Error Logging even on successful check of files.";
             this.chkDetailedLogging.Width = 117;
             // 
+            // tabControl
+            // 
+            this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl.Controls.Add(this.tabCompare);
+            this.tabControl.Controls.Add(this.tabFindFiles);
+            this.tabControl.Controls.Add(this.tabFilesToFind);
+            this.tabControl.Controls.Add(this.tabEvents);
+            this.tabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl.Location = new System.Drawing.Point(1, 392);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(777, 169);
+            this.tabControl.TabIndex = 16;
+            // 
+            // tabFindFiles
+            // 
+            this.tabFindFiles.Controls.Add(this.dgvFindFiles);
+            this.tabFindFiles.Location = new System.Drawing.Point(4, 25);
+            this.tabFindFiles.Name = "tabFindFiles";
+            this.tabFindFiles.Padding = new System.Windows.Forms.Padding(3);
+            this.tabFindFiles.Size = new System.Drawing.Size(769, 140);
+            this.tabFindFiles.TabIndex = 7;
+            this.tabFindFiles.Text = "Find Ransomware Files (Off Hours Only)";
+            this.tabFindFiles.ToolTipText = "Only run this outside of business hours.  Large file shares can take a long time." +
+    "";
+            this.tabFindFiles.UseVisualStyleBackColor = true;
+            // 
+            // dgvFindFiles
+            // 
+            this.dgvFindFiles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvFindFiles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvFindFiles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewCheckBoxColumn21,
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8,
+            this.dataGridViewTextBoxColumn9,
+            this.dataGridViewComboBoxColumn2,
+            this.dataGridViewTextBoxColumn10,
+            this.dataGridViewCheckBoxColumn22,
+            this.dataGridViewCheckBoxColumn23,
+            this.dataGridViewCheckBoxColumn24,
+            this.dataGridViewCheckBoxColumn25,
+            this.dataGridViewCheckBoxColumn26,
+            this.dataGridViewCheckBoxColumn27,
+            this.dataGridViewCheckBoxColumn28,
+            this.dataGridViewCheckBoxColumn29,
+            this.dataGridViewCheckBoxColumn30,
+            this.dataGridViewCheckBoxColumn31,
+            this.dataGridViewCheckBoxColumn32,
+            this.dataGridViewCheckBoxColumn33,
+            this.dataGridViewCheckBoxColumn34,
+            this.dataGridViewCheckBoxColumn35,
+            this.dataGridViewCheckBoxColumn36,
+            this.dataGridViewCheckBoxColumn37,
+            this.dataGridViewCheckBoxColumn38,
+            this.dataGridViewCheckBoxColumn39,
+            this.dataGridViewCheckBoxColumn40,
+            this.dataGridViewTextBoxColumn14,
+            this.dataGridViewCheckBoxColumn42,
+            this.dataGridViewTextBoxColumn16,
+            this.dataGridViewCheckBoxColumn45,
+            this.dataGridViewCheckBoxColumn46,
+            this.calendarColumn3,
+            this.calendarColumn4,
+            this.dataGridViewTextBoxColumn17,
+            this.dataGridViewCheckBoxColumn43});
+            this.dgvFindFiles.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvFindFiles.Location = new System.Drawing.Point(3, 3);
+            this.dgvFindFiles.Name = "dgvFindFiles";
+            this.dgvFindFiles.Size = new System.Drawing.Size(763, 134);
+            this.dgvFindFiles.TabIndex = 17;
+            this.dgvFindFiles.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFindFiles_CellDoubleClick);
+            this.dgvFindFiles.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvFindFiles_CellValidating);
+            // 
             // dataGridViewTextBoxColumn6
             // 
             this.dataGridViewTextBoxColumn6.DataPropertyName = "ID";
@@ -1581,6 +1512,84 @@
             this.dataGridViewCheckBoxColumn43.ToolTipText = "Detailed error logging of information events.";
             this.dataGridViewCheckBoxColumn43.Width = 117;
             // 
+            // tabFilesToFind
+            // 
+            this.tabFilesToFind.Controls.Add(this.dgvFileFilters);
+            this.tabFilesToFind.Location = new System.Drawing.Point(4, 25);
+            this.tabFilesToFind.Name = "tabFilesToFind";
+            this.tabFilesToFind.Padding = new System.Windows.Forms.Padding(3);
+            this.tabFilesToFind.Size = new System.Drawing.Size(769, 140);
+            this.tabFilesToFind.TabIndex = 8;
+            this.tabFilesToFind.Text = "Ransomware File Filters";
+            this.tabFilesToFind.ToolTipText = "Ransomware files to search for via the Find Ransomware Files tab.";
+            this.tabFilesToFind.UseVisualStyleBackColor = true;
+            // 
+            // dgvFileFilters
+            // 
+            this.dgvFileFilters.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvFileFilters.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvFileFilters.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn13,
+            this.dataGridViewCheckBoxColumn41,
+            this.dataGridViewTextBoxColumn18,
+            this.dgvtxtFileFilter,
+            this.dataGridViewTextBoxColumn24});
+            this.dgvFileFilters.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvFileFilters.Location = new System.Drawing.Point(3, 3);
+            this.dgvFileFilters.Name = "dgvFileFilters";
+            this.dgvFileFilters.Size = new System.Drawing.Size(763, 134);
+            this.dgvFileFilters.TabIndex = 18;
+            this.dgvFileFilters.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvFileFilters_CellValidating);
+            // 
+            // dataGridViewTextBoxColumn13
+            // 
+            this.dataGridViewTextBoxColumn13.DataPropertyName = "ID";
+            this.dataGridViewTextBoxColumn13.HeaderText = "ID";
+            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
+            this.dataGridViewTextBoxColumn13.ReadOnly = true;
+            this.dataGridViewTextBoxColumn13.Width = 46;
+            // 
+            // dataGridViewCheckBoxColumn41
+            // 
+            this.dataGridViewCheckBoxColumn41.DataPropertyName = "Enabled";
+            this.dataGridViewCheckBoxColumn41.FalseValue = "false";
+            this.dataGridViewCheckBoxColumn41.HeaderText = "Enabled";
+            this.dataGridViewCheckBoxColumn41.IndeterminateValue = "";
+            this.dataGridViewCheckBoxColumn41.Name = "dataGridViewCheckBoxColumn41";
+            this.dataGridViewCheckBoxColumn41.TrueValue = "true";
+            this.dataGridViewCheckBoxColumn41.Width = 66;
+            // 
+            // dataGridViewTextBoxColumn18
+            // 
+            this.dataGridViewTextBoxColumn18.DataPropertyName = "Title";
+            this.dataGridViewTextBoxColumn18.HeaderText = "Title";
+            this.dataGridViewTextBoxColumn18.Name = "dataGridViewTextBoxColumn18";
+            this.dataGridViewTextBoxColumn18.Width = 60;
+            // 
+            // dgvtxtFileFilter
+            // 
+            this.dgvtxtFileFilter.DataPropertyName = "FileFilter";
+            this.dgvtxtFileFilter.HeaderText = "FileFilter";
+            this.dgvtxtFileFilter.Name = "dgvtxtFileFilter";
+            this.dgvtxtFileFilter.ToolTipText = "File Filter in windows search format (e.g. *, *.*, *file*.txt, file*.txt, file.*)" +
+    " ";
+            this.dgvtxtFileFilter.Width = 86;
+            // 
+            // dataGridViewTextBoxColumn24
+            // 
+            this.dataGridViewTextBoxColumn24.DataPropertyName = "Comment";
+            this.dataGridViewTextBoxColumn24.HeaderText = "Comment";
+            this.dataGridViewTextBoxColumn24.Name = "dataGridViewTextBoxColumn24";
+            this.dataGridViewTextBoxColumn24.ToolTipText = "Comment for this task";
+            this.dataGridViewTextBoxColumn24.Width = 92;
+            // 
+            // ransomwareDetectionServiceCodePlexPageToolStripMenuItem
+            // 
+            this.ransomwareDetectionServiceCodePlexPageToolStripMenuItem.Name = "ransomwareDetectionServiceCodePlexPageToolStripMenuItem";
+            this.ransomwareDetectionServiceCodePlexPageToolStripMenuItem.Size = new System.Drawing.Size(359, 24);
+            this.ransomwareDetectionServiceCodePlexPageToolStripMenuItem.Text = "Ransomware Detection Service CodePlex Page";
+            this.ransomwareDetectionServiceCodePlexPageToolStripMenuItem.Click += new System.EventHandler(this.ransomwareDetectionServiceCodePlexPageToolStripMenuItem_Click);
+            // 
             // RansomwareDetectionSystemTray
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1759,6 +1768,7 @@
         private System.Windows.Forms.CalendarColumn calendarColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn17;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn43;
+        private System.Windows.Forms.ToolStripMenuItem ransomwareDetectionServiceCodePlexPageToolStripMenuItem;
     }
 }
 
