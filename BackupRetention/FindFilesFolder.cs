@@ -708,7 +708,7 @@ namespace RansomwareDetection
 
 
         /// <summary>
-        /// Initializes the config table
+        /// Initializes the config table for FindFiles
         /// </summary>
         /// <returns></returns>
         public static DataTable init_dtConfig()
@@ -806,7 +806,7 @@ namespace RansomwareDetection
         }
 
         /// <summary>
-        /// Initializes the config table
+        /// Initializes the config table for file filters
         /// </summary>
         /// <returns></returns>
         public static DataTable init_dtFileFiltersConfig()
@@ -844,6 +844,8 @@ namespace RansomwareDetection
             return dtFileFilters;
 
         }
+        
+        
 
         /// <summary>
         /// Executes Find of all file filters
@@ -918,22 +920,22 @@ namespace RansomwareDetection
                         {
                             //On Failure Email
                             StringBuilder sbbody1 = new StringBuilder();
+                            string strline = "";
                             strSubject = "Ransomware Detection Service, Files Found - Ransomware Found!: " + FilesFound.Count.ToString();
-                            sbbody1.AppendLine(" \nFilePathToCheck: " + FilePathToCheck);
-
-                            sbbody1.AppendLine(" \nCheck Sub Folders: " + CheckSubFolders.ToString());
+                            strline = "<strong>Ransomware Detection Service, Possible Ransomware Files Found</strong><br /><br /><ul><li>FilePathToCheck:</strong> " + Common.GetPathToHTMLAnchor(FilePathToCheck) + "</li>";
+                            sbbody1.AppendLine(strline);
+                            strline = "<li>Check Sub Folders: " + CheckSubFolders.ToString() + "</li></ul>";
+                            sbbody1.AppendLine(strline);
                             if (FilesFound.Count > 0)
                             {
-                                sbbody1.AppendLine("\nRansomware Files:\n");
+                                sbbody1.AppendLine("<br /><br /><strong>Ransomware Files:</strong><br />");
                                 //Loop through files that are different and list them
                                 foreach (string strFile in FilesFound)
                                 {
-                                    Delimon.Win32.IO.FileInfo filef = new Delimon.Win32.IO.FileInfo(strFile);
-                                    sbbody1.AppendLine("\"" + strFile + "\"");
-                                    sbbody1.AppendLine("<"+ filef.Directory.FullName + ">");
-                                    sbbody1.Append("\n");
+                                    sbbody1.AppendLine("<a href=\"#\" style=\"text-decoration:none !important; text-decoration:none;color:black;\">\"" + strFile + "\"</a><br />");
+                                    
                                 }
-                                sbbody1.AppendLine("\n");
+                                sbbody1.AppendLine("<br />");
                             }
 
                             
@@ -958,11 +960,11 @@ namespace RansomwareDetection
                             StringBuilder sbbody2 = new StringBuilder();
                             strBody = "";
                             strSubject = "Ransomware Detection Service, File Found: Success! No Ransomware Files Found.";
-                            sbbody2.AppendLine("Ransomware Detection Service, File Found: Success! - No Ransomware Files Found. \n");
+                            sbbody2.AppendLine("Ransomware Detection Service, File Found: Success! - No Ransomware Files Found. <br />\r\n");
+                            string strline = "<br />\r\n<ul><li>FilePathToCheck: " + FilePathToCheck + "</li>";
+                            sbbody2.AppendLine(strline);
 
-                            sbbody2.AppendLine(" \nFilePathToCheck: <" + FilePathToCheck + ">");
-
-                            sbbody2.AppendLine(" \nCheck Sub Folders: " + CheckSubFolders.ToString());
+                            sbbody2.AppendLine("<li>Check Sub Folders: " + CheckSubFolders.ToString() + "</li></ul>");
                             strBody = sbbody2.ToString();
                             sbbody2.Clear();
                             //send email on success
@@ -1014,7 +1016,14 @@ namespace RansomwareDetection
 
         }
 
-
+        /// <summary>
+        /// Write Event Log Error
+        /// </summary>
+        /// <param name="strErrorMessage"></param>
+        /// <param name="entrytype"></param>
+        /// <param name="eventid"></param>
+        /// <param name="category"></param>
+        /// <param name="blIsDetailedLoggingError"></param>
         private void WriteError(string strErrorMessage, System.Diagnostics.EventLogEntryType entrytype, int eventid, short category, bool blIsDetailedLoggingError)
         {
             //multi threaded so _evt sometimes is not allocated. 
@@ -1046,19 +1055,19 @@ namespace RansomwareDetection
 
             //Emails regarding restarting the process server
             char[] cdelimiter = { ',' };
-            char[] cdelimiter2 = { ';' };
+            
 
             MailMessage mail = new MailMessage();
             SmtpClient SmtpServer = new SmtpClient(_smtpServer);
 
             mail.From = new MailAddress(_emailFrom);
+            _emailTo = _emailTo.Replace(";", ",");
+            //comma delimiter support
             string[] ToMultiEmail = _emailTo.Split(cdelimiter, StringSplitOptions.RemoveEmptyEntries);
-            if (ToMultiEmail == null || ToMultiEmail.Length == 0)
-            {
-                ToMultiEmail = _emailTo.Split(cdelimiter2, StringSplitOptions.RemoveEmptyEntries);
-            }
+            
             if (ToMultiEmail != null)
             {
+                //add each email address
                 foreach (string strEmailTo in ToMultiEmail)
                 {
                     mail.To.Add(strEmailTo);
@@ -1069,6 +1078,7 @@ namespace RansomwareDetection
 
                 SmtpServer.Port = Common.FixNullInt32(_smtpPort);
                 SmtpServer.UseDefaultCredentials = _smtpUseDefaultCredentials;
+                //credential support (username/password) for SMTP Server
                 if (_smtpPassword != null && _smtpUsername != null)
                 {
                     if (_smtpPassword.Length > 0 && _smtpUsername.Length > 0)

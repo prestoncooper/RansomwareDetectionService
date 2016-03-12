@@ -305,7 +305,23 @@ namespace RansomwareDetection
 
         }
 
+        public static string GetPathToHTMLAnchor(string strpath)
+        {
+            string strNewPath = "";
 
+            System.Uri uri = new System.Uri(strpath);
+            if (uri.IsUnc)
+            {
+                strNewPath = "<a href=\"" + uri.AbsoluteUri + "\">" + strpath + "</a>";
+                strNewPath = strNewPath.Replace("file://", "file://///");
+            }
+            else
+            {
+                strNewPath = "<a href=\"" + uri.AbsoluteUri + "\">" + strpath + "</a>";
+
+            }
+            return strNewPath;
+        }
         
         public static string DateTimeSQLite(DateTime datetime)
         {

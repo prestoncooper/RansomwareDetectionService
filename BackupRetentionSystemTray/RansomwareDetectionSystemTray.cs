@@ -1797,19 +1797,20 @@ namespace RansomwareDetection
 
             //Emails regarding restarting the process server
             char[] cdelimiter = { ',' };
-            char[] cdelimiter2 = { ';' };
+            
 
             MailMessage mail = new MailMessage();
             SmtpClient SmtpServer = new SmtpClient(_smtpServer);
 
             mail.From = new MailAddress(_emailFrom);
+
+            _emailTo = _emailTo.Replace(";", ",");
+            //comma delimiter support for email to
             string[] ToMultiEmail = _emailTo.Split(cdelimiter, StringSplitOptions.RemoveEmptyEntries);
-            if (ToMultiEmail == null || ToMultiEmail.Length == 0)
-            {
-                ToMultiEmail = _emailTo.Split(cdelimiter2, StringSplitOptions.RemoveEmptyEntries);
-            }
+            
             if (ToMultiEmail != null)
             {
+                //add each email address
                 foreach (string strEmailTo in ToMultiEmail)
                 {
                     mail.To.Add(strEmailTo);
@@ -1820,6 +1821,7 @@ namespace RansomwareDetection
 
                 SmtpServer.Port = Common.FixNullInt32(_smtpPort);
                 SmtpServer.UseDefaultCredentials = _smtpUseDefaultCredentials;
+                //credential support (username/password) for SMTP Server
                 if (_smtpPassword != null && _smtpUsername != null)
                 {
                     if (_smtpPassword.Length > 0 && _smtpUsername.Length > 0)

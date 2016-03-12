@@ -333,6 +333,8 @@ namespace RansomwareDetection
             return strPath;
         }
 
+        
+
         /// <summary>
         /// Recursively Searches for all files and folders specified by the filter; Optimized for best performance
         /// </summary>

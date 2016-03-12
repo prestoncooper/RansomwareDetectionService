@@ -426,6 +426,13 @@ namespace RansomwareDetection
             Timer_Execute();
         }
 
+        /// <summary>
+        /// Write Event Log Error
+        /// </summary>
+        /// <param name="strErrorMessage"></param>
+        /// <param name="entrytype"></param>
+        /// <param name="eventid"></param>
+        /// <param name="category"></param>
         private void WriteError(string strErrorMessage, System.Diagnostics.EventLogEntryType entrytype, int eventid, short category)
         {
             //multi threaded so _evt sometimes is not allocated. 

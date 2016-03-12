@@ -1153,31 +1153,33 @@ namespace RansomwareDetection
                     {
                         
                         StringBuilder sbbody1 = new StringBuilder();
+                        string strline = "";
                         strSubject = "Ransomware Detection Service, File Compare - Files Different!: " + FilesDifferent.Count.ToString() + " Files Missing: " + FilesMissing.Count.ToString();
-                        sbbody1.AppendLine(" \n\nSourcePath: " + SourcePath );
-                        sbbody1.AppendLine(" \nFilePathToCheck: <" + FilePathToCheck + ">");
-                        sbbody1.AppendLine(" \nCheck Sub Folders: " + CheckSubFolders.ToString());
-                        sbbody1.AppendLine(" \nCheck MainFolder Folder: " + CheckMainFolder.ToString());
+                        sbbody1.AppendLine("Ransomware Detection Service, Possible Ransomware Found<br />\r\n<br />\r\n");
+                        sbbody1.AppendLine("<br /><ul><li>SourcePath: " + SourcePath + "</li>");
+                        strline = "<li>FilePathToCheck:</strong> " + Common.GetPathToHTMLAnchor(FilePathToCheck) + "</li>";
+                        sbbody1.AppendLine(strline);
+                        strline = "<li>Check Sub Folders: " + CheckSubFolders.ToString()+ "</li>";
+                        sbbody1.AppendLine(strline);
+                        strline = "<li>Check MainFolder Folder: " + CheckMainFolder.ToString() + "</li></ul>";
+                        sbbody1.AppendLine(strline);
                         if (FilesDifferent.Count > 0)
                         {
-                            sbbody1.AppendLine("Files Different:\n\n");
+                            sbbody1.AppendLine("<br /><br />\r\n<strong>Files Different:</strong><br />");
                             //Loop through files that are different and list them
                             foreach (string strFileDiff in FilesDifferent)
                             {
-                                Delimon.Win32.IO.FileInfo filef = new Delimon.Win32.IO.FileInfo(strFileDiff);
-                                sbbody1.AppendLine("\"" + strFileDiff + "\"\n");
-                                sbbody1.AppendLine("<" + filef.Directory.FullName + ">");
-                                
+                                sbbody1.AppendLine("<a href=\"#\" style=\"text-decoration:none !important; text-decoration:none;\">\"" + strFileDiff + "\"</a><br />"); 
                             }
-                            sbbody1.AppendLine("\n");
+                            sbbody1.AppendLine("<br />");
                         }
                         if (FilesMissing.Count > 0)
                         {
-                            sbbody1.Append("Files Missing:\n\n");
+                            sbbody1.Append("<br /><br /><strong>Files Missing:</srong><br />");
                             //Loop through the files that are missing and list them
                             foreach (string strFileMissing in FilesMissing)
                             {
-                                sbbody1.AppendLine("\"" + strFileMissing + "\"\n");
+                                sbbody1.AppendLine("<a href=\"#\" style=\"text-decoration:none !important; text-decoration:none;color:black;\">\"" + strFileMissing + "\"</a><br />");
                             }
                         }
                      
@@ -1201,11 +1203,11 @@ namespace RansomwareDetection
                         StringBuilder sbbody2 = new StringBuilder();
                         strBody = "";
                         strSubject = "Ransomware Detection Service, File Compare: Success! (all files are the same and exist)";
-                        sbbody2.Append("Ransomware Detection Service, File Compare: Success! - All Files from SourcePath Files are the Same on FilePathToCheck Files Different: " + FilesDifferent.Count.ToString() + " Files Missing: " + FilesMissing.Count.ToString() + "\n\n");
-                        sbbody2.Append(" \n\nSourcePath: " + SourcePath);
-                        sbbody2.Append(" \nFilePathToCheck: <" + FilePathToCheck + ">");
-                        sbbody2.Append(" \nCheck MainFolder Folder: " + CheckMainFolder.ToString());
-                        sbbody2.Append(" \nCheck Sub Folders: " + CheckSubFolders.ToString());
+                        sbbody2.Append("Ransomware Detection Service, File Compare: Success! - All Files from SourcePath Files are the Same on FilePathToCheck Files Different: " + FilesDifferent.Count.ToString() + " Files Missing: " + FilesMissing.Count.ToString() + "<br /><br />r\n\r\n");
+                        sbbody2.Append("<br />\r\n\nSourcePath: " + SourcePath);
+                        sbbody2.Append("<br />\r\n<strong>FilePathToCheck:</strong> " + FilePathToCheck);
+                        sbbody2.Append("<br />\r\nCheck MainFolder Folder: " + CheckMainFolder.ToString());
+                        sbbody2.Append("<br />\r\nCheck Sub Folders: " + CheckSubFolders.ToString());
                         strBody = sbbody2.ToString();
                         sbbody2.Clear();
                         //send email on success
@@ -1261,7 +1263,14 @@ namespace RansomwareDetection
 
         }
 
-
+        /// <summary>
+        /// Write Event Log Error
+        /// </summary>
+        /// <param name="strErrorMessage"></param>
+        /// <param name="entrytype"></param>
+        /// <param name="eventid"></param>
+        /// <param name="category"></param>
+        /// <param name="blIsDetailedLoggingError"></param>
         private void WriteError(string strErrorMessage, System.Diagnostics.EventLogEntryType entrytype, int eventid, short category, bool blIsDetailedLoggingError)
         {
             //multi threaded so _evt sometimes is not allocated. 
@@ -1390,19 +1399,19 @@ namespace RansomwareDetection
 
             //Emails regarding restarting the process server
             char[] cdelimiter = { ',' };
-            char[] cdelimiter2 = { ';' };
+            
 
             MailMessage mail = new MailMessage();
             SmtpClient SmtpServer = new SmtpClient(_smtpServer);
 
             mail.From = new MailAddress(_emailFrom);
+            //comma delimiter support for email to
+            _emailTo = _emailTo.Replace(";", ",");
             string[] ToMultiEmail = _emailTo.Split(cdelimiter, StringSplitOptions.RemoveEmptyEntries);
-            if (ToMultiEmail == null || ToMultiEmail.Length == 0)
-            {
-                ToMultiEmail = _emailTo.Split(cdelimiter2, StringSplitOptions.RemoveEmptyEntries);
-            }
+            
             if (ToMultiEmail != null)
             {
+                //add each email address
                 foreach (string strEmailTo in ToMultiEmail)
                 {
                     mail.To.Add(strEmailTo);
@@ -1413,6 +1422,8 @@ namespace RansomwareDetection
 
                 SmtpServer.Port = Common.FixNullInt32(_smtpPort);
                 SmtpServer.UseDefaultCredentials = _smtpUseDefaultCredentials;
+                
+                //credential support (username/password) for SMTP Server
                 if (_smtpPassword != null && _smtpUsername != null)
                 {
                     if (_smtpPassword.Length > 0 && _smtpUsername.Length > 0)
