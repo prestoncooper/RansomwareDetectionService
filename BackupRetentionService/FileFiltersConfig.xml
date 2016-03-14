@@ -648,67 +648,67 @@
 	<FileFiltersConfig>
 		<ID>130</ID>
 		<Enabled>true</Enabled>
-		<FileFilter>*recover*.bmp</FileFilter>
+		<FileFilter>*recover_*.bmp</FileFilter>
 	</FileFiltersConfig>
 	<FileFiltersConfig>
 		<ID>131</ID>
 		<Enabled>true</Enabled>
-		<FileFilter>*recover*.html</FileFilter>
+		<FileFilter>*recover_*.html</FileFilter>
 	</FileFiltersConfig>
 	<FileFiltersConfig>
 		<ID>132</ID>
 		<Enabled>true</Enabled>
-		<FileFilter>*recover*.jpg</FileFilter>
+		<FileFilter>*recover_*.jpg</FileFilter>
 	</FileFiltersConfig>
 	<FileFiltersConfig>
 		<ID>133</ID>
 		<Enabled>true</Enabled>
-		<FileFilter>*recover*.lnk</FileFilter>
+		<FileFilter>*recover_*.lnk</FileFilter>
 	</FileFiltersConfig>
 	<FileFiltersConfig>
 		<ID>134</ID>
 		<Enabled>true</Enabled>
-		<FileFilter>*recover*.png</FileFilter>
+		<FileFilter>*recover_*.png</FileFilter>
 	</FileFiltersConfig>
 	<FileFiltersConfig>
 		<ID>135</ID>
 		<Enabled>true</Enabled>
-		<FileFilter>*recover*.rtf</FileFilter>
+		<FileFilter>*recover_*.rtf</FileFilter>
 	</FileFiltersConfig>
 	<FileFiltersConfig>
 		<ID>136</ID>
 		<Enabled>true</Enabled>
-		<FileFilter>*recover*.txt</FileFilter>
+		<FileFilter>*recover_*.txt</FileFilter>
 	</FileFiltersConfig>
 	<FileFiltersConfig>
 		<ID>137</ID>
 		<Enabled>true</Enabled>
-		<FileFilter>*restore*.bmp</FileFilter>
+		<FileFilter>*restore_*.bmp</FileFilter>
 	</FileFiltersConfig>
 	<FileFiltersConfig>
 		<ID>138</ID>
 		<Enabled>true</Enabled>
-		<FileFilter>*restore*.html</FileFilter>
+		<FileFilter>*restore_*.html</FileFilter>
 	</FileFiltersConfig>
 	<FileFiltersConfig>
 		<ID>139</ID>
 		<Enabled>true</Enabled>
-		<FileFilter>*restore*.lnk</FileFilter>
+		<FileFilter>*restore_*.lnk</FileFilter>
 	</FileFiltersConfig>
 	<FileFiltersConfig>
 		<ID>140</ID>
 		<Enabled>true</Enabled>
-		<FileFilter>*restore*.png</FileFilter>
+		<FileFilter>*restore_*.png</FileFilter>
 	</FileFiltersConfig>
 	<FileFiltersConfig>
 		<ID>141</ID>
 		<Enabled>true</Enabled>
-		<FileFilter>*restore*.rtf</FileFilter>
+		<FileFilter>*restore_*.rtf</FileFilter>
 	</FileFiltersConfig>
 	<FileFiltersConfig>
 		<ID>142</ID>
 		<Enabled>true</Enabled>
-		<FileFilter>*restore*.txt</FileFilter>
+		<FileFilter>*restore_*.txt</FileFilter>
 	</FileFiltersConfig>
 	<FileFiltersConfig>
 		<ID>143</ID>
@@ -728,7 +728,7 @@
 	<FileFiltersConfig>
 		<ID>146</ID>
 		<Enabled>true</Enabled>
-		<FileFilter>*secret*.txt</FileFilter>
+		<FileFilter>*secret_*.txt</FileFilter>
 	</FileFiltersConfig>
 	<FileFiltersConfig>
 		<ID>147</ID>
@@ -865,4 +865,114 @@
 		<Enabled>true</Enabled>
 		<FileFilter>WHAT IS SQ_.txt</FileFilter>
 	</FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>174</ID>
+    <Enabled>true</Enabled>
+    <FileFilter>*recovery_*.bmp</FileFilter>
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>175</ID>
+    <Enabled>true</Enabled>
+    <FileFilter>*recovery_*.html</FileFilter>
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>176</ID>
+    <Enabled>true</Enabled>
+    <FileFilter>*recovery_*.jpg</FileFilter>
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>177</ID>
+    <Enabled>true</Enabled>
+    <FileFilter>*recovery_*.lnk</FileFilter>
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>178</ID>
+    <Enabled>true</Enabled>
+    <FileFilter>*recovery_*.png</FileFilter>
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>179</ID>
+    <Enabled>true</Enabled>
+    <FileFilter>*recovery_*.rtf</FileFilter>
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>180</ID>
+    <Enabled>true</Enabled>
+    <FileFilter>*recovery_*.txt</FileFilter>
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>181</ID>
+    <Enabled>true</Enabled>
+    <FileFilter>*recovery+*.bmp</FileFilter>
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>182</ID>
+    <Enabled>true</Enabled>
+    <FileFilter>*recovery+*.html</FileFilter>
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>183</ID>
+    <Enabled>true</Enabled>
+    <FileFilter>*recovery+*.jpg</FileFilter>
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>184</ID>
+    <Enabled>true</Enabled>
+    <FileFilter>*recovery+*.lnk</FileFilter>
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>185</ID>
+    <Enabled>true</Enabled>
+    <FileFilter>*recovery+*.png</FileFilter>
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>186</ID>
+    <Enabled>true</Enabled>
+    <FileFilter>*recovery+*.rtf</FileFilter>
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>187</ID>
+    <Enabled>true</Enabled>
+    <FileFilter>*recovery+*.txt</FileFilter>
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>188</ID>
+    <Enabled>true</Enabled>
+    <FileFilter>*recover+*.bmp</FileFilter>
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>189</ID>
+    <Enabled>true</Enabled>
+    <FileFilter>*recover+*.html</FileFilter>
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>190</ID>
+    <Enabled>true</Enabled>
+    <FileFilter>*recover+*.jpg</FileFilter>
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>191</ID>
+    <Enabled>true</Enabled>
+    <FileFilter>*recover+*.lnk</FileFilter>
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>192</ID>
+    <Enabled>true</Enabled>
+    <FileFilter>*recover+*.png</FileFilter>
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>193</ID>
+    <Enabled>true</Enabled>
+    <FileFilter>*recover+*.rtf</FileFilter>
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>194</ID>
+    <Enabled>true</Enabled>
+    <FileFilter>*recovery+*.txt</FileFilter>
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>195</ID>
+    <Enabled>true</Enabled>
+    <FileFilter>help recover files.txt</FileFilter>
+  </FileFiltersConfig>
 </DocumentElement>

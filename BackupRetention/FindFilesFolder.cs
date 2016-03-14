@@ -921,14 +921,14 @@ namespace RansomwareDetection
                             //On Failure Email
                             StringBuilder sbbody1 = new StringBuilder();
                             string strline = "";
-                            strSubject = "Ransomware Detection Service, Files Found - Ransomware Found!: " + FilesFound.Count.ToString();
+                            strSubject = "Ransomware Detection Service, Files Found - Possible Ransomware Found!: " + FilesFound.Count.ToString();
                             strline = "<strong>Ransomware Detection Service, Possible Ransomware Files Found</strong><br /><br /><ul><li>FilePathToCheck:</strong> " + Common.GetPathToHTMLAnchor(FilePathToCheck) + "</li>";
                             sbbody1.AppendLine(strline);
                             strline = "<li>Check Sub Folders: " + CheckSubFolders.ToString() + "</li></ul>";
                             sbbody1.AppendLine(strline);
                             if (FilesFound.Count > 0)
                             {
-                                sbbody1.AppendLine("<br /><br /><strong>Ransomware Files:</strong><br />");
+                                sbbody1.AppendLine("<br /><br /><strong>Possible Ransomware Files:</strong><br />");
                                 //Loop through files that are different and list them
                                 foreach (string strFile in FilesFound)
                                 {
