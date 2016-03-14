@@ -305,6 +305,11 @@ namespace RansomwareDetection
 
         }
 
+        /// <summary>
+        /// Converts Path to URI and makes the link clickable in an email
+        /// </summary>
+        /// <param name="strpath"></param>
+        /// <returns></returns>
         public static string GetPathToHTMLAnchor(string strpath)
         {
             string strNewPath = "";

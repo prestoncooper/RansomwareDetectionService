@@ -882,7 +882,7 @@ namespace RansomwareDetection
                                     FilesFound.Add(strfile1);
                                     
                                     //Log error for ransomware file found
-                                    string strerror = "Ransomware Detection Service, Files Found: Ransomware File Found: " + strfile1;
+                                    string strerror = "Ransomware Detection Service, Files Found: Possible Ransomware File Found: " + strfile1;
                                     WriteError(strerror, System.Diagnostics.EventLogEntryType.Error, 9001, 90, false);
                                 }
                                 AllFiles.Clear();
@@ -898,7 +898,7 @@ namespace RansomwareDetection
                         catch (Exception ex)
                         {
                             
-                            string strerror = "Ransomware Detection Service, Files Found: " + FilePathToCheck + " Error: " + ex.Message + " Source: " + ex.Source + " Stack Trace: " + ex.StackTrace;
+                            string strerror = "Ransomware Detection Service, Files Found Error: " + FilePathToCheck + " Error: " + ex.Message + " Source: " + ex.Source + " Stack Trace: " + ex.StackTrace;
                             WriteError(strerror, System.Diagnostics.EventLogEntryType.Error, 9002, 90, false);
 
                         }

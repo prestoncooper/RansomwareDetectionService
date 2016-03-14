@@ -1425,7 +1425,7 @@ namespace RansomwareDetection
                 //if (strStatus == "Running" || strStatus == "StartPending")
                 if (cStatus == ServiceControllerStatus.Running || cStatus == ServiceControllerStatus.StartPending ||  cStatus == ServiceControllerStatus.ContinuePending)
                 {
-
+                    //service running
                     btnStart.Enabled = false;
                     trayMenu.MenuItems[1].Enabled = false;
                     trayMenu.MenuItems[2].Enabled = true;
@@ -1437,6 +1437,7 @@ namespace RansomwareDetection
                 }
                 else if (cStatus == ServiceControllerStatus.Stopped || cStatus == ServiceControllerStatus.StopPending || cStatus == ServiceControllerStatus.Paused || cStatus == ServiceControllerStatus.PausePending)
                 {
+                    //service not running
                     trayMenu.MenuItems[1].Enabled = true;
                     trayMenu.MenuItems[2].Enabled = false;
                     trayMenu.MenuItems[3].Enabled = false;
@@ -1447,6 +1448,7 @@ namespace RansomwareDetection
                 }
                 else
                 {
+                    //unknown status allow all
                     btnStart.Enabled = true;
                     btnStop.Enabled = true;
                     trayMenu.MenuItems[1].Enabled = true;

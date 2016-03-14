@@ -288,10 +288,33 @@ namespace RansomwareDetection
             }
             return strPath;
         }
+        
+        /// <summary>
+        /// Converts Path to URI and makes the link clickable in an email
+        /// </summary>
+        /// <param name="strpath"></param>
+        /// <returns></returns>
+        public static string GetPathToHTMLAnchor(string strpath)
+        {
+            string strNewPath = "";
+
+            System.Uri uri = new System.Uri(strpath);
+            if (uri.IsUnc)
+            {
+                strNewPath = "<a href=\"" + uri.AbsoluteUri + "\">" + strpath + "</a>";
+                strNewPath = strNewPath.Replace("file://", "file://///");
+            }
+            else
+            {
+                strNewPath = "<a href=\"" + uri.AbsoluteUri + "\">" + strpath + "</a>";
+
+            }
+            return strNewPath;
+        } 
         */
 
         /// <summary>
-        /// Converts Path to UNC Full Path
+        /// Converts Prepended Path to UNC Full Path or Local Drive Path
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -305,7 +328,7 @@ namespace RansomwareDetection
         }
 
         /// <summary>
-        /// Prepend "\\?\" to UNC path so that long file names can be handled without an error
+        /// Prepend "\\?\" to drive path and "\\?\UNC\" to UNC path so that long file names can be handled without an error
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -336,7 +359,7 @@ namespace RansomwareDetection
         
 
         /// <summary>
-        /// Recursively Searches for all files and folders specified by the filter; Optimized for best performance
+        /// Recursively Searches for all files and folders specified by the filter; Optimized for best performance by only going through folder structure once and searching the all of the file filters in each folder
         /// </summary>
         /// <param name="dirName"></param>
         /// <param name="filter"></param>
@@ -401,12 +424,7 @@ namespace RansomwareDetection
                                 {
                                     if (checkSubFolders)
                                     {
-                                        //find the files in the folder specified by the filter
-                                        List<string> childResults = FindImmediateFilesAndDirs(Path.Combine(dirName, currentFileName), dtFilters, checkSubFolders);
-                                        // add children and self to results
-                                        results.AddRange(childResults);
-                                        childResults.Clear();
-                                        //Recursively go through all folders
+                                        //Recursively go through all folders and sub folders
                                         List<string> childResults2 = FindAllfiles(Path.Combine(dirName, currentFileName), dtFilters, checkSubFolders, excludeFolders , ref blShuttingDown);
                                         results.AddRange(childResults2);
                                         childResults2.Clear();
@@ -461,6 +479,7 @@ namespace RansomwareDetection
             WIN32_FIND_DATA findData;
             if (dtFilters != null)
             {
+                //For Each File filter find them in the current folder
                 foreach (DataRow row in dtFilters.Rows)
                 {
                     try
@@ -469,10 +488,12 @@ namespace RansomwareDetection
                         bool blFilterEnabled = Common.FixNullbool(row["Enabled"]);
                         if (blFilterEnabled && strFileFilter != "")
                         {
+                            //Valid File Filter?
                             if (VerifyPattern(strFileFilter) && Delimon.Win32.IO.Directory.Exists(dirName))
                             {
                                 try
                                 {
+                                    //Search for the file filter in the current directory
                                     findHandle = FindFirstFileEx(strDirConverted + @"\" + strFileFilter, FINDEX_INFO_LEVELS.FindExInfoBasic, out findData, FINDEX_SEARCH_OPS.FindExSearchNameMatch, IntPtr.Zero, FIND_FIRST_EX_LARGE_FETCH);
                                 
                                     if (findHandle != INVALID_HANDLE_VALUE)
@@ -482,7 +503,7 @@ namespace RansomwareDetection
                                         {
                                             string currentFileName = findData.cFileName;
 
-                                            // if this is a directory, find its contents
+                                            // if this is a directory, add directory found to the results.
                                             if (((int)findData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0)
                                             {
                                                 if (currentFileName != "." && currentFileName != "..")
@@ -499,7 +520,7 @@ namespace RansomwareDetection
                                                 results.Add(strFilePath);
                                             }
 
-                                            // find next
+                                            // find next if any
                                             found = FindNextFile(findHandle, out findData);
                                         }
                                         while (found);
@@ -594,12 +615,7 @@ namespace RansomwareDetection
                                 {
                                     if (checkSubFolders)
                                     {
-                                        //find the files in the folder specified by the filter
-                                        List<string> childResults = FindImmediateFilesAndDirs(Path.Combine(dirName, currentFileName), filter, checkSubFolders);
-                                        // add children and self to results
-                                        results.AddRange(childResults);
-                                        childResults.Clear();
-                                        //Recursively go through all folders
+                                        //Recursively go through all folders and sub folders
                                         List<string> childResults2 = FindAllfiles(Path.Combine(dirName, currentFileName), filter, checkSubFolders, excludeFolders);
                                         results.AddRange(childResults2);
                                         childResults2.Clear();
