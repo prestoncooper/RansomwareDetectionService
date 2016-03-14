@@ -363,37 +363,37 @@
 	<FileFiltersConfig>
 		<ID>73</ID>
 		<Enabled>true</Enabled>
-		<FileFilter>*ATTENTION*.bmp</FileFilter>
+		<FileFilter>*ATTENTION_*.bmp</FileFilter>
 	</FileFiltersConfig>
 	<FileFiltersConfig>
 		<ID>74</ID>
 		<Enabled>true</Enabled>
-		<FileFilter>*ATTENTION*.html</FileFilter>
+		<FileFilter>*ATTENTION_*.html</FileFilter>
 	</FileFiltersConfig>
 	<FileFiltersConfig>
 		<ID>75</ID>
 		<Enabled>true</Enabled>
-		<FileFilter>*ATTENTION*.jpg</FileFilter>
+		<FileFilter>*ATTENTION_*.jpg</FileFilter>
 	</FileFiltersConfig>
 	<FileFiltersConfig>
 		<ID>76</ID>
 		<Enabled>true</Enabled>
-		<FileFilter>*ATTENTION*.lnk</FileFilter>
+		<FileFilter>*ATTENTION_*.lnk</FileFilter>
 	</FileFiltersConfig>
 	<FileFiltersConfig>
 		<ID>77</ID>
 		<Enabled>true</Enabled>
-		<FileFilter>*ATTENTION*.png</FileFilter>
+		<FileFilter>*ATTENTION_*.png</FileFilter>
 	</FileFiltersConfig>
 	<FileFiltersConfig>
 		<ID>78</ID>
 		<Enabled>true</Enabled>
-		<FileFilter>*ATTENTION*.RTF</FileFilter>
+		<FileFilter>*ATTENTION_*.RTF</FileFilter>
 	</FileFiltersConfig>
 	<FileFiltersConfig>
 		<ID>79</ID>
 		<Enabled>true</Enabled>
-		<FileFilter>*ATTENTION*.txt</FileFilter>
+		<FileFilter>*ATTENTION_*.txt</FileFilter>
 	</FileFiltersConfig>
 	<FileFiltersConfig>
 		<ID>80</ID>
@@ -974,5 +974,10 @@
     <ID>195</ID>
     <Enabled>true</Enabled>
     <FileFilter>help recover files.txt</FileFilter>
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>196</ID>
+    <Enabled>true</Enabled>
+    <FileFilter>ATTENTION.RTF</FileFilter>
   </FileFiltersConfig>
 </DocumentElement>
