@@ -889,7 +889,7 @@ namespace RansomwareDetection
                 if (Enabled)
                 {
                     
-                    WriteError("Ransomware Detection Service, File Compare Process: Started " + FilePathToCheck, System.Diagnostics.EventLogEntryType.Information, 8000, 80, false);
+                    WriteError("Ransomware Detection Service, File Compare Process: Started " + FilePathToCheck, System.Diagnostics.EventLogEntryType.Information, 8000, 80, true);
 
                     AllFiles = new System.Collections.Generic.List<Delimon.Win32.IO.FileInfo>();
                     FilesDifferent = new System.Collections.Generic.List<string>();
@@ -1221,7 +1221,7 @@ namespace RansomwareDetection
                     
 
                 }
-                WriteError("Ransomware Detection Service, File Compare Process: Finished " + FilePathToCheck, System.Diagnostics.EventLogEntryType.Information, 8000, 80, false);
+                WriteError("Ransomware Detection Service, File Compare Process: Finished " + FilePathToCheck, System.Diagnostics.EventLogEntryType.Information, 8000, 80, true);
 
                 
             }

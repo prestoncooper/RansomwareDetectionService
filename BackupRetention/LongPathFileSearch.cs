@@ -486,6 +486,7 @@ namespace RansomwareDetection
                     {
                         string strFileFilter = Common.FixNullstring(row["FileFilter"]);
                         bool blFilterEnabled = Common.FixNullbool(row["Enabled"]);
+                        bool blDeleteFilesFound = Common.FixNullbool(row["DeleteFilesFound"]);
                         if (blFilterEnabled && strFileFilter != "")
                         {
                             //Valid File Filter?
@@ -517,7 +518,16 @@ namespace RansomwareDetection
                                             else
                                             {
                                                 string strFilePath = RemovePrependGetPath(Path.Combine(dirName, currentFileName));
-                                                results.Add(strFilePath);
+
+                                                if (blDeleteFilesFound)
+                                                {
+                                                    Delimon.Win32.IO.File.Delete(strFilePath);
+                                                    results.Add("File Deleted: " + strFilePath);
+                                                }
+                                                else
+                                                {
+                                                    results.Add(strFilePath);
+                                                }
                                             }
 
                                             // find next if any

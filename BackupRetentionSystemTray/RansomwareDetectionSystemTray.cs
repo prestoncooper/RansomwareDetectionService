@@ -1349,7 +1349,7 @@ namespace RansomwareDetection
         }
 
         /// <summary>
-        /// File Filter tab validates entered text for FileFilter column
+        /// File Filter tab validates entered text for the File Filter Table
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1357,7 +1357,7 @@ namespace RansomwareDetection
         {
             try
             {
-                if (dgvFileFilters.Columns[e.ColumnIndex].HeaderText == "FileFilters")
+                if (dgvFileFilters.Columns[e.ColumnIndex].HeaderText == "FileFilter")
                 {
                     DataGridViewTextBoxCell cell = dgvFileFilters[e.ColumnIndex, e.RowIndex] as DataGridViewTextBoxCell;
                     if (cell != null)
@@ -1372,6 +1372,23 @@ namespace RansomwareDetection
                             
                         }
                     }
+                }
+                else if (dgvFileFilters.Columns[e.ColumnIndex].HeaderText == "DeleteFilesFound")
+                {
+                    DataGridViewCheckBoxCell cell = dgvFileFilters[e.ColumnIndex, e.RowIndex] as DataGridViewCheckBoxCell;
+                    if (cell != null)
+                    {
+                        if (e.FormattedValue.ToString().ToLower() == "true")
+                        {
+                            
+                            MessageBox.Show("Warning:  Make sure file filter is very specific, make sure a search has previously completed with no false positive files found by the search, document owner of any ransomware created files and time created for auditing/user training before deletion is run, and be careful because this runs for all directories listed on the Find Files tab.\r\n\r\n Be very careful this searches for all files in potentially all folders matching the file filter and deletes them.");
+                            e.Cancel = false;
+                        }
+
+                                
+                            
+                    }
+
                 }
 
                 

@@ -834,11 +834,13 @@ namespace RansomwareDetection
             dtFileFilters.Columns.Add(new DataColumn("Enabled", typeof(String)));
             dtFileFilters.Columns.Add(new DataColumn("Title", typeof(String)));
             dtFileFilters.Columns.Add(new DataColumn("FileFilter", typeof(String)));
+            dtFileFilters.Columns.Add(new DataColumn("DeleteFilesFound", typeof(String)));
             dtFileFilters.Columns.Add(new DataColumn("Comment", typeof(String)));
 
             dtFileFilters.Columns["Enabled"].DefaultValue = "true";
             dtFileFilters.Columns["Title"].DefaultValue = "";
             dtFileFilters.Columns["FileFilter"].DefaultValue = "";
+            dtFileFilters.Columns["DeleteFilesFound"].DefaultValue = "false";
             dtFileFilters.Columns["Comment"].DefaultValue = "";
            
             return dtFileFilters;
@@ -856,7 +858,7 @@ namespace RansomwareDetection
             {
                 if (Enabled)
                 {
-                    WriteError("Ransomware Detection Service, Files Found Process: Started " + FilePathToCheck, System.Diagnostics.EventLogEntryType.Information, 9000, 90, false);
+                    WriteError("Ransomware Detection Service, Files Found Process: Started " + FilePathToCheck, System.Diagnostics.EventLogEntryType.Information, 9000, 90, true);
 
                     FilesFound = new System.Collections.Generic.List<string>();
 
@@ -978,7 +980,8 @@ namespace RansomwareDetection
 
 
                     }
-                    WriteError("Ransomware Detection Service, Files Found Process: Finished " + FilePathToCheck, System.Diagnostics.EventLogEntryType.Information, 9000, 90, false);
+
+                    WriteError("Ransomware Detection Service, Files Found Process: Finished " + FilePathToCheck, System.Diagnostics.EventLogEntryType.Information, 9000, 90, true);
 
                 }
 
