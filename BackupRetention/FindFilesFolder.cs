@@ -856,7 +856,7 @@ namespace RansomwareDetection
             {
                 if (Enabled)
                 {
-                    WriteError("Ransomware Detection Service, Files Found: Started", System.Diagnostics.EventLogEntryType.Information, 9000, 90, false);
+                    WriteError("Ransomware Detection Service, Files Found Process: Started " + FilePathToCheck, System.Diagnostics.EventLogEntryType.Information, 9000, 90, false);
 
                     FilesFound = new System.Collections.Generic.List<string>();
 
@@ -978,6 +978,8 @@ namespace RansomwareDetection
 
 
                     }
+                    WriteError("Ransomware Detection Service, Files Found Process: Finished " + FilePathToCheck, System.Diagnostics.EventLogEntryType.Information, 9000, 90, false);
+
                 }
 
             }

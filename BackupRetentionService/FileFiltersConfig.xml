@@ -968,7 +968,7 @@
   <FileFiltersConfig>
     <ID>194</ID>
     <Enabled>true</Enabled>
-    <FileFilter>*recovery+*.txt</FileFilter>
+    <FileFilter>*recover+*.txt</FileFilter>
   </FileFiltersConfig>
   <FileFiltersConfig>
     <ID>195</ID>
