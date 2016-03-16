@@ -14,7 +14,7 @@ using System.Text.RegularExpressions;
 //http://www.pinvoke.net/default.aspx/kernel32.findfirstfileex
 //http://www.pinvoke.net/default.aspx/kernel32/FindFirstFile.html
 //http://stackoverflow.com/questions/1248816/c-sharp-call-win32-api-for-long-file-paths
-
+//https://gallery.technet.microsoft.com/scriptcenter/DelimonWin32IO-Library-V40-7ff6b16c
 //Microsoft.Win32.Security  Win32Security.dll for accessing security information from files with long file paths https://github.com/woanware/Win32Security/
 
 /*

@@ -33,10 +33,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RansomwareDetectionSystemTray));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sendTestEmailToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -137,14 +137,6 @@
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabFindFiles = new System.Windows.Forms.TabPage();
             this.dgvFindFiles = new System.Windows.Forms.DataGridView();
-            this.tabFilesToFind = new System.Windows.Forms.TabPage();
-            this.dgvFileFilters = new System.Windows.Forms.DataGridView();
-            this.dgvcoltxtFileFiltersID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcolchkFileFiltersEnabled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dgvcoltxtFileFiltersTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcoltxtFileFiltersFileFilter = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvcolchkFileFiltersDeleteFilesFound = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dgvcoltxtFileFiltersComment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcoltxtFindFilesID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcolchkFindFilesEnabled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dgvcoltxtFindFilesTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -180,6 +172,14 @@
             this.dgvcolcalFindFilesEndDate = new System.Windows.Forms.CalendarColumn();
             this.dgvcoltxtFindFilesComment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcolchkFindFilesDetailedLogging = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.tabFilesToFind = new System.Windows.Forms.TabPage();
+            this.dgvFileFilters = new System.Windows.Forms.DataGridView();
+            this.dgvcoltxtFileFiltersID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcolchkFileFiltersEnabled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dgvcoltxtFileFiltersTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcoltxtFileFiltersFileFilter = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvcolchkFileFiltersDeleteFilesFound = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dgvcoltxtFileFiltersComment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbRightIcon)).BeginInit();
@@ -711,7 +711,7 @@
             this.dgvColEventEventID});
             this.dgvEvents.Location = new System.Drawing.Point(0, 39);
             this.dgvEvents.Name = "dgvEvents";
-            this.dgvEvents.Size = new System.Drawing.Size(768, 322);
+            this.dgvEvents.Size = new System.Drawing.Size(768, 99);
             this.dgvEvents.TabIndex = 25;
             // 
             // dgvEventImage
@@ -727,7 +727,7 @@
             this.dgvEventType.HeaderText = "Type";
             this.dgvEventType.Name = "dgvEventType";
             this.dgvEventType.Visible = false;
-            this.dgvEventType.Width = 56;
+            this.dgvEventType.Width = 65;
             // 
             // dgvColEventTime
             // 
@@ -1116,8 +1116,8 @@
             // calendarColumn1
             // 
             this.calendarColumn1.DataPropertyName = "StartDate";
-            dataGridViewCellStyle1.Format = "MM/dd/yyyy";
-            this.calendarColumn1.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Format = "MM/dd/yyyy";
+            this.calendarColumn1.DefaultCellStyle = dataGridViewCellStyle5;
             this.calendarColumn1.HeaderText = "StartDate";
             this.calendarColumn1.Name = "calendarColumn1";
             this.calendarColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -1128,8 +1128,8 @@
             // calendarColumn2
             // 
             this.calendarColumn2.DataPropertyName = "EndDate";
-            dataGridViewCellStyle2.Format = "MM/dd/yyyy";
-            this.calendarColumn2.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Format = "MM/dd/yyyy";
+            this.calendarColumn2.DefaultCellStyle = dataGridViewCellStyle6;
             this.calendarColumn2.HeaderText = "EndDate";
             this.calendarColumn2.Name = "calendarColumn2";
             this.calendarColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -1229,87 +1229,6 @@
             this.dgvFindFiles.TabIndex = 17;
             this.dgvFindFiles.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFindFiles_CellDoubleClick);
             this.dgvFindFiles.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvFindFiles_CellValidating);
-            // 
-            // tabFilesToFind
-            // 
-            this.tabFilesToFind.Controls.Add(this.dgvFileFilters);
-            this.tabFilesToFind.Location = new System.Drawing.Point(4, 25);
-            this.tabFilesToFind.Name = "tabFilesToFind";
-            this.tabFilesToFind.Padding = new System.Windows.Forms.Padding(3);
-            this.tabFilesToFind.Size = new System.Drawing.Size(769, 140);
-            this.tabFilesToFind.TabIndex = 8;
-            this.tabFilesToFind.Text = "Ransomware File Filters";
-            this.tabFilesToFind.ToolTipText = "Ransomware files to search for via the Find Ransomware Files tab.";
-            this.tabFilesToFind.UseVisualStyleBackColor = true;
-            // 
-            // dgvFileFilters
-            // 
-            this.dgvFileFilters.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgvFileFilters.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvFileFilters.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dgvcoltxtFileFiltersID,
-            this.dgvcolchkFileFiltersEnabled,
-            this.dgvcoltxtFileFiltersTitle,
-            this.dgvcoltxtFileFiltersFileFilter,
-            this.dgvcolchkFileFiltersDeleteFilesFound,
-            this.dgvcoltxtFileFiltersComment});
-            this.dgvFileFilters.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvFileFilters.Location = new System.Drawing.Point(3, 3);
-            this.dgvFileFilters.Name = "dgvFileFilters";
-            this.dgvFileFilters.Size = new System.Drawing.Size(763, 134);
-            this.dgvFileFilters.TabIndex = 18;
-            this.dgvFileFilters.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvFileFilters_CellValidating);
-            // 
-            // dgvcoltxtFileFiltersID
-            // 
-            this.dgvcoltxtFileFiltersID.DataPropertyName = "ID";
-            this.dgvcoltxtFileFiltersID.HeaderText = "ID";
-            this.dgvcoltxtFileFiltersID.Name = "dgvcoltxtFileFiltersID";
-            this.dgvcoltxtFileFiltersID.ReadOnly = true;
-            this.dgvcoltxtFileFiltersID.Width = 46;
-            // 
-            // dgvcolchkFileFiltersEnabled
-            // 
-            this.dgvcolchkFileFiltersEnabled.DataPropertyName = "Enabled";
-            this.dgvcolchkFileFiltersEnabled.FalseValue = "false";
-            this.dgvcolchkFileFiltersEnabled.HeaderText = "Enabled";
-            this.dgvcolchkFileFiltersEnabled.IndeterminateValue = "";
-            this.dgvcolchkFileFiltersEnabled.Name = "dgvcolchkFileFiltersEnabled";
-            this.dgvcolchkFileFiltersEnabled.TrueValue = "true";
-            this.dgvcolchkFileFiltersEnabled.Width = 66;
-            // 
-            // dgvcoltxtFileFiltersTitle
-            // 
-            this.dgvcoltxtFileFiltersTitle.DataPropertyName = "Title";
-            this.dgvcoltxtFileFiltersTitle.HeaderText = "Title";
-            this.dgvcoltxtFileFiltersTitle.Name = "dgvcoltxtFileFiltersTitle";
-            this.dgvcoltxtFileFiltersTitle.Width = 60;
-            // 
-            // dgvcoltxtFileFiltersFileFilter
-            // 
-            this.dgvcoltxtFileFiltersFileFilter.DataPropertyName = "FileFilter";
-            this.dgvcoltxtFileFiltersFileFilter.HeaderText = "FileFilter";
-            this.dgvcoltxtFileFiltersFileFilter.Name = "dgvcoltxtFileFiltersFileFilter";
-            this.dgvcoltxtFileFiltersFileFilter.ToolTipText = "File Filter in windows search format (e.g. *, *.*, *file*.txt, file*.txt, file.*)" +
-    " ";
-            this.dgvcoltxtFileFiltersFileFilter.Width = 86;
-            // 
-            // dgvcolchkFileFiltersDeleteFilesFound
-            // 
-            this.dgvcolchkFileFiltersDeleteFilesFound.DataPropertyName = "DeleteFilesFound";
-            this.dgvcolchkFileFiltersDeleteFilesFound.HeaderText = "DeleteFilesFound";
-            this.dgvcolchkFileFiltersDeleteFilesFound.Name = "dgvcolchkFileFiltersDeleteFilesFound";
-            this.dgvcolchkFileFiltersDeleteFilesFound.ToolTipText = "Careful! Delete All Files Found by the File Filter to cleanup and remove ransomwa" +
-    "re created files (uncheck this after it is run once)";
-            this.dgvcolchkFileFiltersDeleteFilesFound.Width = 124;
-            // 
-            // dgvcoltxtFileFiltersComment
-            // 
-            this.dgvcoltxtFileFiltersComment.DataPropertyName = "Comment";
-            this.dgvcoltxtFileFiltersComment.HeaderText = "Comment";
-            this.dgvcoltxtFileFiltersComment.Name = "dgvcoltxtFileFiltersComment";
-            this.dgvcoltxtFileFiltersComment.ToolTipText = "Comment for this task";
-            this.dgvcoltxtFileFiltersComment.Width = 92;
             // 
             // dgvcoltxtFindFilesID
             // 
@@ -1564,8 +1483,8 @@
             // dgvcolcalFindFilesStartDate
             // 
             this.dgvcolcalFindFilesStartDate.DataPropertyName = "StartDate";
-            dataGridViewCellStyle3.Format = "MM/dd/yyyy";
-            this.dgvcolcalFindFilesStartDate.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Format = "MM/dd/yyyy";
+            this.dgvcolcalFindFilesStartDate.DefaultCellStyle = dataGridViewCellStyle7;
             this.dgvcolcalFindFilesStartDate.HeaderText = "StartDate";
             this.dgvcolcalFindFilesStartDate.Name = "dgvcolcalFindFilesStartDate";
             this.dgvcolcalFindFilesStartDate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -1576,8 +1495,8 @@
             // dgvcolcalFindFilesEndDate
             // 
             this.dgvcolcalFindFilesEndDate.DataPropertyName = "EndDate";
-            dataGridViewCellStyle4.Format = "MM/dd/yyyy";
-            this.dgvcolcalFindFilesEndDate.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Format = "MM/dd/yyyy";
+            this.dgvcolcalFindFilesEndDate.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgvcolcalFindFilesEndDate.HeaderText = "EndDate";
             this.dgvcolcalFindFilesEndDate.Name = "dgvcolcalFindFilesEndDate";
             this.dgvcolcalFindFilesEndDate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -1600,6 +1519,87 @@
             this.dgvcolchkFindFilesDetailedLogging.Name = "dgvcolchkFindFilesDetailedLogging";
             this.dgvcolchkFindFilesDetailedLogging.ToolTipText = "Detailed error logging of information events.";
             this.dgvcolchkFindFilesDetailedLogging.Width = 117;
+            // 
+            // tabFilesToFind
+            // 
+            this.tabFilesToFind.Controls.Add(this.dgvFileFilters);
+            this.tabFilesToFind.Location = new System.Drawing.Point(4, 25);
+            this.tabFilesToFind.Name = "tabFilesToFind";
+            this.tabFilesToFind.Padding = new System.Windows.Forms.Padding(3);
+            this.tabFilesToFind.Size = new System.Drawing.Size(769, 140);
+            this.tabFilesToFind.TabIndex = 8;
+            this.tabFilesToFind.Text = "Ransomware File Filters";
+            this.tabFilesToFind.ToolTipText = "Ransomware files to search for via the Find Ransomware Files tab.";
+            this.tabFilesToFind.UseVisualStyleBackColor = true;
+            // 
+            // dgvFileFilters
+            // 
+            this.dgvFileFilters.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvFileFilters.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvFileFilters.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvcoltxtFileFiltersID,
+            this.dgvcolchkFileFiltersEnabled,
+            this.dgvcoltxtFileFiltersTitle,
+            this.dgvcoltxtFileFiltersFileFilter,
+            this.dgvcolchkFileFiltersDeleteFilesFound,
+            this.dgvcoltxtFileFiltersComment});
+            this.dgvFileFilters.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvFileFilters.Location = new System.Drawing.Point(3, 3);
+            this.dgvFileFilters.Name = "dgvFileFilters";
+            this.dgvFileFilters.Size = new System.Drawing.Size(763, 134);
+            this.dgvFileFilters.TabIndex = 18;
+            this.dgvFileFilters.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvFileFilters_CellValidating);
+            // 
+            // dgvcoltxtFileFiltersID
+            // 
+            this.dgvcoltxtFileFiltersID.DataPropertyName = "ID";
+            this.dgvcoltxtFileFiltersID.HeaderText = "ID";
+            this.dgvcoltxtFileFiltersID.Name = "dgvcoltxtFileFiltersID";
+            this.dgvcoltxtFileFiltersID.ReadOnly = true;
+            this.dgvcoltxtFileFiltersID.Width = 46;
+            // 
+            // dgvcolchkFileFiltersEnabled
+            // 
+            this.dgvcolchkFileFiltersEnabled.DataPropertyName = "Enabled";
+            this.dgvcolchkFileFiltersEnabled.FalseValue = "false";
+            this.dgvcolchkFileFiltersEnabled.HeaderText = "Enabled";
+            this.dgvcolchkFileFiltersEnabled.IndeterminateValue = "";
+            this.dgvcolchkFileFiltersEnabled.Name = "dgvcolchkFileFiltersEnabled";
+            this.dgvcolchkFileFiltersEnabled.TrueValue = "true";
+            this.dgvcolchkFileFiltersEnabled.Width = 66;
+            // 
+            // dgvcoltxtFileFiltersTitle
+            // 
+            this.dgvcoltxtFileFiltersTitle.DataPropertyName = "Title";
+            this.dgvcoltxtFileFiltersTitle.HeaderText = "Title";
+            this.dgvcoltxtFileFiltersTitle.Name = "dgvcoltxtFileFiltersTitle";
+            this.dgvcoltxtFileFiltersTitle.Width = 60;
+            // 
+            // dgvcoltxtFileFiltersFileFilter
+            // 
+            this.dgvcoltxtFileFiltersFileFilter.DataPropertyName = "FileFilter";
+            this.dgvcoltxtFileFiltersFileFilter.HeaderText = "FileFilter";
+            this.dgvcoltxtFileFiltersFileFilter.Name = "dgvcoltxtFileFiltersFileFilter";
+            this.dgvcoltxtFileFiltersFileFilter.ToolTipText = "File Filter in windows search format (e.g. *, *.*, *file*.txt, file*.txt, file.*)" +
+    " ";
+            this.dgvcoltxtFileFiltersFileFilter.Width = 86;
+            // 
+            // dgvcolchkFileFiltersDeleteFilesFound
+            // 
+            this.dgvcolchkFileFiltersDeleteFilesFound.DataPropertyName = "DeleteFilesFound";
+            this.dgvcolchkFileFiltersDeleteFilesFound.HeaderText = "DeleteFilesFound";
+            this.dgvcolchkFileFiltersDeleteFilesFound.Name = "dgvcolchkFileFiltersDeleteFilesFound";
+            this.dgvcolchkFileFiltersDeleteFilesFound.ToolTipText = "Careful! Delete All Files Found by the File Filter to cleanup and remove ransomwa" +
+    "re created files (uncheck this after it is run once)";
+            this.dgvcolchkFileFiltersDeleteFilesFound.Width = 124;
+            // 
+            // dgvcoltxtFileFiltersComment
+            // 
+            this.dgvcoltxtFileFiltersComment.DataPropertyName = "Comment";
+            this.dgvcoltxtFileFiltersComment.HeaderText = "Comment";
+            this.dgvcoltxtFileFiltersComment.Name = "dgvcoltxtFileFiltersComment";
+            this.dgvcoltxtFileFiltersComment.ToolTipText = "Comment for this task";
+            this.dgvcoltxtFileFiltersComment.Width = 92;
             // 
             // RansomwareDetectionSystemTray
             // 
