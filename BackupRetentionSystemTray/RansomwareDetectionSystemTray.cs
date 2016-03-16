@@ -1907,12 +1907,17 @@ namespace RansomwareDetection
 
         private void ransomwareDetectionServiceCodePlexPageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://ransomwaredetectionservice.codeplex.com");
+            System.Diagnostics.Process.Start("http://ransomwaredetectionservice.codeplex.com");
+        }
+
+        
+
+        private void onlineHelpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://ransomwaredetectionservice.codeplex.com/documentation");
         }
 
         #endregion
-
-
 
 
 

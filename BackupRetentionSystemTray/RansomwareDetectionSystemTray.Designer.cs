@@ -33,10 +33,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RansomwareDetectionSystemTray));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sendTestEmailToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -181,6 +181,7 @@
             this.dgvFindFilesColtxtExcludeFiles = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcolchkFileFiltersDeleteFilesFound = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dgvcoltxtFileFiltersComment = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.onlineHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbRightIcon)).BeginInit();
@@ -242,6 +243,7 @@
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem1,
+            this.onlineHelpToolStripMenuItem,
             this.helpToolStripMenuItem1,
             this.licenseToolStripMenuItem,
             this.ransomwareDetectionServiceCodePlexPageToolStripMenuItem,
@@ -1117,8 +1119,8 @@
             // calendarColumn1
             // 
             this.calendarColumn1.DataPropertyName = "StartDate";
-            dataGridViewCellStyle5.Format = "MM/dd/yyyy";
-            this.calendarColumn1.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Format = "MM/dd/yyyy";
+            this.calendarColumn1.DefaultCellStyle = dataGridViewCellStyle1;
             this.calendarColumn1.HeaderText = "StartDate";
             this.calendarColumn1.Name = "calendarColumn1";
             this.calendarColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -1129,8 +1131,8 @@
             // calendarColumn2
             // 
             this.calendarColumn2.DataPropertyName = "EndDate";
-            dataGridViewCellStyle6.Format = "MM/dd/yyyy";
-            this.calendarColumn2.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Format = "MM/dd/yyyy";
+            this.calendarColumn2.DefaultCellStyle = dataGridViewCellStyle2;
             this.calendarColumn2.HeaderText = "EndDate";
             this.calendarColumn2.Name = "calendarColumn2";
             this.calendarColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -1484,8 +1486,8 @@
             // dgvcolcalFindFilesStartDate
             // 
             this.dgvcolcalFindFilesStartDate.DataPropertyName = "StartDate";
-            dataGridViewCellStyle7.Format = "MM/dd/yyyy";
-            this.dgvcolcalFindFilesStartDate.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Format = "MM/dd/yyyy";
+            this.dgvcolcalFindFilesStartDate.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvcolcalFindFilesStartDate.HeaderText = "StartDate";
             this.dgvcolcalFindFilesStartDate.Name = "dgvcolcalFindFilesStartDate";
             this.dgvcolcalFindFilesStartDate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -1496,8 +1498,8 @@
             // dgvcolcalFindFilesEndDate
             // 
             this.dgvcolcalFindFilesEndDate.DataPropertyName = "EndDate";
-            dataGridViewCellStyle8.Format = "MM/dd/yyyy";
-            this.dgvcolcalFindFilesEndDate.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Format = "MM/dd/yyyy";
+            this.dgvcolcalFindFilesEndDate.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvcolcalFindFilesEndDate.HeaderText = "EndDate";
             this.dgvcolcalFindFilesEndDate.Name = "dgvcolcalFindFilesEndDate";
             this.dgvcolcalFindFilesEndDate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -1611,6 +1613,13 @@
             this.dgvcoltxtFileFiltersComment.Name = "dgvcoltxtFileFiltersComment";
             this.dgvcoltxtFileFiltersComment.ToolTipText = "Comment for this task";
             this.dgvcoltxtFileFiltersComment.Width = 92;
+            // 
+            // onlineHelpToolStripMenuItem
+            // 
+            this.onlineHelpToolStripMenuItem.Name = "onlineHelpToolStripMenuItem";
+            this.onlineHelpToolStripMenuItem.Size = new System.Drawing.Size(359, 24);
+            this.onlineHelpToolStripMenuItem.Text = "Online Help";
+            this.onlineHelpToolStripMenuItem.Click += new System.EventHandler(this.onlineHelpToolStripMenuItem_Click);
             // 
             // RansomwareDetectionSystemTray
             // 
@@ -1793,6 +1802,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvFindFilesColtxtExcludeFiles;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dgvcolchkFileFiltersDeleteFilesFound;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcoltxtFileFiltersComment;
+        private System.Windows.Forms.ToolStripMenuItem onlineHelpToolStripMenuItem;
     }
 }
 
