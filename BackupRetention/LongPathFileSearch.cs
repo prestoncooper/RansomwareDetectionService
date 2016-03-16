@@ -577,7 +577,7 @@ namespace RansomwareDetection
                                                         results.Add("\"" + strFilePath + "\"" + " FileCreated: " + dfile.CreationTime.ToString("G") + " Owner: " + strOwner);
                                                     }
                                                 }
-                                                catch (Exception ex)
+                                                catch (Exception)
                                                 {
                                                     results.Add("\"" + strFilePath + "\"");
                                                 }
