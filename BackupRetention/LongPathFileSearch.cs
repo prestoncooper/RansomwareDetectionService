@@ -523,7 +523,7 @@ namespace RansomwareDetection
                         string strFileFilter = Common.FixNullstring(row["FileFilter"]);
                         bool blFilterEnabled = Common.FixNullbool(row["Enabled"]);
                         bool blDeleteFilesFound = Common.FixNullbool(row["DeleteFilesFound"]);
-                        string strExcludeFiles = Common.FixNullstring(row["ExcludeFiles"]).Trim();
+                        string strExcludeFiles = Common.FixNullstring(row["ExcludeFiles"]).Trim().ToLower();
                         if (blFilterEnabled && strFileFilter != "")
                         {
                             //Valid File Filter?
@@ -550,7 +550,7 @@ namespace RansomwareDetection
                                                     //loop through excluded folders
                                                     foreach (string strExclude in strArr_excludedfiles)
                                                     {
-                                                        if (currentFileName == strExclude)
+                                                        if (currentFileName.ToLower() == strExclude)
                                                         {
                                                             blIgnoreFile = true;
                                                         }
