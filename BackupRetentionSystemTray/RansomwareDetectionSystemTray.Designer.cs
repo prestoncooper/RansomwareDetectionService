@@ -178,6 +178,7 @@
             this.dgvcolchkFileFiltersEnabled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dgvcoltxtFileFiltersTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcoltxtFileFiltersFileFilter = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvFindFilesColtxtExcludeFiles = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcolchkFileFiltersDeleteFilesFound = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dgvcoltxtFileFiltersComment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
@@ -1541,6 +1542,7 @@
             this.dgvcolchkFileFiltersEnabled,
             this.dgvcoltxtFileFiltersTitle,
             this.dgvcoltxtFileFiltersFileFilter,
+            this.dgvFindFilesColtxtExcludeFiles,
             this.dgvcolchkFileFiltersDeleteFilesFound,
             this.dgvcoltxtFileFiltersComment});
             this.dgvFileFilters.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1583,6 +1585,15 @@
             this.dgvcoltxtFileFiltersFileFilter.ToolTipText = "File Filter in windows search format (e.g. *, *.*, *file*.txt, file*.txt, file.*)" +
     " ";
             this.dgvcoltxtFileFiltersFileFilter.Width = 86;
+            // 
+            // dgvFindFilesColtxtExcludeFiles
+            // 
+            this.dgvFindFilesColtxtExcludeFiles.DataPropertyName = "ExcludeFiles";
+            this.dgvFindFilesColtxtExcludeFiles.HeaderText = "ExcludeFiles";
+            this.dgvFindFilesColtxtExcludeFiles.Name = "dgvFindFilesColtxtExcludeFiles";
+            this.dgvFindFilesColtxtExcludeFiles.ToolTipText = "Semicolon separated list of exact file names to exclude from results. List false " +
+    "positive file names from a previous run.";
+            this.dgvFindFilesColtxtExcludeFiles.Width = 111;
             // 
             // dgvcolchkFileFiltersDeleteFilesFound
             // 
@@ -1740,12 +1751,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
         private System.Windows.Forms.DataGridViewCheckBoxColumn chkDetailedLogging;
         private System.Windows.Forms.ToolStripMenuItem ransomwareDetectionServiceCodePlexPageToolStripMenuItem;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcoltxtFileFiltersID;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dgvcolchkFileFiltersEnabled;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcoltxtFileFiltersTitle;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcoltxtFileFiltersFileFilter;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dgvcolchkFileFiltersDeleteFilesFound;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcoltxtFileFiltersComment;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcoltxtFindFilesID;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dgvcolchkFindFilesEnabled;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcoltxtFindFilesTitle;
@@ -1781,6 +1786,13 @@
         private System.Windows.Forms.CalendarColumn dgvcolcalFindFilesEndDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcoltxtFindFilesComment;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dgvcolchkFindFilesDetailedLogging;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcoltxtFileFiltersID;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dgvcolchkFileFiltersEnabled;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcoltxtFileFiltersTitle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcoltxtFileFiltersFileFilter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvFindFilesColtxtExcludeFiles;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dgvcolchkFileFiltersDeleteFilesFound;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvcoltxtFileFiltersComment;
     }
 }
 

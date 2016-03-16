@@ -55,6 +55,7 @@ namespace RansomwareDetection
         /// </summary>
         private System.Timers.Timer _t;
 
+        private static int intRunCount = 0;
         
        
         Thread CompareThread;
@@ -900,10 +901,16 @@ namespace RansomwareDetection
                     
                     FindFilesThread = new Thread(new ThreadStart(FindFilesExecute));
                     FindFilesThread.Start();
+                    intRunCount = 1;
                 }
                 else
                 {
-                    WriteError("RansomwareDetectionService Compare: Timer Code has not finished running. This is an additional firing of the TimerFired event. This is normal while compressing, Remote Sync, or Sync if large files or many files are present. Alternatively the Service Interval could be too short.", System.Diagnostics.EventLogEntryType.Information, 6000, 60);
+                    intRunCount++;
+                    if (intRunCount > 90)
+                    {
+                        WriteError("RansomwareDetectionService: Timer Code has not finished running in the last 90 minutes. This is normal while finding files in a large directory or the process could be hung. ", System.Diagnostics.EventLogEntryType.Information, 6000, 60);
+                        intRunCount = 1;
+                    }
                 }
             }
             catch (Exception ex)

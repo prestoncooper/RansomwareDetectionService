@@ -523,6 +523,7 @@ namespace RansomwareDetection
                         string strFileFilter = Common.FixNullstring(row["FileFilter"]);
                         bool blFilterEnabled = Common.FixNullbool(row["Enabled"]);
                         bool blDeleteFilesFound = Common.FixNullbool(row["DeleteFilesFound"]);
+                        string strExcludeFiles = Common.FixNullstring(row["ExcludeFiles"]).Trim();
                         if (blFilterEnabled && strFileFilter != "")
                         {
                             //Valid File Filter?
@@ -539,51 +540,71 @@ namespace RansomwareDetection
                                         do
                                         {
                                             string currentFileName = findData.cFileName;
-
-                                            // if this is a directory, add directory found to the results.
-                                            if (((int)findData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0)
+                                            bool blIgnoreFile = false;
+                                            char[] delimiters = new char[] { ';' };
+                                            if (strExcludeFiles != "")
                                             {
-                                                if (currentFileName != "." && currentFileName != "..")
+                                                string[] strArr_excludedfiles = strExcludeFiles.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+                                                if (!(strArr_excludedfiles == null || strArr_excludedfiles.Length == 0))
                                                 {
-                                                    string strFilePath = RemovePrependGetPath(Path.Combine(dirName, currentFileName));
-                                                    results.Add(strFilePath);
+                                                    //loop through excluded folders
+                                                    foreach (string strExclude in strArr_excludedfiles)
+                                                    {
+                                                        if (currentFileName == strExclude)
+                                                        {
+                                                            blIgnoreFile = true;
+                                                        }
+                                                    }
                                                 }
                                             }
-                                            // it’s a file; add it to the results
-                                            else
+                                            if (!blIgnoreFile)
                                             {
-                                                string strFilePath = RemovePrependGetPath(Path.Combine(dirName, currentFileName));
-                                                Delimon.Win32.IO.FileInfo dfile;
 
-                                                string strOwner = "";
-
-                                                try
+                                                // if this is a directory, add directory found to the results.
+                                                if (((int)findData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0)
                                                 {
-                                                    dfile = new Delimon.Win32.IO.FileInfo(strFilePath);
-                                                    
-
-                                                    strOwner = GetFileOwner(strFilePath);
-
-                                                    if (blDeleteFilesFound)
+                                                    if (currentFileName != "." && currentFileName != "..")
                                                     {
-
-                                                        //Delete the ransomware related file
-                                                        results.Add("File Deleted: " + "\"" + strFilePath + "\"" + " FileCreated: " + dfile.CreationTime.ToString("G") + " Owner: " + strOwner);
-                                                        dfile.Delete();
-                                                    }
-                                                    else
-                                                    {
-                                                        //Document the file found
-                                                        results.Add("\"" + strFilePath + "\"" + " FileCreated: " + dfile.CreationTime.ToString("G") + " Owner: " + strOwner);
+                                                        string strFilePath = RemovePrependGetPath(Path.Combine(dirName, currentFileName));
+                                                        results.Add(strFilePath);
                                                     }
                                                 }
-                                                catch (Exception)
+                                                // it’s a file; add it to the results
+                                                else
                                                 {
-                                                    results.Add("\"" + strFilePath + "\"");
+
+                                                    string strFilePath = RemovePrependGetPath(Path.Combine(dirName, currentFileName));
+                                                    Delimon.Win32.IO.FileInfo dfile;
+
+                                                    string strOwner = "";
+
+                                                    try
+                                                    {
+                                                        dfile = new Delimon.Win32.IO.FileInfo(strFilePath);
+
+                                                        strOwner = GetFileOwner(strFilePath);
+
+                                                        if (blDeleteFilesFound)
+                                                        {
+
+                                                            //Delete the ransomware related file
+                                                            results.Add("File Deleted: " + "\"" + strFilePath + "\"" + " FileCreated: " + dfile.CreationTime.ToString("G") + " Owner: " + strOwner);
+                                                            dfile.Delete();
+                                                        }
+                                                        else
+                                                        {
+                                                            //Document the file found
+                                                            results.Add("\"" + strFilePath + "\"" + " FileCreated: " + dfile.CreationTime.ToString("G") + " Owner: " + strOwner);
+                                                        }
+                                                    }
+                                                    catch (Exception)
+                                                    {
+                                                        results.Add("\"" + strFilePath + "\"");
+                                                    }
+
+
+
                                                 }
-
-
-
                                             }
 
                                             // find next if any
