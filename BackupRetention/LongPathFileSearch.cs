@@ -15,6 +15,8 @@ using System.Text.RegularExpressions;
 //http://www.pinvoke.net/default.aspx/kernel32/FindFirstFile.html
 //http://stackoverflow.com/questions/1248816/c-sharp-call-win32-api-for-long-file-paths
 
+//Microsoft.Win32.Security  Win32Security.dll for accessing security information from files with long file paths https://github.com/woanware/Win32Security/
+
 /*
 BSD License:
 Copyright (c) 2016, Preston Cooper – HESD Ransomware Detection Service
@@ -323,7 +325,7 @@ namespace RansomwareDetection
             value = value.Replace(@"\\?\UNC\", @"\\");
             value = value.Replace(@"\\?\", "");
             System.Uri uri = new System.Uri(value);
-            
+
             return uri.LocalPath;
         }
 
@@ -346,7 +348,7 @@ namespace RansomwareDetection
             if (uri.IsUnc)
             {
                 //Add the prepend and remove the 2 beginning back slashes for the UNC path so that long file paths are supported
-                strPath = @"\\?\UNC\" + uri.LocalPath.Substring(2,uri.LocalPath.Length-2);
+                strPath = @"\\?\UNC\" + uri.LocalPath.Substring(2, uri.LocalPath.Length - 2);
             }
             else
             {
@@ -356,7 +358,41 @@ namespace RansomwareDetection
             return strPath;
         }
 
-        
+        /// <summary>
+        /// Get File Owner from FullFilePath works with long file paths
+        /// </summary>
+        /// <param name="strFileName"></param>
+        /// <returns></returns>
+        public static string GetFileOwner(string strFileName)
+        {
+            string strOwner = "";
+            string strLongFilePath = LongPathPrepend(strFileName);
+            Microsoft.Win32.Security.SecurityDescriptor secDesc = null;
+            try
+            {
+                if (Common.FileExists(strFileName))
+                {
+                    secDesc = Microsoft.Win32.Security.SecurityDescriptor.GetFileSecurity(strLongFilePath, Microsoft.Win32.Security.SECURITY_INFORMATION.OWNER_SECURITY_INFORMATION);
+                    strOwner = Common.FixNullstring(secDesc.Owner.DomainName) + "\\" + Common.FixNullstring(secDesc.Owner.AccountName);
+
+                }
+
+            }
+            catch (Exception)
+            {
+                strOwner = "";
+            }
+            finally
+            {
+                if (secDesc != null)
+                {
+                    secDesc.Dispose();
+                    secDesc = null;
+                }
+            }
+
+            return strOwner;
+        }
 
         /// <summary>
         /// Recursively Searches for all files and folders specified by the filter; Optimized for best performance by only going through folder structure once and searching the all of the file filters in each folder
@@ -383,7 +419,7 @@ namespace RansomwareDetection
                 {
                     //Search through each folder
                     findHandle = FindFirstFileEx(strDirConverted + @"\*", FINDEX_INFO_LEVELS.FindExInfoBasic, out findData, FINDEX_SEARCH_OPS.FindExSearchLimitToDirectories, IntPtr.Zero, FIND_FIRST_EX_LARGE_FETCH);
-                
+
                     if (findHandle != INVALID_HANDLE_VALUE)
                     {
                         bool found;
@@ -425,7 +461,7 @@ namespace RansomwareDetection
                                     if (checkSubFolders)
                                     {
                                         //Recursively go through all folders and sub folders
-                                        List<string> childResults2 = FindAllfiles(Path.Combine(dirName, currentFileName), dtFilters, checkSubFolders, excludeFolders , ref blShuttingDown);
+                                        List<string> childResults2 = FindAllfiles(Path.Combine(dirName, currentFileName), dtFilters, checkSubFolders, excludeFolders, ref blShuttingDown);
                                         results.AddRange(childResults2);
                                         childResults2.Clear();
                                     }
@@ -444,7 +480,7 @@ namespace RansomwareDetection
                             results.Add("File Path Not Found:" + dirName);
                         }
                     }
-                    
+
                 }
                 catch
                 {
@@ -496,7 +532,7 @@ namespace RansomwareDetection
                                 {
                                     //Search for the file filter in the current directory
                                     findHandle = FindFirstFileEx(strDirConverted + @"\" + strFileFilter, FINDEX_INFO_LEVELS.FindExInfoBasic, out findData, FINDEX_SEARCH_OPS.FindExSearchNameMatch, IntPtr.Zero, FIND_FIRST_EX_LARGE_FETCH);
-                                
+
                                     if (findHandle != INVALID_HANDLE_VALUE)
                                     {
                                         bool found;
@@ -513,24 +549,41 @@ namespace RansomwareDetection
                                                     results.Add(strFilePath);
                                                 }
                                             }
-
                                             // it’s a file; add it to the results
                                             else
                                             {
                                                 string strFilePath = RemovePrependGetPath(Path.Combine(dirName, currentFileName));
+                                                Delimon.Win32.IO.FileInfo dfile;
 
-                                                if (blDeleteFilesFound)
+                                                string strOwner = "";
+
+                                                try
                                                 {
-                                                    Delimon.Win32.IO.FileInfo dfile = new Delimon.Win32.IO.FileInfo(strFilePath);
-                                                    //Delete the ransomware related file
-                                                    results.Add("File Deleted: " + strFilePath + " FileCreated: " + dfile.CreationTime.ToLongDateString() + " Owner: " + dfile.GetAccessControl().GetOwner(typeof(System.Security.Principal.NTAccount)).ToString());
-                                                    dfile.Delete();
+                                                    dfile = new Delimon.Win32.IO.FileInfo(strFilePath);
+                                                    
+
+                                                    strOwner = GetFileOwner(strFilePath);
+
+                                                    if (blDeleteFilesFound)
+                                                    {
+
+                                                        //Delete the ransomware related file
+                                                        results.Add("File Deleted: " + "\"" + strFilePath + "\"" + " FileCreated: " + dfile.CreationTime.ToString("G") + " Owner: " + strOwner);
+                                                        dfile.Delete();
+                                                    }
+                                                    else
+                                                    {
+                                                        //Document the file found
+                                                        results.Add("\"" + strFilePath + "\"" + " FileCreated: " + dfile.CreationTime.ToString("G") + " Owner: " + strOwner);
+                                                    }
                                                 }
-                                                else
+                                                catch (Exception ex)
                                                 {
-                                                    //Document the file found
-                                                    results.Add(strFilePath);
+                                                    results.Add("\"" + strFilePath + "\"");
                                                 }
+
+
+
                                             }
 
                                             // find next if any
@@ -538,7 +591,7 @@ namespace RansomwareDetection
                                         }
                                         while (found);
                                     }
-                                    
+
                                 }
                                 finally
                                 {
@@ -551,7 +604,7 @@ namespace RansomwareDetection
                                 //invalid search filter
                                 if (results.Count == 0)
                                 {
-                                    results.Add("Invalid Search Filter or Directory Problem: " + strFileFilter + " " + dirName );
+                                    results.Add("Invalid Search Filter or Directory Problem: " + strFileFilter + " " + dirName);
                                 }
                             }
                         }
@@ -562,7 +615,7 @@ namespace RansomwareDetection
                     }
                 }
             }
-               
+
             return results;
         }
 
@@ -588,11 +641,11 @@ namespace RansomwareDetection
             else
             {
                 //Search through each folder
-                
+
                 try
                 {
                     findHandle = FindFirstFileEx(strDirConverted + "\\*", FINDEX_INFO_LEVELS.FindExInfoBasic, out findData, FINDEX_SEARCH_OPS.FindExSearchLimitToDirectories, IntPtr.Zero, FIND_FIRST_EX_LARGE_FETCH);
-                
+
                     if (findHandle != INVALID_HANDLE_VALUE)
                     {
                         bool found;
@@ -622,7 +675,7 @@ namespace RansomwareDetection
                                         }
                                     }
                                 }
-                                
+
 
                                 if (!blIgnoreDirectory && !(currentFileName == "." || currentFileName == ".."))
                                 {
@@ -660,7 +713,7 @@ namespace RansomwareDetection
         /// <param name="filter"></param>
         /// <param name="checkSubFolders"></param>
         /// <returns></returns>
-        public static List<string> FindImmediateFilesAndDirs(string dirName, string filter, bool checkSubFolders) 
+        public static List<string> FindImmediateFilesAndDirs(string dirName, string filter, bool checkSubFolders)
         {
             //string strDirConverted = ConvertPathToURI(dirName + "\\" + filter);
             //string strDirConverted = ConvertPathToURI(dirName);
@@ -674,7 +727,7 @@ namespace RansomwareDetection
                 {
                     //IntPtr findHandle = FindFirstFile(strDirConverted + "\\" + filter, out findData);
                     findHandle = FindFirstFileEx(strDirConverted + "\\" + filter, FINDEX_INFO_LEVELS.FindExInfoBasic, out findData, FINDEX_SEARCH_OPS.FindExSearchNameMatch, IntPtr.Zero, FIND_FIRST_EX_LARGE_FETCH);
-                
+
                     if (findHandle != INVALID_HANDLE_VALUE)
                     {
                         bool found;

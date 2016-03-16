@@ -11,3 +11,4 @@ C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetention
 C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetentionSystemTray\obj\x86\Debug\RansomwareDetectionSystemTray.csproj.GenerateResource.Cache
 C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetentionSystemTray\obj\x86\Debug\RansomwareDetectionSystemTray.exe
 C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetentionSystemTray\obj\x86\Debug\RansomwareDetectionSystemTray.pdb
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetentionSystemTray\bin\Debug\Win32Security.dll

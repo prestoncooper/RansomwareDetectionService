@@ -934,7 +934,7 @@ namespace RansomwareDetection
                                 //Loop through files that are different and list them
                                 foreach (string strFile in FilesFound)
                                 {
-                                    sbbody1.AppendLine("<a href=\"#\" style=\"text-decoration:none !important; text-decoration:none;color:black;\">\"" + strFile + "\"</a><br />");
+                                    sbbody1.AppendLine("<a href=\"#\" style=\"text-decoration:none !important; text-decoration:none;color:black;\">" + strFile + "</a><br />");
                                     
                                 }
                                 sbbody1.AppendLine("<br />");
