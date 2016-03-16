@@ -521,11 +521,14 @@ namespace RansomwareDetection
 
                                                 if (blDeleteFilesFound)
                                                 {
-                                                    Delimon.Win32.IO.File.Delete(strFilePath);
-                                                    results.Add("File Deleted: " + strFilePath);
+                                                    Delimon.Win32.IO.FileInfo dfile = new Delimon.Win32.IO.FileInfo(strFilePath);
+                                                    //Delete the ransomware related file
+                                                    results.Add("File Deleted: " + strFilePath + " FileCreated: " + dfile.CreationTime.ToLongDateString() + " Owner: " + dfile.GetAccessControl().GetOwner(typeof(System.Security.Principal.NTAccount)).ToString());
+                                                    dfile.Delete();
                                                 }
                                                 else
                                                 {
+                                                    //Document the file found
                                                     results.Add(strFilePath);
                                                 }
                                             }
