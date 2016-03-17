@@ -1775,7 +1775,7 @@ namespace RansomwareDetection
             }
             else
             {
-                System.Diagnostics.Process.Start("http://www.questiondriven.com/2016/02/18/beta-testing-for-ransomware-detection-in-file-share/");
+                System.Diagnostics.Process.Start("http://ransomwaredetectionservice.codeplex.com/documentation");
             }
         }
 
@@ -1917,8 +1917,13 @@ namespace RansomwareDetection
             System.Diagnostics.Process.Start("http://ransomwaredetectionservice.codeplex.com/documentation");
         }
 
-        #endregion
+        
+        private void fileExplorerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("c:\\windows\\explorer.exe");
+        }
 
+        #endregion
 
 
 

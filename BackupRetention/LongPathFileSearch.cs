@@ -374,7 +374,6 @@ namespace RansomwareDetection
                 {
                     secDesc = Microsoft.Win32.Security.SecurityDescriptor.GetFileSecurity(strLongFilePath, Microsoft.Win32.Security.SECURITY_INFORMATION.OWNER_SECURITY_INFORMATION);
                     strOwner = Common.FixNullstring(secDesc.Owner.DomainName) + "\\" + Common.FixNullstring(secDesc.Owner.AccountName);
-
                 }
 
             }
@@ -512,6 +511,7 @@ namespace RansomwareDetection
             string strDirConverted = LongPathPrepend(dirName);
             List<string> results = new List<string>();
             IntPtr findHandle = INVALID_HANDLE_VALUE;
+            string strOwner = "";
             WIN32_FIND_DATA findData;
             if (dtFilters != null)
             {
@@ -566,7 +566,19 @@ namespace RansomwareDetection
                                                     if (currentFileName != "." && currentFileName != "..")
                                                     {
                                                         string strFilePath = RemovePrependGetPath(Path.Combine(dirName, currentFileName));
-                                                        results.Add(strFilePath);
+                                                        try
+                                                        {
+                                                            Delimon.Win32.IO.DirectoryInfo ddir = new Delimon.Win32.IO.DirectoryInfo(strFilePath);
+                                                            strOwner = GetFileOwner(strFilePath);
+
+                                                            results.Add("\"" + strFilePath + "\"" + ",FileCreated: " + ddir.CreationTime.ToString("G") + ",Owner: " + strOwner);
+                                                            
+                                                        }
+                                                        catch (Exception)
+                                                        {
+                                                            results.Add(strFilePath);
+                                                        }
+                                                       
                                                     }
                                                 }
                                                 // it’s a file; add it to the results
@@ -575,8 +587,6 @@ namespace RansomwareDetection
 
                                                     string strFilePath = RemovePrependGetPath(Path.Combine(dirName, currentFileName));
                                                     Delimon.Win32.IO.FileInfo dfile;
-
-                                                    string strOwner = "";
 
                                                     try
                                                     {
@@ -588,13 +598,13 @@ namespace RansomwareDetection
                                                         {
 
                                                             //Delete the ransomware related file
-                                                            results.Add("File Deleted: " + "\"" + strFilePath + "\"" + " FileCreated: " + dfile.CreationTime.ToString("G") + " Owner: " + strOwner);
+                                                            results.Add("File Deleted: " + "\"" + strFilePath + "\"" + ",FileCreated: " + dfile.CreationTime.ToString("G") + ",Owner: " + strOwner);
                                                             dfile.Delete();
                                                         }
                                                         else
                                                         {
                                                             //Document the file found
-                                                            results.Add("\"" + strFilePath + "\"" + " FileCreated: " + dfile.CreationTime.ToString("G") + " Owner: " + strOwner);
+                                                            results.Add("\"" + strFilePath + "\"" + ",FileCreated: " + dfile.CreationTime.ToString("G") + ",Owner: " + strOwner);
                                                         }
                                                     }
                                                     catch (Exception)

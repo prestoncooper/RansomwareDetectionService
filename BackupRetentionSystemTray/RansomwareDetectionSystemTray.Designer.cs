@@ -44,6 +44,7 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.onlineHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.licenseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ransomwareDetectionServiceCodePlexPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -181,7 +182,7 @@
             this.dgvFindFilesColtxtExcludeFiles = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcolchkFileFiltersDeleteFilesFound = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dgvcoltxtFileFiltersComment = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.onlineHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fileExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbRightIcon)).BeginInit();
@@ -212,6 +213,7 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.sendTestEmailToolStripMenuItem1,
             this.servicesConsoleToolStripMenuItem1,
+            this.fileExplorerToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -260,6 +262,13 @@
             this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(359, 24);
             this.aboutToolStripMenuItem1.Text = "&About";
             this.aboutToolStripMenuItem1.Click += new System.EventHandler(this.aboutToolStripMenuItem1_Click);
+            // 
+            // onlineHelpToolStripMenuItem
+            // 
+            this.onlineHelpToolStripMenuItem.Name = "onlineHelpToolStripMenuItem";
+            this.onlineHelpToolStripMenuItem.Size = new System.Drawing.Size(359, 24);
+            this.onlineHelpToolStripMenuItem.Text = "Online Help";
+            this.onlineHelpToolStripMenuItem.Click += new System.EventHandler(this.onlineHelpToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem1
             // 
@@ -1614,12 +1623,12 @@
             this.dgvcoltxtFileFiltersComment.ToolTipText = "Comment for this task";
             this.dgvcoltxtFileFiltersComment.Width = 92;
             // 
-            // onlineHelpToolStripMenuItem
+            // fileExplorerToolStripMenuItem
             // 
-            this.onlineHelpToolStripMenuItem.Name = "onlineHelpToolStripMenuItem";
-            this.onlineHelpToolStripMenuItem.Size = new System.Drawing.Size(359, 24);
-            this.onlineHelpToolStripMenuItem.Text = "Online Help";
-            this.onlineHelpToolStripMenuItem.Click += new System.EventHandler(this.onlineHelpToolStripMenuItem_Click);
+            this.fileExplorerToolStripMenuItem.Name = "fileExplorerToolStripMenuItem";
+            this.fileExplorerToolStripMenuItem.Size = new System.Drawing.Size(179, 24);
+            this.fileExplorerToolStripMenuItem.Text = "File Explorer";
+            this.fileExplorerToolStripMenuItem.Click += new System.EventHandler(this.fileExplorerToolStripMenuItem_Click);
             // 
             // RansomwareDetectionSystemTray
             // 
@@ -1803,6 +1812,7 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn dgvcolchkFileFiltersDeleteFilesFound;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcoltxtFileFiltersComment;
         private System.Windows.Forms.ToolStripMenuItem onlineHelpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fileExplorerToolStripMenuItem;
     }
 }
 
