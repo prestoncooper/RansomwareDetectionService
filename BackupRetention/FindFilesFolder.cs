@@ -1003,7 +1003,7 @@ namespace RansomwareDetection
                                 //loop through all ransomware files found
                                 foreach (FileResult frFile1 in AllFiles)
                                 {
-                                    if ((frFile1.ObjectType == FileFilterObjectType.File) && frFile1.Deleted == false)
+                                    if (frFile1.ObjectType == FileFilterObjectType.File && frFile1.Deleted == false)
                                     {
                                         //Keep overall list of files found
                                         FilesFound.Add(frFile1);
@@ -1012,7 +1012,7 @@ namespace RansomwareDetection
                                         string strerror = "Ransomware Detection Service, Find Files: Possible Ransomware File Found: " + frFile1.FullPath + " " + frFile1.Comment;
                                         WriteError(strerror, System.Diagnostics.EventLogEntryType.Error, 9001, 90, false);
                                     }
-                                    else if ((frFile1.ObjectType == FileFilterObjectType.Folder) && frFile1.Deleted == false)
+                                    else if (frFile1.ObjectType == FileFilterObjectType.Folder && frFile1.Deleted == false)
                                     {
                                         //Add the Folder to the list
                                         FoldersFound.Add(frFile1);
@@ -1076,12 +1076,12 @@ namespace RansomwareDetection
 
 
                         //send email on failure
-                        if (FilesFound.Count > 0)
+                        if (FilesFound.Count > 0 || FoldersFound.Count > 0 || FilesDeleted.Count > 0 || ResultErrors.Count > 0)
                         {
                             //On Failure Email
                             StringBuilder sbbody1 = new StringBuilder();
                             string strline = "";
-                            strSubject = "Ransomware Detection Service, Files Found - Possible Ransomware Found!: " + FilesFound.Count.ToString();
+                            strSubject = "Ransomware Detection Service, Files Found - Possible Ransomware Found!: " + (FilesFound.Count + FoldersFound.Count + FilesDeleted.Count + ResultErrors.Count).ToString();
                             strline = "<strong>Ransomware Detection Service, Possible Ransomware Files Found</strong><br /><br /><ul><li>FilePathToCheck:</strong> " + Common.GetPathToHTMLAnchor(FilePathToCheck) + "</li>";
                             sbbody1.AppendLine(strline);
                             strline = "<li>Check Sub Folders: " + CheckSubFolders.ToString() + "</li></ul>";
@@ -1092,45 +1092,39 @@ namespace RansomwareDetection
                                 //Loop through files found and list them
                                 foreach (FileResult frFile1 in FilesFound)
                                 {
-                                    if ((frFile1.ObjectType == FileFilterObjectType.File || frFile1.ObjectType == FileFilterObjectType.Both) && frFile1.Deleted == false)
-                                    {
                                         sbbody1.AppendLine("<a href=\"#\" style=\"text-decoration:none !important; text-decoration:none;color:black;\">" + "\"" + frFile1.FullPath + "\",FileCreated: " + frFile1.CreationTime.ToString("G") + ",Owner: " + frFile1.Owner + ",Length" + frFile1.Length.ToString() + "</a><br />");
-                                    }
                                 }
-
+                            }
+                            if (FoldersFound.Count > 0)
+                            {
                                 sbbody1.AppendLine("<br /><br /><strong>Possible Ransomware Folders:</strong><br />");
                                 //Loop through folders and list them
                                 foreach (FileResult frFile1 in FoldersFound)
                                 {
-                                    if ((frFile1.ObjectType == FileFilterObjectType.Folder || frFile1.ObjectType == FileFilterObjectType.Both) && frFile1.Deleted == false)
-                                    {
-                                        sbbody1.AppendLine("<a href=\"#\" style=\"text-decoration:none !important; text-decoration:none;color:black;\">" + "\"" + frFile1.FullPath + "\",FileCreated: " + frFile1.CreationTime.ToString("G") + ",Owner: " + frFile1.Owner + "</a><br />");
-                                    }
+                                    sbbody1.AppendLine("<a href=\"#\" style=\"text-decoration:none !important; text-decoration:none;color:black;\">" + "\"" + frFile1.FullPath + "\",FileCreated: " + frFile1.CreationTime.ToString("G") + ",Owner: " + frFile1.Owner + "</a><br />");
                                 }
+                            }
 
+                            if (FilesDeleted.Count > 0)
+                            {
                                 sbbody1.AppendLine("<br /><br /><strong>Possible Ransomware Files Deleted:</strong><br />");
                                 //Loop through files found and list them
                                 foreach (FileResult frFile1 in FilesDeleted)
                                 {
-                                    if (frFile1.Deleted)
-                                    {
                                         sbbody1.AppendLine("<a href=\"#\" style=\"text-decoration:none !important; text-decoration:none;color:black;\">File Deleted: " + "\"" + frFile1.FullPath + "\",FileCreated: " + frFile1.CreationTime.ToString("G") + ",Owner: " + frFile1.Owner + ",Length" + frFile1.Length.ToString() + "</a><br />");
-                                    }
                                 }
-
+                            }
+                            if (ResultErrors.Count > 0)
+                            {
                                 sbbody1.AppendLine("<br /><br /><br /><strong>Errors:</strong><br />");
                                 //Loop through Errors and list them
                                 foreach (FileResult frFile2 in ResultErrors)
                                 {
-                                    if (frFile2.ObjectType == FileFilterObjectType.None)
-                                    {
                                         sbbody1.AppendLine("<a href=\"#\" style=\"text-decoration:none !important; text-decoration:none;color:black;\">" + "\"" + frFile2.FullPath + "\",Error: " + frFile2.Comment + "</a><br />");
-                                    }
                                 }
                                 sbbody1.AppendLine("<br />");
                             }
-
-                            
+                        
                             strBody = sbbody1.ToString();
                             sbbody1.Clear();
                             if (SendEmailOnFailure)
