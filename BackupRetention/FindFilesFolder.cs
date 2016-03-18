@@ -36,7 +36,131 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
 
 namespace RansomwareDetection
 {
-    
+    public enum FileFilterObjectType
+    {
+        File = 1,
+        Folder = 2,
+        Both = 3
+
+    }
+
+    /// <summary>
+    /// Find File Filter Class
+    /// </summary>
+    public class FindFileFilter
+    {
+        #region "Properties"
+
+        public int ID { get; set; }
+
+        public bool Enabled { get; set; }
+
+        public string Title { get; set; }
+
+        public string FileFilter { get; set; }
+
+        public string ExcludeFiles { get; set; }
+
+        public FileFilterObjectType ObjectType { get; set; }
+
+        public bool DeleteFilesFound { get; set; }
+
+        public string Comment { get; set; }
+
+        #endregion
+
+        public FindFileFilter()
+        {
+            ID = 0;
+            Enabled = false;
+            Title = "";
+            FileFilter = "";
+            ExcludeFiles = "";
+            ObjectType = FileFilterObjectType.File;
+            DeleteFilesFound = false;
+            Comment = "";
+        }
+
+        public FindFileFilter(DataRow row)
+        {
+            try
+            {
+                ID = Common.FixNullInt32(row["ID"]);
+                Enabled = Common.FixNullbool(row["Enabled"]);
+                Title = Common.FixNullstring(row["Title"]);
+                FileFilter = Common.FixNullstring(row["FileFilter"]);
+                ExcludeFiles = Common.FixNullstring(row["ExcludeFiles"]);
+                try
+                {
+                    ObjectType = (FileFilterObjectType)System.Enum.Parse(typeof(FileFilterObjectType), Common.FixNullstring(row["ObjectType"]));
+                }
+                catch (Exception)
+                {
+                    ObjectType = FileFilterObjectType.File;
+                }
+                DeleteFilesFound = Common.FixNullbool(row["DeleteFilesFound"]);
+                Comment = Common.FixNullstring(row["Comment"]);
+            }
+            catch (Exception)
+            {
+                ID = 0;
+                Enabled = false;
+                Title = "";
+                FileFilter = "";
+                ExcludeFiles = "";
+                ObjectType = FileFilterObjectType.File;
+                DeleteFilesFound = false;
+                Comment = "";
+            }
+        }
+        /// <summary>
+        /// Initializes the config table for file filters
+        /// </summary>
+        /// <returns></returns>
+        public static DataTable init_dtFileFiltersConfig()
+        {
+            DataTable dtFileFilters;
+            dtFileFilters = new DataTable("FileFiltersConfig");
+
+
+            //Create Primary Key Column
+            DataColumn dcID = new DataColumn("ID", typeof(Int32));
+            dcID.AllowDBNull = false;
+            dcID.Unique = true;
+            dcID.AutoIncrement = true;
+            dcID.AutoIncrementSeed = 1;
+            dcID.AutoIncrementStep = 1;
+
+            //Assign Primary Key
+            DataColumn[] columns = new DataColumn[1];
+            dtFileFilters.Columns.Add(dcID);
+            columns[0] = dtFileFilters.Columns["ID"];
+            dtFileFilters.PrimaryKey = columns;
+
+
+            //Create Columns
+            dtFileFilters.Columns.Add(new DataColumn("Enabled", typeof(String)));
+            dtFileFilters.Columns.Add(new DataColumn("Title", typeof(String)));
+            dtFileFilters.Columns.Add(new DataColumn("FileFilter", typeof(String)));
+            dtFileFilters.Columns.Add(new DataColumn("ExcludeFiles", typeof(String)));
+            dtFileFilters.Columns.Add(new DataColumn("DeleteFilesFound", typeof(String)));
+            dtFileFilters.Columns.Add(new DataColumn("ObjectType", typeof(String)));
+            dtFileFilters.Columns.Add(new DataColumn("Comment", typeof(String)));
+
+            dtFileFilters.Columns["Enabled"].DefaultValue = "true";
+            dtFileFilters.Columns["Title"].DefaultValue = "";
+            dtFileFilters.Columns["FileFilter"].DefaultValue = "";
+            dtFileFilters.Columns["ExcludeFiles"].DefaultValue = "";
+            dtFileFilters.Columns["ObjectType"].DefaultValue = "File";
+            dtFileFilters.Columns["DeleteFilesFound"].DefaultValue = "false";
+
+            dtFileFilters.Columns["Comment"].DefaultValue = "";
+
+            return dtFileFilters;
+
+        }
+
+    }
     public class FindFilesFolder : IFolderConfig
     {
         #region "Variables"
@@ -805,50 +929,7 @@ namespace RansomwareDetection
 
         }
 
-        /// <summary>
-        /// Initializes the config table for file filters
-        /// </summary>
-        /// <returns></returns>
-        public static DataTable init_dtFileFiltersConfig()
-        {
-            DataTable dtFileFilters;
-            dtFileFilters = new DataTable("FileFiltersConfig");
-
-
-            //Create Primary Key Column
-            DataColumn dcID = new DataColumn("ID", typeof(Int32));
-            dcID.AllowDBNull = false;
-            dcID.Unique = true;
-            dcID.AutoIncrement = true;
-            dcID.AutoIncrementSeed = 1;
-            dcID.AutoIncrementStep = 1;
-
-            //Assign Primary Key
-            DataColumn[] columns = new DataColumn[1];
-            dtFileFilters.Columns.Add(dcID);
-            columns[0] = dtFileFilters.Columns["ID"];
-            dtFileFilters.PrimaryKey = columns;
-
-
-            //Create Columns
-            dtFileFilters.Columns.Add(new DataColumn("Enabled", typeof(String)));
-            dtFileFilters.Columns.Add(new DataColumn("Title", typeof(String)));
-            dtFileFilters.Columns.Add(new DataColumn("FileFilter", typeof(String)));
-            dtFileFilters.Columns.Add(new DataColumn("ExcludeFiles", typeof(String)));
-            dtFileFilters.Columns.Add(new DataColumn("DeleteFilesFound", typeof(String)));
-            dtFileFilters.Columns.Add(new DataColumn("Comment", typeof(String)));
-
-            dtFileFilters.Columns["Enabled"].DefaultValue = "true";
-            dtFileFilters.Columns["Title"].DefaultValue = "";
-            dtFileFilters.Columns["FileFilter"].DefaultValue = "";
-            dtFileFilters.Columns["ExcludeFiles"].DefaultValue = "";
-            dtFileFilters.Columns["DeleteFilesFound"].DefaultValue = "false";
-            
-            dtFileFilters.Columns["Comment"].DefaultValue = "";
-           
-            return dtFileFilters;
-
-        }
+       
         
         
 

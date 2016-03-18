@@ -41,6 +41,7 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sendTestEmailToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.servicesConsoleToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.fileExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -180,9 +181,9 @@
             this.dgvcoltxtFileFiltersTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvcoltxtFileFiltersFileFilter = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvFindFilesColtxtExcludeFiles = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dropdownfindfilescolObjectType = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.dgvcolchkFileFiltersDeleteFilesFound = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dgvcoltxtFileFiltersComment = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fileExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbRightIcon)).BeginInit();
@@ -233,6 +234,13 @@
             this.servicesConsoleToolStripMenuItem1.Size = new System.Drawing.Size(179, 24);
             this.servicesConsoleToolStripMenuItem1.Text = "Services Console";
             this.servicesConsoleToolStripMenuItem1.Click += new System.EventHandler(this.servicesConsoleToolStripMenuItem1_Click);
+            // 
+            // fileExplorerToolStripMenuItem
+            // 
+            this.fileExplorerToolStripMenuItem.Name = "fileExplorerToolStripMenuItem";
+            this.fileExplorerToolStripMenuItem.Size = new System.Drawing.Size(179, 24);
+            this.fileExplorerToolStripMenuItem.Text = "File Explorer";
+            this.fileExplorerToolStripMenuItem.Click += new System.EventHandler(this.fileExplorerToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
@@ -1554,6 +1562,7 @@
             this.dgvcoltxtFileFiltersTitle,
             this.dgvcoltxtFileFiltersFileFilter,
             this.dgvFindFilesColtxtExcludeFiles,
+            this.dropdownfindfilescolObjectType,
             this.dgvcolchkFileFiltersDeleteFilesFound,
             this.dgvcoltxtFileFiltersComment});
             this.dgvFileFilters.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1606,6 +1615,17 @@
     "positive file names from a previous run.";
             this.dgvFindFilesColtxtExcludeFiles.Width = 111;
             // 
+            // dropdownfindfilescolObjectType
+            // 
+            this.dropdownfindfilescolObjectType.DataPropertyName = "ObjectType";
+            this.dropdownfindfilescolObjectType.HeaderText = "ObjectType";
+            this.dropdownfindfilescolObjectType.Items.AddRange(new object[] {
+            "File",
+            "Folder",
+            "Both"});
+            this.dropdownfindfilescolObjectType.Name = "dropdownfindfilescolObjectType";
+            this.dropdownfindfilescolObjectType.Width = 87;
+            // 
             // dgvcolchkFileFiltersDeleteFilesFound
             // 
             this.dgvcolchkFileFiltersDeleteFilesFound.DataPropertyName = "DeleteFilesFound";
@@ -1622,13 +1642,6 @@
             this.dgvcoltxtFileFiltersComment.Name = "dgvcoltxtFileFiltersComment";
             this.dgvcoltxtFileFiltersComment.ToolTipText = "Comment for this task";
             this.dgvcoltxtFileFiltersComment.Width = 92;
-            // 
-            // fileExplorerToolStripMenuItem
-            // 
-            this.fileExplorerToolStripMenuItem.Name = "fileExplorerToolStripMenuItem";
-            this.fileExplorerToolStripMenuItem.Size = new System.Drawing.Size(179, 24);
-            this.fileExplorerToolStripMenuItem.Text = "File Explorer";
-            this.fileExplorerToolStripMenuItem.Click += new System.EventHandler(this.fileExplorerToolStripMenuItem_Click);
             // 
             // RansomwareDetectionSystemTray
             // 
@@ -1804,15 +1817,16 @@
         private System.Windows.Forms.CalendarColumn dgvcolcalFindFilesEndDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcoltxtFindFilesComment;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dgvcolchkFindFilesDetailedLogging;
+        private System.Windows.Forms.ToolStripMenuItem onlineHelpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fileExplorerToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcoltxtFileFiltersID;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dgvcolchkFileFiltersEnabled;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcoltxtFileFiltersTitle;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcoltxtFileFiltersFileFilter;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvFindFilesColtxtExcludeFiles;
+        private System.Windows.Forms.DataGridViewComboBoxColumn dropdownfindfilescolObjectType;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dgvcolchkFileFiltersDeleteFilesFound;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcoltxtFileFiltersComment;
-        private System.Windows.Forms.ToolStripMenuItem onlineHelpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem fileExplorerToolStripMenuItem;
     }
 }
 

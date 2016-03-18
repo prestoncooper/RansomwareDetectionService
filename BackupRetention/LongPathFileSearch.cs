@@ -520,20 +520,26 @@ namespace RansomwareDetection
                 {
                     try
                     {
-                        string strFileFilter = Common.FixNullstring(row["FileFilter"]);
-                        bool blFilterEnabled = Common.FixNullbool(row["Enabled"]);
-                        bool blDeleteFilesFound = Common.FixNullbool(row["DeleteFilesFound"]);
-                        string strExcludeFiles = Common.FixNullstring(row["ExcludeFiles"]).Trim().ToLower();
-                        if (blFilterEnabled && strFileFilter != "")
+                        FindFileFilter filter = new FindFileFilter(row);
+
+                        
+                        if (filter.Enabled && filter.FileFilter != "")
                         {
                             //Valid File Filter?
-                            if (VerifyPattern(strFileFilter) && Delimon.Win32.IO.Directory.Exists(dirName))
+                            if (VerifyPattern(filter.FileFilter) && Delimon.Win32.IO.Directory.Exists(dirName))
                             {
                                 try
                                 {
                                     //Search for the file filter in the current directory
-                                    findHandle = FindFirstFileEx(strDirConverted + @"\" + strFileFilter, FINDEX_INFO_LEVELS.FindExInfoBasic, out findData, FINDEX_SEARCH_OPS.FindExSearchNameMatch, IntPtr.Zero, FIND_FIRST_EX_LARGE_FETCH);
-
+                                    if (filter.ObjectType == FileFilterObjectType.Folder)
+                                    {
+                                        findHandle = FindFirstFileEx(strDirConverted + @"\" + filter.FileFilter, FINDEX_INFO_LEVELS.FindExInfoBasic, out findData, FINDEX_SEARCH_OPS.FindExSearchLimitToDirectories, IntPtr.Zero, FIND_FIRST_EX_LARGE_FETCH);
+                                    }
+                                    else
+                                    {
+                                        findHandle = FindFirstFileEx(strDirConverted + @"\" + filter.FileFilter, FINDEX_INFO_LEVELS.FindExInfoBasic, out findData, FINDEX_SEARCH_OPS.FindExSearchNameMatch, IntPtr.Zero, FIND_FIRST_EX_LARGE_FETCH);
+                                    }
+                                    
                                     if (findHandle != INVALID_HANDLE_VALUE)
                                     {
                                         bool found;
@@ -542,9 +548,9 @@ namespace RansomwareDetection
                                             string currentFileName = findData.cFileName;
                                             bool blIgnoreFile = false;
                                             char[] delimiters = new char[] { ';' };
-                                            if (strExcludeFiles != "")
+                                            if (filter.ExcludeFiles != "")
                                             {
-                                                string[] strArr_excludedfiles = strExcludeFiles.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+                                                string[] strArr_excludedfiles = filter.ExcludeFiles.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
                                                 if (!(strArr_excludedfiles == null || strArr_excludedfiles.Length == 0))
                                                 {
                                                     //loop through excluded folders
@@ -559,59 +565,62 @@ namespace RansomwareDetection
                                             }
                                             if (!blIgnoreFile)
                                             {
-
                                                 // if this is a directory, add directory found to the results.
-                                                if (((int)findData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0)
+                                                if (((int)findData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0 )
                                                 {
-                                                    if (currentFileName != "." && currentFileName != "..")
+                                                    if (filter.ObjectType==FileFilterObjectType.Folder || filter.ObjectType==FileFilterObjectType.Both)
                                                     {
-                                                        string strFilePath = RemovePrependGetPath(Path.Combine(dirName, currentFileName));
-                                                        try
+                                                        if (currentFileName != "." && currentFileName != "..")
                                                         {
-                                                            Delimon.Win32.IO.DirectoryInfo ddir = new Delimon.Win32.IO.DirectoryInfo(strFilePath);
-                                                            strOwner = GetFileOwner(strFilePath);
+                                                            string strFilePath = RemovePrependGetPath(Path.Combine(dirName, currentFileName));
+                                                            try
+                                                            {
+                                                                Delimon.Win32.IO.DirectoryInfo ddir = new Delimon.Win32.IO.DirectoryInfo(strFilePath);
+                                                                strOwner = GetFileOwner(strFilePath);
 
-                                                            results.Add("\"" + strFilePath + "\"" + ",FileCreated: " + ddir.CreationTime.ToString("G") + ",Owner: " + strOwner);
+                                                                results.Add("\"" + strFilePath + "\"" + ",FolderCreated: " + ddir.CreationTime.ToString("G") + ",Owner: " + strOwner);
                                                             
-                                                        }
-                                                        catch (Exception)
-                                                        {
-                                                            results.Add(strFilePath);
-                                                        }
+                                                            }
+                                                            catch (Exception)
+                                                            {
+                                                                results.Add(strFilePath);
+                                                            }
                                                        
+                                                        }
                                                     }
                                                 }
                                                 // it’s a file; add it to the results
                                                 else
                                                 {
-
-                                                    string strFilePath = RemovePrependGetPath(Path.Combine(dirName, currentFileName));
-                                                    Delimon.Win32.IO.FileInfo dfile;
-
-                                                    try
+                                                    if (filter.ObjectType == FileFilterObjectType.File || filter.ObjectType == FileFilterObjectType.Both)
                                                     {
-                                                        dfile = new Delimon.Win32.IO.FileInfo(strFilePath);
+                                                        string strFilePath = RemovePrependGetPath(Path.Combine(dirName, currentFileName));
+                                                        Delimon.Win32.IO.FileInfo dfile;
 
-                                                        strOwner = GetFileOwner(strFilePath);
-
-                                                        if (blDeleteFilesFound)
+                                                        try
                                                         {
+                                                            dfile = new Delimon.Win32.IO.FileInfo(strFilePath);
 
-                                                            //Delete the ransomware related file
-                                                            results.Add("File Deleted: " + "\"" + strFilePath + "\"" + ",FileCreated: " + dfile.CreationTime.ToString("G") + ",Owner: " + strOwner);
-                                                            dfile.Delete();
+                                                            strOwner = GetFileOwner(strFilePath);
+
+                                                            if (filter.DeleteFilesFound)
+                                                            {
+
+                                                                //Delete the ransomware related file
+                                                                results.Add("File Deleted: " + "\"" + strFilePath + "\"" + ",FileCreated: " + dfile.CreationTime.ToString("G") + ",Owner: " + strOwner);
+                                                                dfile.Delete();
+                                                            }
+                                                            else
+                                                            {
+                                                                //Document the file found
+                                                                results.Add("\"" + strFilePath + "\"" + ",FileCreated: " + dfile.CreationTime.ToString("G") + ",Owner: " + strOwner);
+                                                            }
                                                         }
-                                                        else
+                                                        catch (Exception)
                                                         {
-                                                            //Document the file found
-                                                            results.Add("\"" + strFilePath + "\"" + ",FileCreated: " + dfile.CreationTime.ToString("G") + ",Owner: " + strOwner);
+                                                            results.Add("\"" + strFilePath + "\"");
                                                         }
                                                     }
-                                                    catch (Exception)
-                                                    {
-                                                        results.Add("\"" + strFilePath + "\"");
-                                                    }
-
 
 
                                                 }
@@ -635,7 +644,7 @@ namespace RansomwareDetection
                                 //invalid search filter
                                 if (results.Count == 0)
                                 {
-                                    results.Add("Invalid Search Filter or Directory Problem: " + strFileFilter + " " + dirName);
+                                    results.Add("Invalid Search Filter or Directory Problem: " + filter.FileFilter + " " + dirName);
                                 }
                             }
                         }

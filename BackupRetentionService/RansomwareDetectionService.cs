@@ -315,7 +315,7 @@ namespace RansomwareDetection
 
         private void init_dtFileFiltersConfig()
         {
-            dtFileFiltersConfig = FindFilesFolder.init_dtFileFiltersConfig();
+            dtFileFiltersConfig = FindFileFilter.init_dtFileFiltersConfig();
         }
 
         /// <summary>
