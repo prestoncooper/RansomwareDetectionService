@@ -38,6 +38,7 @@ namespace RansomwareDetection
 {
     public enum FileFilterObjectType
     {
+        None = 0,
         File = 1,
         Folder = 2,
         Both = 3
@@ -45,7 +46,7 @@ namespace RansomwareDetection
     }
 
     /// <summary>
-    /// Find File Filter Class
+    /// Find File Individual Filter Class
     /// </summary>
     public class FindFileFilter
     {
@@ -166,8 +167,11 @@ namespace RansomwareDetection
         #region "Variables"
 
         private string ep = "19C235A4-A313-C4C4-48F4-A5B4DC86EBCC";
-        public System.Collections.Generic.List<string> AllFiles = null;
-        public System.Collections.Generic.List<string> FilesFound = null;
+        public System.Collections.Generic.List<FileResult> AllFiles = null;
+        public System.Collections.Generic.List<FileResult> FilesFound = null;
+        public System.Collections.Generic.List<FileResult> FoldersFound = null;
+        public System.Collections.Generic.List<FileResult> FilesDeleted = null;
+        public System.Collections.Generic.List<FileResult> ResultErrors = null;
         
         /// <summary>
         /// Event Log Class
@@ -695,8 +699,11 @@ namespace RansomwareDetection
         /// <param name="row"></param>
         public FindFilesFolder()
         {
-            AllFiles = new System.Collections.Generic.List<string>();
-            FilesFound = new System.Collections.Generic.List<string>();
+            AllFiles = new System.Collections.Generic.List<FileResult>();
+            FilesFound = new System.Collections.Generic.List<FileResult>();
+            FoldersFound = new System.Collections.Generic.List<FileResult>();
+            FilesDeleted = new System.Collections.Generic.List<FileResult>();
+            ResultErrors = new System.Collections.Generic.List<FileResult>();
             _evt = Common.GetEventLog;
         }
 
@@ -710,9 +717,11 @@ namespace RansomwareDetection
         public FindFilesFolder(DataRow row, DataTable dtFileFilters)
         {
             _evt = Common.GetEventLog;
-            AllFiles = new System.Collections.Generic.List<string>();
-            FilesFound = new System.Collections.Generic.List<string>();
-            
+            AllFiles = new System.Collections.Generic.List<FileResult>();
+            FilesFound = new System.Collections.Generic.List<FileResult>();
+            FoldersFound = new System.Collections.Generic.List<FileResult>();
+            FilesDeleted = new System.Collections.Generic.List<FileResult>();
+            ResultErrors = new System.Collections.Generic.List<FileResult>();
 
             ID = Common.FixNullInt32(row["ID"]);
             Title = Common.FixNullstring(row["Title"]);
@@ -822,6 +831,33 @@ namespace RansomwareDetection
                     }
                 }
                 FilesFound = null;
+
+                if (FoldersFound != null)
+                {
+                    if (FoldersFound.Count > 0)
+                    {
+                        FoldersFound.Clear();
+                    }
+                }
+                FoldersFound = null;
+
+                if (FilesDeleted != null)
+                {
+                    if (FilesDeleted.Count > 0)
+                    {
+                        FilesDeleted.Clear();
+                    }
+                }
+                FilesFound = null;
+
+                if (ResultErrors != null)
+                {
+                    if (ResultErrors.Count > 0)
+                    {
+                        ResultErrors.Clear();
+                    }
+                }
+                ResultErrors = null;
                 _evt = null;
             }
             catch (Exception)
@@ -944,7 +980,10 @@ namespace RansomwareDetection
                 {
                     WriteError("Ransomware Detection Service, Files Found Process: Started " + FilePathToCheck, System.Diagnostics.EventLogEntryType.Information, 9000, 90, true);
 
-                    FilesFound = new System.Collections.Generic.List<string>();
+                    FilesFound = new System.Collections.Generic.List<FileResult>();
+                    FoldersFound = new System.Collections.Generic.List<FileResult>();
+                    FilesDeleted = new System.Collections.Generic.List<FileResult>();
+                    ResultErrors = new System.Collections.Generic.List<FileResult>();
 
                     if (_fileFilters != null)
                     {
@@ -962,14 +1001,49 @@ namespace RansomwareDetection
                             if (AllFiles != null)
                             {
                                 //loop through all ransomware files found
-                                foreach (string strfile1 in AllFiles)
+                                foreach (FileResult frFile1 in AllFiles)
                                 {
-                                    //Keep overall list of all files found
-                                    FilesFound.Add(strfile1);
+                                    if ((frFile1.ObjectType == FileFilterObjectType.File) && frFile1.Deleted == false)
+                                    {
+                                        //Keep overall list of files found
+                                        FilesFound.Add(frFile1);
+
+                                        //Log error for ransomware file found
+                                        string strerror = "Ransomware Detection Service, Find Files: Possible Ransomware File Found: " + frFile1.FullPath + " " + frFile1.Comment;
+                                        WriteError(strerror, System.Diagnostics.EventLogEntryType.Error, 9001, 90, false);
+                                    }
+                                    else if ((frFile1.ObjectType == FileFilterObjectType.Folder) && frFile1.Deleted == false)
+                                    {
+                                        //Add the Folder to the list
+                                        FoldersFound.Add(frFile1);
+                                        string strerror = "Ransomware Detection Service, Find Files: Possible Ransomware Folder Found: " + frFile1.FullPath + " " + frFile1.Comment;
+                                        WriteError(strerror, System.Diagnostics.EventLogEntryType.Error, 9001, 90, false);
+                                    }
+                                    else if (frFile1.ObjectType == FileFilterObjectType.None && frFile1.Deleted == false)
+                                    {
+                                        //Error
+                                        ResultErrors.Add(frFile1);
+                                        string strerror = "Ransomware Detection Service, Find Files: Error: " + frFile1.FullPath + " " + frFile1.Comment;
+                                        WriteError(strerror, System.Diagnostics.EventLogEntryType.Error, 9001, 90, false);
+                                    }
+                                    else if (frFile1.Deleted)
+                                    {
+                                        //File Deleted
+                                        FilesDeleted.Add(frFile1);
+                                        string strerror = "Ransomware Detection Service, Find Files: Possible Ransomware File Found and Deleted: " + frFile1.FullPath + " " + frFile1.Comment;
+                                        WriteError(strerror, System.Diagnostics.EventLogEntryType.Error, 9001, 90, false);
+
+                                    }
+                                    else
+                                    {
+                                        //Keep overall list of files found Unknown Logic Error
+                                        ResultErrors.Add(frFile1);
+
+                                        //Log error for ransomware file found
+                                        string strerror = "Ransomware Detection Service, Find Files: Possible Ransomware File Found Unknown Error: " + frFile1.FullPath + " " + frFile1.Comment;
+                                        WriteError(strerror, System.Diagnostics.EventLogEntryType.Error, 9001, 90, false);
+                                    }
                                     
-                                    //Log error for ransomware file found
-                                    string strerror = "Ransomware Detection Service, Files Found: Possible Ransomware File Found: " + strfile1;
-                                    WriteError(strerror, System.Diagnostics.EventLogEntryType.Error, 9001, 90, false);
                                 }
                                 AllFiles.Clear();
                             }
@@ -1015,11 +1089,43 @@ namespace RansomwareDetection
                             if (FilesFound.Count > 0)
                             {
                                 sbbody1.AppendLine("<br /><br /><strong>Possible Ransomware Files:</strong><br />");
-                                //Loop through files that are different and list them
-                                foreach (string strFile in FilesFound)
+                                //Loop through files found and list them
+                                foreach (FileResult frFile1 in FilesFound)
                                 {
-                                    sbbody1.AppendLine("<a href=\"#\" style=\"text-decoration:none !important; text-decoration:none;color:black;\">" + strFile + "</a><br />");
-                                    
+                                    if ((frFile1.ObjectType == FileFilterObjectType.File || frFile1.ObjectType == FileFilterObjectType.Both) && frFile1.Deleted == false)
+                                    {
+                                        sbbody1.AppendLine("<a href=\"#\" style=\"text-decoration:none !important; text-decoration:none;color:black;\">" + "\"" + frFile1.FullPath + "\",FileCreated: " + frFile1.CreationTime.ToString("G") + ",Owner: " + frFile1.Owner + ",Length" + frFile1.Length.ToString() + "</a><br />");
+                                    }
+                                }
+
+                                sbbody1.AppendLine("<br /><br /><strong>Possible Ransomware Folders:</strong><br />");
+                                //Loop through folders and list them
+                                foreach (FileResult frFile1 in FoldersFound)
+                                {
+                                    if ((frFile1.ObjectType == FileFilterObjectType.Folder || frFile1.ObjectType == FileFilterObjectType.Both) && frFile1.Deleted == false)
+                                    {
+                                        sbbody1.AppendLine("<a href=\"#\" style=\"text-decoration:none !important; text-decoration:none;color:black;\">" + "\"" + frFile1.FullPath + "\",FileCreated: " + frFile1.CreationTime.ToString("G") + ",Owner: " + frFile1.Owner + "</a><br />");
+                                    }
+                                }
+
+                                sbbody1.AppendLine("<br /><br /><strong>Possible Ransomware Files Deleted:</strong><br />");
+                                //Loop through files found and list them
+                                foreach (FileResult frFile1 in FilesDeleted)
+                                {
+                                    if (frFile1.Deleted)
+                                    {
+                                        sbbody1.AppendLine("<a href=\"#\" style=\"text-decoration:none !important; text-decoration:none;color:black;\">File Deleted: " + "\"" + frFile1.FullPath + "\",FileCreated: " + frFile1.CreationTime.ToString("G") + ",Owner: " + frFile1.Owner + ",Length" + frFile1.Length.ToString() + "</a><br />");
+                                    }
+                                }
+
+                                sbbody1.AppendLine("<br /><br /><br /><strong>Errors:</strong><br />");
+                                //Loop through Errors and list them
+                                foreach (FileResult frFile2 in ResultErrors)
+                                {
+                                    if (frFile2.ObjectType == FileFilterObjectType.None)
+                                    {
+                                        sbbody1.AppendLine("<a href=\"#\" style=\"text-decoration:none !important; text-decoration:none;color:black;\">" + "\"" + frFile2.FullPath + "\",Error: " + frFile2.Comment + "</a><br />");
+                                    }
                                 }
                                 sbbody1.AppendLine("<br />");
                             }
@@ -1091,6 +1197,27 @@ namespace RansomwareDetection
                         if (FilesFound.Count > 0)
                         {
                             FilesFound.Clear();
+                        }
+                    }
+                    if (FoldersFound != null)
+                    {
+                        if (FoldersFound.Count > 0)
+                        {
+                            FoldersFound.Clear();
+                        }
+                    }
+                    if (FilesDeleted != null)
+                    {
+                        if (FilesDeleted.Count > 0)
+                        {
+                            FilesDeleted.Clear();
+                        }
+                    }
+                    if (ResultErrors != null)
+                    {
+                        if (ResultErrors.Count > 0)
+                        {
+                            ResultErrors.Clear();
                         }
                     }
                     
