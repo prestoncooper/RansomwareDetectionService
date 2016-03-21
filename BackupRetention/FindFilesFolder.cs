@@ -1167,7 +1167,7 @@ namespace RansomwareDetection
 
                     WriteError("Ransomware Detection Service, Files Found Process: Finished " + FilePathToCheck, System.Diagnostics.EventLogEntryType.Information, 9000, 90, true);
 
-                }
+                } //end enabled if
 
             }
             catch (Exception ex)

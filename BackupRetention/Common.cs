@@ -246,7 +246,11 @@ namespace RansomwareDetection
             set;
         }
 
-
+        string SMTPUsername
+        {
+            get;
+            set;
+        }
 
        
         string SMTPPassword

@@ -60,9 +60,13 @@
     <Reference Include="Win32Security">
       <HintPath>.\Win32Security.dll</HintPath>
     </Reference>
+    <Reference Include="ZetaUploader.ContentDetectorLib">
+      <HintPath>.\ZetaUploader.ContentDetectorLib.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AES.cs" />
+    <Compile Include="AuditFolder.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="CompareFolder.cs" />
     <Compile Include="FindFilesFolder.cs" />

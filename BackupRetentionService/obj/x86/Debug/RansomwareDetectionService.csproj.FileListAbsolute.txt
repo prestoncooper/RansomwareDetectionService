@@ -10,3 +10,5 @@ C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetention
 C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetentionService\obj\x86\Debug\RansomwareDetectionService.exe
 C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetentionService\obj\x86\Debug\RansomwareDetectionService.pdb
 C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetentionService\bin\Debug\Win32Security.dll
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetentionService\bin\Debug\ZetaUploader.ContentDetectorLib.dll
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\BackupRetentionService\bin\Debug\ICSharpCode.SharpZipLib.dll
