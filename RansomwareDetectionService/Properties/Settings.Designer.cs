@@ -22,15 +22,5 @@ namespace RansomwareDetection.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=|DataDirectory|\\RansomwareDetection.sdf")]
-        public string RansomwareDetectionConnectionString {
-            get {
-                return ((string)(this["RansomwareDetectionConnectionString"]));
-            }
-        }
     }
 }

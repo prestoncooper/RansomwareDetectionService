@@ -143,9 +143,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BackupRetention\RansomwareDetection.csproj">
+    <ProjectReference Include="..\RansomwareDetection\RansomwareDetectionLib.csproj">
       <Project>{1724BDDA-4347-4B91-AB8B-7156E1A45EA4}</Project>
-      <Name>RansomwareDetection</Name>
+      <Name>RansomwareDetectionLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

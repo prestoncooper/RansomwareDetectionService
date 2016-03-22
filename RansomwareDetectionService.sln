@@ -18,7 +18,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RansomwareDetectionSystemTr
 		{967BC755-1841-41C9-865C-21022E0018A6} = {967BC755-1841-41C9-865C-21022E0018A6}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RansomwareDetection", "RansomwareDetection\RansomwareDetection.csproj", "{1724BDDA-4347-4B91-AB8B-7156E1A45EA4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RansomwareDetectionLib", "RansomwareDetection\RansomwareDetectionLib.csproj", "{1724BDDA-4347-4B91-AB8B-7156E1A45EA4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentDetectorLib", "ContentDetectorLibrary\ContentDetectorLib.csproj", "{967BC755-1841-41C9-865C-21022E0018A6}"
 EndProject

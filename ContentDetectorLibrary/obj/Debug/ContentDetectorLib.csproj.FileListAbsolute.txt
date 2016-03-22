@@ -9,3 +9,8 @@ C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\ContentDetector
 C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\ContentDetectorLib\bin\Debug\RansomwareDetection.ContentDetectorLib.pdb
 C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\ContentDetectorLib\obj\Debug\RansomwareDetection.ContentDetectorLib.dll
 C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\ContentDetectorLib\obj\Debug\RansomwareDetection.ContentDetectorLib.pdb
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\ContentDetectorLibrary\bin\Debug\RansomwareDetection.ContentDetectorLib.dll
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\ContentDetectorLibrary\bin\Debug\RansomwareDetection.ContentDetectorLib.pdb
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\ContentDetectorLibrary\bin\Debug\Delimon.Win32.IO.dll
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\ContentDetectorLibrary\obj\Debug\RansomwareDetection.ContentDetectorLib.dll
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\ContentDetectorLibrary\obj\Debug\RansomwareDetection.ContentDetectorLib.pdb
