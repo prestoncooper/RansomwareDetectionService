@@ -1,0 +1,11 @@
+C:\Users\pcooper\Desktop\Folders View\ContentDetectorLib\bin\Debug\ZetaUploader.ContentDetectorLib.dll
+C:\Users\pcooper\Desktop\Folders View\ContentDetectorLib\bin\Debug\ZetaUploader.ContentDetectorLib.pdb
+C:\Users\pcooper\Desktop\Folders View\ContentDetectorLib\bin\Debug\Delimon.Win32.IO.dll
+C:\Users\pcooper\Desktop\Folders View\ContentDetectorLib\obj\Debug\ZetaUploader.ContentDetectorLib.dll
+C:\Users\pcooper\Desktop\Folders View\ContentDetectorLib\obj\Debug\ZetaUploader.ContentDetectorLib.pdb
+C:\Users\pcooper\Desktop\Folders View\ContentDetectorLib\obj\Debug\ContentDetectorLib.csprojResolveAssemblyReference.cache
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\ContentDetectorLib\bin\Debug\Delimon.Win32.IO.dll
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\ContentDetectorLib\bin\Debug\RansomwareDetection.ContentDetectorLib.dll
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\ContentDetectorLib\bin\Debug\RansomwareDetection.ContentDetectorLib.pdb
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\ContentDetectorLib\obj\Debug\RansomwareDetection.ContentDetectorLib.dll
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\ContentDetectorLib\obj\Debug\RansomwareDetection.ContentDetectorLib.pdb
