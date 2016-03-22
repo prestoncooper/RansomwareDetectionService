@@ -3,15 +3,20 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RansomwareDetectionService", "BackupRetentionService\RansomwareDetectionService.csproj", "{70F7CCF9-9A5E-4BD1-ACEF-5B1A05B3113F}"
 	ProjectSection(ProjectDependencies) = postProject
+		{967BC755-1841-41C9-865C-21022E0018A6} = {967BC755-1841-41C9-865C-21022E0018A6}
 		{1724BDDA-4347-4B91-AB8B-7156E1A45EA4} = {1724BDDA-4347-4B91-AB8B-7156E1A45EA4}
 	EndProjectSection
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "RansomwareDetectionServiceInstaller", "BackupRetentionServiceInstaller\BackupRetentionServiceInstaller.vdproj", "{9B036E35-A516-428E-B0FB-401D84F1E416}"
 	ProjectSection(ProjectDependencies) = postProject
+		{967BC755-1841-41C9-865C-21022E0018A6} = {967BC755-1841-41C9-865C-21022E0018A6}
 		{1724BDDA-4347-4B91-AB8B-7156E1A45EA4} = {1724BDDA-4347-4B91-AB8B-7156E1A45EA4}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RansomwareDetectionSystemTray", "BackupRetentionSystemTray\RansomwareDetectionSystemTray.csproj", "{571FB77B-846B-4294-A342-B36358BE45AE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{967BC755-1841-41C9-865C-21022E0018A6} = {967BC755-1841-41C9-865C-21022E0018A6}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RansomwareDetection", "BackupRetention\RansomwareDetection.csproj", "{1724BDDA-4347-4B91-AB8B-7156E1A45EA4}"
 EndProject
