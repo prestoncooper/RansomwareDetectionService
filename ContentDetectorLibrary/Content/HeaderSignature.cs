@@ -8,6 +8,8 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 	// ----------------------------------------------------------------------
 	#endregion
 
+    //Added more StockSignatures 3-22-2016
+
 	/////////////////////////////////////////////////////////////////////////
 
 	/// <summary>
@@ -230,28 +232,35 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 			{
 				new HeaderSignature( @"FFD8FFFE00", "JPG Graphic File", new string[] { @".JPEG", @".JPE", @".JPG" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"FFD8FFE000", "JPG Graphic File", new string[] { @".JPEG", @".JPE", @".JPG" }, ProhibitionMode.Allowed ),
+                new HeaderSignature( @"FFD8FFE128", "JPG Graphic File", new string[] { @".JPEG", @".JPE", @".JPG" }, ProhibitionMode.Allowed ),
+                new HeaderSignature( @"FFD8FFE1", "JPG Graphic File", new string[] { @".JPEG", @".JPE", @".JPG" }, ProhibitionMode.Allowed ),
+                new HeaderSignature( @"FFD8FFE0", "JPG Graphic File", new string[] { @".JPEG", @".JPE", @".JPG" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"474946383961", "GIF 89A", new string[] { @".gif" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"474946383761", "GIF 87A", new string[] { @".gif" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"424D", "Windows Bitmap", new string[] { @".bmp" }, ProhibitionMode.Allowed ),
-				
+				new HeaderSignature( @"504B0304140006000800000021", "Microsoft Office Open XML Format", new string[] { @".docx",@".pptx",@".xlsx" }, ProhibitionMode.Allowed ),
                 new HeaderSignature( @"504B030414000600", "Microsoft Office Open XML Format", new string[] { @".docx",@".pptx",@".xlsx" }, ProhibitionMode.Allowed ),
-				new HeaderSignature( @"504B0506", "PKZip Compressed", new string[] { @".zip" }, ProhibitionMode.Allowed ),
+				
+                new HeaderSignature( @"504B0506", "PKZip Compressed", new string[] { @".zip" }, ProhibitionMode.Allowed ),
                 new HeaderSignature( @"504B0708", "PKZip Compressed", new string[] { @".zip" }, ProhibitionMode.Allowed ),
 
                 new HeaderSignature( @"504B0304", "Zip Compressed", new string[] { @".zip" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"3A42617365", "", new string[] { @".cnt" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"D0CF11E0A1B11AE1", "MS Compound Document v1 or Lotus Approach APR file", new string[] { @".doc", @".xls", @".xlt", @".ppt", @".apr", @".dot", @".pps",@".wps",@".vsd",@".qbm",@".pub",@".adp",@".ade" }, ProhibitionMode.Allowed ),
-				new HeaderSignature( @"0100000058000000", "", new string[] { @".emf" }, ProhibitionMode.Allowed ),
+                
+                new HeaderSignature( @"0100000058000000", "", new string[] { @".emf" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"03000000C466C456", "", new string[] { @".evt" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"3F5F0300", "Windows Help File", new string[] { @".gid", @".hlp", @".lhp" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"1F8B08", "GZ Compressed File", new string[] { @".gz" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"28546869732066696C65", "", new string[] { @".hqx" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"0000010000", "Icon File", new string[] { @".ico" }, ProhibitionMode.Allowed ),
+                new HeaderSignature( @"000001000100", "Icon File", new string[] { @".ico" }, ProhibitionMode.Allowed ),
+
 				new HeaderSignature( @"4C000000011402", "Windows Link File", new string[] { @".lnk" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"25504446", "Adobe PDF File", new string[] { @".pdf" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"5245474544495434", "", new string[] { @".reg" }, ProhibitionMode.Allowed ),
-				new HeaderSignature( @"7B5C72746631", "Rich Text Format File", new string[] { @".rtf" }, ProhibitionMode.Allowed ),
-                new HeaderSignature( @"7B5C727466", "Rich Text Format File", new string[] { @".rtf" }, ProhibitionMode.Allowed ),
+				new HeaderSignature( @"7B5C72746631", "Rich Text Format File", new string[] { @".rtf", @".doc" }, ProhibitionMode.Allowed ),
+                new HeaderSignature( @"7B5C727466", "Rich Text Format File", new string[] { @".rtf",@".doc" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"lh", "Lz compression file", new string[] { @".lzh" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"MThd", "", new string[] { @".mid" }, ProhibitionMode.Allowed, SignatureMode.Text ),
 				new HeaderSignature( @"0A050108", "", new string[] { @".pcx" }, ProhibitionMode.Allowed, SignatureMode.Text ),
@@ -275,6 +284,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 				new HeaderSignature( @"3C68746D6C3E", "HyperText Markup Language 1", new string[] { @".htm", @".html" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"3C48544D4C3E", "HyperText Markup Language 2", new string[] { @".htm", @".html" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"3C21444F4354", "HyperText Markup Language 3", new string[] { @".htm", @".html" }, ProhibitionMode.Allowed ),
+                new HeaderSignature( @"3C646976", "HyperText Markup Language No Header Starts with div tag", new string[] { @".htm", @".html" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"100", "ICON File", new string[] { @".ico" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"5F27A889", "JAR Archive File", new string[] { @".jar" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"2D6C68352D", "LHA Compressed", new string[] { @".lha" }, ProhibitionMode.Allowed ),
@@ -323,12 +333,11 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 				new HeaderSignature( @"3C21454E54495459", "XML DTD", new string[] { @".dtd" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"5A4F4F20", "ZOO Archive File", new string[] { @".zoo" }, ProhibitionMode.Allowed ),
                 new HeaderSignature( @"01766F72626973", "Ogg Vorbis", new string[] { @".ogg" }, ProhibitionMode.Allowed ),
-                
+                new HeaderSignature( @"4D5A", "Executable File",new string[] { @".exe", @".com", @".386", @".ax", @".acm", @".sys", @".dll", @".drv", @".flt", @".fon", @".ocx", @".scr", @".lrc", @".vxd", @".cpl", @".x32" }, ProhibitionMode.Allowed ),
                 new HeaderSignature( new Mp3SignatureChecker(), "MPEG 3", new string[] { @".mp3" }, ProhibitionMode.Allowed ),
                 
                 // My own.
-                new HeaderSignature( @"4D5A", "Executable File",new string[] { @".exe", @".com", @".386", @".ax", @".acm", @".sys", @".dll", @".drv", @".flt", @".fon", @".ocx", @".scr", @".lrc", @".vxd", @".cpl", @".x32" }, ProhibitionMode.Allowed ),
-				new HeaderSignature( new Mp4SignatureChecker(), "MPEG 4", new string[] { @".mp4", @".m4v"}, ProhibitionMode.Allowed ),
+                new HeaderSignature( new Mp4SignatureChecker(), "MPEG 4", new string[] { @".mp4", @".m4v"}, ProhibitionMode.Allowed ),
                 new HeaderSignature( new MSAccessSignatureChecker(), "Microsoft Access", new string[] { @".mdb", @".accdb", @".accde", @".accdr",@".accdt",@".adp",@".ade"}, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"D0CF11E0A1B11AE1", "Microsoft Installer", new string[] { @".msi" }, ProhibitionMode.Allowed ),
                 new HeaderSignature( @"D0CF11E0A1B11AE1", "Outlook Message File", new string[] { @".msg" }, ProhibitionMode.Allowed ),
@@ -339,8 +348,8 @@ namespace RansomwareDetection.ContentDetectorLib.Content
                 new HeaderSignature( @"3026B2758E66CF", "Windows Video File", new string[] { @".wmv" }, ProhibitionMode.Allowed ),
                 new HeaderSignature( @"3026B2758E66CF", "Windows Audio File", new string[] { @".wma" }, ProhibitionMode.Allowed ),
                 new HeaderSignature( @"2142444E42", "Outlook Post Office File", new string[] { @".pst" }, ProhibitionMode.Allowed ),
-                                      
-                
+                new HeaderSignature( @"FFF1", "MPEG-4 Advanced Audio Coding (AAC) Low Complexity", new string[] { @".aac" }, ProhibitionMode.Allowed ),                      
+                new HeaderSignature( @"FFF9", "MPEG-2 Advanced Audio Coding (AAC) Low Complexity", new string[] { @".aac" }, ProhibitionMode.Allowed ),
                 /*new HeaderSignature( @"", "Windows Media", new string[] { @".wmv", @".asf" }, ProhibitionMode.Prohibited ),*/
 				
 			};

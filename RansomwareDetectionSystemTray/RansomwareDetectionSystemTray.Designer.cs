@@ -1697,7 +1697,7 @@
             this.tabAudit.Padding = new System.Windows.Forms.Padding(3);
             this.tabAudit.Size = new System.Drawing.Size(769, 140);
             this.tabAudit.TabIndex = 9;
-            this.tabAudit.Text = "Audit Files";
+            this.tabAudit.Text = "Audit Files (Off Hours Only)";
             this.tabAudit.UseVisualStyleBackColor = true;
             // 
             // dgvAudit

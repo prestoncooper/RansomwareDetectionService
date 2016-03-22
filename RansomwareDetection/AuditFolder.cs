@@ -9,8 +9,22 @@ using System.Threading;
 using System.Net.Mail;
 
 
-//http://www.codeproject.com/Articles/18611/A-small-Content-Detection-Library
+//Used this code project to compare file headers http://www.codeproject.com/Articles/18611/A-small-Content-Detection-Library
+
+//Reference Articles for further review and later features
 //http://en.wikipedia.org/wiki/Magic_number_(programming)
+//http://stackoverflow.com/questions/1654846/in-c-how-can-i-know-the-file-type-from-a-byte
+//http://stackoverflow.com/questions/58510/using-net-how-can-you-find-the-mime-type-of-a-file-based-on-the-file-signature
+//http://stackoverflow.com/questions/15300567/alternative-to-findmimefromdata-method-in-urlmon-dll-one-which-has-more-mime-typ
+//http://stackoverflow.com/questions/58510/using-net-how-can-you-find-the-mime-type-of-a-file-based-on-the-file-signature
+//https://en.wikipedia.org/wiki/Magic_number_(programming)
+//http://www.garykessler.net/library/file_sigs.html
+//https://msdn.microsoft.com/en-us/library/ms775107(v=vs.85).aspx
+//https://en.wikipedia.org/wiki/List_of_file_signatures
+//http://asecuritysite.com/forensics/magic
+//https://www.nationalarchives.gov.uk/PRONOM/Default.aspx
+//https://www.nationalarchives.gov.uk/aboutapps/pronom/droid-signature-files.htm
+
 
 namespace RansomwareDetection.DetectionLib
 {
@@ -534,7 +548,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
             }
             set
             {
-                _exportCSVPath = value;
+                _exportCSVPath = Common.WindowsPathClean(value);
             }
 
         }
@@ -904,7 +918,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                 if (Enabled)
                 {
                     
-                    WriteError("Ransomware Detection Service, File Audit Process: Started " + FilePathToCheck, System.Diagnostics.EventLogEntryType.Information, 11000, 11, true);
+                    WriteError("Ransomware Detection Service, File Audit Process: Started " + FilePathToCheck, System.Diagnostics.EventLogEntryType.Information, 7000, 70, true);
 
                     FilesVerified = new System.Collections.Generic.List<Delimon.Win32.IO.FileInfo>();
                     FilesUnVerified = new System.Collections.Generic.List<Delimon.Win32.IO.FileInfo>();
@@ -919,7 +933,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                     }
                     catch (Exception ex)
                     {
-                        WriteError(ex.Message + " source: " + ex.Source + " Stacktrace: " + ex.StackTrace, System.Diagnostics.EventLogEntryType.Error, 11000, 11, false);
+                        WriteError(ex.Message + " source: " + ex.Source + " Stacktrace: " + ex.StackTrace, System.Diagnostics.EventLogEntryType.Error, 7000, 70, false);
                         
                     }
 
@@ -1030,7 +1044,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                                 strBody = strBody.Substring(0, 32760) + " ...";
                             }
                         
-                            WriteError(strBody, System.Diagnostics.EventLogEntryType.Error, 11000, 11, false);
+                            WriteError(strBody, System.Diagnostics.EventLogEntryType.Error, 7000, 70, false);
 
                         }
                         else
@@ -1050,18 +1064,18 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                                 Send_Email(strSubject, strBody);
                             }
                         
-                            WriteError(strBody, System.Diagnostics.EventLogEntryType.Information, 11000, 11, true);
+                            WriteError(strBody, System.Diagnostics.EventLogEntryType.Information, 7000, 70, true);
                         }
                     
 
                     }
-                    WriteError("Ransomware Detection Service, File Audit Process: Finished " + FilePathToCheck, System.Diagnostics.EventLogEntryType.Information, 11000, 11, true);
+                    WriteError("Ransomware Detection Service, File Audit Process: Finished " + FilePathToCheck, System.Diagnostics.EventLogEntryType.Information, 7000, 70, true);
                     }
                 
             }
             catch (Exception ex)
             {
-                WriteError(ex.Message + " source: " + ex.Source + " Stacktrace: " + ex.StackTrace, System.Diagnostics.EventLogEntryType.Error, 11000, 11, false);
+                WriteError(ex.Message + " source: " + ex.Source + " Stacktrace: " + ex.StackTrace, System.Diagnostics.EventLogEntryType.Error, 7000, 70, false);
             }
             
 

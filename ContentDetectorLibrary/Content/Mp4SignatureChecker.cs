@@ -19,24 +19,36 @@
         public bool MatchesSignature(
             byte[] buffer)
         {
-            byte a = buffer[0];
-            byte b = buffer[1];
-            byte c = buffer[2];
-            byte d = buffer[3];
             byte e = buffer[4];
             byte f = buffer[5];
             byte g = buffer[6];
             byte h = buffer[7];
+            byte i = buffer[8];
+            byte j = buffer[9];
+            byte k = buffer[10];
+            byte l = buffer[11];
 
+            //00 00 00 14 66 74 79 70 6D 70 34
+            //00 00 00 18 66 74 79 70 6D 70 34
+            
+            //[4 byte offset]
+            //66 74 79 70 4D 53 4E 56
+            
+            //[4 byte offset]
+            //66 74 79 70 69 73 6F 6D
 
+            //[4 byte offset]
+            //66 74 79 70 6D 70 34
+
+            //[4 byte offset]
+            //66 74 79 70 33 67 70 35
             return
-                (a == 0x00 && b == 0x00 && c == 0x00 && d == 0x18 && e == 0x66 && f == 0x74 && g == 0x79 && h == 0x70)
-                || (a == 0x69 && b == 0x73 && c == 0X6F && d == 0x6D)
-                || (a == 0x6D && b == 0x70 && c == 0x34 && d == 0x32)
-                || (a == 0x00 && b == 0x00 && c == 0x00 && d == 0x1C && e == 0x66 && f == 0x74 && g == 0x79 && h == 0x70)
-                || (a == 0x4D && b == 0x53 && c == 0x4E && d == 0x56 && e == 0x01 && f == 0x29 && g == 0x00 && h == 0x46)
-                || (a == 0x4D && b == 0x53 && c == 0x4E && d == 0x56 && e == 0x6D && f == 0x70 && g == 0x34 && h == 0x32);
-                       
+
+                (e == 0x66 && f == 0x74 && g == 0x79 && h == 0x70 && i == 0x4D && j == 0x53 && k == 0x4E && l == 0x56)
+                || (e == 0x66 && f == 0x74 && g == 0x79 && h == 0x70 && i == 0x69 && j == 0x73 && k == 0x6F && l == 0x6D)
+                || (e == 0x66 && f == 0x74 && g == 0x79 && h == 0x70 && i == 0x6D && j == 0x70 && k == 0x34)
+                || (e == 0x66 && f == 0x74 && g == 0x79 && h == 0x70 && i == 0x33 && j == 0x67 && k == 0x70 && l == 0x35);
+                
         }
 
         /// <summary>
@@ -47,7 +59,7 @@
         {
             get
             {
-                return 8;
+                return 12;
             }
         }
 
@@ -59,7 +71,7 @@
         {
             get
             {
-                return 10;
+                return 12;
             }
         }
 

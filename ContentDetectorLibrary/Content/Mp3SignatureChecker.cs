@@ -27,13 +27,14 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 			byte d = buffer[3];
 
 			return
-				(a == 0xFF) &&
+				(((a == 0xFF) &&
 					((b & 0xE0) == 0xE0) &&
 						((b & 0x18) != 0x08) &&
 							((b & 0x06) != 0) &&
 								((c & 0xF0) != 0xF0) &&
 									((c & 0x0C) != 0x0C) &&
-										((d & 0x03) != 0x02);
+										((d & 0x03) != 0x02))
+                                            ||(a==0x49 && b==0x44 && c== 0x33));
 		}
 
 		/// <summary>
