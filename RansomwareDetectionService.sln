@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RansomwareDetectionSystemTr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RansomwareDetection", "BackupRetention\RansomwareDetection.csproj", "{1724BDDA-4347-4B91-AB8B-7156E1A45EA4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentDetectorLib", "ContentDetectorLib\ContentDetectorLib.csproj", "{967BC755-1841-41C9-865C-21022E0018A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,16 @@ Global
 		{1724BDDA-4347-4B91-AB8B-7156E1A45EA4}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{1724BDDA-4347-4B91-AB8B-7156E1A45EA4}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{1724BDDA-4347-4B91-AB8B-7156E1A45EA4}.Release|x86.ActiveCfg = Release|Any CPU
+		{967BC755-1841-41C9-865C-21022E0018A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{967BC755-1841-41C9-865C-21022E0018A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{967BC755-1841-41C9-865C-21022E0018A6}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{967BC755-1841-41C9-865C-21022E0018A6}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{967BC755-1841-41C9-865C-21022E0018A6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{967BC755-1841-41C9-865C-21022E0018A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{967BC755-1841-41C9-865C-21022E0018A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{967BC755-1841-41C9-865C-21022E0018A6}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{967BC755-1841-41C9-865C-21022E0018A6}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{967BC755-1841-41C9-865C-21022E0018A6}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

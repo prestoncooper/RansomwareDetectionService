@@ -7,6 +7,7 @@ using System.Text;
 using System.Configuration;
 using System.IO;
 using System.Threading;
+using RansomwareDetection.DetectionLib;
 
 
 /*

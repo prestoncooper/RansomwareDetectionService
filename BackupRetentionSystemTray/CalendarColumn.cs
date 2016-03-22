@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using RansomwareDetection;
+using RansomwareDetection.DetectionLib;
 
 namespace System.Windows.Forms
 {
