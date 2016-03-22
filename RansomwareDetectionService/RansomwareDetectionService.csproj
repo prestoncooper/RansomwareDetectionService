@@ -82,6 +82,7 @@
     <Compile Include="Settings.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AuditFilesConfig.xml" />
     <Content Include="CompareConfig.xml" />
     <Content Include="Delimon License.txt" />
     <Content Include="FileFiltersConfig.xml" />

@@ -127,7 +127,8 @@ namespace RansomwareDetection.ContentDetectorLib
             bool recursive,
             ref List<Delimon.Win32.IO.FileInfo> verifiedFiles,
             ref List<Delimon.Win32.IO.FileInfo> unVerifiedFiles,
-            ref List<Delimon.Win32.IO.FileInfo> unknownFiles
+            ref List<Delimon.Win32.IO.FileInfo> unknownFiles,
+            ref bool blShuttingDown
             )
         {
             Trace.WriteLine(
@@ -143,6 +144,14 @@ namespace RansomwareDetection.ContentDetectorLib
                 int index = 0;
                 foreach (Delimon.Win32.IO.FileInfo filePath in filePaths)
                 {
+                    if (blShuttingDown)
+                    {
+                        Trace.WriteLine(
+                            string.Format(
+                            @"Shutting Down: was about to check file '{0}'.",
+                            filePath.FullName));
+                        break;
+                    }
                     Trace.WriteLine(
                         string.Format(
                         @"[{0}/{1}] Checking file '{2}' ({3:0,0} bytes).",
@@ -174,9 +183,15 @@ namespace RansomwareDetection.ContentDetectorLib
 
                 foreach (Delimon.Win32.IO.DirectoryInfo childFolderPath in folderPaths)
                 {
-                        ContainsFolderVerifyContent(
-                        childFolderPath,
-                        recursive,ref verifiedFiles, ref unVerifiedFiles, ref unknownFiles);
+                    if (blShuttingDown)
+                    {
+                        Trace.WriteLine(
+                            string.Format(
+                            @"Shutting Down: was about to check folder '{0}'.",
+                            childFolderPath.FullName));
+                        break;
+                    }
+                    ContainsFolderVerifyContent(childFolderPath,recursive,ref verifiedFiles, ref unVerifiedFiles, ref unknownFiles, ref blShuttingDown);
                 }
             }
 

@@ -318,7 +318,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 				new HeaderSignature( @"504B3030504B0304", "WINZIP Compressed", new string[] { @".zip" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"FF575047", "WordPerfect Graphics", new string[] { @".wpg" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"FF575043", "WordPerfect v5 or v6", new string[] { @".wp" }, ProhibitionMode.Allowed ),
-				new HeaderSignature( @"3C3F786D6C", "XML Document", new string[] { @".xml" }, ProhibitionMode.Allowed ),
+				new HeaderSignature( @"3C3F786D6C", "XML Document", new string[] { @".xml",@".config" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"FFFE3C0052004F004F0054005300540055004200", "XML Document (ROOTSTUB)", new string[] { @".xml" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"3C21454E54495459", "XML DTD", new string[] { @".dtd" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"5A4F4F20", "ZOO Archive File", new string[] { @".zoo" }, ProhibitionMode.Allowed ),
@@ -714,7 +714,9 @@ namespace RansomwareDetection.ContentDetectorLib.Content
                 case @".pst":
                     blsupported = true;
                     break;
-                
+                case @".config":
+                    blsupported = true;
+                    break;
                 default:
                     break;
             }

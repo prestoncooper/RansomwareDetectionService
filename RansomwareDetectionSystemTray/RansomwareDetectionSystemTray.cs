@@ -64,6 +64,7 @@ namespace RansomwareDetection
         private DataTable dtCompareConfig;
         private DataTable dtFindFilesConfig;
         private DataTable dtFileFiltersConfig;
+        private DataTable dtAuditFilesConfig;
 
         /// <summary>
         /// Event Log DataSet
@@ -320,7 +321,13 @@ namespace RansomwareDetection
         private void init_dtFindFilesConfig()
         {
             dtFindFilesConfig = FindFilesFolder.init_dtConfig();
-            dtFileFiltersConfig = FindFileFilter.init_dtFileFiltersConfig();
+            dtFileFiltersConfig = FindFileFilter.init_dtConfig();
+            
+        }
+
+        private void init_dtAuditFilesConfig()
+        {
+            dtAuditFilesConfig = AuditFolder.init_dtConfig();
         }
 
         /// <summary>
@@ -336,14 +343,45 @@ namespace RansomwareDetection
                 }
                 sc.Dispose();
                 //dtSyncConfig.Dispose();
-               
-                dtCompareConfig.Dispose();
-                dtFindFilesConfig.Dispose();
-                dtFileFiltersConfig.Dispose();
-                bs.Dispose();
-                FolderBrowserD.Dispose();
-                FileBrowserD.Dispose();
-                dsEvents.Dispose();
+                if (dtCompareConfig != null)
+                {
+                    dtCompareConfig.Dispose();
+                }
+                if (dtFindFilesConfig != null)
+                {
+                    dtFindFilesConfig.Dispose();
+                }
+
+                if (dtFileFiltersConfig != null)
+                {
+                    dtFileFiltersConfig.Dispose();
+                }
+
+                if (dtAuditFilesConfig != null)
+                {
+                    dtAuditFilesConfig.Dispose();
+                }
+
+                if (bs != null)
+                {
+                    bs.Dispose();
+                }
+
+                if (FolderBrowserD != null)
+                {
+                    FolderBrowserD.Dispose();
+                }
+
+                if (FileBrowserD != null)
+                {
+                    FileBrowserD.Dispose();
+                }
+
+                if (dsEvents != null)
+                {
+                    dsEvents.Dispose();
+                }
+                
 
             }
             catch (Exception)
@@ -447,8 +485,21 @@ namespace RansomwareDetection
             dgvFileFilters.AutoGenerateColumns = false;
             dgvFileFilters.DataSource = dtFileFiltersConfig;
 
-            
 
+            //Load XML data for Compare (detect)
+            init_dtAuditFilesConfig();
+            try
+            {
+                dtAuditFilesConfig.ReadXml(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\AuditFilesConfig.xml");
+            }
+            catch (Exception)
+            {
+                dtAuditFilesConfig.WriteXml(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\AuditFilesConfig.xml");
+                dtAuditFilesConfig.ReadXml(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\AuditFilesConfig.xml");
+            }
+
+            dgvAudit.AutoGenerateColumns = false;
+            dgvAudit.DataSource = dtAuditFilesConfig;
 
 
             txtServiceInterval.Text = ServiceInterval.ToString().Trim();
@@ -1069,6 +1120,7 @@ namespace RansomwareDetection
                     dtCompareConfig.WriteXml(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\CompareConfig.xml");
                     dtFindFilesConfig.WriteXml(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\FindFilesConfig.xml");
                     dtFileFiltersConfig.WriteXml(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\FileFiltersConfig.xml");
+                    dtAuditFilesConfig.WriteXml(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\AuditFilesConfig.xml");
 
                 }
             }
@@ -1349,6 +1401,65 @@ namespace RansomwareDetection
 
         }
 
+
+        private void dgvAudit_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            try
+            {
+                if (dgvAudit.Columns[e.ColumnIndex].HeaderText == "FilePathToCheck" || dgvAudit.Columns[e.ColumnIndex].HeaderText == "ExportCSVPath")
+                {
+                    DataGridViewTextBoxCell cell = dgvAudit[e.ColumnIndex, e.RowIndex] as DataGridViewTextBoxCell;
+                    if (cell != null)
+                    {
+                        if (Common.FixNullstring(e.FormattedValue).Length > 0)
+                        {
+                            if (!Common.DirectoryExists(e.FormattedValue.ToString()))
+                            {
+                                MessageBox.Show("File Path Path does not exist or permission problem.");
+                                e.Cancel = true;
+                            }
+                        }
+                    }
+                }
+                else if (dgvAudit.Columns[e.ColumnIndex].HeaderText == "StartTime")
+                {
+                    //validates text boxes that are supposed to be a military time 00:00
+                    if (!CellEventArgIsTime(ref e))
+                    {
+                        MessageBox.Show("Time has to be in military time format 00:00 between 00:00 - 23:59");
+                        e.Cancel = true;
+                    }
+                }
+                else if (dgvAudit.Columns[e.ColumnIndex].HeaderText == "EndTime")
+                {
+                    //validates text boxes that are supposed to be a military time 00:00
+                    if (!CellEventArgIsTime(ref e))
+                    {
+                        MessageBox.Show("Time has to be in military time format 00:00 between 00:00 - 23:59");
+                        e.Cancel = true;
+                    }
+                }
+                else if (dgvAudit.Columns[e.ColumnIndex].HeaderText == "Interval")
+                {
+                    if (!CellEventArgIsNumeric2(ref e))
+                    {
+                        MessageBox.Show("You have to enter numbers only");
+                        e.Cancel = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                if (_evt == null)
+                {
+                    _evt = Common.GetEventLog;
+                }
+                string strErr = ex.Message + ": " + ex.Source + "  " + ex.StackTrace;
+                _evt.WriteEntry(strErr);
+
+            }
+        }
+
         /// <summary>
         /// File Filter tab validates entered text for the File Filter Table
         /// </summary>
@@ -1562,6 +1673,16 @@ namespace RansomwareDetection
 
        
 
+        private void dgvAudit_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvAudit.Columns[e.ColumnIndex].HeaderText == "ExportCSVPath" || dgvCompare.Columns[e.ColumnIndex].HeaderText == "FilePathToCheck")
+            {
+                DataGridViewTextBoxCell cell = dgvAudit[e.ColumnIndex, e.RowIndex] as DataGridViewTextBoxCell;
+                CellFolderBrowser(ref cell);
+                dgvAudit.RefreshEdit();
+            }
+        }
+
 
         /// <summary>
         /// Compare Double Click (Detect) - Opens Folder Browser dialog with SourcePath or FilePathToCheck columns
@@ -1687,15 +1808,7 @@ namespace RansomwareDetection
             AddEventLogEntry(e.Entry);
         }
 
-        
 
-       
-
-        
-
-       
-
-       
 
        
 
@@ -1925,6 +2038,8 @@ namespace RansomwareDetection
         }
 
         #endregion
+
+        
 
 
 

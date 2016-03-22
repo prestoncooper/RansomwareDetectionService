@@ -620,9 +620,9 @@ namespace RansomwareDetection.DetectionLib
         /// <param name="row"></param>
         public CompareFolder()
         {
-            AllFiles = new System.Collections.Generic.List<Delimon.Win32.IO.FileInfo>();
-            FilesDifferent = new System.Collections.Generic.List<string>();
-            FilesMissing = new System.Collections.Generic.List<string>();
+            //AllFiles = new System.Collections.Generic.List<Delimon.Win32.IO.FileInfo>();
+            //FilesDifferent = new System.Collections.Generic.List<string>();
+            //FilesMissing = new System.Collections.Generic.List<string>();
             _evt = Common.GetEventLog;
         }
 
@@ -636,9 +636,9 @@ namespace RansomwareDetection.DetectionLib
         public CompareFolder(DataRow row)
         {
             _evt = Common.GetEventLog;
-            AllFiles = new System.Collections.Generic.List<Delimon.Win32.IO.FileInfo>();
-            FilesDifferent = new System.Collections.Generic.List<string>();
-            FilesMissing = new System.Collections.Generic.List<string>();
+            //AllFiles = new System.Collections.Generic.List<Delimon.Win32.IO.FileInfo>();
+            //FilesDifferent = new System.Collections.Generic.List<string>();
+            //FilesMissing = new System.Collections.Generic.List<string>();
 
             ID = Common.FixNullInt32(row["ID"]);
             Title = Common.FixNullstring(row["Title"]);

@@ -61,6 +61,7 @@ namespace RansomwareDetection
        
         Thread CompareThread;
         Thread FindFilesThread;
+        Thread AuditFilesThread;
 
 
         /// <summary>
@@ -73,6 +74,7 @@ namespace RansomwareDetection
         private static DataTable dtCompareConfig;
         private static DataTable dtFileFiltersConfig;
         private static DataTable dtFindFilesConfig;
+        private static DataTable dtAuditFilesConfig;
     
         /// <summary>
         /// Event Log Class
@@ -316,7 +318,12 @@ namespace RansomwareDetection
 
         private void init_dtFileFiltersConfig()
         {
-            dtFileFiltersConfig = FindFileFilter.init_dtFileFiltersConfig();
+            dtFileFiltersConfig = FindFileFilter.init_dtConfig();
+        }
+
+        private void init_dtAuditFilesConfig()
+        {
+            dtAuditFilesConfig = AuditFolder.init_dtConfig();
         }
 
         /// <summary>
@@ -337,15 +344,17 @@ namespace RansomwareDetection
                 init_dtCompareConfig();
                 init_dtFindFilesConfig();
                 init_dtFileFiltersConfig();
+                init_dtAuditFilesConfig();
                 dtCompareConfig.ReadXml(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\CompareConfig.xml");
                 dtFindFilesConfig.ReadXml(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\FindFilesConfig.xml");
                 dtFileFiltersConfig.ReadXml(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\FileFiltersConfig.xml");
-
+                dtAuditFilesConfig.ReadXml(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\AuditFilesConfig.xml");
 
                 //Timer_Execute();
 
                 CompareThread = new Thread(new ThreadStart(CompareExecute));
                 FindFilesThread = new Thread(new ThreadStart(FindFilesExecute));
+                AuditFilesThread = new Thread(new ThreadStart(AuditFilesExecute));
                 
                 WriteError("RansomwareDetectionService Started", System.Diagnostics.EventLogEntryType.Information, 6000, 60);
                   
@@ -375,7 +384,7 @@ namespace RansomwareDetection
                 _t.Dispose();
                 _t = null;
                 long lwait = 0;
-                while (CompareThread.IsAlive || FindFilesThread.IsAlive)
+                while (CompareThread.IsAlive || FindFilesThread.IsAlive || AuditFilesThread.IsAlive)
                 {
                     Thread.Sleep(3000);
                     lwait += 3;
@@ -390,6 +399,10 @@ namespace RansomwareDetection
                         if (FindFilesThread.IsAlive)
                         {
                             FindFilesThread.Abort();
+                        }
+                        if (AuditFilesThread.IsAlive)
+                        {
+                            AuditFilesThread.Abort();
                         }
                         Thread.Sleep(3000);
                         break;
@@ -887,6 +900,47 @@ namespace RansomwareDetection
 
         }
 
+
+
+        private System.Object lockAudit = new System.Object();
+        /// <summary>
+        /// Thread Procedure for Compare Folder algorithm
+        /// </summary>
+        public void AuditFilesExecute()
+        {
+            lock (lockAudit)
+            {
+                try
+                {
+                    //Retention  Deletes older files based on algorithm
+                    foreach (DataRow row in dtAuditFilesConfig.Rows)
+                    {
+                        AuditFolder AudFolder1 = new AuditFolder(row);
+                        if (ExecuteTime(AudFolder1))
+                        {
+                            AudFolder1.SMTPPort = SMTPPort;
+                            AudFolder1.SMTPServer = SMTPServer;
+                            AudFolder1.SMTPUseSSL = SMTPUseSSL;
+                            AudFolder1.SMTPUseDefaultCredentials = SMTPUseDefaultCredentials;
+                            AudFolder1.SMTPUsername = SMTPUsername;
+                            AudFolder1.SMTPPassword = SMTPPassword;
+                            AudFolder1.EmailFrom = EmailFrom;
+                            AudFolder1.EmailTo = EmailTo;
+                            AudFolder1.Execute(ref blShuttingDown);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    string strErr = ex.Message + ": " + ex.Source + "  " + ex.StackTrace;
+                    WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 6000, 60);
+
+                }
+
+            }
+
+        }
+
         /// <summary>
         /// This code executes the main code of the service
         /// </summary>
@@ -902,6 +956,10 @@ namespace RansomwareDetection
                     
                     FindFilesThread = new Thread(new ThreadStart(FindFilesExecute));
                     FindFilesThread.Start();
+
+                    AuditFilesThread = new Thread(new ThreadStart(AuditFilesExecute));
+                    AuditFilesThread.Start();
+
                     intRunCount = 1;
                 }
                 else

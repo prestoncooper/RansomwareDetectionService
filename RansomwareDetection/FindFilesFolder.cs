@@ -118,7 +118,7 @@ namespace RansomwareDetection.DetectionLib
         /// Initializes the config table for file filters
         /// </summary>
         /// <returns></returns>
-        public static DataTable init_dtFileFiltersConfig()
+        public static DataTable init_dtConfig()
         {
             DataTable dtFileFilters;
             dtFileFilters = new DataTable("FileFiltersConfig");
@@ -699,11 +699,11 @@ namespace RansomwareDetection.DetectionLib
         /// <param name="row"></param>
         public FindFilesFolder()
         {
-            AllFiles = new System.Collections.Generic.List<FileResult>();
-            FilesFound = new System.Collections.Generic.List<FileResult>();
-            FoldersFound = new System.Collections.Generic.List<FileResult>();
-            FilesDeleted = new System.Collections.Generic.List<FileResult>();
-            ResultErrors = new System.Collections.Generic.List<FileResult>();
+            //AllFiles = new System.Collections.Generic.List<FileResult>();
+            //FilesFound = new System.Collections.Generic.List<FileResult>();
+            //FoldersFound = new System.Collections.Generic.List<FileResult>();
+            //FilesDeleted = new System.Collections.Generic.List<FileResult>();
+            //ResultErrors = new System.Collections.Generic.List<FileResult>();
             _evt = Common.GetEventLog;
         }
 
@@ -717,11 +717,11 @@ namespace RansomwareDetection.DetectionLib
         public FindFilesFolder(DataRow row, DataTable dtFileFilters)
         {
             _evt = Common.GetEventLog;
-            AllFiles = new System.Collections.Generic.List<FileResult>();
-            FilesFound = new System.Collections.Generic.List<FileResult>();
-            FoldersFound = new System.Collections.Generic.List<FileResult>();
-            FilesDeleted = new System.Collections.Generic.List<FileResult>();
-            ResultErrors = new System.Collections.Generic.List<FileResult>();
+            //AllFiles = new System.Collections.Generic.List<FileResult>();
+            //FilesFound = new System.Collections.Generic.List<FileResult>();
+            //FoldersFound = new System.Collections.Generic.List<FileResult>();
+            //FilesDeleted = new System.Collections.Generic.List<FileResult>();
+            //ResultErrors = new System.Collections.Generic.List<FileResult>();
 
             ID = Common.FixNullInt32(row["ID"]);
             Title = Common.FixNullstring(row["Title"]);

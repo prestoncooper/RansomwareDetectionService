@@ -915,7 +915,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                     {
                         ContentDetectorLib.ContentDetectorEngine cengine = new ContentDetectorLib.ContentDetectorEngine();
                         Delimon.Win32.IO.DirectoryInfo dFilePathToCheck = new Delimon.Win32.IO.DirectoryInfo(FilePathToCheck);
-                        cengine.ContainsFolderVerifyContent(dFilePathToCheck, CheckSubFolders, ref FilesVerified, ref FilesUnVerified, ref FilesUnknown);
+                        cengine.ContainsFolderVerifyContent(dFilePathToCheck, CheckSubFolders, ref FilesVerified, ref FilesUnVerified, ref FilesUnknown, ref blShuttingDown);
                     }
                     catch (Exception ex)
                     {
@@ -937,6 +937,10 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                                 string strline = unVerifiedFile.FullName + "," + unVerifiedFile.Name + "," + unVerifiedFile.Extension + "," + unVerifiedFile.CreationTime.ToString("G") + "," + unVerifiedFile.LastWriteTime.ToString("G") + "," + unVerifiedFile.Length.ToString() + "," + LongPathFileSearch.GetFileOwner(unVerifiedFile.FullName);
                                 sbUnVerified.AppendLine(strline);
                             }
+                            if (Common.FileExists(ExportCSVPath + "\\UnVerifiedFiles.csv"))
+                            {
+                                Delimon.Win32.IO.File.Delete(ExportCSVPath + "\\UnVerifiedFiles.csv");
+                            }
                             Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\UnVerifiedFiles.csv", sbUnVerified.ToString());
                             sbUnVerified.Clear();
                         }
@@ -951,6 +955,10 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                                 string strline = VerifiedFile.FullName + "," + VerifiedFile.Name + "," + VerifiedFile.Extension + "," + VerifiedFile.CreationTime.ToString("G") + "," + VerifiedFile.LastWriteTime.ToString("G") + "," + VerifiedFile.Length.ToString() + "," + LongPathFileSearch.GetFileOwner(VerifiedFile.FullName);
                                 sbVerified.AppendLine(strline);
                             }
+                            if (Common.FileExists(ExportCSVPath + "\\VerifiedFiles.csv"))
+                            {
+                                Delimon.Win32.IO.File.Delete(ExportCSVPath + "\\VerifiedFiles.csv");
+                            }
                             Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\VerifiedFiles.csv", sbVerified.ToString());
                             sbVerified.Clear();
                         }
@@ -963,6 +971,10 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                             {
                                 string strline = unknownFile.FullName + "," + unknownFile.Name + "," + unknownFile.Extension + "," + unknownFile.CreationTime.ToString("G") + "," + unknownFile.LastWriteTime.ToString("G") + "," + unknownFile.Length.ToString() + "," + LongPathFileSearch.GetFileOwner(unknownFile.FullName);
                                 sbUnknown.AppendLine(strline);
+                            }
+                            if (Common.FileExists(ExportCSVPath + "\\UnknownFiles.csv"))
+                            {
+                                Delimon.Win32.IO.File.Delete(ExportCSVPath + "\\UnknownFiles.csv");
                             }
                             Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\UnknownFiles.csv", sbUnknown.ToString());
                             sbUnknown.Clear();
