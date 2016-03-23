@@ -945,10 +945,10 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                         if (ExportUnVerifiedToCSV)
                         {
                             StringBuilder sbUnVerified = new StringBuilder();
-                            sbUnVerified.AppendLine("FullName,Name,Extension,Created,Modified,Size,Owner");
+                            sbUnVerified.AppendLine("\"FullName\",\"Name\",\"Extension\",\"Created\",\"Modified\",\"Size\",\"Owner\"");
                             foreach (Delimon.Win32.IO.FileInfo unVerifiedFile in FilesUnVerified)
                             {
-                                string strline = unVerifiedFile.FullName + "," + unVerifiedFile.Name + "," + unVerifiedFile.Extension + "," + unVerifiedFile.CreationTime.ToString("G") + "," + unVerifiedFile.LastWriteTime.ToString("G") + "," + unVerifiedFile.Length.ToString() + "," + LongPathFileSearch.GetFileOwner(unVerifiedFile.FullName);
+                                string strline = "\"" + unVerifiedFile.FullName + "\",\"" + unVerifiedFile.Name + "\",\"" + unVerifiedFile.Extension + "\",\"" + unVerifiedFile.CreationTime.ToString("G") + "\",\"" + unVerifiedFile.LastWriteTime.ToString("G") + "\",\"" + unVerifiedFile.Length.ToString() + "\",\"" + LongPathFileSearch.GetFileOwner(unVerifiedFile.FullName) + "\"";
                                 sbUnVerified.AppendLine(strline);
                             }
                             if (Common.FileExists(ExportCSVPath + "\\UnVerifiedFiles.csv"))
@@ -962,11 +962,11 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                         if (ExportVerifiedToCSV)
                         {
                             StringBuilder sbVerified = new StringBuilder();
-                            sbVerified.AppendLine("FullName,Name,Extension,Created,Modified,Size,Owner");
+                            sbVerified.AppendLine("\"FullName\",\"Name\",\"Extension\",\"Created\",\"Modified\",\"Size\",\"Owner\"");
                             foreach (Delimon.Win32.IO.FileInfo VerifiedFile in FilesVerified)
                             {
 
-                                string strline = VerifiedFile.FullName + "," + VerifiedFile.Name + "," + VerifiedFile.Extension + "," + VerifiedFile.CreationTime.ToString("G") + "," + VerifiedFile.LastWriteTime.ToString("G") + "," + VerifiedFile.Length.ToString() + "," + LongPathFileSearch.GetFileOwner(VerifiedFile.FullName);
+                                string strline = "\"" + VerifiedFile.FullName + "\",\"" + VerifiedFile.Name + "\",\"" + VerifiedFile.Extension + "\",\"" + VerifiedFile.CreationTime.ToString("G") + "\",\"" + VerifiedFile.LastWriteTime.ToString("G") + "\",\"" + VerifiedFile.Length.ToString() + "\",\"" + LongPathFileSearch.GetFileOwner(VerifiedFile.FullName) + "\"";
                                 sbVerified.AppendLine(strline);
                             }
                             if (Common.FileExists(ExportCSVPath + "\\VerifiedFiles.csv"))
@@ -980,10 +980,10 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                         if (ExportUnknownToCSV)
                         {
                             StringBuilder sbUnknown = new StringBuilder();
-                            sbUnknown.AppendLine("FullName,Name,Extension,Created,Modified,Size,Owner");
+                            sbUnknown.AppendLine("\"FullName\",\"Name\",\"Extension\",\"Created\",\"Modified\",\"Size\",\"Owner\"");
                             foreach (Delimon.Win32.IO.FileInfo unknownFile in FilesUnknown)
                             {
-                                string strline = unknownFile.FullName + "," + unknownFile.Name + "," + unknownFile.Extension + "," + unknownFile.CreationTime.ToString("G") + "," + unknownFile.LastWriteTime.ToString("G") + "," + unknownFile.Length.ToString() + "," + LongPathFileSearch.GetFileOwner(unknownFile.FullName);
+                                string strline = "\"" + unknownFile.FullName + "\",\"" + unknownFile.Name + "\",\"" + unknownFile.Extension + "\",\"" + unknownFile.CreationTime.ToString("G") + "\",\"" + unknownFile.LastWriteTime.ToString("G") + "\",\"" + unknownFile.Length.ToString() + "\",\"" + LongPathFileSearch.GetFileOwner(unknownFile.FullName) + "\"";
                                 sbUnknown.AppendLine(strline);
                             }
                             if (Common.FileExists(ExportCSVPath + "\\UnknownFiles.csv"))

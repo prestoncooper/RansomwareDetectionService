@@ -350,6 +350,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
                 new HeaderSignature( @"2142444E42", "Outlook Post Office File", new string[] { @".pst" }, ProhibitionMode.Allowed ),
                 new HeaderSignature( @"FFF1", "MPEG-4 Advanced Audio Coding (AAC) Low Complexity", new string[] { @".aac" }, ProhibitionMode.Allowed ),                      
                 new HeaderSignature( @"FFF9", "MPEG-2 Advanced Audio Coding (AAC) Low Complexity", new string[] { @".aac" }, ProhibitionMode.Allowed ),
+                new HeaderSignature( @"D0CF11E0A1B11AE1", "Windows Thumbs.db", new string[] { @".db" }, ProhibitionMode.Allowed ),
                 /*new HeaderSignature( @"", "Windows Media", new string[] { @".wmv", @".asf" }, ProhibitionMode.Prohibited ),*/
 				
 			};
