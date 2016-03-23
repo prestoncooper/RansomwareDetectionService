@@ -1675,7 +1675,7 @@ namespace RansomwareDetection
 
         private void dgvAudit_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvAudit.Columns[e.ColumnIndex].HeaderText == "ExportCSVPath" || dgvCompare.Columns[e.ColumnIndex].HeaderText == "FilePathToCheck")
+            if (dgvAudit.Columns[e.ColumnIndex].HeaderText == "ExportCSVPath" || dgvAudit.Columns[e.ColumnIndex].HeaderText == "FilePathToCheck")
             {
                 DataGridViewTextBoxCell cell = dgvAudit[e.ColumnIndex, e.RowIndex] as DataGridViewTextBoxCell;
                 CellFolderBrowser(ref cell);
@@ -1683,6 +1683,7 @@ namespace RansomwareDetection
             }
         }
 
+        
 
         /// <summary>
         /// Compare Double Click (Detect) - Opens Folder Browser dialog with SourcePath or FilePathToCheck columns
@@ -2038,6 +2039,8 @@ namespace RansomwareDetection
         }
 
         #endregion
+
+        
 
         
 

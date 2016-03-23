@@ -937,65 +937,72 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                         
                     }
 
-                
-                    if (Common.FixNullstring(ExportUnVerifiedToCSV).Trim() != "" && Common.DirectoryExists(ExportCSVPath))
+                    try
                     {
-                        ExportCSVPath = Common.WindowsPathClean(ExportCSVPath);
+
+                    
+                        if (Common.FixNullstring(ExportUnVerifiedToCSV).Trim() != "" && Common.DirectoryExists(ExportCSVPath))
+                        {
+                            ExportCSVPath = Common.WindowsPathClean(ExportCSVPath);
                         
-                        if (ExportUnVerifiedToCSV)
-                        {
-                            StringBuilder sbUnVerified = new StringBuilder();
-                            sbUnVerified.AppendLine("\"FullName\",\"Name\",\"Extension\",\"Created\",\"Modified\",\"Size\",\"Owner\"");
-                            foreach (Delimon.Win32.IO.FileInfo unVerifiedFile in FilesUnVerified)
+                            if (ExportUnVerifiedToCSV)
                             {
-                                string strline = "\"" + unVerifiedFile.FullName + "\",\"" + unVerifiedFile.Name + "\",\"" + unVerifiedFile.Extension + "\",\"" + unVerifiedFile.CreationTime.ToString("G") + "\",\"" + unVerifiedFile.LastWriteTime.ToString("G") + "\",\"" + unVerifiedFile.Length.ToString() + "\",\"" + LongPathFileSearch.GetFileOwner(unVerifiedFile.FullName) + "\"";
-                                sbUnVerified.AppendLine(strline);
+                                StringBuilder sbUnVerified = new StringBuilder();
+                                sbUnVerified.AppendLine("\"FullName\",\"Name\",\"Extension\",\"Created\",\"Modified\",\"Size\",\"Owner\"");
+                                foreach (Delimon.Win32.IO.FileInfo unVerifiedFile in FilesUnVerified)
+                                {
+                                    string strline = "\"" + unVerifiedFile.FullName + "\",\"" + unVerifiedFile.Name + "\",\"" + unVerifiedFile.Extension + "\",\"" + unVerifiedFile.CreationTime.ToString("G") + "\",\"" + unVerifiedFile.LastWriteTime.ToString("G") + "\",\"" + unVerifiedFile.Length.ToString() + "\",\"" + LongPathFileSearch.GetFileOwner(unVerifiedFile.FullName) + "\"";
+                                    sbUnVerified.AppendLine(strline);
+                                }
+                                if (Common.FileExists(ExportCSVPath + "\\UnVerifiedFiles.csv"))
+                                {
+                                    Delimon.Win32.IO.File.Delete(ExportCSVPath + "\\UnVerifiedFiles.csv");
+                                }
+                                Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\UnVerifiedFiles.csv", sbUnVerified.ToString());
+                                sbUnVerified.Clear();
                             }
-                            if (Common.FileExists(ExportCSVPath + "\\UnVerifiedFiles.csv"))
-                            {
-                                Delimon.Win32.IO.File.Delete(ExportCSVPath + "\\UnVerifiedFiles.csv");
-                            }
-                            Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\UnVerifiedFiles.csv", sbUnVerified.ToString());
-                            sbUnVerified.Clear();
-                        }
 
-                        if (ExportVerifiedToCSV)
-                        {
-                            StringBuilder sbVerified = new StringBuilder();
-                            sbVerified.AppendLine("\"FullName\",\"Name\",\"Extension\",\"Created\",\"Modified\",\"Size\",\"Owner\"");
-                            foreach (Delimon.Win32.IO.FileInfo VerifiedFile in FilesVerified)
+                            if (ExportVerifiedToCSV)
                             {
+                                StringBuilder sbVerified = new StringBuilder();
+                                sbVerified.AppendLine("\"FullName\",\"Name\",\"Extension\",\"Created\",\"Modified\",\"Size\",\"Owner\"");
+                                foreach (Delimon.Win32.IO.FileInfo VerifiedFile in FilesVerified)
+                                {
 
-                                string strline = "\"" + VerifiedFile.FullName + "\",\"" + VerifiedFile.Name + "\",\"" + VerifiedFile.Extension + "\",\"" + VerifiedFile.CreationTime.ToString("G") + "\",\"" + VerifiedFile.LastWriteTime.ToString("G") + "\",\"" + VerifiedFile.Length.ToString() + "\",\"" + LongPathFileSearch.GetFileOwner(VerifiedFile.FullName) + "\"";
-                                sbVerified.AppendLine(strline);
+                                    string strline = "\"" + VerifiedFile.FullName + "\",\"" + VerifiedFile.Name + "\",\"" + VerifiedFile.Extension + "\",\"" + VerifiedFile.CreationTime.ToString("G") + "\",\"" + VerifiedFile.LastWriteTime.ToString("G") + "\",\"" + VerifiedFile.Length.ToString() + "\",\"" + LongPathFileSearch.GetFileOwner(VerifiedFile.FullName) + "\"";
+                                    sbVerified.AppendLine(strline);
+                                }
+                                if (Common.FileExists(ExportCSVPath + "\\VerifiedFiles.csv"))
+                                {
+                                    Delimon.Win32.IO.File.Delete(ExportCSVPath + "\\VerifiedFiles.csv");
+                                }
+                                Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\VerifiedFiles.csv", sbVerified.ToString());
+                                sbVerified.Clear();
                             }
-                            if (Common.FileExists(ExportCSVPath + "\\VerifiedFiles.csv"))
-                            {
-                                Delimon.Win32.IO.File.Delete(ExportCSVPath + "\\VerifiedFiles.csv");
-                            }
-                            Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\VerifiedFiles.csv", sbVerified.ToString());
-                            sbVerified.Clear();
-                        }
 
-                        if (ExportUnknownToCSV)
-                        {
-                            StringBuilder sbUnknown = new StringBuilder();
-                            sbUnknown.AppendLine("\"FullName\",\"Name\",\"Extension\",\"Created\",\"Modified\",\"Size\",\"Owner\"");
-                            foreach (Delimon.Win32.IO.FileInfo unknownFile in FilesUnknown)
+                            if (ExportUnknownToCSV)
                             {
-                                string strline = "\"" + unknownFile.FullName + "\",\"" + unknownFile.Name + "\",\"" + unknownFile.Extension + "\",\"" + unknownFile.CreationTime.ToString("G") + "\",\"" + unknownFile.LastWriteTime.ToString("G") + "\",\"" + unknownFile.Length.ToString() + "\",\"" + LongPathFileSearch.GetFileOwner(unknownFile.FullName) + "\"";
-                                sbUnknown.AppendLine(strline);
+                                StringBuilder sbUnknown = new StringBuilder();
+                                sbUnknown.AppendLine("\"FullName\",\"Name\",\"Extension\",\"Created\",\"Modified\",\"Size\",\"Owner\"");
+                                foreach (Delimon.Win32.IO.FileInfo unknownFile in FilesUnknown)
+                                {
+                                    string strline = "\"" + unknownFile.FullName + "\",\"" + unknownFile.Name + "\",\"" + unknownFile.Extension + "\",\"" + unknownFile.CreationTime.ToString("G") + "\",\"" + unknownFile.LastWriteTime.ToString("G") + "\",\"" + unknownFile.Length.ToString() + "\",\"" + LongPathFileSearch.GetFileOwner(unknownFile.FullName) + "\"";
+                                    sbUnknown.AppendLine(strline);
+                                }
+                                if (Common.FileExists(ExportCSVPath + "\\UnknownFiles.csv"))
+                                {
+                                    Delimon.Win32.IO.File.Delete(ExportCSVPath + "\\UnknownFiles.csv");
+                                }
+                                Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\UnknownFiles.csv", sbUnknown.ToString());
+                                sbUnknown.Clear();
                             }
-                            if (Common.FileExists(ExportCSVPath + "\\UnknownFiles.csv"))
-                            {
-                                Delimon.Win32.IO.File.Delete(ExportCSVPath + "\\UnknownFiles.csv");
-                            }
-                            Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\UnknownFiles.csv", sbUnknown.ToString());
-                            sbUnknown.Clear();
-                        }
                         
+                        }
                     }
-
+                    catch (Exception ex)
+                    {
+                        WriteError(ex.Message + " source: " + ex.Source + " Stacktrace: " + ex.StackTrace, System.Diagnostics.EventLogEntryType.Error, 7000, 70, false);
+                    }
                    
 
                     //Send Summary Email 
@@ -1021,7 +1028,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                             strline = "<li>ExportCSVPath: " + Common.GetPathToHTMLAnchor(ExportCSVPath) + "</li>";
                             sbbody1.AppendLine(strline);
                         
-                            sbbody1.AppendLine(strline);
+                            
                             if (FilesUnVerified.Count > 0)
                             {
                                 sbbody1.AppendLine("<br /><br />\r\n<strong>Files UnVerified:</strong><br />");

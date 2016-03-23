@@ -21,8 +21,7 @@
         {
             byte a = buffer[0];
             byte b = buffer[1];
-            byte c = buffer[2];
-            byte d = buffer[3];
+            
             byte e = buffer[4];
             byte f = buffer[5];
             byte g = buffer[6];
@@ -32,9 +31,9 @@
             byte k = buffer[10];
             byte l = buffer[11];
 
-            //00 04 xx 0E 00 00 19 00 0E
+            //00 04 xx xx 00 00 19 00 0E
             return
-                (a == 0x00 && b == 0x04 && d == 0x0E && e==0x00 && f==0x00 && g==0x19 && h==0x00 && i == 0x0E);
+                (a == 0x00 && b == 0x04 && e==0x00 && f==0x00 && g==0x19 && h==0x00 && i == 0x0E);
                 
                 
         }

@@ -393,10 +393,11 @@ namespace RansomwareDetection.ContentDetectorLib.Content
                 new HeaderSignature( @"504B0304140000", "Make Music File", new string[] { @".musx" }, ProhibitionMode.Allowed ),
                 new HeaderSignature( new PogSignatureChecker(), "POG File", new string[] { @".pog"}, ProhibitionMode.Allowed ),
                 new HeaderSignature( @"5075726368617365204F72646572", "pof file", new string[] { @".pof" }, ProhibitionMode.Allowed ),
-                new HeaderSignature( @"5B7B3030303231344130", "shortcut file", new string[] { @".url" }, ProhibitionMode.Allowed ),
+                new HeaderSignature( @"5B7B3030303231344130", "URL Shortcut File", new string[] { @".url" }, ProhibitionMode.Allowed ),
                 new HeaderSignature( new QBWSignatureChecker(), "Quickbooks file", new string[] { @".qbw", @".tlg"}, ProhibitionMode.Allowed ),
                 new HeaderSignature( @"2F2F5468697320697320517569636B", "Quickbooks configuration file", new string[] { @".nd"}, ProhibitionMode.Allowed ),
                 new HeaderSignature( @"D0CF11E0A1B11AE1", "Quickbooks backup file", new string[] { @".qbb"}, ProhibitionMode.Allowed ),
+                new HeaderSignature( @"5B44454641554C545D", "URL Shortcut File", new string[] { @".url"}, ProhibitionMode.Allowed ),
                 
 
                 /*new HeaderSignature( @"", "Windows Media", new string[] { @".wmv", @".asf" }, ProhibitionMode.Prohibited ),*/
