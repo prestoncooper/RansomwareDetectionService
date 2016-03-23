@@ -321,6 +321,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 				new HeaderSignature( @"1F9D", "TAR Compressed Archive File", new string[] { @".z" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"49492A", "TIFF (Intel)", new string[] { @".tif", @".tiff" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"4D4D2A", "TIFF (Motorola)", new string[] { @".tif", @".tiff" }, ProhibitionMode.Allowed ),
+                new HeaderSignature( @"4D4D002A", "TIFF (Adobe)", new string[] { @".tif", @".tiff" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"554641", "UFA Archive File", new string[] { @".ufa" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"57415645666D74", "Wave Files", new string[] { @".wav" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"D7CDC69A", "Windows Meta File", new string[] { @".wmf" }, ProhibitionMode.Allowed ),

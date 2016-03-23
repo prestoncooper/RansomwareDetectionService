@@ -1018,6 +1018,8 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                             sbbody1.AppendLine(strline);
                             strline = "<li>Check Sub Folders: " + CheckSubFolders.ToString()+ "</li>";
                             sbbody1.AppendLine(strline);
+                            strline = "<li>ExportCSVPath: " + Common.GetPathToHTMLAnchor(ExportCSVPath) + "</li>";
+                            sbbody1.AppendLine(strline);
                         
                             sbbody1.AppendLine(strline);
                             if (FilesUnVerified.Count > 0)

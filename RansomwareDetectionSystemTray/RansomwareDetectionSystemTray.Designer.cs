@@ -1966,7 +1966,7 @@
             this.dgvAuditTxtColFilePathToCheck.HeaderText = "FilePathToCheck";
             this.dgvAuditTxtColFilePathToCheck.Name = "dgvAuditTxtColFilePathToCheck";
             this.dgvAuditTxtColFilePathToCheck.ToolTipText = "File Path to examine and see if corruption, changes to content of the file, or en" +
-    "cryption has ruined files (binary compare)";
+    "cryption has ruined files (binary file header verification)";
             this.dgvAuditTxtColFilePathToCheck.Width = 140;
             // 
             // dataGridViewCheckBoxColumn61
@@ -1974,7 +1974,7 @@
             this.dataGridViewCheckBoxColumn61.DataPropertyName = "CheckSubFolders";
             this.dataGridViewCheckBoxColumn61.HeaderText = "CheckSubFolders";
             this.dataGridViewCheckBoxColumn61.Name = "dataGridViewCheckBoxColumn61";
-            this.dataGridViewCheckBoxColumn61.ToolTipText = "Check Immediate Sub Folders of FilePathToCheck";
+            this.dataGridViewCheckBoxColumn61.ToolTipText = "Check all sub folders of FilePathToCheck.";
             this.dataGridViewCheckBoxColumn61.Width = 125;
             // 
             // dgvAuditTxtColExcludeFolders
@@ -1991,6 +1991,7 @@
             this.dgvAuditTxtColExportCSVPath.DataPropertyName = "ExportCSVPath";
             this.dgvAuditTxtColExportCSVPath.HeaderText = "ExportCSVPath";
             this.dgvAuditTxtColExportCSVPath.Name = "dgvAuditTxtColExportCSVPath";
+            this.dgvAuditTxtColExportCSVPath.ToolTipText = "Path to Export csv result files";
             this.dgvAuditTxtColExportCSVPath.Width = 129;
             // 
             // dgvAuditChkColExportUnVerifiedToCSV
@@ -1998,6 +1999,7 @@
             this.dgvAuditChkColExportUnVerifiedToCSV.DataPropertyName = "ExportUnVerifiedToCSV";
             this.dgvAuditChkColExportUnVerifiedToCSV.HeaderText = "ExportUnVerifiedToCSV";
             this.dgvAuditChkColExportUnVerifiedToCSV.Name = "dgvAuditChkColExportUnVerifiedToCSV";
+            this.dgvAuditChkColExportUnVerifiedToCSV.ToolTipText = "Files that were possibly changed by a ransomware virus.";
             this.dgvAuditChkColExportUnVerifiedToCSV.Width = 164;
             // 
             // dgvAuditChkColExportVerifiedToCSV
@@ -2005,6 +2007,7 @@
             this.dgvAuditChkColExportVerifiedToCSV.DataPropertyName = "ExportVerifiedToCSV";
             this.dgvAuditChkColExportVerifiedToCSV.HeaderText = "ExportVerifiedToCSV";
             this.dgvAuditChkColExportVerifiedToCSV.Name = "dgvAuditChkColExportVerifiedToCSV";
+            this.dgvAuditChkColExportVerifiedToCSV.ToolTipText = "Files that are possibly ok.";
             this.dgvAuditChkColExportVerifiedToCSV.Width = 146;
             // 
             // dgvAuditChkCol1ExportUnknownToCSV
@@ -2012,6 +2015,7 @@
             this.dgvAuditChkCol1ExportUnknownToCSV.DataPropertyName = "ExportUnknownToCSV";
             this.dgvAuditChkCol1ExportUnknownToCSV.HeaderText = "ExportUnknownToCSV";
             this.dgvAuditChkCol1ExportUnknownToCSV.Name = "dgvAuditChkCol1ExportUnknownToCSV";
+            this.dgvAuditChkCol1ExportUnknownToCSV.ToolTipText = "Files that are not known by the file header/file signature check.";
             this.dgvAuditChkCol1ExportUnknownToCSV.Width = 156;
             // 
             // dataGridViewCheckBoxColumn64
