@@ -17,7 +17,20 @@ namespace RansomwareDetection.ContentDetectorLib.Content
     /// https://en.wikipedia.org/wiki/List_of_file_signatures
 	/// http://en.wikipedia.org/wiki/Magic_number_%28programming%29.
     /// http://www.garykessler.net/library/file_sigs.html
-	/// </summary>
+    /// Reference Articles for further review and later features
+    /// http://en.wikipedia.org/wiki/Magic_number_(programming)
+    /// http://stackoverflow.com/questions/1654846/in-c-how-can-i-know-the-file-type-from-a-byte
+    /// http://stackoverflow.com/questions/58510/using-net-how-can-you-find-the-mime-type-of-a-file-based-on-the-file-signature
+    /// http://stackoverflow.com/questions/15300567/alternative-to-findmimefromdata-method-in-urlmon-dll-one-which-has-more-mime-typ
+    /// http://stackoverflow.com/questions/58510/using-net-how-can-you-find-the-mime-type-of-a-file-based-on-the-file-signature
+    /// https://en.wikipedia.org/wiki/Magic_number_(programming)
+    /// http://www.garykessler.net/library/file_sigs.html
+    /// https://msdn.microsoft.com/en-us/library/ms775107(v=vs.85).aspx
+    /// https://en.wikipedia.org/wiki/List_of_file_signatures
+    /// http://asecuritysite.com/forensics/magic
+    /// https://www.nationalarchives.gov.uk/PRONOM/Default.aspx
+    /// https://www.nationalarchives.gov.uk/aboutapps/pronom/droid-signature-files.htm
+    /// </summary>
 	internal sealed class HeaderSignature
 	{
 		#region Public constructors.
@@ -156,7 +169,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 				if ( ignoreExtension ||
 					MatchesFileExtension( filePath.Extension ) )
 				{
-                    using (FileStream fs = filePath.Open(Delimon.Win32.IO.FileMode.Open,Delimon.Win32.IO.FileAccess.Read,Delimon.Win32.IO.FileShare.None))
+                    using (FileStream fs = filePath.Open(Delimon.Win32.IO.FileMode.Open,Delimon.Win32.IO.FileAccess.Read,Delimon.Win32.IO.FileShare.Read))
 					{
 						return MatchesStream( fs );
 					}
@@ -238,14 +251,12 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 				new HeaderSignature( @"474946383961", "GIF 89A", new string[] { @".gif" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"474946383761", "GIF 87A", new string[] { @".gif" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"424D", "Windows Bitmap", new string[] { @".bmp" }, ProhibitionMode.Allowed ),
-				new HeaderSignature( @"504B0304140006000800000021", "Microsoft Office Open XML Format", new string[] { @".docx",@".pptx",@".xlsx" }, ProhibitionMode.Allowed ),
-                new HeaderSignature( @"504B030414000600", "Microsoft Office Open XML Format", new string[] { @".docx",@".pptx",@".xlsx" }, ProhibitionMode.Allowed ),
+				new HeaderSignature( @"504B0304140006000800000021", "Microsoft Office Open XML Format", new string[] { @".docx",@".pptx",@".xlsx", @".vsdx" }, ProhibitionMode.Allowed ),
+                new HeaderSignature( @"504B030414000600", "Microsoft Office Open XML Format", new string[] { @".docx",@".pptx",@".xlsx", @".vsdx" }, ProhibitionMode.Allowed ),
+				new HeaderSignature( @"504B030414000200", "Microsoft Office Open XML Format", new string[] { @".docx",@".pptx",@".xlsx", @".vsdx" }, ProhibitionMode.Allowed ),
 				
-                new HeaderSignature( @"504B0506", "PKZip Compressed", new string[] { @".zip" }, ProhibitionMode.Allowed ),
-                new HeaderSignature( @"504B0708", "PKZip Compressed", new string[] { @".zip" }, ProhibitionMode.Allowed ),
-
-                new HeaderSignature( @"504B0304", "Zip Compressed", new string[] { @".zip" }, ProhibitionMode.Allowed ),
-				new HeaderSignature( @"3A42617365", "", new string[] { @".cnt" }, ProhibitionMode.Allowed ),
+                
+                new HeaderSignature( @"3A42617365", "", new string[] { @".cnt" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"D0CF11E0A1B11AE1", "MS Compound Document v1 or Lotus Approach APR file", new string[] { @".doc", @".xls", @".xlt", @".ppt", @".apr", @".dot", @".pps",@".wps",@".vsd",@".qbm",@".pub",@".adp",@".ade" }, ProhibitionMode.Allowed ),
                 
                 new HeaderSignature( @"0100000058000000", "", new string[] { @".emf" }, ProhibitionMode.Allowed ),
@@ -273,6 +284,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 				new HeaderSignature( @"1A09", "ARC/PKPAK Compressed 5", new string[] { @".arc" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"60EA", "ARJ Compressed", new string[] { @".arj" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"41564920", "Audio Video Interleave (AVI)", new string[] { @".avi" }, ProhibitionMode.Allowed ),
+                new HeaderSignature( @"52494646", "Audio Video Interleave (AVI)", new string[] { @".avi" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"425A68", "Bzip Archive", new string[] { @".bz", @".bz2" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"49536328", "Cabinet File", new string[] { @".cab" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"4C01", "Compiled Object Module", new string[] { @".obj" }, ProhibitionMode.Allowed ),
@@ -311,6 +323,10 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 				new HeaderSignature( @"89504E470D0A", "PNG Image File", new string[] { @".png" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"6D646174", "QuickTime Movie", new string[] { @".mov" }, ProhibitionMode.Allowed ),
                 new HeaderSignature( @"6D6F6F76", "QuickTime Movie", new string[] { @".mov" }, ProhibitionMode.Allowed ),
+                
+                new HeaderSignature( @"71742020", "QuickTime Movie", new string[] { @".mov" }, ProhibitionMode.Allowed ),
+                new HeaderSignature( @"0000001466747970", "QuickTime Movie", new string[] { @".mov" }, ProhibitionMode.Allowed ),
+
 				new HeaderSignature( @"6D646174", "Quicktime Movie File", new string[] { @".qt" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"526172211A07", "RAR Archive File", new string[] { @".rar" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"2E7261FD", "Real Audio File", new string[] { @".ra", @".ram" }, ProhibitionMode.Allowed ),
@@ -323,7 +339,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 				new HeaderSignature( @"4D4D2A", "TIFF (Motorola)", new string[] { @".tif", @".tiff" }, ProhibitionMode.Allowed ),
                 new HeaderSignature( @"4D4D002A", "TIFF (Adobe)", new string[] { @".tif", @".tiff" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"554641", "UFA Archive File", new string[] { @".ufa" }, ProhibitionMode.Allowed ),
-				new HeaderSignature( @"57415645666D74", "Wave Files", new string[] { @".wav" }, ProhibitionMode.Allowed ),
+				new HeaderSignature( @"57415645666D74", "Wave File", new string[] { @".wav" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"D7CDC69A", "Windows Meta File", new string[] { @".wmf" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"4C000000", "Windows Shortcut (Link File)", new string[] { @".lnk" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"504B3030504B0304", "WINZIP Compressed", new string[] { @".zip" }, ProhibitionMode.Allowed ),
@@ -339,6 +355,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
                 
                 // My own.
                 new HeaderSignature( new Mp4SignatureChecker(), "MPEG 4", new string[] { @".mp4", @".m4v"}, ProhibitionMode.Allowed ),
+                
                 new HeaderSignature( new MSAccessSignatureChecker(), "Microsoft Access", new string[] { @".mdb", @".accdb", @".accde", @".accdr",@".accdt",@".adp",@".ade"}, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"D0CF11E0A1B11AE1", "Microsoft Installer", new string[] { @".msi" }, ProhibitionMode.Allowed ),
                 new HeaderSignature( @"D0CF11E0A1B11AE1", "Outlook Message File", new string[] { @".msg" }, ProhibitionMode.Allowed ),
@@ -352,6 +369,36 @@ namespace RansomwareDetection.ContentDetectorLib.Content
                 new HeaderSignature( @"FFF1", "MPEG-4 Advanced Audio Coding (AAC) Low Complexity", new string[] { @".aac" }, ProhibitionMode.Allowed ),                      
                 new HeaderSignature( @"FFF9", "MPEG-2 Advanced Audio Coding (AAC) Low Complexity", new string[] { @".aac" }, ProhibitionMode.Allowed ),
                 new HeaderSignature( @"D0CF11E0A1B11AE1", "Windows Thumbs.db", new string[] { @".db" }, ProhibitionMode.Allowed ),
+                new HeaderSignature( @"377ABCAF271C", "7zip", new string[] { @".7z" }, ProhibitionMode.Allowed ),
+                new HeaderSignature( @"4D344120", "Apple Lossless Audio Codec file", new string[] { @".m4a" }, ProhibitionMode.Allowed ),
+                new HeaderSignature( @"0000002066747970", "Apple Lossless Audio Codec file", new string[] { @".m4a" }, ProhibitionMode.Allowed ),
+                new HeaderSignature( @"000001BA", "MPEG Movie", new string[] { @".mpg", @".mpeg" }, ProhibitionMode.Allowed ),
+                new HeaderSignature( @"000001B", "MPEG Movie", new string[] { @".mpg", @".mpeg" }, ProhibitionMode.Allowed ),
+                new HeaderSignature( @"52494646", "Wave File", new string[] { @".wav" }, ProhibitionMode.Allowed ),
+                new HeaderSignature( @"53514C6974652066", "SQL Lite Database", new string[] { @".db", @".sqlite" }, ProhibitionMode.Allowed ),
+                new HeaderSignature( @"6F726D6174203300", "SQL Lite Database", new string[] { @".db", @".sqlite" }, ProhibitionMode.Allowed ),
+                new HeaderSignature( @"636F6E6563746978", "Virtual PC Virtual HD image", new string[] { @".vhd" }, ProhibitionMode.Allowed ),
+                new HeaderSignature( @"4B444D56", "VMWare Disk file", new string[] { @".vmdk" }, ProhibitionMode.Allowed ),
+                new HeaderSignature( @"504B0304140000000000", "epub book", new string[] { @".epub" }, ProhibitionMode.Allowed ),
+                new HeaderSignature( @"504B0304140008000800", "Java JAR File", new string[] { @".jar" }, ProhibitionMode.Allowed ),
+                new HeaderSignature( @"4A4152435300", "JARCS compressed archive", new string[] { @".jar" }, ProhibitionMode.Allowed ),
+                new HeaderSignature( @"504B0506", "PKZip Compressed", new string[] { @".zip", @".jar" }, ProhibitionMode.Allowed ),
+                new HeaderSignature( @"504B0708", "PKZip Compressed", new string[] { @".zip", @".jar" }, ProhibitionMode.Allowed ),
+                new HeaderSignature( @"504B0304", "Zip Compressed", new string[] { @".zip", @".jar", @".odt", @".odp", @".odt", @"kwd", @".sxc", @".sxd", @".sxi", @".sxw", @".xps" }, ProhibitionMode.Allowed ),
+				new HeaderSignature( @"EFBBBF3C", "XML Document", new string[] { @".xml",@".config" }, ProhibitionMode.Allowed ),
+                new HeaderSignature( @"46726F6D3A", "Web Archive", new string[] { @".mht" }, ProhibitionMode.Allowed ),
+                new HeaderSignature( @"D0CF11E0A1B11AE1", "msp Installer", new string[] { @".msp" }, ProhibitionMode.Allowed ),
+                new HeaderSignature( @"4D534346", "Microsoft Update Installer Package", new string[] { @".msu" }, ProhibitionMode.Allowed ),
+                new HeaderSignature( @"454E49474D412042494E415259", "Finale Music File", new string[] { @".mus" }, ProhibitionMode.Allowed ),
+                new HeaderSignature( @"504B0304140000", "Make Music File", new string[] { @".musx" }, ProhibitionMode.Allowed ),
+                new HeaderSignature( new PogSignatureChecker(), "POG File", new string[] { @".pog"}, ProhibitionMode.Allowed ),
+                new HeaderSignature( @"5075726368617365204F72646572", "pof file", new string[] { @".pof" }, ProhibitionMode.Allowed ),
+                new HeaderSignature( @"5B7B3030303231344130", "shortcut file", new string[] { @".url" }, ProhibitionMode.Allowed ),
+                new HeaderSignature( new QBWSignatureChecker(), "Quickbooks file", new string[] { @".qbw", @".tlg"}, ProhibitionMode.Allowed ),
+                new HeaderSignature( @"2F2F5468697320697320517569636B", "Quickbooks configuration file", new string[] { @".nd"}, ProhibitionMode.Allowed ),
+                new HeaderSignature( @"D0CF11E0A1B11AE1", "Quickbooks backup file", new string[] { @".qbb"}, ProhibitionMode.Allowed ),
+                
+
                 /*new HeaderSignature( @"", "Windows Media", new string[] { @".wmv", @".asf" }, ProhibitionMode.Prohibited ),*/
 				
 			};
@@ -726,6 +773,90 @@ namespace RansomwareDetection.ContentDetectorLib.Content
                     blsupported = true;
                     break;
                 case @".config":
+                    blsupported = true;
+                    break;
+                case @".7z":
+                    blsupported = true;
+                    break;
+                case @".kwd":
+                    blsupported = true;
+                    break;
+                case @".vsdx":
+                    blsupported = true;
+                    break;
+                case @".odt":
+                    blsupported = true;
+                    break;
+                case @".odp":
+                    blsupported = true;
+                    break;
+                case @".xps":
+                    blsupported = true;
+                    break;
+                case @".sxc":
+                    blsupported = true;
+                    break;
+                case @".sxd":
+                    blsupported = true;
+                    break;
+                case @".sxi":
+                    blsupported = true;
+                    break;
+                case @".sxw":
+                    blsupported = true;
+                    break;
+                case @".aac":
+                    blsupported = true;
+                    break;
+                case @".db":
+                    blsupported = true;
+                    break;
+                case @".m4a":
+                    blsupported = true;
+                    break;
+                case @".sqlite":
+                    blsupported = true;
+                    break;
+                case @".epub":
+                    blsupported = true;
+                    break;
+                case @".vmdk":
+                    blsupported = true;
+                    break;
+                case @".vhd":
+                    blsupported = true;
+                    break;
+                case @".msu":
+                    blsupported = true;
+                    break;
+                case @".msp":
+                    blsupported = true;
+                    break;
+                case @".mus":
+                    blsupported = true;
+                    break;
+                case @".musx":
+                    blsupported = true;
+                    break;
+                case @".url":
+                    blsupported = true;
+                    break;
+                case @".pog":
+                    blsupported = true;
+                    break;
+                case @".pof":
+                    blsupported = true;
+                    break;
+                case @".qbw":
+                    blsupported = true;
+                    break;
+                case @".nd":
+                    blsupported = true;
+                    break;
+                case @".tlg":
+                    blsupported = true;
+                    break;
+                case @".qbb":
                     blsupported = true;
                     break;
                 default:

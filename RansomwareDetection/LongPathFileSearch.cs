@@ -569,7 +569,7 @@ namespace RansomwareDetection.DetectionLib
                                     //loop through excluded folders
                                     foreach (string strExclude in strArr_excludedfolders)
                                     {
-                                        if (currentFileName == strExclude)
+                                        if (currentFileName.ToLower() == strExclude.ToLower())
                                         {
                                             blIgnoreDirectory = true;
                                         }

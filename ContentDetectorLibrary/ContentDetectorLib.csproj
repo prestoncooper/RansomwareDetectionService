@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContentDetectorEngine.cs" />
+    <Compile Include="Content\QBWSignatureChecker.cs" />
+    <Compile Include="Content\PogSignatureChecker.cs" />
     <Compile Include="Content\Mp4SignatureChecker.cs" />
     <Compile Include="Content\MSAccessSignatureChecker.cs" />
     <Compile Include="Content\SignatureMode.cs" />

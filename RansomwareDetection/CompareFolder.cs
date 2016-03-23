@@ -1018,7 +1018,7 @@ namespace RansomwareDetection.DetectionLib
                                                         //loop through excluded folders
                                                         foreach (string strExclude in strArr_excludedfolders)
                                                         {
-                                                            if (dir1.Name == strExclude)
+                                                            if (dir1.Name.ToLower() == strExclude.ToLower())
                                                             {
                                                                 blIgnoreSourceDirectory = true;
                                                             }

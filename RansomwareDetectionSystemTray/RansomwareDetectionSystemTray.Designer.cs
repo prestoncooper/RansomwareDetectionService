@@ -2015,7 +2015,8 @@
             this.dgvAuditChkCol1ExportUnknownToCSV.DataPropertyName = "ExportUnknownToCSV";
             this.dgvAuditChkCol1ExportUnknownToCSV.HeaderText = "ExportUnknownToCSV";
             this.dgvAuditChkCol1ExportUnknownToCSV.Name = "dgvAuditChkCol1ExportUnknownToCSV";
-            this.dgvAuditChkCol1ExportUnknownToCSV.ToolTipText = "Files that are not known by the file header/file signature check.";
+            this.dgvAuditChkCol1ExportUnknownToCSV.ToolTipText = "Files that are not known by the file header/file signature check or reading the f" +
+    "ile caused an error (permission or file locked).";
             this.dgvAuditChkCol1ExportUnknownToCSV.Width = 156;
             // 
             // dataGridViewCheckBoxColumn64

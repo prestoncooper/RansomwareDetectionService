@@ -929,7 +929,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                     {
                         ContentDetectorLib.ContentDetectorEngine cengine = new ContentDetectorLib.ContentDetectorEngine();
                         Delimon.Win32.IO.DirectoryInfo dFilePathToCheck = new Delimon.Win32.IO.DirectoryInfo(FilePathToCheck);
-                        cengine.ContainsFolderVerifyContent(dFilePathToCheck, CheckSubFolders, ref FilesVerified, ref FilesUnVerified, ref FilesUnknown, ref blShuttingDown);
+                        cengine.ContainsFolderVerifyContent(dFilePathToCheck, CheckSubFolders, ref FilesVerified, ref FilesUnVerified, ref FilesUnknown, ref blShuttingDown, ExcludeFolders);
                     }
                     catch (Exception ex)
                     {

@@ -65,6 +65,8 @@ namespace RansomwareDetection.ContentDetectorLib.Content
                 }
             }
 
+            //Add Non Stock Signatures Here
+
             return false;
         }
 

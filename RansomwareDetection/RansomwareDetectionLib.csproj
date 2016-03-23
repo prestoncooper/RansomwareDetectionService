@@ -108,7 +108,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ContentDetectorLib\ContentDetectorLib.csproj">
+    <ProjectReference Include="..\ContentDetectorLibrary\ContentDetectorLib.csproj">
       <Project>{967BC755-1841-41C9-865C-21022E0018A6}</Project>
       <Name>ContentDetectorLib</Name>
     </ProjectReference>

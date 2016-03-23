@@ -133,7 +133,7 @@ namespace RansomwareDetection.ContentDetectorLib
 			Trace.WriteLine(
 				string.Format(
 				@"Checking folder '{0}'.",
-				folderPath ) );
+				folderPath.FullName ) );
 
             List<Delimon.Win32.IO.FileInfo> prohibitedFiles = new List<Delimon.Win32.IO.FileInfo>();
 
@@ -148,7 +148,7 @@ namespace RansomwareDetection.ContentDetectorLib
 						string.Format(
 						@"[{0}/{1}] Checking file '{2}' ({3:0,0} bytes).",
 						index + 1, filePaths.Length,
-						filePath,
+						filePath.FullName,
 						filePath.Length ) );
 
 					if ( ContainsFileProhibitedContent( filePath ) )
@@ -195,13 +195,14 @@ namespace RansomwareDetection.ContentDetectorLib
             ref List<Delimon.Win32.IO.FileInfo> verifiedFiles,
             ref List<Delimon.Win32.IO.FileInfo> unVerifiedFiles,
             ref List<Delimon.Win32.IO.FileInfo> unknownFiles,
-            ref bool blShuttingDown
+            ref bool blShuttingDown,
+            string excludeFolders
             )
         {
             Trace.WriteLine(
                 string.Format(
                 @"Checking folder '{0}'.",
-                folderPath));
+                folderPath.FullName));
 
 
             if (true)
@@ -219,24 +220,38 @@ namespace RansomwareDetection.ContentDetectorLib
                             filePath.FullName));
                         break;
                     }
-                    Trace.WriteLine(
+                    try
+                    {
+                        Trace.WriteLine(
                         string.Format(
                         @"[{0}/{1}] Checking file '{2}' ({3:0,0} bytes).",
                         index + 1, filePaths.Length,
-                        filePath,
+                        filePath.FullName,
                         filePath.Length));
-                    if (!HeaderSignature.ExtensionSupported(filePath.Extension))
+                        if (!HeaderSignature.ExtensionSupported(filePath.Extension))
+                        {
+                            unknownFiles.Add(filePath);
+                        }
+                        else if (!IsVerifiedContent(filePath))
+                        {
+                            unVerifiedFiles.Add(filePath);
+                        }
+                        else
+                        {
+                            verifiedFiles.Add(filePath);
+                        }
+                    }
+                    catch (Exception)
                     {
+                        Trace.WriteLine(
+                       string.Format(
+                       @"[{0}/{1}] Error Checking file '{2}' ({3:0,0} bytes).",
+                       index + 1, filePaths.Length,
+                       filePath.FullName,
+                       filePath.Length));
                         unknownFiles.Add(filePath);
                     }
-                    else if (!IsVerifiedContent(filePath))
-                    {
-                        unVerifiedFiles.Add(filePath);
-                    }
-                    else
-                    {
-                        verifiedFiles.Add(filePath);
-                    }
+                    
 
                     index++;
                 }
@@ -250,6 +265,7 @@ namespace RansomwareDetection.ContentDetectorLib
 
                 foreach (Delimon.Win32.IO.DirectoryInfo childFolderPath in folderPaths)
                 {
+                    bool blIgnoreDirectory = false;
                     if (blShuttingDown)
                     {
                         Trace.WriteLine(
@@ -258,7 +274,34 @@ namespace RansomwareDetection.ContentDetectorLib
                             childFolderPath.FullName));
                         break;
                     }
-                    ContainsFolderVerifyContent(childFolderPath,recursive,ref verifiedFiles, ref unVerifiedFiles, ref unknownFiles, ref blShuttingDown);
+                    
+                    try
+                    {
+                        
+                        char[] delimiters = new char[] { ';' };
+                        string[] strArr_excludedfolders = excludeFolders.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+
+                        if (!(strArr_excludedfolders == null || strArr_excludedfolders.Length == 0))
+                        {
+                            //loop through excluded folders
+                            foreach (string strExclude in strArr_excludedfolders)
+                            {
+                                if (childFolderPath.Name.ToLower() == strExclude.ToLower())
+                                {
+                                    blIgnoreDirectory = true;
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        
+                    }
+                    
+                    if (!blIgnoreDirectory)
+                    {
+                        ContainsFolderVerifyContent(childFolderPath, recursive, ref verifiedFiles, ref unVerifiedFiles, ref unknownFiles, ref blShuttingDown, excludeFolders);
+                    }
                 }
             }
 
@@ -294,7 +337,7 @@ namespace RansomwareDetection.ContentDetectorLib
 				Trace.WriteLine(
 					string.Format(
 					@"Checking file '{0}' ({1:0,0} bytes).",
-					filePath,
+					filePath.FullName,
 					filePath.Length ) );
 
 				return IsProhibitedContent( filePath, indentLevel );
@@ -319,7 +362,7 @@ namespace RansomwareDetection.ContentDetectorLib
                 Trace.WriteLine(
                     string.Format(
                     @"Verifying file '{0}' ({1:0,0} bytes).",
-                    filePath,
+                    filePath.FullName,
                     filePath.Length));
 
                 return IsVerifiedContent(filePath);
@@ -418,7 +461,7 @@ namespace RansomwareDetection.ContentDetectorLib
 			Trace.WriteLine(
 				string.Format(
 				@"Processing content of file '{0}' ({1:0,0} bytes).",
-				filePath,
+				filePath.FullName,
 				filePath.Length ) );
 
 			SingleFileContentProcessor processor =
@@ -431,7 +474,7 @@ namespace RansomwareDetection.ContentDetectorLib
 				Trace.WriteLine(
 					string.Format(
 						@"Detected PROHIBITED content in file '{0}' ({1:0,0} bytes).",
-						filePath,
+						filePath.FullName,
 						filePath.Length ) );
 			}
 			else
@@ -439,7 +482,7 @@ namespace RansomwareDetection.ContentDetectorLib
 				Trace.WriteLine(
 					string.Format(
 						@"Detected NO prohibited content in file '{0}' ({1:0,0} bytes).",
-						filePath,
+						filePath.FullName,
 						filePath.Length ) );
 			}
 
@@ -457,7 +500,7 @@ namespace RansomwareDetection.ContentDetectorLib
             Trace.WriteLine(
                 string.Format(
                 @"Processing content of file '{0}' ({1:0,0} bytes).",
-                filePath,
+                filePath.FullName,
                 filePath.Length));
 
             SingleFileContentProcessor processor =
@@ -470,7 +513,7 @@ namespace RansomwareDetection.ContentDetectorLib
                 Trace.WriteLine(
                     string.Format(
                         @"Detected Unverified content in file '{0}' ({1:0,0} bytes).",
-                        filePath,
+                        filePath.FullName,
                         filePath.Length));
             }
             else
@@ -478,7 +521,7 @@ namespace RansomwareDetection.ContentDetectorLib
                 Trace.WriteLine(
                     string.Format(
                         @"Detected Verified content in file '{0}' ({1:0,0} bytes).",
-                        filePath,
+                        filePath.FullName,
                         filePath.Length));
             }
 
