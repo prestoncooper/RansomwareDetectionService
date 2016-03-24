@@ -21,6 +21,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 		#region Public methods.
 		// ------------------------------------------------------------------
 
+        /*
 		/// <summary>
 		/// Initializes a new instance of the
 		/// <see cref="SimplePatternSignatureChecker"/> class.
@@ -39,7 +40,31 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 			{
 				_pattern = ConvertTextStringToBytes( signature );
 			}
-		}
+            _byteoffset = 0;
+		}*/
+
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="SimplePatternSignatureChecker"/> class.
+        /// </summary>
+        /// <param name="signature">The signature.</param>
+        /// <param name="signatureMode">The signature mode.</param>
+        public SimplePatternSignatureChecker(
+            int byteoffset,
+            string signature,
+            SignatureMode signatureMode
+            )
+        {
+            if (signatureMode == SignatureMode.HexString)
+            {
+                _pattern = ConvertHexStringToBytes(signature);
+            }
+            else
+            {
+                _pattern = ConvertTextStringToBytes(signature);
+            }
+            _byteoffset = byteoffset;
+        }
 
 		/// <summary>
 		/// Check whether a given buffer matches the signature.
@@ -47,9 +72,9 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 		/// <param name="buffer">The buffer.</param>
 		/// <returns></returns>
 		public override bool MatchesSignature( 
-			byte[] buffer )
+			byte[] buffer)
 		{
-			return IsPatternContainedInBuffer( buffer, _pattern );
+			return IsPatternContainedInBuffer( buffer,_byteoffset, _pattern );
 		}
 
 		/// <summary>
@@ -88,7 +113,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 		{
 			get
 			{
-				return _pattern.Length;
+				return (_pattern.Length + _byteoffset);
 			}
 		}
 
@@ -100,9 +125,21 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 		{
 			get
 			{
-				return Math.Max( 100, _pattern.Length );
+				return Math.Max( 100, (_pattern.Length + _byteoffset) );
 			}
 		}
+
+        /// <summary>
+        /// Gets the first number of bytes to read.
+        /// </summary>
+        /// <value>The first number of bytes to read.</value>
+        public override int ByteOffset
+        {
+            get
+            {
+                return _byteoffset;
+            }
+        }
 
 		// ------------------------------------------------------------------
 		#endregion
@@ -111,6 +148,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 		// ------------------------------------------------------------------
 
 		private readonly byte[] _pattern;
+        private readonly int _byteoffset;
 
 		// ------------------------------------------------------------------
 		#endregion

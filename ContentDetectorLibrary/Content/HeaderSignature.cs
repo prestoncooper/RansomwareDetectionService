@@ -4,6 +4,10 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 	// ----------------------------------------------------------------------
 
 	using System.IO;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Data;
+    using System;
 
 	// ----------------------------------------------------------------------
 	#endregion
@@ -53,6 +57,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 			_signatureName = signatureName;
 			_fileExtensions = fileExtensions;
 			_prohibitionMode = prohibitionMode;
+            _byteoffset = 0;
 		}
 
 		/// <summary>
@@ -70,13 +75,40 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 			ProhibitionMode prohibitionMode,
 			SignatureMode signatureMode )
 		{
-			_checker = new SimplePatternSignatureChecker(
+			_checker = new SimplePatternSignatureChecker(0,
 				hexStringSignature,
 				signatureMode );
 			_signatureName = signatureName;
 			_fileExtensions = fileExtensions;
 			_prohibitionMode = prohibitionMode;
+            _byteoffset = 0;
 		}
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HeaderSignature"/> class.
+        /// </summary>
+        /// <param name="hexStringSignature">The hex string signature.</param>
+        /// <param name="signatureName">Name of the signature.</param>
+        /// <param name="fileExtensions">The file extensions.</param>
+        /// <param name="prohibitionMode">The prohibition mode.</param>
+        /// <param name="signatureMode">The signature mode.</param>
+        public HeaderSignature(
+            int byteoffset,
+            string hexStringSignature,
+            string signatureName,
+            string[] fileExtensions,
+            ProhibitionMode prohibitionMode,
+            SignatureMode signatureMode)
+        {
+            _checker = new SimplePatternSignatureChecker(
+                byteoffset,
+                hexStringSignature,
+                signatureMode);
+            _signatureName = signatureName;
+            _fileExtensions = fileExtensions;
+            _prohibitionMode = prohibitionMode;
+            _byteoffset = byteoffset;
+        }
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="HeaderSignature"/> class.
@@ -99,6 +131,30 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 				SignatureMode.HexString )
 		{
 		}
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HeaderSignature"/> class.
+        /// </summary>
+        /// <param name="hexStringSignature">The hex string signature.</param>
+        /// <param name="signatureName">Name of the signature.</param>
+        /// <param name="fileExtensions">The file extensions.</param>
+        /// <param name="prohibitionMode">The prohibition mode.</param>
+        public HeaderSignature(
+            int byteoffset,
+            string hexStringSignature,
+            string signatureName,
+            string[] fileExtensions,
+            ProhibitionMode prohibitionMode)
+            :
+            this(
+                byteoffset,
+                hexStringSignature,
+                signatureName,
+                fileExtensions,
+                prohibitionMode,
+                SignatureMode.HexString)
+        {
+        }
 
 		// ------------------------------------------------------------------
 		#endregion
@@ -207,7 +263,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 					byte[] realBuffer = new byte[readCount];
 					ms.Read( realBuffer, 0, readCount );
 
-					return MatchesSignature( realBuffer );
+					return MatchesSignature( realBuffer);
 				}
 			}
 		}
@@ -392,6 +448,8 @@ namespace RansomwareDetection.ContentDetectorLib.Content
                 new HeaderSignature( @"454E49474D412042494E415259", "Finale Music File", new string[] { @".mus" }, ProhibitionMode.Allowed ),
                 new HeaderSignature( @"504B0304140000", "Make Music File", new string[] { @".musx" }, ProhibitionMode.Allowed ),
                 new HeaderSignature( new PogSignatureChecker(), "POG File", new string[] { @".pog"}, ProhibitionMode.Allowed ),
+                //new HeaderSignature(3,"000019000E", "POG File", new string[] { @".pog"}, ProhibitionMode.Allowed ),
+                
                 new HeaderSignature( @"5075726368617365204F72646572", "pof file", new string[] { @".pof" }, ProhibitionMode.Allowed ),
                 new HeaderSignature( @"5B7B3030303231344130", "URL Shortcut File", new string[] { @".url" }, ProhibitionMode.Allowed ),
                 new HeaderSignature( new QBWSignatureChecker(), "Quickbooks file", new string[] { @".qbw", @".tlg"}, ProhibitionMode.Allowed ),
@@ -410,461 +468,124 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 		#region Public methods.
 		// ------------------------------------------------------------------
 
+        public static HeaderSignature[] CustomSignatures(DataTable dtSignatures)
+        {
+            List<HeaderSignature> hds = new List<HeaderSignature>();
+            string strHexPattern;
+            string strSignatureName;
+            string strFileExtensions;
+            bool blEnabled = false;
+            bool blProhibited = false;
+            ProhibitionMode pmode = ProhibitionMode.Allowed;
+            char[] delimiters = new char[] { ';' };
 
-        public static bool ExtensionSupported(string strExtension)
+            foreach(DataRow row in dtSignatures.Rows)
+            {
+                blEnabled = FixNullbool(row["Enabled"]);
+                strHexPattern = FixNullstring(row["HexPattern"]);
+                strSignatureName=FixNullstring(row["SignatureName"]);
+                strFileExtensions=FixNullstring(row["FileTypeTitle"]);
+                
+                string[] strArr_FileExtensions = strFileExtensions.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+                blProhibited = FixNullbool(row["Prohibited"]);
+                if (blProhibited)
+                {
+                    pmode = ProhibitionMode.Prohibited;
+                }
+                else
+                {
+                    pmode = ProhibitionMode.Allowed;
+                }
+                if (blEnabled)
+                {
+                    hds.Add(new HeaderSignature(strHexPattern, strSignatureName, strArr_FileExtensions, pmode));
+                }
+            }
+            return hds.ToArray();
+        }
+
+
+        
+
+        /// <summary>
+        /// Fixes null strings and returns the string or ""
+        /// </summary>
+        /// <param name="objData"></param>
+        /// <returns></returns>
+        public static string FixNullstring(object objData)
+        {
+            string strValue = "";
+            if (System.DBNull.Value == objData || objData == null)
+            {
+                return strValue;
+            }
+            else
+            {
+                return objData.ToString();
+            }
+        }
+
+        /// <summary>
+        /// Fixes null bool and returns false if null
+        /// </summary>
+        /// <param name="objData"></param>
+        /// <returns></returns>
+        public static bool FixNullbool(object objData)
+        {
+            bool blValue = false;
+            if (DBNull.Value == objData || objData == null)
+            {
+                return blValue;
+            }
+            else
+            {
+                bool.TryParse(objData.ToString(), out blValue);
+            }
+            return blValue;
+        }
+
+        
+
+        
+
+        public static bool ExtensionSupported(string strExtension, HeaderSignature[] sigs)
         {
             bool blsupported = false;
-            switch (strExtension.ToLower())
+
+            
+
+            foreach (HeaderSignature hs in sigs)
             {
-                case @".exe":
-                    blsupported = true;
-                    break;
-                case @".com":
-                    blsupported = true;
-                    break;
-                case @".386":
-                    blsupported = true;
-                    break;
-                case @".ax":
-                    blsupported = true;
-                    break;
-                case @".acm":
-                    blsupported = true;
-                    break;
-                case @".sys":
-                    blsupported = true;
-                    break;
-                case @".dll":
-                    blsupported = true;
-                    break;
-                case @".drv":
-                    blsupported = true;
-                    break;
-                case @".flt":
-                    blsupported = true;
-                    break;
-                case @".fon":
-                    blsupported = true;
-                    break;
-                case @".ocx":
-                    blsupported = true;
-                    break;
-                case @".scr":
-                    blsupported = true;
-                    break;
-                case @".lrc":
-                    blsupported = true;
-                    break;
-                case @".vxd":
-                    blsupported = true;
-                    break;
-                case @".cpl":
-                    blsupported = true;
-                    break;
-                case @".x32":
-                    blsupported = true;
-                    break;
-                case @".mp3":
-                    blsupported = true;
-                    break;
-                case @".ogg":
-                    blsupported = true;
-                    break;
-                case @".zoo":
-                    blsupported = true;
-                    break;
-                case @".dtd":
-                    blsupported = true;
-                    break;
-                case @".xml":
-                    blsupported = true;
-                    break;
-                case @".wp":
-                    blsupported = true;
-                    break;
-                case @".wpg":
-                    blsupported = true;
-                    break;
-                case @".zip":
-                    blsupported = true;
-                    break;
-                case @".lnk":
-                    blsupported = true;
-                    break;
-                case @".wmf":
-                    blsupported = true;
-                    break;
-                case @".adx":
-                    blsupported = true;
-                    break;
-                case @".ain":
-                    blsupported = true;
-                    break;
-                case @".ami":
-                    blsupported = true;
-                    break;
-                case @".apr":
-                    blsupported = true;
-                    break;
-                case @".arc":
-                    blsupported = true;
-                    break;
-                case @".arj":
-                    blsupported = true;
-                    break;
-                case @".au":
-                    blsupported = true;
-                    break;
-                case @".avi":
-                    blsupported = true;
-                    break;
-                case @".bmp":
-                    blsupported = true;
-                    break;
-                case @".bz":
-                    blsupported = true;
-                    break;
-                case @".bz2":
-                    blsupported = true;
-                    break;
-                case @".cab":
-                    blsupported = true;
-                    break;
-                case @".cnt":
-                    blsupported = true;
-                    break;
-                case @".cpio":
-                    blsupported = true;
-                    break;
-                case @".cru":
-                    blsupported = true;
-                    break;
-                case @".crush":
-                    blsupported = true;
-                    break;
-                case @".dcx":
-                    blsupported = true;
-                    break;
-                case @".doc":
-                    blsupported = true;
-                    break;
-                case @".docx":
-                    blsupported = true;
-                    break;
-                case @".ds4":
-                    blsupported = true;
-                    break;
-                case @".emf":
-                    blsupported = true;
-                    break;
-                case @".eps":
-                    blsupported = true;
-                    break;
-                case @".evt":
-                    blsupported = true;
-                    break;
-                case @".fm3":
-                    blsupported = true;
-                    break;
-                case @".fmt":
-                    blsupported = true;
-                    break;
-                case @".gid":
-                    blsupported = true;
-                    break;
-                case @".gif":
-                    blsupported = true;
-                    break;
-                case @".gz":
-                    blsupported = true;
-                    break;
-                case @".hap":
-                    blsupported = true;
-                    break;
-                case @".hlp":
-                    blsupported = true;
-                    break;
-                case @".hqx":
-                    blsupported = true;
-                    break;
-                case @".htm":
-                    blsupported = true;
-                    break;
-                case @".html":
-                    blsupported = true;
-                    break;
-                case @".ico":
-                    blsupported = true;
-                    break;
-                case @".jar":
-                    blsupported = true;
-                    break;
-                case @".jpe":
-                    blsupported = true;
-                    break;
-                case @".jpeg":
-                    blsupported = true;
-                    break;
-                case @".jpg":
-                    blsupported = true;
-                    break;
-                case @".lha":
-                    blsupported = true;
-                    break;
-                case @".lhp":
-                    blsupported = true;
-                    break;
-                case @".lzh":
-                    blsupported = true;
-                    break;
-                case @".mid":
-                    blsupported = true;
-                    break;
-                case @".mov":
-                    blsupported = true;
-                    break;
-                case @".mpeg":
-                    blsupported = true;
-                    break;
-                case @".mpg":
-                    blsupported = true;
-                    break;
-                case @".nsf":
-                    blsupported = true;
-                    break;
-                case @".ntf":
-                    blsupported = true;
-                    break;
-                case @".obj":
-                    blsupported = true;
-                    break;
-                case @".pcx":
-                    blsupported = true;
-                    break;
-                case @".pdf":
-                    blsupported = true;
-                    break;
-                case @".png":
-                    blsupported = true;
-                    break;
-                case @".ppt":
-                    blsupported = true;
-                    break;
-                case @".pptx":
-                    blsupported = true;
-                    break;
-                case @".psp":
-                    blsupported = true;
-                    break;
-                case @".qt":
-                    blsupported = true;
-                    break;
-                case @".ra":
-                    blsupported = true;
-                    break;
-                case @".ram":
-                    blsupported = true;
-                    break;
-                case @".rar":
-                    blsupported = true;
-                    break;
-                case @".reg":
-                    blsupported = true;
-                    break;
-                case @".rpm":
-                    blsupported = true;
-                    break;
-                case @".rtf":
-                    blsupported = true;
-                    break;
-                case @".sit":
-                    blsupported = true;
-                    break;
-                case @".tar":
-                    blsupported = true;
-                    break;
-                case @".tgz":
-                    blsupported = true;
-                    break;
-                case @".tif":
-                    blsupported = true;
-                    break;
-                case @".tiff":
-                    blsupported = true;
-                    break;
-                case @".ufa":
-                    blsupported = true;
-                    break;
-                case @".wav":
-                    blsupported = true;
-                    break;
-                case @".wk1":
-                    blsupported = true;
-                    break;
-                case @".wk3":
-                    blsupported = true;
-                    break;
-                case @".wk4":
-                    blsupported = true;
-                    break;
-                case @".wks":
-                    blsupported = true;
-                    break;
-                case @".xls":
-                    blsupported = true;
-                    break;
-                case @".xlsx":
-                    blsupported = true;
-                    break;
-                case @".xlt":
-                    blsupported = true;
-                    break;
-                case @".z":
-                    blsupported = true;
-                    break;
-                case @".dot":
-                    blsupported = true;
-                    break;
-                case @".pps":
-                    blsupported = true;
-                    break;
-                case @".mp4":
-                    blsupported = true;
-                    break;
-                case @".m4v":
-                    blsupported = true;
-                    break;
-                case @".msi":
-                    blsupported = true;
-                    break;
-                case @".msg":
-                    blsupported = true;
-                    break;
-                case @".wps":
-                    blsupported = true;
-                    break;
-                case @".vsd":
-                    blsupported = true;
-                    break;
-                case @".qbm":
-                    blsupported = true;
-                    break;
-                case @".pub":
-                    blsupported = true;
-                    break;
-                case @".adp":
-                    blsupported = true;
-                    break;
-                case @".notebook":
-                    blsupported = true;
-                    break;
-                case @".flv":
-                    blsupported = true;
-                    break;
-                case @".swf":
-                    blsupported = true;
-                    break;
-                case @".wmv":
-                    blsupported = true;
-                    break;
-                case @".wma":
-                    blsupported = true;
-                    break;
-                case @".pst":
-                    blsupported = true;
-                    break;
-                case @".config":
-                    blsupported = true;
-                    break;
-                case @".7z":
-                    blsupported = true;
-                    break;
-                case @".kwd":
-                    blsupported = true;
-                    break;
-                case @".vsdx":
-                    blsupported = true;
-                    break;
-                case @".odt":
-                    blsupported = true;
-                    break;
-                case @".odp":
-                    blsupported = true;
-                    break;
-                case @".xps":
-                    blsupported = true;
-                    break;
-                case @".sxc":
-                    blsupported = true;
-                    break;
-                case @".sxd":
-                    blsupported = true;
-                    break;
-                case @".sxi":
-                    blsupported = true;
-                    break;
-                case @".sxw":
-                    blsupported = true;
-                    break;
-                case @".aac":
-                    blsupported = true;
-                    break;
-                case @".db":
-                    blsupported = true;
-                    break;
-                case @".m4a":
-                    blsupported = true;
-                    break;
-                case @".sqlite":
-                    blsupported = true;
-                    break;
-                case @".epub":
-                    blsupported = true;
-                    break;
-                case @".vmdk":
-                    blsupported = true;
-                    break;
-                case @".vhd":
-                    blsupported = true;
-                    break;
-                case @".msu":
-                    blsupported = true;
-                    break;
-                case @".msp":
-                    blsupported = true;
-                    break;
-                case @".mus":
-                    blsupported = true;
-                    break;
-                case @".musx":
-                    blsupported = true;
-                    break;
-                case @".url":
-                    blsupported = true;
-                    break;
-                case @".pog":
-                    blsupported = true;
-                    break;
-                case @".pof":
-                    blsupported = true;
-                    break;
-                case @".qbw":
-                    blsupported = true;
-                    break;
-                case @".nd":
-                    blsupported = true;
-                    break;
-                case @".tlg":
-                    blsupported = true;
-                    break;
-                case @".qbb":
-                    blsupported = true;
-                    break;
-                default:
-                    break;
+                try
+                {
+                    
+                    string[] strArr_extensionlist = hs.FileExtensions;
+
+                    if (!(strArr_extensionlist == null || strArr_extensionlist.Length == 0))
+                    {
+                        //loop through excluded folders
+                        foreach (string strExtension1 in strArr_extensionlist)
+                        {
+                            if (strExtension1.ToLower() == strExtension.ToLower())
+                            {
+                                blsupported = true;
+                                return blsupported;
+                            }
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+
+
+                }
+
+
             }
+
             return blsupported;
         }
+
 
 		/// <summary>
 		/// Gets the checker.
@@ -889,6 +610,14 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 				return _signatureName;
 			}
 		}
+
+        public int ByteOffset
+        {
+            get
+            {
+                return _byteoffset;
+            }
+        }
 
 		/// <summary>
 		/// Gets the file extensions.
@@ -924,6 +653,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 		private readonly string _signatureName;
 		private readonly string[] _fileExtensions;
 		private readonly ProhibitionMode _prohibitionMode;
+        private readonly int _byteoffset;
 
 		// ------------------------------------------------------------------
 		#endregion

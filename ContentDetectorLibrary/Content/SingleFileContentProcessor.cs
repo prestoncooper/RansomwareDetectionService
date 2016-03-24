@@ -29,25 +29,8 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 			_filePath = filePath;
 		}
 
-		/// <summary>
-		/// Determines whether [contains prohibited content].
-		/// </summary>
-		/// <returns>
-		/// 	<c>true</c> if [contains prohibited content]; otherwise, <c>false</c>.
-		/// </returns>
-		public bool ContainsProhibitedContent(bool ignoreExtension)
-		{
-			foreach ( HeaderSignature signature in HeaderSignature.StockSignatures )
-			{
-				if ( signature.ProhibitionMode == ProhibitionMode.Prohibited &&
-					signature.MatchesFile( _filePath,ignoreExtension) )
-				{
-					return true;
-				}
-			}
+		
 
-			return false;
-		}
 
         /// <summary>
         /// Determines whether [contains prohibited content].
@@ -55,9 +38,49 @@ namespace RansomwareDetection.ContentDetectorLib.Content
         /// <returns>
         /// 	<c>true</c> if [contains prohibited content]; otherwise, <c>false</c>.
         /// </returns>
-        public bool VerifyHeaderContent()
+        public bool ContainsProhibitedContent(bool ignoreExtension, System.Data.DataTable dtSignatures)
         {
-            foreach (HeaderSignature signature in HeaderSignature.StockSignatures)
+            HeaderSignature[] sigs;
+            if (dtSignatures == null || dtSignatures.Rows.Count == 0)
+            {
+                sigs = HeaderSignature.StockSignatures;
+            }
+            else
+            {
+                sigs = HeaderSignature.CustomSignatures(dtSignatures);
+            }
+            foreach (HeaderSignature signature in sigs)
+            {
+                if (signature.ProhibitionMode == ProhibitionMode.Prohibited &&
+                    signature.MatchesFile(_filePath, ignoreExtension))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+        
+       
+
+        /// <summary>
+        /// Determines whether [contains prohibited content].
+        /// </summary>
+        /// <returns>
+        /// 	<c>true</c> if [contains prohibited content]; otherwise, <c>false</c>.
+        /// </returns>
+        public bool VerifyHeaderContent(System.Data.DataTable dtSignatures)
+        {
+            HeaderSignature[] sigs;
+            if (dtSignatures == null || dtSignatures.Rows.Count == 0)
+            {
+                sigs = HeaderSignature.StockSignatures;
+            }
+            else
+            {
+                sigs = HeaderSignature.CustomSignatures(dtSignatures);
+            }
+            foreach (HeaderSignature signature in sigs)
             {
                 if (signature.MatchesFile(_filePath, false))
                 {

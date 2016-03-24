@@ -76,6 +76,7 @@ namespace RansomwareDetection.ContentDetectorLib
 	using System.IO;
 	//using Archive;
 	using Content;
+    using System.Data;
 
 	// ----------------------------------------------------------------------
 	#endregion
@@ -91,94 +92,93 @@ namespace RansomwareDetection.ContentDetectorLib
 		#region Public methods.
 		// ------------------------------------------------------------------
 
-		/// <summary>
-		/// Determines whether the specified file contains prohibited content.
-		/// </summary>
-		/// <param name="filePath">The file path.</param>
-		public bool ContainsFileProhibitedContent(
-			Delimon.Win32.IO.FileInfo filePath )
-		{
-			return DoCheckContainsFileProhibitedContent( filePath, 0 );
-		}
 
-		/// <summary>
-		/// Determines whether the specified folder contains files with
-		/// prohibited content.
-		/// </summary>
-		/// <param name="folderPath">The folder path.</param>
-		/// <returns>
-		/// 	<c>true</c> if [contains folder prohibited content] 
-		/// [the specified folder path]; otherwise, <c>false</c>.
-		/// </returns>
-		public Delimon.Win32.IO.FileInfo[] ContainsFolderProhibitedContent(
-			Delimon.Win32.IO.DirectoryInfo folderPath )
-		{
-			return ContainsFolderProhibitedContent( folderPath, false );
-		}
-
-		/// <summary>
-		/// Determines whether the specified folder contains files with
-		/// prohibited content.
-		/// </summary>
-		/// <param name="folderPath">The folder path.</param>
-		/// <param name="recursive">if set to <c>true</c> [recursive].</param>
-		/// <returns>
-		/// 	<c>true</c> if [contains folder prohibited content] 
-		/// [the specified folder path]; otherwise, <c>false</c>.
-		/// </returns>
-		public Delimon.Win32.IO.FileInfo[] ContainsFolderProhibitedContent(
-            Delimon.Win32.IO.DirectoryInfo folderPath,
-			bool recursive )
-		{
-			Trace.WriteLine(
-				string.Format(
-				@"Checking folder '{0}'.",
-				folderPath.FullName ) );
-
-            List<Delimon.Win32.IO.FileInfo> prohibitedFiles = new List<Delimon.Win32.IO.FileInfo>();
-
-			if ( true )
-			{
-                Delimon.Win32.IO.FileInfo[] filePaths = folderPath.GetFiles();
-
-				int index = 0;
-                foreach (Delimon.Win32.IO.FileInfo filePath in filePaths)
-				{
-					Trace.WriteLine(
-						string.Format(
-						@"[{0}/{1}] Checking file '{2}' ({3:0,0} bytes).",
-						index + 1, filePaths.Length,
-						filePath.FullName,
-						filePath.Length ) );
-
-					if ( ContainsFileProhibitedContent( filePath ) )
-					{
-						prohibitedFiles.Add( filePath );
-					}
-
-					index++;
-				}
-			}
-
-			// --
-
-			if ( recursive )
-			{
-                Delimon.Win32.IO.DirectoryInfo[] folderPaths = folderPath.GetDirectories();
-
-                foreach (Delimon.Win32.IO.DirectoryInfo childFolderPath in folderPaths)
-				{
-					prohibitedFiles.AddRange(
-						ContainsFolderProhibitedContent(
-						childFolderPath,
-						recursive ) );
-				}
-			}
-
-			return prohibitedFiles.ToArray();
-		}
+        /// <summary>
+        /// Initializes the config table for file filters
+        /// </summary>
+        /// <returns></returns>
+        public static DataTable init_dtSignature()
+        {
+            DataTable dtSignatures;
+            dtSignatures = new DataTable("SignaturesConfig");
 
 
+            //Create Primary Key Column
+            DataColumn dcID = new DataColumn("ID", typeof(Int32));
+            dcID.AllowDBNull = false;
+            dcID.Unique = true;
+            dcID.AutoIncrement = true;
+            dcID.AutoIncrementSeed = 1;
+            dcID.AutoIncrementStep = 1;
+
+            //Assign Primary Key
+            DataColumn[] columns = new DataColumn[1];
+            dtSignatures.Columns.Add(dcID);
+            columns[0] = dtSignatures.Columns["ID"];
+            dtSignatures.PrimaryKey = columns;
+
+
+            //Create Columns
+            dtSignatures.Columns.Add(new DataColumn("Enabled", typeof(String)));
+            dtSignatures.Columns.Add(new DataColumn("HexPattern", typeof(String)));
+            dtSignatures.Columns.Add(new DataColumn("SignatureName", typeof(String)));
+            dtSignatures.Columns.Add(new DataColumn("FileExtensions", typeof(String)));
+            dtSignatures.Columns.Add(new DataColumn("Prohibited", typeof(String)));
+            dtSignatures.Columns.Add(new DataColumn("Comment", typeof(String)));
+
+            dtSignatures.Columns["Enabled"].DefaultValue = "true";
+            dtSignatures.Columns["HexPattern"].DefaultValue = "";
+            dtSignatures.Columns["SignatureName"].DefaultValue = "";
+            dtSignatures.Columns["FileExtensions"].DefaultValue = "";
+            dtSignatures.Columns["Prohibited"].DefaultValue = "False";
+            dtSignatures.Columns["Comment"].DefaultValue = "";
+
+            return dtSignatures;
+
+        }
+
+		
+
+		
+
+        /// <summary>
+        /// Cores the content of the process file.
+        /// </summary>
+        /// <param name="filePath">The file path.</param>
+        /// <returns></returns>
+        private static bool ContainsProhibitedFileContent(
+            Delimon.Win32.IO.FileInfo filePath, DataTable dtSignatures)
+        {
+            Trace.WriteLine(
+                string.Format(
+                @"Processing content of file '{0}' ({1:0,0} bytes).",
+                filePath.FullName,
+                filePath.Length));
+
+            SingleFileContentProcessor processor =
+                new SingleFileContentProcessor(filePath);
+
+            bool result = processor.ContainsProhibitedContent(true,dtSignatures);
+
+            if (result)
+            {
+                Trace.WriteLine(
+                    string.Format(
+                        @"Detected PROHIBITED content in file '{0}' ({1:0,0} bytes).",
+                        filePath.FullName,
+                        filePath.Length));
+            }
+            else
+            {
+                Trace.WriteLine(
+                    string.Format(
+                        @"Detected NO prohibited content in file '{0}' ({1:0,0} bytes).",
+                        filePath.FullName,
+                        filePath.Length));
+            }
+
+            return result;
+        }
         /// <summary>
         /// Determines whether the specified folder contains files with
         /// file extensions that do not match the content.
@@ -195,8 +195,10 @@ namespace RansomwareDetection.ContentDetectorLib
             ref List<Delimon.Win32.IO.FileInfo> verifiedFiles,
             ref List<Delimon.Win32.IO.FileInfo> unVerifiedFiles,
             ref List<Delimon.Win32.IO.FileInfo> unknownFiles,
+            ref List<Delimon.Win32.IO.FileInfo> ProhibitedFiles,
             ref bool blShuttingDown,
-            string excludeFolders
+            string excludeFolders,
+            System.Data.DataTable dtSignatures
             )
         {
             Trace.WriteLine(
@@ -208,7 +210,7 @@ namespace RansomwareDetection.ContentDetectorLib
             if (true)
             {
                 Delimon.Win32.IO.FileInfo[] filePaths = folderPath.GetFiles();
-
+                HeaderSignature[] sigs;
                 int index = 0;
                 foreach (Delimon.Win32.IO.FileInfo filePath in filePaths)
                 {
@@ -228,11 +230,23 @@ namespace RansomwareDetection.ContentDetectorLib
                         index + 1, filePaths.Length,
                         filePath.FullName,
                         filePath.Length));
-                        if (!HeaderSignature.ExtensionSupported(filePath.Extension))
+
+                        //Load either default signatures or custom for determining ExtensionSupported?
+                        if (dtSignatures == null || dtSignatures.Rows.Count == 0)
+                        {
+                            sigs = HeaderSignature.StockSignatures;
+                        }
+                        else
+                        {
+                            sigs = HeaderSignature.CustomSignatures(dtSignatures);
+                        }
+
+                        //Verify File Headers
+                        if (!HeaderSignature.ExtensionSupported(filePath.Extension,sigs))
                         {
                             unknownFiles.Add(filePath);
                         }
-                        else if (!IsVerifiedContent(filePath))
+                        else if (!IsVerifiedContent(filePath,dtSignatures))
                         {
                             unVerifiedFiles.Add(filePath);
                         }
@@ -240,6 +254,13 @@ namespace RansomwareDetection.ContentDetectorLib
                         {
                             verifiedFiles.Add(filePath);
                         }
+
+                        //check for prohibited files
+                        if (ContainsProhibitedFileContent(filePath,dtSignatures))
+                        {
+                            ProhibitedFiles.Add(filePath);
+                        }
+
                     }
                     catch (Exception)
                     {
@@ -300,7 +321,7 @@ namespace RansomwareDetection.ContentDetectorLib
                     
                     if (!blIgnoreDirectory)
                     {
-                        ContainsFolderVerifyContent(childFolderPath, recursive, ref verifiedFiles, ref unVerifiedFiles, ref unknownFiles, ref blShuttingDown, excludeFolders);
+                        ContainsFolderVerifyContent(childFolderPath, recursive, ref verifiedFiles, ref unVerifiedFiles, ref unknownFiles,ref ProhibitedFiles, ref blShuttingDown, excludeFolders, dtSignatures);
                     }
                 }
             }
@@ -317,32 +338,7 @@ namespace RansomwareDetection.ContentDetectorLib
 		#region Private methods.
 		// ------------------------------------------------------------------
 
-		/// <summary>
-		/// Does the content of the check contains file prohibited.
-		/// </summary>
-		/// <param name="filePath">The file path.</param>
-		/// <param name="indentLevel">The nesting depth.</param>
-		/// <returns></returns>
-		private bool DoCheckContainsFileProhibitedContent(
-            Delimon.Win32.IO.FileInfo filePath,
-			int indentLevel )
-		{
-			if ( filePath == null || !filePath.Exists || filePath.Length <= 0 ||
-				indentLevel > maximumNestingDepth )
-			{
-				return false;
-			}
-			else
-			{
-				Trace.WriteLine(
-					string.Format(
-					@"Checking file '{0}' ({1:0,0} bytes).",
-					filePath.FullName,
-					filePath.Length ) );
-
-				return IsProhibitedContent( filePath, indentLevel );
-			}
-		}
+		
 
         /// <summary>
         /// Does the content of the check contains file prohibited.
@@ -351,7 +347,7 @@ namespace RansomwareDetection.ContentDetectorLib
         /// <param name="indentLevel">The nesting depth.</param>
         /// <returns></returns>
         private bool DoVerifyFileHeader(
-            Delimon.Win32.IO.FileInfo filePath)
+            Delimon.Win32.IO.FileInfo filePath, System.Data.DataTable dtSignatures)
         {
             if (filePath == null || !filePath.Exists || filePath.Length <= 0)
             {
@@ -365,48 +361,11 @@ namespace RansomwareDetection.ContentDetectorLib
                     filePath.FullName,
                     filePath.Length));
 
-                return IsVerifiedContent(filePath);
+                return IsVerifiedContent(filePath, dtSignatures);
             }
         }
 
-		/// <summary>
-		/// Determines whether [is prohibited content] [the specified file path].
-		/// </summary>
-		/// <param name="filePath">The file path.</param>
-		/// <param name="indentLevel">The nesting depth.</param>
-		/// <returns>
-		/// 	<c>true</c> if [is prohibited content] [the specified file path]; otherwise, <c>false</c>.
-		/// </returns>
-		private bool IsProhibitedContent(
-            Delimon.Win32.IO.FileInfo filePath,
-			int indentLevel )
-		{
-			/*if ( ArchiveExtractor.IsArchiveExtension( filePath.Extension ) )
-			{
-				if ( indentLevel < maximumNestingDepth )
-				{
-                    System.IO.FileInfo filePath1 = new System.IO.FileInfo(filePath.FullName);
-                    DirectoryInfo temporaryFolder = ExtractArchive(filePath1);
-					try
-					{
-                        Delimon.Win32.IO.DirectoryInfo dtemporaryFolder = new Delimon.Win32.IO.DirectoryInfo(temporaryFolder.FullName);
-                        return ProcessDirectory(dtemporaryFolder, indentLevel);
-					}
-					finally
-					{
-						temporaryFolder.Delete( true );
-					}
-				}
-				else
-				{
-					return false;
-				}
-			}
-			else
-			{*/
-				return CoreProcessFileContent( filePath );
-			//}
-		}
+		
 
 
         /// <summary>
@@ -417,77 +376,15 @@ namespace RansomwareDetection.ContentDetectorLib
         /// <returns>
         /// 	<c>true</c> if [is prohibited content] [the specified file path]; otherwise, <c>false</c>.
         /// </returns>
-        private bool IsVerifiedContent(Delimon.Win32.IO.FileInfo filePath)
+        private bool IsVerifiedContent(Delimon.Win32.IO.FileInfo filePath, System.Data.DataTable dtSignatures)
         {
-                return CoreVerifyFileContent(filePath);
+
+                return CoreVerifyFileContent(filePath, dtSignatures);
         }
 
-		/*/// <summary>
-		/// Extracts the archive.
-		/// </summary>
-		/// <param name="filePath">The file path.</param>
-		/// <returns></returns>
-        private static DirectoryInfo ExtractArchive(
-            FileInfo filePath)
-		{
-			Trace.WriteLine(
-				string.Format(
-				@"Extracting archive file '{0}' ({1:0,0} bytes).",
-				filePath,
-				filePath.Length ) );
+		
 
-            DirectoryInfo folderPath = new DirectoryInfo(
-				Path.Combine(
-				Path.GetTempPath(),
-				@"_CDL_" +
-				Guid.NewGuid().GetHashCode() ) );
-
-			ArchiveExtractor extractor = new ArchiveExtractor(
-				filePath,
-				folderPath );
-
-			extractor.Extract();
-			return folderPath;
-		}*/
-
-		/// <summary>
-		/// Cores the content of the process file.
-		/// </summary>
-		/// <param name="filePath">The file path.</param>
-		/// <returns></returns>
-		private static bool CoreProcessFileContent(
-            Delimon.Win32.IO.FileInfo filePath)
-		{
-			Trace.WriteLine(
-				string.Format(
-				@"Processing content of file '{0}' ({1:0,0} bytes).",
-				filePath.FullName,
-				filePath.Length ) );
-
-			SingleFileContentProcessor processor =
-				new SingleFileContentProcessor( filePath );
-
-			bool result = processor.ContainsProhibitedContent(true);
-
-			if ( result )
-			{
-				Trace.WriteLine(
-					string.Format(
-						@"Detected PROHIBITED content in file '{0}' ({1:0,0} bytes).",
-						filePath.FullName,
-						filePath.Length ) );
-			}
-			else
-			{
-				Trace.WriteLine(
-					string.Format(
-						@"Detected NO prohibited content in file '{0}' ({1:0,0} bytes).",
-						filePath.FullName,
-						filePath.Length ) );
-			}
-
-			return result;
-		}
+		
 
         /// <summary>
         /// Cores the content of the process file.
@@ -495,18 +392,21 @@ namespace RansomwareDetection.ContentDetectorLib
         /// <param name="filePath">The file path.</param>
         /// <returns></returns>
         private static bool CoreVerifyFileContent(
-            Delimon.Win32.IO.FileInfo filePath)
+            Delimon.Win32.IO.FileInfo filePath, System.Data.DataTable dtSignatures)
         {
             Trace.WriteLine(
                 string.Format(
                 @"Processing content of file '{0}' ({1:0,0} bytes).",
                 filePath.FullName,
                 filePath.Length));
-
+            bool result;
             SingleFileContentProcessor processor =
                 new SingleFileContentProcessor(filePath);
 
-            bool result = processor.VerifyHeaderContent();
+           
+            result = processor.VerifyHeaderContent(dtSignatures);
+            
+            
 
             if (!result)
             {
@@ -528,39 +428,7 @@ namespace RansomwareDetection.ContentDetectorLib
             return result;
         }
 
-		/// <summary>
-		/// Processes the directory.
-		/// </summary>
-		/// <param name="temporaryFolder">The temporary folder.</param>
-		/// <param name="nestingDepth">The nesting depth.</param>
-		/// <returns></returns>
-		private bool ProcessDirectory(
-            Delimon.Win32.IO.DirectoryInfo temporaryFolder,
-			int nestingDepth )
-		{
-            Delimon.Win32.IO.FileInfo[] filePaths = temporaryFolder.GetFiles();
-
-            foreach (Delimon.Win32.IO.FileInfo filePath in filePaths)
-			{
-				if ( DoCheckContainsFileProhibitedContent( filePath, nestingDepth + 1 ) )
-				{
-					return true;
-				}
-			}
-
-            Delimon.Win32.IO.DirectoryInfo[] folderPaths = temporaryFolder.GetDirectories();
-
-            foreach (Delimon.Win32.IO.DirectoryInfo folderPath in folderPaths)
-			{
-				if ( ProcessDirectory( folderPath, nestingDepth + 1 ) )
-				{
-					return true;
-				}
-			}
-
-			// Nothing found.
-			return false;
-		}
+		
 
 		// ------------------------------------------------------------------
 		#endregion

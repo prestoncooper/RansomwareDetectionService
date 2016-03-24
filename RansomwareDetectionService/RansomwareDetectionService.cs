@@ -75,6 +75,7 @@ namespace RansomwareDetection
         private static DataTable dtFileFiltersConfig;
         private static DataTable dtFindFilesConfig;
         private static DataTable dtAuditFilesConfig;
+        private static DataTable dtSignaturesConfig;
     
         /// <summary>
         /// Event Log Class
@@ -326,6 +327,11 @@ namespace RansomwareDetection
             dtAuditFilesConfig = AuditFolder.init_dtConfig();
         }
 
+        private void init_dtSignaturesConfig()
+        {
+            dtSignaturesConfig = AuditFolder.init_dtSignaturesConfig();
+        }
+
         /// <summary>
         /// Service Start Method
         /// </summary>
@@ -345,10 +351,14 @@ namespace RansomwareDetection
                 init_dtFindFilesConfig();
                 init_dtFileFiltersConfig();
                 init_dtAuditFilesConfig();
+                init_dtSignaturesConfig();
                 dtCompareConfig.ReadXml(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\CompareConfig.xml");
                 dtFindFilesConfig.ReadXml(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\FindFilesConfig.xml");
                 dtFileFiltersConfig.ReadXml(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\FileFiltersConfig.xml");
                 dtAuditFilesConfig.ReadXml(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\AuditFilesConfig.xml");
+
+                dtSignaturesConfig.ReadXml(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\SignaturesConfig.xml");
+
 
                 //Timer_Execute();
 
@@ -915,7 +925,7 @@ namespace RansomwareDetection
                     //Retention  Deletes older files based on algorithm
                     foreach (DataRow row in dtAuditFilesConfig.Rows)
                     {
-                        AuditFolder AudFolder1 = new AuditFolder(row);
+                        AuditFolder AudFolder1 = new AuditFolder(row,dtSignaturesConfig);
                         if (ExecuteTime(AudFolder1))
                         {
                             AudFolder1.SMTPPort = SMTPPort;

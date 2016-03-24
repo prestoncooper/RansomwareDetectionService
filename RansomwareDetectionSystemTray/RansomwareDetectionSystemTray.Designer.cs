@@ -188,6 +188,15 @@
             this.dgvcoltxtFileFiltersComment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabAudit = new System.Windows.Forms.TabPage();
             this.dgvAudit = new System.Windows.Forms.DataGridView();
+            this.tabSignatures = new System.Windows.Forms.TabPage();
+            this.dgvSignatures = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewCheckBoxColumn60 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvSignaturestxtColFileExtensions = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewCheckBoxColumn62 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvAuditTxtColID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewCheckBoxColumn21 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dgvAuditTxtColTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -221,6 +230,7 @@
             this.dgvAuditChkColExportUnVerifiedToCSV = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dgvAuditChkColExportVerifiedToCSV = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dgvAuditChkCol1ExportUnknownToCSV = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dgvAuditchkColExportProhibitedToCSV = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewCheckBoxColumn64 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewCheckBoxColumn65 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dgvAuditCalColStartDate = new System.Windows.Forms.CalendarColumn();
@@ -241,6 +251,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvFileFilters)).BeginInit();
             this.tabAudit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAudit)).BeginInit();
+            this.tabSignatures.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSignatures)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -1227,6 +1239,7 @@
             this.tabControl.Controls.Add(this.tabFindFiles);
             this.tabControl.Controls.Add(this.tabFilesToFind);
             this.tabControl.Controls.Add(this.tabAudit);
+            this.tabControl.Controls.Add(this.tabSignatures);
             this.tabControl.Controls.Add(this.tabEvents);
             this.tabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl.Location = new System.Drawing.Point(1, 392);
@@ -1243,7 +1256,7 @@
             this.tabFindFiles.Padding = new System.Windows.Forms.Padding(3);
             this.tabFindFiles.Size = new System.Drawing.Size(769, 140);
             this.tabFindFiles.TabIndex = 7;
-            this.tabFindFiles.Text = "Find Ransomware Files (Off Hours Only)";
+            this.tabFindFiles.Text = "Find Ransom Files (Off Hours Only)";
             this.tabFindFiles.ToolTipText = "Only run this outside of business hours.  Large file shares can take a long time." +
     "";
             this.tabFindFiles.UseVisualStyleBackColor = true;
@@ -1594,7 +1607,7 @@
             this.tabFilesToFind.Padding = new System.Windows.Forms.Padding(3);
             this.tabFilesToFind.Size = new System.Drawing.Size(769, 140);
             this.tabFilesToFind.TabIndex = 8;
-            this.tabFilesToFind.Text = "Find File Filters";
+            this.tabFilesToFind.Text = "Find Filters";
             this.tabFilesToFind.ToolTipText = "Ransomware files to search for via the Find Ransomware Files tab.";
             this.tabFilesToFind.UseVisualStyleBackColor = true;
             // 
@@ -1738,6 +1751,7 @@
             this.dgvAuditChkColExportUnVerifiedToCSV,
             this.dgvAuditChkColExportVerifiedToCSV,
             this.dgvAuditChkCol1ExportUnknownToCSV,
+            this.dgvAuditchkColExportProhibitedToCSV,
             this.dataGridViewCheckBoxColumn64,
             this.dataGridViewCheckBoxColumn65,
             this.dgvAuditCalColStartDate,
@@ -1751,6 +1765,92 @@
             this.dgvAudit.TabIndex = 17;
             this.dgvAudit.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAudit_CellDoubleClick);
             this.dgvAudit.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvAudit_CellValidating);
+            // 
+            // tabSignatures
+            // 
+            this.tabSignatures.Controls.Add(this.dgvSignatures);
+            this.tabSignatures.Location = new System.Drawing.Point(4, 25);
+            this.tabSignatures.Name = "tabSignatures";
+            this.tabSignatures.Size = new System.Drawing.Size(769, 140);
+            this.tabSignatures.TabIndex = 10;
+            this.tabSignatures.Text = "Audit Signatures";
+            this.tabSignatures.UseVisualStyleBackColor = true;
+            // 
+            // dgvSignatures
+            // 
+            this.dgvSignatures.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvSignatures.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSignatures.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewCheckBoxColumn60,
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8,
+            this.dgvSignaturestxtColFileExtensions,
+            this.dataGridViewCheckBoxColumn62,
+            this.dataGridViewTextBoxColumn10});
+            this.dgvSignatures.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvSignatures.Location = new System.Drawing.Point(0, 0);
+            this.dgvSignatures.Name = "dgvSignatures";
+            this.dgvSignatures.Size = new System.Drawing.Size(769, 140);
+            this.dgvSignatures.TabIndex = 19;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "ID";
+            this.dataGridViewTextBoxColumn6.HeaderText = "ID";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Width = 46;
+            // 
+            // dataGridViewCheckBoxColumn60
+            // 
+            this.dataGridViewCheckBoxColumn60.DataPropertyName = "Enabled";
+            this.dataGridViewCheckBoxColumn60.FalseValue = "false";
+            this.dataGridViewCheckBoxColumn60.HeaderText = "Enabled";
+            this.dataGridViewCheckBoxColumn60.IndeterminateValue = "";
+            this.dataGridViewCheckBoxColumn60.Name = "dataGridViewCheckBoxColumn60";
+            this.dataGridViewCheckBoxColumn60.TrueValue = "true";
+            this.dataGridViewCheckBoxColumn60.Width = 66;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "HexPattern";
+            this.dataGridViewTextBoxColumn7.HeaderText = "HexPattern";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ToolTipText = "Hexadecimal Pattern to Search for at the beginning of a file.  Anywhere within th" +
+    "e first 100 bytes.";
+            this.dataGridViewTextBoxColumn7.Width = 103;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.DataPropertyName = "SignatureName";
+            this.dataGridViewTextBoxColumn8.HeaderText = "SignatureName";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ToolTipText = "Name of File Type";
+            this.dataGridViewTextBoxColumn8.Width = 131;
+            // 
+            // dgvSignaturestxtColFileExtensions
+            // 
+            this.dgvSignaturestxtColFileExtensions.HeaderText = "FileExtensions";
+            this.dgvSignaturestxtColFileExtensions.Name = "dgvSignaturestxtColFileExtensions";
+            this.dgvSignaturestxtColFileExtensions.ToolTipText = "Semicolon separated list of file extensions including period (e.g   .doc;.docx)";
+            this.dgvSignaturestxtColFileExtensions.Width = 123;
+            // 
+            // dataGridViewCheckBoxColumn62
+            // 
+            this.dataGridViewCheckBoxColumn62.DataPropertyName = "Prohibited";
+            this.dataGridViewCheckBoxColumn62.HeaderText = "Prohibited";
+            this.dataGridViewCheckBoxColumn62.Name = "dataGridViewCheckBoxColumn62";
+            this.dataGridViewCheckBoxColumn62.ToolTipText = "Prohibited File Type?";
+            this.dataGridViewCheckBoxColumn62.Width = 78;
+            // 
+            // dataGridViewTextBoxColumn10
+            // 
+            this.dataGridViewTextBoxColumn10.DataPropertyName = "Comment";
+            this.dataGridViewTextBoxColumn10.HeaderText = "Comment";
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.dataGridViewTextBoxColumn10.ToolTipText = "Comment for this task";
+            this.dataGridViewTextBoxColumn10.Width = 92;
             // 
             // dgvAuditTxtColID
             // 
@@ -2019,6 +2119,13 @@
     "ile caused an error (permission or file locked).";
             this.dgvAuditChkCol1ExportUnknownToCSV.Width = 156;
             // 
+            // dgvAuditchkColExportProhibitedToCSV
+            // 
+            this.dgvAuditchkColExportProhibitedToCSV.DataPropertyName = "ExportProhibitedToCSV";
+            this.dgvAuditchkColExportProhibitedToCSV.HeaderText = "ExportProhibitedToCSV";
+            this.dgvAuditchkColExportProhibitedToCSV.Name = "dgvAuditchkColExportProhibitedToCSV";
+            this.dgvAuditchkColExportProhibitedToCSV.Width = 162;
+            // 
             // dataGridViewCheckBoxColumn64
             // 
             this.dataGridViewCheckBoxColumn64.DataPropertyName = "SendEmailOnFailure";
@@ -2107,6 +2214,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvFileFilters)).EndInit();
             this.tabAudit.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAudit)).EndInit();
+            this.tabSignatures.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSignatures)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2264,6 +2373,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvcoltxtFileFiltersComment;
         private System.Windows.Forms.TabPage tabAudit;
         private System.Windows.Forms.DataGridView dgvAudit;
+        private System.Windows.Forms.TabPage tabSignatures;
+        private System.Windows.Forms.DataGridView dgvSignatures;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn60;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvSignaturestxtColFileExtensions;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn62;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvAuditTxtColID;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn21;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvAuditTxtColTitle;
@@ -2297,6 +2415,7 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn dgvAuditChkColExportUnVerifiedToCSV;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dgvAuditChkColExportVerifiedToCSV;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dgvAuditChkCol1ExportUnknownToCSV;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dgvAuditchkColExportProhibitedToCSV;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn64;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn65;
         private System.Windows.Forms.CalendarColumn dgvAuditCalColStartDate;

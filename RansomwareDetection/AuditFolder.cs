@@ -64,6 +64,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
         public System.Collections.Generic.List<Delimon.Win32.IO.FileInfo> FilesVerified = null;
         public System.Collections.Generic.List<Delimon.Win32.IO.FileInfo> FilesUnVerified = null;
         public System.Collections.Generic.List<Delimon.Win32.IO.FileInfo> FilesUnknown = null;
+        public System.Collections.Generic.List<Delimon.Win32.IO.FileInfo> FilesProhibited = null;
         
         /// <summary>
         /// Event Log Class
@@ -604,6 +605,23 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
 
         }
 
+        private bool _exportProhibitedToCSV = true;
+        /// <summary>
+        /// Exclude Folders separate folder names by semicolon
+        /// </summary>
+        public bool ExportProhibitedToCSV
+        {
+            get
+            {
+                return _exportProhibitedToCSV;
+            }
+            set
+            {
+                _exportProhibitedToCSV = value;
+            }
+
+        }
+
         private string _excludeFolders = "";
         /// <summary>
         /// Exclude Folders separate folder names by semicolon
@@ -633,6 +651,20 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                 _detailedLogging = value;
             }
         }
+
+        private DataTable _signatures;
+        public DataTable Signatures
+        {
+            get
+            {
+                return _signatures;
+            }
+            set
+            {
+                _signatures = value;
+            }
+        }
+
         #endregion
 
 
@@ -650,16 +682,17 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
             //FilesUnVerified = new System.Collections.Generic.List<Delimon.Win32.IO.FileInfo>();
             //FilesUnknown = new System.Collections.Generic.List<Delimon.Win32.IO.FileInfo>();
             _evt = Common.GetEventLog;
+            Signatures = ContentDetectorLib.ContentDetectorEngine.init_dtSignature();
         }
 
 
-
+        
 
         /// <summary>
         /// Compare Contructor
         /// </summary>
         /// <param name="row"></param>
-        public AuditFolder(DataRow row)
+        public AuditFolder(DataRow row, DataTable dtSignatures)
         {
             _evt = Common.GetEventLog;
             //FilesVerified = new System.Collections.Generic.List<Delimon.Win32.IO.FileInfo>();
@@ -750,9 +783,11 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
             ExportUnknownToCSV = Common.FixNullbool(row["ExportUnknownToCSV"]);
             ExportUnVerifiedToCSV = Common.FixNullbool(row["ExportUnVerifiedToCSV"]);
             ExportVerifiedToCSV = Common.FixNullbool(row["ExportVerifiedToCSV"]);
+            ExportProhibitedToCSV = Common.FixNullbool(row["ExportProhibitedToCSV"]);
             ExcludeFolders = Common.FixNullstring(row["ExcludeFolders"]);
             Comment = Common.FixNullstring(row["Comment"]);
             DetailedLogging = Common.FixNullbool(row["DetailedLogging"]);
+            Signatures = dtSignatures;
 
         }
 
@@ -790,7 +825,16 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                 }
                 FilesUnknown = null;
 
-                _evt = null;
+                if (FilesProhibited != null)
+                {
+                    if (FilesProhibited.Count > 0)
+                    {
+                        FilesProhibited.Clear();
+                    }
+                }
+                FilesProhibited = null;
+
+                //_evt = null;
             }
             catch (Exception)
             {   
@@ -798,6 +842,11 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
            
         }
 
+
+        public static DataTable init_dtSignaturesConfig()
+        {
+            return ContentDetectorLib.ContentDetectorEngine.init_dtSignature();
+        }
 
         /// <summary>
         /// Initializes the Compare config table
@@ -859,6 +908,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
             dtAuditConfig.Columns.Add(new DataColumn("ExportUnVerifiedToCSV", typeof(String)));
             dtAuditConfig.Columns.Add(new DataColumn("ExportVerifiedToCSV", typeof(String)));
             dtAuditConfig.Columns.Add(new DataColumn("ExportUnknownToCSV", typeof(String)));
+            dtAuditConfig.Columns.Add(new DataColumn("ExportProhibitedToCSV", typeof(String)));
             dtAuditConfig.Columns.Add(new DataColumn("ExcludeFolders", typeof(String)));
             dtAuditConfig.Columns.Add(new DataColumn("StartDate", typeof(String)));
             dtAuditConfig.Columns.Add(new DataColumn("EndDate", typeof(String)));
@@ -901,6 +951,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
             dtAuditConfig.Columns["ExportUnVerifiedToCSV"].DefaultValue = "true";
             dtAuditConfig.Columns["ExportVerifiedToCSV"].DefaultValue = "true";
             dtAuditConfig.Columns["ExportUnknownToCSV"].DefaultValue = "true";
+            dtAuditConfig.Columns["ExportProhibitedToCSV"].DefaultValue = "true";
             dtAuditConfig.Columns["StartDate"].DefaultValue = DateTime.Now.ToString("d");
             return dtAuditConfig;
 
@@ -923,13 +974,13 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                     FilesVerified = new System.Collections.Generic.List<Delimon.Win32.IO.FileInfo>();
                     FilesUnVerified = new System.Collections.Generic.List<Delimon.Win32.IO.FileInfo>();
                     FilesUnknown = new System.Collections.Generic.List<Delimon.Win32.IO.FileInfo>();
-
+                    FilesProhibited = new System.Collections.Generic.List<Delimon.Win32.IO.FileInfo>();
 
                     try
                     {
                         ContentDetectorLib.ContentDetectorEngine cengine = new ContentDetectorLib.ContentDetectorEngine();
                         Delimon.Win32.IO.DirectoryInfo dFilePathToCheck = new Delimon.Win32.IO.DirectoryInfo(FilePathToCheck);
-                        cengine.ContainsFolderVerifyContent(dFilePathToCheck, CheckSubFolders, ref FilesVerified, ref FilesUnVerified, ref FilesUnknown, ref blShuttingDown, ExcludeFolders);
+                        cengine.ContainsFolderVerifyContent(dFilePathToCheck, CheckSubFolders, ref FilesVerified, ref FilesUnVerified, ref FilesUnknown,ref FilesProhibited, ref blShuttingDown, ExcludeFolders,Signatures);
                     }
                     catch (Exception ex)
                     {
@@ -995,6 +1046,23 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                                 }
                                 Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\UnknownFiles.csv", sbUnknown.ToString());
                                 sbUnknown.Clear();
+                            }
+
+                            if (ExportProhibitedToCSV)
+                            {
+                                StringBuilder sbprohib = new StringBuilder();
+                                sbprohib.AppendLine("\"FullName\",\"Name\",\"Extension\",\"Created\",\"Modified\",\"Size\",\"Owner\"");
+                                foreach (Delimon.Win32.IO.FileInfo prohibitedFile in FilesProhibited)
+                                {
+                                    string strline = "\"" + prohibitedFile.FullName + "\",\"" + prohibitedFile.Name + "\",\"" + prohibitedFile.Extension + "\",\"" + prohibitedFile.CreationTime.ToString("G") + "\",\"" + prohibitedFile.LastWriteTime.ToString("G") + "\",\"" + prohibitedFile.Length.ToString() + "\",\"" + LongPathFileSearch.GetFileOwner(prohibitedFile.FullName) + "\"";
+                                    sbprohib.AppendLine(strline);
+                                }
+                                if (Common.FileExists(ExportCSVPath + "\\ProhibitedFiles.csv"))
+                                {
+                                    Delimon.Win32.IO.File.Delete(ExportCSVPath + "\\ProhibitedFiles.csv");
+                                }
+                                Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\ProhibitedFiles.csv", sbprohib.ToString());
+                                sbprohib.Clear();
                             }
                         
                         }
