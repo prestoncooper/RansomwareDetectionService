@@ -473,6 +473,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
             List<HeaderSignature> hds = new List<HeaderSignature>();
             string strHexPattern;
             string strSignatureName;
+            int intByteOffset = 0;
             string strFileExtensions;
             bool blEnabled = false;
             bool blProhibited = false;
@@ -482,9 +483,10 @@ namespace RansomwareDetection.ContentDetectorLib.Content
             foreach(DataRow row in dtSignatures.Rows)
             {
                 blEnabled = FixNullbool(row["Enabled"]);
+                int.TryParse(FixNullstring(row["ByteOffset"]),out intByteOffset);
                 strHexPattern = FixNullstring(row["HexPattern"]);
                 strSignatureName=FixNullstring(row["SignatureName"]);
-                strFileExtensions=FixNullstring(row["FileTypeTitle"]);
+                strFileExtensions = FixNullstring(row["FileExtensions"]);
                 
                 string[] strArr_FileExtensions = strFileExtensions.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
                 blProhibited = FixNullbool(row["Prohibited"]);
@@ -498,7 +500,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
                 }
                 if (blEnabled)
                 {
-                    hds.Add(new HeaderSignature(strHexPattern, strSignatureName, strArr_FileExtensions, pmode));
+                    hds.Add(new HeaderSignature(intByteOffset,strHexPattern, strSignatureName, strArr_FileExtensions, pmode));
                 }
             }
             return hds.ToArray();

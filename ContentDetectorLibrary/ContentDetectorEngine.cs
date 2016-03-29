@@ -120,6 +120,7 @@ namespace RansomwareDetection.ContentDetectorLib
 
             //Create Columns
             dtSignatures.Columns.Add(new DataColumn("Enabled", typeof(String)));
+            dtSignatures.Columns.Add(new DataColumn("ByteOffset", typeof(String)));
             dtSignatures.Columns.Add(new DataColumn("HexPattern", typeof(String)));
             dtSignatures.Columns.Add(new DataColumn("SignatureName", typeof(String)));
             dtSignatures.Columns.Add(new DataColumn("FileExtensions", typeof(String)));
@@ -127,6 +128,7 @@ namespace RansomwareDetection.ContentDetectorLib
             dtSignatures.Columns.Add(new DataColumn("Comment", typeof(String)));
 
             dtSignatures.Columns["Enabled"].DefaultValue = "true";
+            dtSignatures.Columns["ByteOffset"].DefaultValue = "0";
             dtSignatures.Columns["HexPattern"].DefaultValue = "";
             dtSignatures.Columns["SignatureName"].DefaultValue = "";
             dtSignatures.Columns["FileExtensions"].DefaultValue = "";

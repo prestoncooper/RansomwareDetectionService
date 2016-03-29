@@ -232,6 +232,7 @@
             this.dgvSignatures = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewCheckBoxColumn60 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dgvSignaturestxtcolByteOffset = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvSignaturestxtColFileExtensions = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -2114,6 +2115,7 @@
             this.dgvSignatures.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn6,
             this.dataGridViewCheckBoxColumn60,
+            this.dgvSignaturestxtcolByteOffset,
             this.dataGridViewTextBoxColumn7,
             this.dataGridViewTextBoxColumn8,
             this.dgvSignaturestxtColFileExtensions,
@@ -2144,6 +2146,15 @@
             this.dataGridViewCheckBoxColumn60.TrueValue = "true";
             this.dataGridViewCheckBoxColumn60.Width = 66;
             // 
+            // dgvSignaturestxtcolByteOffset
+            // 
+            this.dgvSignaturestxtcolByteOffset.DataPropertyName = "ByteOffset";
+            this.dgvSignaturestxtcolByteOffset.HeaderText = "ByteOffset";
+            this.dgvSignaturestxtcolByteOffset.Name = "dgvSignaturestxtcolByteOffset";
+            this.dgvSignaturestxtcolByteOffset.ToolTipText = "Characters preceding Hex Pattern to ignore, if any otherwise enter 0.  ByteOffset" +
+    " + HexPattern Length must be less than 100.";
+            this.dgvSignaturestxtcolByteOffset.Width = 99;
+            // 
             // dataGridViewTextBoxColumn7
             // 
             this.dataGridViewTextBoxColumn7.DataPropertyName = "HexPattern";
@@ -2163,6 +2174,7 @@
             // 
             // dgvSignaturestxtColFileExtensions
             // 
+            this.dgvSignaturestxtColFileExtensions.DataPropertyName = "FileExtensions";
             this.dgvSignaturestxtColFileExtensions.HeaderText = "FileExtensions";
             this.dgvSignaturestxtColFileExtensions.Name = "dgvSignaturestxtColFileExtensions";
             this.dgvSignaturestxtColFileExtensions.ToolTipText = "Semicolon separated list of file extensions including period (e.g   .doc;.docx)";
@@ -2376,13 +2388,6 @@
         private System.Windows.Forms.DataGridView dgvAudit;
         private System.Windows.Forms.TabPage tabSignatures;
         private System.Windows.Forms.DataGridView dgvSignatures;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn60;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgvSignaturestxtColFileExtensions;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn62;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvAuditTxtColID;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn21;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvAuditTxtColTitle;
@@ -2423,6 +2428,14 @@
         private System.Windows.Forms.CalendarColumn dgvAuditCalColEndDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvAuditTxtColComment;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn66;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn60;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvSignaturestxtcolByteOffset;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvSignaturestxtColFileExtensions;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn62;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
     }
 }
 

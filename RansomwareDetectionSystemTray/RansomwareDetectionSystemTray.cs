@@ -1561,6 +1561,24 @@ namespace RansomwareDetection
                         }
                     }
                 }
+                else if (dgvSignatures.Columns[e.ColumnIndex].HeaderText == "ByteOffset")
+                {
+                    DataGridViewTextBoxCell cell = dgvSignatures[e.ColumnIndex, e.RowIndex] as DataGridViewTextBoxCell;
+                    if (cell != null)
+                    {
+                        if (Common.FixNullstring(e.FormattedValue).Length > 0)
+                        {
+                            int intByteOffset = Common.FixNullInt32(e.FormattedValue.ToString());
+                            if (intByteOffset < 0 || intByteOffset > 100)
+                            {
+                                MessageBox.Show("Only positive integer value less than 100 is allowed.");
+                                e.Cancel = true;
+                            }
+
+
+                        }
+                    }
+                }
                 
             }
             catch (Exception ex)
