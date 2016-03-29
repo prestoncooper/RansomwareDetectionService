@@ -65,6 +65,7 @@ namespace RansomwareDetection
         private DataTable dtFindFilesConfig;
         private DataTable dtFileFiltersConfig;
         private DataTable dtAuditFilesConfig;
+        private DataTable dtSignaturesConfig;
 
         /// <summary>
         /// Event Log DataSet
@@ -328,6 +329,7 @@ namespace RansomwareDetection
         private void init_dtAuditFilesConfig()
         {
             dtAuditFilesConfig = AuditFolder.init_dtConfig();
+            dtSignaturesConfig = AuditFolder.init_dtSignaturesConfig();
         }
 
         /// <summary>
@@ -360,6 +362,10 @@ namespace RansomwareDetection
                 if (dtAuditFilesConfig != null)
                 {
                     dtAuditFilesConfig.Dispose();
+                }
+                if (dtSignaturesConfig != null)
+                {
+                    dtSignaturesConfig.Dispose();
                 }
 
                 if (bs != null)
@@ -500,6 +506,19 @@ namespace RansomwareDetection
 
             dgvAudit.AutoGenerateColumns = false;
             dgvAudit.DataSource = dtAuditFilesConfig;
+
+            try
+            {
+                dtSignaturesConfig.ReadXml(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\SignaturesConfig.xml");
+            }
+            catch (Exception)
+            {
+                dtSignaturesConfig.WriteXml(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\SignaturesConfig.xml");
+                dtSignaturesConfig.ReadXml(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\SignaturesConfig.xml");
+            }
+
+            dgvSignatures.AutoGenerateColumns = false;
+            dgvSignatures.DataSource = dtSignaturesConfig;
 
 
             txtServiceInterval.Text = ServiceInterval.ToString().Trim();
@@ -1121,7 +1140,7 @@ namespace RansomwareDetection
                     dtFindFilesConfig.WriteXml(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\FindFilesConfig.xml");
                     dtFileFiltersConfig.WriteXml(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\FileFiltersConfig.xml");
                     dtAuditFilesConfig.WriteXml(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\AuditFilesConfig.xml");
-
+                    dtSignaturesConfig.WriteXml(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\SignaturesConfig.xml");
                 }
             }
             catch (Exception ex)
@@ -1460,6 +1479,10 @@ namespace RansomwareDetection
             }
         }
 
+        
+
+        
+
         /// <summary>
         /// File Filter tab validates entered text for the File Filter Table
         /// </summary>
@@ -1517,6 +1540,40 @@ namespace RansomwareDetection
             }
         }
 
+
+
+        private void dgvSignatures_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            try
+            {
+                if (dgvSignatures.Columns[e.ColumnIndex].HeaderText == "HexPattern")
+                {
+                    DataGridViewTextBoxCell cell = dgvSignatures[e.ColumnIndex, e.RowIndex] as DataGridViewTextBoxCell;
+                    if (cell != null)
+                    {
+                        if (Common.FixNullstring(e.FormattedValue).Length > 0)
+                        {
+                            if (!Common.IsHexString(e.FormattedValue.ToString()))
+                            {
+                                MessageBox.Show("Only Hexadecimal Value is allowed (0-9 or A-F)");
+                                e.Cancel = true;
+                            }
+                        }
+                    }
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                if (_evt == null)
+                {
+                    _evt = Common.GetEventLog;
+                }
+                string strErr = ex.Message + ": " + ex.Source + "  " + ex.StackTrace;
+                _evt.WriteEntry(strErr);
+
+            }
+        }
 
         /// <summary>
         /// btnStop Click Event Handler
@@ -2039,6 +2096,8 @@ namespace RansomwareDetection
         }
 
         #endregion
+
+        
 
         
 

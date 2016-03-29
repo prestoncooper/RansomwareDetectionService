@@ -1044,6 +1044,19 @@ namespace RansomwareDetection.DetectionLib
             return blValue;
         }
 
+        public static bool IsHexString(string text)
+        {
+            for (var i = 0; i < text.Length; i++)
+            {
+                var current = text[i];
+                if (!(Char.IsDigit(current) || (current >= 'a' && current <= 'f') || (current >= 'A' && current <= 'F')))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
         /// <summary>
         /// Fixes null bool and returns false if null
         /// </summary>
