@@ -110,6 +110,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
             _fileExtensions = fileExtensions;
             _prohibitionMode = prohibitionMode;
             _byteoffset = byteoffset;
+
         }
 
 		/// <summary>

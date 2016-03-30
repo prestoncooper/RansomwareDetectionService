@@ -2162,7 +2162,8 @@
             this.dgvSignaturestxtcolFirstNumberOfBytesToRead.DataPropertyName = "FirstNumberOfBytesToRead";
             this.dgvSignaturestxtcolFirstNumberOfBytesToRead.HeaderText = "FirstNumberOfBytesToRead";
             this.dgvSignaturestxtcolFirstNumberOfBytesToRead.Name = "dgvSignaturestxtcolFirstNumberOfBytesToRead";
-            this.dgvSignaturestxtcolFirstNumberOfBytesToRead.ToolTipText = "Number of Bytes to Read to Compare to the Hex Pattern.";
+            this.dgvSignaturestxtcolFirstNumberOfBytesToRead.ToolTipText = "Number of Bytes to Read to Compare to the Hex Pattern. (0 defaults to 100 or (hex" +
+    "string length + byteoffset) if greater than 100.";
             this.dgvSignaturestxtcolFirstNumberOfBytesToRead.Width = 211;
             // 
             // dataGridViewTextBoxColumn7

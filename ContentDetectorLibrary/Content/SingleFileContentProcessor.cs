@@ -38,17 +38,8 @@ namespace RansomwareDetection.ContentDetectorLib.Content
         /// <returns>
         /// 	<c>true</c> if [contains prohibited content]; otherwise, <c>false</c>.
         /// </returns>
-        public bool ContainsProhibitedContent(bool ignoreExtension, System.Data.DataTable dtSignatures)
-        {
-            HeaderSignature[] sigs;
-            if (dtSignatures == null || dtSignatures.Rows.Count == 0)
-            {
-                sigs = HeaderSignature.StockSignatures;
-            }
-            else
-            {
-                sigs = HeaderSignature.CustomSignatures(dtSignatures);
-            }
+        public bool ContainsProhibitedContent(bool ignoreExtension, HeaderSignature[] sigs)
+        { 
             foreach (HeaderSignature signature in sigs)
             {
                 if (signature.ProhibitionMode == ProhibitionMode.Prohibited &&
@@ -69,17 +60,8 @@ namespace RansomwareDetection.ContentDetectorLib.Content
         /// <returns>
         /// 	<c>true</c> if [contains prohibited content]; otherwise, <c>false</c>.
         /// </returns>
-        public bool VerifyHeaderContent(System.Data.DataTable dtSignatures)
+        public bool VerifyHeaderContent(HeaderSignature[] sigs)
         {
-            HeaderSignature[] sigs;
-            if (dtSignatures == null || dtSignatures.Rows.Count == 0)
-            {
-                sigs = HeaderSignature.StockSignatures;
-            }
-            else
-            {
-                sigs = HeaderSignature.CustomSignatures(dtSignatures);
-            }
             foreach (HeaderSignature signature in sigs)
             {
                 if (signature.MatchesFile(_filePath, false))
