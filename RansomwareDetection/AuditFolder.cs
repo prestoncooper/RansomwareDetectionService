@@ -7,6 +7,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Threading;
 using System.Net.Mail;
+//using RansomwareDetection;
 
 
 //Used this code project to compare file headers http://www.codeproject.com/Articles/18611/A-small-Content-Detection-Library
@@ -61,10 +62,10 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
 
         private string ep = "19C235A4-A313-C4C4-48F4-A5B4DC86EBCC";
 
-        public System.Collections.Generic.List<Delimon.Win32.IO.FileInfo> FilesVerified = null;
-        public System.Collections.Generic.List<Delimon.Win32.IO.FileInfo> FilesUnVerified = null;
-        public System.Collections.Generic.List<Delimon.Win32.IO.FileInfo> FilesUnknown = null;
-        public System.Collections.Generic.List<Delimon.Win32.IO.FileInfo> FilesProhibited = null;
+        public System.Collections.Generic.List<ContentDetectorLib.FileResult> FilesVerified = null;
+        public System.Collections.Generic.List<ContentDetectorLib.FileResult> FilesUnVerified = null;
+        public System.Collections.Generic.List<ContentDetectorLib.FileResult> FilesUnknown = null;
+        public System.Collections.Generic.List<ContentDetectorLib.FileResult> FilesProhibited = null;
         
         /// <summary>
         /// Event Log Class
@@ -963,153 +964,123 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
         /// </summary>
         public void Execute(ref bool blShuttingDown)
         {
-            
+
             try
             {
                 if (Enabled)
                 {
-                    
+
                     WriteError("Ransomware Detection Service, File Audit Process: Started " + FilePathToCheck, System.Diagnostics.EventLogEntryType.Information, 7000, 70, true);
 
-                    FilesVerified = new System.Collections.Generic.List<Delimon.Win32.IO.FileInfo>();
-                    FilesUnVerified = new System.Collections.Generic.List<Delimon.Win32.IO.FileInfo>();
-                    FilesUnknown = new System.Collections.Generic.List<Delimon.Win32.IO.FileInfo>();
-                    FilesProhibited = new System.Collections.Generic.List<Delimon.Win32.IO.FileInfo>();
+                    FilesVerified = new System.Collections.Generic.List<ContentDetectorLib.FileResult>();
+                    FilesUnVerified = new System.Collections.Generic.List<ContentDetectorLib.FileResult>();
+                    FilesUnknown = new System.Collections.Generic.List<ContentDetectorLib.FileResult>();
+                    FilesProhibited = new System.Collections.Generic.List<ContentDetectorLib.FileResult>();
 
                     try
                     {
                         ContentDetectorLib.ContentDetectorEngine cengine = new ContentDetectorLib.ContentDetectorEngine();
                         Delimon.Win32.IO.DirectoryInfo dFilePathToCheck = new Delimon.Win32.IO.DirectoryInfo(FilePathToCheck);
-                        cengine.ContainsFolderVerifyContent(dFilePathToCheck, CheckSubFolders, ref FilesVerified, ref FilesUnVerified, ref FilesUnknown,ref FilesProhibited, ref blShuttingDown, ExcludeFolders,Signatures);
+                        cengine.ContainsFolderVerifyContent(dFilePathToCheck, CheckSubFolders, ref FilesVerified, ref FilesUnVerified, ref FilesUnknown, ref FilesProhibited, ref blShuttingDown, ExcludeFolders, Signatures);
                     }
                     catch (Exception ex)
                     {
                         WriteError(ex.Message + " source: " + ex.Source + " Stacktrace: " + ex.StackTrace, System.Diagnostics.EventLogEntryType.Error, 7000, 70, false);
-                        
+
                     }
 
                     try
                     {
 
-                    
+
                         if (Common.FixNullstring(ExportUnVerifiedToCSV).Trim() != "" && Common.DirectoryExists(ExportCSVPath))
                         {
                             ExportCSVPath = Common.WindowsPathClean(ExportCSVPath);
-                        
+
                             if (ExportUnVerifiedToCSV)
                             {
-                                StringBuilder sbUnVerified = new StringBuilder();
-                                sbUnVerified.AppendLine("\"FullName\",\"Name\",\"Extension\",\"Created\",\"Modified\",\"Size\",\"Owner\"");
-                                foreach (Delimon.Win32.IO.FileInfo unVerifiedFile in FilesUnVerified)
-                                {
-                                    string strline = "\"" + unVerifiedFile.FullName + "\",\"" + unVerifiedFile.Name + "\",\"" + unVerifiedFile.Extension + "\",\"" + unVerifiedFile.CreationTime.ToString("G") + "\",\"" + unVerifiedFile.LastWriteTime.ToString("G") + "\",\"" + unVerifiedFile.Length.ToString() + "\",\"" + LongPathFileSearch.GetFileOwner(unVerifiedFile.FullName) + "\"";
-                                    sbUnVerified.AppendLine(strline);
-                                }
                                 if (Common.FileExists(ExportCSVPath + "\\UnVerifiedFiles.csv"))
                                 {
                                     Delimon.Win32.IO.File.Delete(ExportCSVPath + "\\UnVerifiedFiles.csv");
                                 }
-                                Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\UnVerifiedFiles.csv", sbUnVerified.ToString());
-                                sbUnVerified.Clear();
+                                Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\UnVerifiedFiles.csv", ContentDetectorLib.FileResult.FileResultCollectionToCSV(FilesUnVerified));
                             }
 
                             if (ExportVerifiedToCSV)
                             {
-                                StringBuilder sbVerified = new StringBuilder();
-                                sbVerified.AppendLine("\"FullName\",\"Name\",\"Extension\",\"Created\",\"Modified\",\"Size\",\"Owner\"");
-                                foreach (Delimon.Win32.IO.FileInfo VerifiedFile in FilesVerified)
-                                {
-
-                                    string strline = "\"" + VerifiedFile.FullName + "\",\"" + VerifiedFile.Name + "\",\"" + VerifiedFile.Extension + "\",\"" + VerifiedFile.CreationTime.ToString("G") + "\",\"" + VerifiedFile.LastWriteTime.ToString("G") + "\",\"" + VerifiedFile.Length.ToString() + "\",\"" + LongPathFileSearch.GetFileOwner(VerifiedFile.FullName) + "\"";
-                                    sbVerified.AppendLine(strline);
-                                }
                                 if (Common.FileExists(ExportCSVPath + "\\VerifiedFiles.csv"))
                                 {
                                     Delimon.Win32.IO.File.Delete(ExportCSVPath + "\\VerifiedFiles.csv");
                                 }
-                                Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\VerifiedFiles.csv", sbVerified.ToString());
-                                sbVerified.Clear();
+                                Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\VerifiedFiles.csv", ContentDetectorLib.FileResult.FileResultCollectionToCSV(FilesVerified));
                             }
 
                             if (ExportUnknownToCSV)
                             {
-                                StringBuilder sbUnknown = new StringBuilder();
-                                sbUnknown.AppendLine("\"FullName\",\"Name\",\"Extension\",\"Created\",\"Modified\",\"Size\",\"Owner\"");
-                                foreach (Delimon.Win32.IO.FileInfo unknownFile in FilesUnknown)
-                                {
-                                    string strline = "\"" + unknownFile.FullName + "\",\"" + unknownFile.Name + "\",\"" + unknownFile.Extension + "\",\"" + unknownFile.CreationTime.ToString("G") + "\",\"" + unknownFile.LastWriteTime.ToString("G") + "\",\"" + unknownFile.Length.ToString() + "\",\"" + LongPathFileSearch.GetFileOwner(unknownFile.FullName) + "\"";
-                                    sbUnknown.AppendLine(strline);
-                                }
                                 if (Common.FileExists(ExportCSVPath + "\\UnknownFiles.csv"))
                                 {
                                     Delimon.Win32.IO.File.Delete(ExportCSVPath + "\\UnknownFiles.csv");
                                 }
-                                Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\UnknownFiles.csv", sbUnknown.ToString());
-                                sbUnknown.Clear();
+                                Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\UnknownFiles.csv", ContentDetectorLib.FileResult.FileResultCollectionToCSV(FilesUnknown));
+
                             }
 
                             if (ExportProhibitedToCSV)
                             {
-                                StringBuilder sbprohib = new StringBuilder();
-                                sbprohib.AppendLine("\"FullName\",\"Name\",\"Extension\",\"Created\",\"Modified\",\"Size\",\"Owner\"");
-                                foreach (Delimon.Win32.IO.FileInfo prohibitedFile in FilesProhibited)
-                                {
-                                    string strline = "\"" + prohibitedFile.FullName + "\",\"" + prohibitedFile.Name + "\",\"" + prohibitedFile.Extension + "\",\"" + prohibitedFile.CreationTime.ToString("G") + "\",\"" + prohibitedFile.LastWriteTime.ToString("G") + "\",\"" + prohibitedFile.Length.ToString() + "\",\"" + LongPathFileSearch.GetFileOwner(prohibitedFile.FullName) + "\"";
-                                    sbprohib.AppendLine(strline);
-                                }
+
                                 if (Common.FileExists(ExportCSVPath + "\\ProhibitedFiles.csv"))
                                 {
                                     Delimon.Win32.IO.File.Delete(ExportCSVPath + "\\ProhibitedFiles.csv");
                                 }
-                                Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\ProhibitedFiles.csv", sbprohib.ToString());
-                                sbprohib.Clear();
+                                Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\ProhibitedFiles.csv", ContentDetectorLib.FileResult.FileResultCollectionToCSV(FilesProhibited));
+
                             }
-                        
+
                         }
                     }
                     catch (Exception ex)
                     {
                         WriteError(ex.Message + " source: " + ex.Source + " Stacktrace: " + ex.StackTrace, System.Diagnostics.EventLogEntryType.Error, 7000, 70, false);
                     }
-                   
+
 
                     //Send Summary Email 
                     if (SendEmailOnFailure || SendEmailOnSuccess)
                     {
                         string strBody = "";
                         string strSubject = "";
-                   
+
 
                         //send email on failure
-                        if (FilesUnVerified.Count > 0 )
+                        if (FilesUnVerified.Count > 0)
                         {
-                        
+
                             StringBuilder sbbody1 = new StringBuilder();
                             string strline = "";
                             strSubject = "Ransomware Detection Service, File Audit - File Extensions Not Matching Content Header!: " + FilesUnVerified.Count.ToString();
                             sbbody1.AppendLine("Ransomware Detection Service, Possible Ransomware Affected Files Found<br />\r\n<br />");
-                        
+
                             strline = "<li>FilePathToCheck: " + Common.GetPathToHTMLAnchor(FilePathToCheck) + "</li>";
                             sbbody1.AppendLine(strline);
-                            strline = "<li>Check Sub Folders: " + CheckSubFolders.ToString()+ "</li>";
+                            strline = "<li>Check Sub Folders: " + CheckSubFolders.ToString() + "</li>";
                             sbbody1.AppendLine(strline);
                             strline = "<li>ExportCSVPath: " + Common.GetPathToHTMLAnchor(ExportCSVPath) + "</li>";
                             sbbody1.AppendLine(strline);
-                        
-                            
+
+
                             if (FilesUnVerified.Count > 0)
                             {
                                 sbbody1.AppendLine("<br /><br />\r\n<strong>Files UnVerified:</strong><br />");
                                 //Loop through files that are different and list them
-                                foreach (Delimon.Win32.IO.FileInfo unVerifiedFile in FilesUnVerified)
+                                foreach (ContentDetectorLib.FileResult unVerifiedFile in FilesUnVerified)
                                 {
-                                    sbbody1.AppendLine("<a href=\"#\" style=\"text-decoration:none !important; text-decoration:none;color:black;\">\"" + unVerifiedFile.FullName + "\"</a><br />"); 
+                                    sbbody1.AppendLine("<a href=\"#\" style=\"text-decoration:none !important; text-decoration:none;color:black;\">\"" + unVerifiedFile.FullPath + "\"</a><br />");
                                 }
                                 sbbody1.AppendLine("<br />");
                             }
-                        
-                     
-                        
+
+
+
                             strBody = sbbody1.ToString();
                             sbbody1.Clear();
                             if (SendEmailOnFailure)
@@ -1120,7 +1091,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                             {
                                 strBody = strBody.Substring(0, 32760) + " ...";
                             }
-                        
+
                             WriteError(strBody, System.Diagnostics.EventLogEntryType.Error, 7000, 70, false);
 
                         }
@@ -1129,7 +1100,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                             StringBuilder sbbody2 = new StringBuilder();
                             strBody = "";
                             strSubject = "Ransomware Detection Service, File Audit: Success!";
-                        
+
                             sbbody2.AppendLine("Ransomware Detection Service, File Audit: Success! - All Files from FilePathToCheck file extensions match the file header Files Verified:" + FilesVerified.Count.ToString() + "<br /><br />");
                             sbbody2.AppendLine("<br /><strong>FilePathToCheck:</strong> " + FilePathToCheck);
                             sbbody2.AppendLine("<br />Check Sub Folders: " + CheckSubFolders.ToString());
@@ -1140,19 +1111,65 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                             {
                                 Send_Email(strSubject, strBody);
                             }
-                        
+
                             WriteError(strBody, System.Diagnostics.EventLogEntryType.Information, 7000, 70, true);
                         }
-                    
+
 
                     }
                     WriteError("Ransomware Detection Service, File Audit Process: Finished " + FilePathToCheck, System.Diagnostics.EventLogEntryType.Information, 7000, 70, true);
-                    }
-                
+                }
+
             }
             catch (Exception ex)
             {
                 WriteError(ex.Message + " source: " + ex.Source + " Stacktrace: " + ex.StackTrace, System.Diagnostics.EventLogEntryType.Error, 7000, 70, false);
+            }
+            finally
+            {
+                try
+                {
+                    if (FilesVerified != null)
+                    {
+                        if (FilesVerified.Count > 0)
+                        {
+                            FilesVerified.Clear();
+                        }
+                    }
+                    FilesVerified = null;
+                    if (FilesUnVerified != null)
+                    {
+                        if (FilesUnVerified.Count > 0)
+                        {
+                            FilesUnVerified.Clear();
+                        }
+                    }
+                    FilesUnVerified = null;
+
+
+                    if (FilesUnknown != null)
+                    {
+                        if (FilesUnknown.Count > 0)
+                        {
+                            FilesUnknown.Clear();
+                        }
+                    }
+                    FilesUnknown = null;
+
+                    if (FilesProhibited != null)
+                    {
+                        if (FilesProhibited.Count > 0)
+                        {
+                            FilesProhibited.Clear();
+                        }
+                    }
+                    FilesProhibited = null;
+
+                    //_evt = null;
+                }
+                catch (Exception)
+                {
+                }
             }
             
 

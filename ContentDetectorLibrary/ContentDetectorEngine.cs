@@ -77,11 +77,14 @@ namespace RansomwareDetection.ContentDetectorLib
 	//using Archive;
 	using Content;
     using System.Data;
+    using System.Text;
 
 	// ----------------------------------------------------------------------
 	#endregion
 
 	/////////////////////////////////////////////////////////////////////////
+
+    
 
 	/// <summary>
 	/// Detection of prohibited content, depending on the file extension and
@@ -197,10 +200,10 @@ namespace RansomwareDetection.ContentDetectorLib
         public void ContainsFolderVerifyContent(
             Delimon.Win32.IO.DirectoryInfo folderPath,
             bool recursive,
-            ref List<Delimon.Win32.IO.FileInfo> verifiedFiles,
-            ref List<Delimon.Win32.IO.FileInfo> unVerifiedFiles,
-            ref List<Delimon.Win32.IO.FileInfo> unknownFiles,
-            ref List<Delimon.Win32.IO.FileInfo> ProhibitedFiles,
+            ref List<FileResult> verifiedFiles,
+            ref List<FileResult> unVerifiedFiles,
+            ref List<FileResult> unknownFiles,
+            ref List<FileResult> ProhibitedFiles,
             ref bool blShuttingDown,
             string excludeFolders,
             System.Data.DataTable dtSignatures
@@ -264,21 +267,21 @@ namespace RansomwareDetection.ContentDetectorLib
                         //Verify File Headers
                         if (!HeaderSignature.ExtensionSupported(filePath.Extension, sigs))
                         {
-                            unknownFiles.Add(filePath);
+                            unknownFiles.Add(new FileResult(filePath));
                         }
                         else if (!IsVerifiedContent(filePath, sigs))
                         {
-                            unVerifiedFiles.Add(filePath);
+                            unVerifiedFiles.Add(new FileResult(filePath));
                         }
                         else
                         {
-                            verifiedFiles.Add(filePath);
+                            verifiedFiles.Add(new FileResult(filePath));
                         }
 
                         //check for prohibited files
                         if (ContainsProhibitedFileContent(filePath, sigs))
                         {
-                            ProhibitedFiles.Add(filePath);
+                            ProhibitedFiles.Add(new FileResult(filePath));
                         }
 
                     }
@@ -290,7 +293,7 @@ namespace RansomwareDetection.ContentDetectorLib
                         index + 1, filePaths.Length,
                         filePath.FullName,
                         filePath.Length));
-                        unknownFiles.Add(filePath);
+                        unknownFiles.Add(new FileResult(filePath,"Error checking the file"));
                     }
 
 

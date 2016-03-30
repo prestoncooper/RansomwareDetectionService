@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("RansomwareDetectionSystemTray")]
-[assembly: AssemblyDescription("HESD's Ransomware Detection Service from http://www.questiondriven.com, Download updates from http://ransomwaredetectionservice.codeplex.com/. On a schedule this service will compare files (Detect Ransomware) on local directories or windows file shares.  If the example files go missing or are changed then an event log entry will be written and an email can be sent. 'Find Ransomware Files' tab to find files created by ransomware for cleanup and weekly detection in all files shares to know what shares have been compromised.")]
+[assembly: AssemblyDescription("HESD's Ransomware Detection Service from http://www.questiondriven.com, Download updates from http://ransomwaredetectionservice.codeplex.com/. On a schedule this service will compare files (Detect Ransomware) on local directories or windows file shares.  If the example files go missing or are changed then an event log entry will be written and an email can be sent. 'Find Ransomware Files' tab to find files created by ransomware for cleanup and weekly detection in all files shares to know what shares have been compromised. Audit Files tab will compare files vs known file signatures for file extensions and create lists of unverified and unknown files.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("RansomwareDetectionSystemTray")]

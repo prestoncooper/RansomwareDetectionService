@@ -43,8 +43,12 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="Win32Security">
+      <HintPath>..\RansomwareDetection\Win32Security.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common.cs" />
     <Compile Include="ContentDetectorEngine.cs" />
     <Compile Include="Content\QBWSignatureChecker.cs" />
     <Compile Include="Content\PogSignatureChecker.cs" />

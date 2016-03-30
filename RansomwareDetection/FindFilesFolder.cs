@@ -36,14 +36,9 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
 
 namespace RansomwareDetection.DetectionLib
 {
-    public enum FileFilterObjectType
-    {
-        None = 0,
-        File = 1,
-        Folder = 2,
-        Both = 3
-
-    }
+    
+    
+    
 
     /// <summary>
     /// Find File Individual Filter Class
@@ -62,7 +57,7 @@ namespace RansomwareDetection.DetectionLib
 
         public string ExcludeFiles { get; set; }
 
-        public FileFilterObjectType ObjectType { get; set; }
+        public ContentDetectorLib.Common.FileFilterObjectType ObjectType { get; set; }
 
         public bool DeleteFilesFound { get; set; }
 
@@ -77,7 +72,7 @@ namespace RansomwareDetection.DetectionLib
             Title = "";
             FileFilter = "";
             ExcludeFiles = "";
-            ObjectType = FileFilterObjectType.File;
+            ObjectType = ContentDetectorLib.Common.FileFilterObjectType.File;
             DeleteFilesFound = false;
             Comment = "";
         }
@@ -93,11 +88,11 @@ namespace RansomwareDetection.DetectionLib
                 ExcludeFiles = Common.FixNullstring(row["ExcludeFiles"]);
                 try
                 {
-                    ObjectType = (FileFilterObjectType)System.Enum.Parse(typeof(FileFilterObjectType), Common.FixNullstring(row["ObjectType"]));
+                    ObjectType = (ContentDetectorLib.Common.FileFilterObjectType)System.Enum.Parse(typeof(ContentDetectorLib.Common.FileFilterObjectType), Common.FixNullstring(row["ObjectType"]));
                 }
                 catch (Exception)
                 {
-                    ObjectType = FileFilterObjectType.File;
+                    ObjectType = ContentDetectorLib.Common.FileFilterObjectType.File;
                 }
                 DeleteFilesFound = Common.FixNullbool(row["DeleteFilesFound"]);
                 Comment = Common.FixNullstring(row["Comment"]);
@@ -109,7 +104,7 @@ namespace RansomwareDetection.DetectionLib
                 Title = "";
                 FileFilter = "";
                 ExcludeFiles = "";
-                ObjectType = FileFilterObjectType.File;
+                ObjectType = ContentDetectorLib.Common.FileFilterObjectType.File;
                 DeleteFilesFound = false;
                 Comment = "";
             }
@@ -167,11 +162,12 @@ namespace RansomwareDetection.DetectionLib
         #region "Variables"
 
         private string ep = "19C235A4-A313-C4C4-48F4-A5B4DC86EBCC";
-        public System.Collections.Generic.List<FileResult> AllFiles = null;
-        public System.Collections.Generic.List<FileResult> FilesFound = null;
-        public System.Collections.Generic.List<FileResult> FoldersFound = null;
-        public System.Collections.Generic.List<FileResult> FilesDeleted = null;
-        public System.Collections.Generic.List<FileResult> ResultErrors = null;
+
+        public System.Collections.Generic.List<ContentDetectorLib.FileResult> AllFiles = null;
+        public System.Collections.Generic.List<ContentDetectorLib.FileResult> FilesFound = null;
+        public System.Collections.Generic.List<ContentDetectorLib.FileResult> FoldersFound = null;
+        public System.Collections.Generic.List<ContentDetectorLib.FileResult> FilesDeleted = null;
+        public System.Collections.Generic.List<ContentDetectorLib.FileResult> ResultErrors = null;
         
         /// <summary>
         /// Event Log Class
@@ -980,10 +976,10 @@ namespace RansomwareDetection.DetectionLib
                 {
                     WriteError("Ransomware Detection Service, Files Found Process: Started " + FilePathToCheck, System.Diagnostics.EventLogEntryType.Information, 9000, 90, true);
 
-                    FilesFound = new System.Collections.Generic.List<FileResult>();
-                    FoldersFound = new System.Collections.Generic.List<FileResult>();
-                    FilesDeleted = new System.Collections.Generic.List<FileResult>();
-                    ResultErrors = new System.Collections.Generic.List<FileResult>();
+                    FilesFound = new System.Collections.Generic.List<ContentDetectorLib.FileResult>();
+                    FoldersFound = new System.Collections.Generic.List<ContentDetectorLib.FileResult>();
+                    FilesDeleted = new System.Collections.Generic.List<ContentDetectorLib.FileResult>();
+                    ResultErrors = new System.Collections.Generic.List<ContentDetectorLib.FileResult>();
 
                     if (_fileFilters != null)
                     {
@@ -1001,9 +997,9 @@ namespace RansomwareDetection.DetectionLib
                             if (AllFiles != null)
                             {
                                 //loop through all ransomware files found
-                                foreach (FileResult frFile1 in AllFiles)
+                                foreach (ContentDetectorLib.FileResult frFile1 in AllFiles)
                                 {
-                                    if (frFile1.ObjectType == FileFilterObjectType.File && frFile1.Deleted == false)
+                                    if (frFile1.ObjectType == ContentDetectorLib.Common.FileFilterObjectType.File && frFile1.Deleted == false)
                                     {
                                         //Keep overall list of files found
                                         FilesFound.Add(frFile1);
@@ -1012,14 +1008,14 @@ namespace RansomwareDetection.DetectionLib
                                         string strerror = "Ransomware Detection Service, Find Files: Possible Ransomware File Found: " + frFile1.FullPath + " " + frFile1.Comment;
                                         WriteError(strerror, System.Diagnostics.EventLogEntryType.Error, 9001, 90, false);
                                     }
-                                    else if (frFile1.ObjectType == FileFilterObjectType.Folder && frFile1.Deleted == false)
+                                    else if (frFile1.ObjectType == ContentDetectorLib.Common.FileFilterObjectType.Folder && frFile1.Deleted == false)
                                     {
                                         //Add the Folder to the list
                                         FoldersFound.Add(frFile1);
                                         string strerror = "Ransomware Detection Service, Find Files: Possible Ransomware Folder Found: " + frFile1.FullPath + " " + frFile1.Comment;
                                         WriteError(strerror, System.Diagnostics.EventLogEntryType.Error, 9001, 90, false);
                                     }
-                                    else if (frFile1.ObjectType == FileFilterObjectType.None && frFile1.Deleted == false)
+                                    else if (frFile1.ObjectType == ContentDetectorLib.Common.FileFilterObjectType.None && frFile1.Deleted == false)
                                     {
                                         //Error
                                         ResultErrors.Add(frFile1);
@@ -1090,7 +1086,7 @@ namespace RansomwareDetection.DetectionLib
                             {
                                 sbbody1.AppendLine("<br /><br /><strong>Possible Ransomware Files:</strong><br />");
                                 //Loop through files found and list them
-                                foreach (FileResult frFile1 in FilesFound)
+                                foreach (ContentDetectorLib.FileResult frFile1 in FilesFound)
                                 {
                                         sbbody1.AppendLine("<a href=\"#\" style=\"text-decoration:none !important; text-decoration:none;color:black;\">" + "\"" + frFile1.FullPath + "\",FileCreated: " + frFile1.CreationTime.ToString("G") + ",Owner: " + frFile1.Owner + ",Length" + frFile1.Length.ToString() + "</a><br />");
                                 }
@@ -1099,7 +1095,7 @@ namespace RansomwareDetection.DetectionLib
                             {
                                 sbbody1.AppendLine("<br /><br /><strong>Possible Ransomware Folders:</strong><br />");
                                 //Loop through folders and list them
-                                foreach (FileResult frFile1 in FoldersFound)
+                                foreach (ContentDetectorLib.FileResult frFile1 in FoldersFound)
                                 {
                                     sbbody1.AppendLine("<a href=\"#\" style=\"text-decoration:none !important; text-decoration:none;color:black;\">" + "\"" + frFile1.FullPath + "\",FileCreated: " + frFile1.CreationTime.ToString("G") + ",Owner: " + frFile1.Owner + "</a><br />");
                                 }
@@ -1109,7 +1105,7 @@ namespace RansomwareDetection.DetectionLib
                             {
                                 sbbody1.AppendLine("<br /><br /><strong>Possible Ransomware Files Deleted:</strong><br />");
                                 //Loop through files found and list them
-                                foreach (FileResult frFile1 in FilesDeleted)
+                                foreach (ContentDetectorLib.FileResult frFile1 in FilesDeleted)
                                 {
                                         sbbody1.AppendLine("<a href=\"#\" style=\"text-decoration:none !important; text-decoration:none;color:black;\">File Deleted: " + "\"" + frFile1.FullPath + "\",FileCreated: " + frFile1.CreationTime.ToString("G") + ",Owner: " + frFile1.Owner + ",Length" + frFile1.Length.ToString() + "</a><br />");
                                 }
@@ -1118,7 +1114,7 @@ namespace RansomwareDetection.DetectionLib
                             {
                                 sbbody1.AppendLine("<br /><br /><br /><strong>Errors:</strong><br />");
                                 //Loop through Errors and list them
-                                foreach (FileResult frFile2 in ResultErrors)
+                                foreach (ContentDetectorLib.FileResult frFile2 in ResultErrors)
                                 {
                                         sbbody1.AppendLine("<a href=\"#\" style=\"text-decoration:none !important; text-decoration:none;color:black;\">" + "\"" + frFile2.FullPath + "\",Error: " + frFile2.Comment + "</a><br />");
                                 }

@@ -45,123 +45,6 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
 
 namespace RansomwareDetection.DetectionLib
 {
-
-    /// <summary>
-    /// File Result - File Search Result Class
-    /// </summary>
-    public class FileResult
-    {
-        #region "Properties"
-        public string Name { get; set; }
-        public string FullPath { get; set; }
-        public string Extension { get; set; }
-        public DateTime CreationTime { get; set; }
-        public DateTime LastWriteTime { get; set; }
-        public string Owner { get; set; }
-        public long Length { get; set; }
-        public string ParentDirectoryPath { get; set; }
-        public FileFilterObjectType ObjectType { get; set; }
-        public string Comment { get; set; }
-        public string FileFilterSearched { get; set; }
-        public bool Deleted { get; set; }
-
-        #endregion
-
-        public FileResult()
-        {
-
-            Name = "";
-            FullPath = "";
-            Extension = "";
-            CreationTime = DateTime.MinValue;
-            LastWriteTime = DateTime.MinValue;
-            Owner = "";
-            Length = 0;
-            ParentDirectoryPath = "";
-            ObjectType = FileFilterObjectType.File;
-            Comment = "";
-            FileFilterSearched = "";
-            Deleted = false;
-        }
-
-        public FileResult(Delimon.Win32.IO.DirectoryInfo ddir)
-        {
-            Name = ddir.Name;
-            FullPath = ddir.FullName;
-            Extension = "";
-            CreationTime = ddir.CreationTime;
-            LastWriteTime = ddir.LastWriteTime;
-            Owner = LongPathFileSearch.GetFileOwner(FullPath);
-            Length = 0;
-            ParentDirectoryPath = ddir.Parent.FullName;
-            ObjectType = FileFilterObjectType.Folder;
-            Comment = "";
-            FileFilterSearched = "";
-            Deleted = false;
-        }
-
-        public FileResult(Delimon.Win32.IO.DirectoryInfo ddir, string strComment)
-        {
-            Name = ddir.Name;
-            FullPath = ddir.FullName;
-            Extension = "";
-            CreationTime = ddir.CreationTime;
-            LastWriteTime = ddir.LastWriteTime;
-            Owner = LongPathFileSearch.GetFileOwner(FullPath);
-            Length = 0;
-            ParentDirectoryPath = ddir.Parent.FullName;
-            ObjectType = FileFilterObjectType.Folder;
-            Comment = strComment;
-            FileFilterSearched = "";
-            Deleted = false;
-        }
-
-        public FileResult(Delimon.Win32.IO.FileInfo dfile)
-        {
-            Name = dfile.Name;
-            FullPath = dfile.FullName;
-            Extension = dfile.Extension;
-            CreationTime = dfile.CreationTime;
-            LastWriteTime = dfile.LastWriteTime;
-            Owner = LongPathFileSearch.GetFileOwner(FullPath);
-            Length = dfile.Length;
-            ParentDirectoryPath = dfile.Directory.FullName;
-            ObjectType = FileFilterObjectType.File;
-            Comment = "";
-            FileFilterSearched = "";
-            Deleted = false;
-        }
-
-        public FileResult(Delimon.Win32.IO.FileInfo dfile, string strComment)
-        {
-            Name = dfile.Name;
-            FullPath = dfile.FullName;
-            Extension = dfile.Extension;
-            CreationTime = dfile.CreationTime;
-            LastWriteTime = dfile.LastWriteTime;
-            Owner = LongPathFileSearch.GetFileOwner(FullPath);
-            Length = dfile.Length;
-            ParentDirectoryPath = dfile.Directory.FullName;
-            ObjectType = FileFilterObjectType.File;
-            Comment = strComment;
-            FileFilterSearched = "";
-            Deleted = false;
-        }
-
-        public static string FileResultCollectionToCSV(List<FileResult> results)
-        {
-            string strCSV = "Name,FullPath,Extension,CreationTime,LastWriteTime,Owner,ParentDirectoryPath,FileFilterSearched,Deleted,Comment\r\n";
-            if (results != null)
-            {
-                foreach (FileResult frFile1 in results)
-                {
-                    strCSV = frFile1.Name + "," + frFile1.FullPath + "," + frFile1.Extension + "," + frFile1.CreationTime.ToString("G") + "," + frFile1.LastWriteTime.ToString("G") + "," + frFile1.Owner + "," + frFile1.ParentDirectoryPath + "," + frFile1.FileFilterSearched + "," + frFile1.Deleted.ToString() + "," + frFile1.Comment + "\r\n";
-                }   
-            }
-            return strCSV;
-        }
-
-    }
     
     public class LongPathFileSearch
     {
@@ -373,65 +256,7 @@ namespace RansomwareDetection.DetectionLib
             }
         }
 
-        /*
-        public static string WindowsPathClean(string strPath)
-        {
-            if (strPath != null)
-            {
-                if (strPath != "")
-                {
-                    strPath = strPath.Replace("/", "\\");
-                    strPath = strPath.Replace("\\\\", "\\");
-                    strPath = strPath.Replace("\\\\", "\\");
-
-                    //Fix Empty Paths
-                    if (strPath == "\\")
-                    {
-                        strPath = "";
-                    }
-
-                    if (strPath.Length > 2)
-                    {
-                        //Remove Ending BackSlashes from folders
-                        if (strPath.Substring(strPath.Length - 2, 2) == "\\")
-                        {
-                            strPath = strPath.Remove(strPath.Length - 2);
-                        }
-                        //Fix Share Paths to have 2 beginning backslashes
-                        if (strPath.Substring(0, 1) == "\\" && strPath.Substring(0, 2) != "\\\\")
-                        {
-                            strPath = "\\" + strPath;
-                        }
-
-                    }
-                }
-            }
-            return strPath;
-        }
         
-        /// <summary>
-        /// Converts Path to URI and makes the link clickable in an email
-        /// </summary>
-        /// <param name="strpath"></param>
-        /// <returns></returns>
-        public static string GetPathToHTMLAnchor(string strpath)
-        {
-            string strNewPath = "";
-
-            System.Uri uri = new System.Uri(strpath);
-            if (uri.IsUnc)
-            {
-                strNewPath = "<a href=\"" + uri.AbsoluteUri + "\">" + strpath + "</a>";
-                strNewPath = strNewPath.Replace("file://", "file://///");
-            }
-            else
-            {
-                strNewPath = "<a href=\"" + uri.AbsoluteUri + "\">" + strpath + "</a>";
-
-            }
-            return strNewPath;
-        } 
-        */
 
         /// <summary>
         /// Converts Prepended Path to UNC Full Path or Local Drive Path
@@ -519,9 +344,9 @@ namespace RansomwareDetection.DetectionLib
         /// <param name="checkSubFolders"></param>
         /// <param name="excludeFolders">Separate folders with semicolon no back slashes or forward slashes</param>
         /// <returns></returns>
-        public static List<FileResult> FindAllfiles(string dirName, DataTable dtFilters, bool checkSubFolders, string excludeFolders, ref bool blShuttingDown)
+        public static List<ContentDetectorLib.FileResult> FindAllfiles(string dirName, DataTable dtFilters, bool checkSubFolders, string excludeFolders, ref bool blShuttingDown)
         {
-            List<FileResult> results = new List<FileResult>();
+            List<ContentDetectorLib.FileResult> results = new List<ContentDetectorLib.FileResult>();
             string strDirConverted = LongPathPrepend(dirName);
             WIN32_FIND_DATA findData;
             IntPtr findHandle = INVALID_HANDLE_VALUE;
@@ -541,15 +366,15 @@ namespace RansomwareDetection.DetectionLib
                     {
                         bool found;
                         //Get find results for the current directory being searched
-                        List<FileResult> mainResults = FindImmediateFilesAndDirs(dirName, dtFilters, checkSubFolders);
+                        List<ContentDetectorLib.FileResult> mainResults = FindImmediateFilesAndDirs(dirName, dtFilters, checkSubFolders);
                         results.AddRange(mainResults);
                         mainResults.Clear();
                         do
                         {
                             if (blShuttingDown)
                             {
-                                FileResult fr1 = new FileResult();
-                                fr1.ObjectType = FileFilterObjectType.None;
+                                ContentDetectorLib.FileResult fr1 = new ContentDetectorLib.FileResult();
+                                fr1.ObjectType = ContentDetectorLib.Common.FileFilterObjectType.None;
                                 fr1.FullPath = dirName;
                                 fr1.Comment = "Ransomware Detection Service Search Shutting Down at:" + dirName;
                                 results.Add(fr1);
@@ -582,7 +407,7 @@ namespace RansomwareDetection.DetectionLib
                                     if (checkSubFolders)
                                     {
                                         //Recursively go through all folders and sub folders
-                                        List<FileResult> childResults2 = FindAllfiles(Path.Combine(dirName, currentFileName), dtFilters, checkSubFolders, excludeFolders, ref blShuttingDown);
+                                        List<ContentDetectorLib.FileResult> childResults2 = FindAllfiles(Path.Combine(dirName, currentFileName), dtFilters, checkSubFolders, excludeFolders, ref blShuttingDown);
                                         results.AddRange(childResults2);
                                         childResults2.Clear();
                                     }
@@ -598,8 +423,8 @@ namespace RansomwareDetection.DetectionLib
                     {
                         if (results.Count == 0)
                         {
-                            FileResult fr1 = new FileResult();
-                            fr1.ObjectType = FileFilterObjectType.None;
+                            ContentDetectorLib.FileResult fr1 = new ContentDetectorLib.FileResult();
+                            fr1.ObjectType = ContentDetectorLib.Common.FileFilterObjectType.None;
                             fr1.FullPath = dirName;
                             fr1.Comment = "File Path Not Found:" + dirName;
                             results.Add(fr1);
@@ -611,8 +436,8 @@ namespace RansomwareDetection.DetectionLib
                 {
                     if (results.Count == 0)
                     {
-                        FileResult fr1 = new FileResult();
-                        fr1.ObjectType = FileFilterObjectType.None;
+                        ContentDetectorLib.FileResult fr1 = new ContentDetectorLib.FileResult();
+                        fr1.ObjectType = ContentDetectorLib.Common.FileFilterObjectType.None;
                         fr1.FullPath = dirName;
 
                         fr1.Comment = "Error occurred while in Path:" + dirName;
@@ -637,10 +462,10 @@ namespace RansomwareDetection.DetectionLib
         /// <param name="dtFilters">Data table with "Enabled" and "FileFilter" columns required</param>
         /// <param name="checkSubFolders">Recursively check all sub folders</param>
         /// <returns></returns>
-        public static List<FileResult> FindImmediateFilesAndDirs(string dirName, DataTable dtFilters, bool checkSubFolders)
+        public static List<ContentDetectorLib.FileResult> FindImmediateFilesAndDirs(string dirName, DataTable dtFilters, bool checkSubFolders)
         {
             string strDirConverted = LongPathPrepend(dirName);
-            List<FileResult> results = new List<FileResult>();
+            List<ContentDetectorLib.FileResult> results = new List<ContentDetectorLib.FileResult>();
             IntPtr findHandle = INVALID_HANDLE_VALUE;
             WIN32_FIND_DATA findData;
             if (dtFilters != null)
@@ -661,7 +486,7 @@ namespace RansomwareDetection.DetectionLib
                                 try
                                 {
                                     //Search for the file filter in the current directory
-                                    if (filter.ObjectType == FileFilterObjectType.Folder)
+                                    if (filter.ObjectType == ContentDetectorLib.Common.FileFilterObjectType.Folder)
                                     {
                                         findHandle = FindFirstFileEx(strDirConverted + @"\" + filter.FileFilter, FINDEX_INFO_LEVELS.FindExInfoBasic, out findData, FINDEX_SEARCH_OPS.FindExSearchLimitToDirectories, IntPtr.Zero, FIND_FIRST_EX_LARGE_FETCH);
                                     }
@@ -698,7 +523,7 @@ namespace RansomwareDetection.DetectionLib
                                                 // if this is a directory, add directory found to the results.
                                                 if (((int)findData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0 )
                                                 {
-                                                    if (filter.ObjectType==FileFilterObjectType.Folder || filter.ObjectType==FileFilterObjectType.Both)
+                                                    if (filter.ObjectType == ContentDetectorLib.Common.FileFilterObjectType.Folder || filter.ObjectType == ContentDetectorLib.Common.FileFilterObjectType.Both)
                                                     {
                                                         if (currentFileName != "." && currentFileName != "..")
                                                         {
@@ -706,7 +531,7 @@ namespace RansomwareDetection.DetectionLib
                                                             try
                                                             {
                                                                 Delimon.Win32.IO.DirectoryInfo ddir = new Delimon.Win32.IO.DirectoryInfo(strFilePath);
-                                                                FileResult fr1 = new FileResult(ddir);
+                                                                ContentDetectorLib.FileResult fr1 = new ContentDetectorLib.FileResult(ddir);
                                                                 fr1.FileFilterSearched = filter.FileFilter;
                                                                 results.Add(fr1);
                                                                 //results.Add("\"" + strFilePath + "\"" + ",FolderCreated: " + ddir.CreationTime.ToString("G") + ",Owner: " + strOwner);
@@ -714,9 +539,9 @@ namespace RansomwareDetection.DetectionLib
                                                             }
                                                             catch (Exception)
                                                             {
-                                                                FileResult fr1 = new FileResult();
+                                                                ContentDetectorLib.FileResult fr1 = new ContentDetectorLib.FileResult();
                                                                 fr1.FileFilterSearched = filter.FileFilter;
-                                                                fr1.ObjectType = FileFilterObjectType.Folder;
+                                                                fr1.ObjectType = ContentDetectorLib.Common.FileFilterObjectType.Folder;
                                                                 fr1.FullPath = strFilePath;
                                                                 results.Add(fr1);
                                                             }
@@ -727,7 +552,7 @@ namespace RansomwareDetection.DetectionLib
                                                 // it’s a file; add it to the results
                                                 else
                                                 {
-                                                    if (filter.ObjectType == FileFilterObjectType.File || filter.ObjectType == FileFilterObjectType.Both)
+                                                    if (filter.ObjectType == ContentDetectorLib.Common.FileFilterObjectType.File || filter.ObjectType == ContentDetectorLib.Common.FileFilterObjectType.Both)
                                                     {
                                                         string strFilePath = RemovePrependGetPath(Path.Combine(dirName, currentFileName));
                                                         Delimon.Win32.IO.FileInfo dfile;
@@ -738,7 +563,7 @@ namespace RansomwareDetection.DetectionLib
 
                                                             if (filter.DeleteFilesFound)
                                                             {
-                                                                FileResult fr1 = new FileResult(dfile);
+                                                                ContentDetectorLib.FileResult fr1 = new ContentDetectorLib.FileResult(dfile);
                                                                 fr1.FileFilterSearched = filter.FileFilter;
                                                                 fr1.Deleted = true;
                                                                 results.Add(fr1);
@@ -748,7 +573,7 @@ namespace RansomwareDetection.DetectionLib
                                                             }
                                                             else
                                                             {
-                                                                FileResult fr1 = new FileResult(dfile);
+                                                                ContentDetectorLib.FileResult fr1 = new ContentDetectorLib.FileResult(dfile);
                                                                 fr1.FileFilterSearched = filter.FileFilter;
                                                                 results.Add(fr1);
                                                                 //Document the file found
@@ -757,10 +582,10 @@ namespace RansomwareDetection.DetectionLib
                                                         }
                                                         catch (Exception)
                                                         {
-                                                            FileResult fr1 = new FileResult();
+                                                            ContentDetectorLib.FileResult fr1 = new ContentDetectorLib.FileResult();
                                                             fr1.FileFilterSearched = filter.FileFilter;
                                                             fr1.FullPath = strFilePath;
-                                                            fr1.ObjectType = FileFilterObjectType.None;
+                                                            fr1.ObjectType = ContentDetectorLib.Common.FileFilterObjectType.None;
                                                             fr1.Comment = "\"" + strFilePath + "\"";
                                                             results.Add(fr1);
                                                             //results.Add("\"" + strFilePath + "\"");
@@ -789,9 +614,9 @@ namespace RansomwareDetection.DetectionLib
                                 //invalid search filter
                                 if (results.Count == 0)
                                 {
-                                    FileResult fr1 = new FileResult();
+                                    ContentDetectorLib.FileResult fr1 = new ContentDetectorLib.FileResult();
                                     fr1.FileFilterSearched = filter.FileFilter;
-                                    fr1.ObjectType = FileFilterObjectType.None;
+                                    fr1.ObjectType = ContentDetectorLib.Common.FileFilterObjectType.None;
                                     fr1.Comment = "Invalid Search Filter or Directory Problem: " + filter.FileFilter + " " + dirName;
                                     results.Add(fr1);
                                     //results.Add("Invalid Search Filter or Directory Problem: " + filter.FileFilter + " " + dirName);

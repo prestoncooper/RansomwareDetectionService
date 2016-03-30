@@ -309,6 +309,87 @@ namespace RansomwareDetection.DetectionLib
 
         }
 
+
+
+
+        /// <summary>
+        /// Converts Prepended Path to UNC Full Path or Local Drive Path
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static string RemovePrependGetPath(string value)
+        {
+            value = value.Replace(@"\\?\UNC\", @"\\");
+            value = value.Replace(@"\\?\", "");
+            System.Uri uri = new System.Uri(value);
+
+            return uri.LocalPath;
+        }
+
+        /// <summary>
+        /// Prepend "\\?\" to drive path and "\\?\UNC\" to UNC path so that long file names can be handled without an error
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static string LongPathPrepend(string value)
+        {
+            //Just in case the prepend was already added remove it.
+            value = value.Replace(@"\\?\UNC\", @"\\");
+            value = value.Replace(@"\\?\", "");
+
+            //Remove the ending backslashes and fix any common problems with the path
+            value = Common.WindowsPathClean(value);
+
+            string strPath = "";
+            System.Uri uri = new System.Uri(value);
+            if (uri.IsUnc)
+            {
+                //Add the prepend and remove the 2 beginning back slashes for the UNC path so that long file paths are supported
+                strPath = @"\\?\UNC\" + uri.LocalPath.Substring(2, uri.LocalPath.Length - 2);
+            }
+            else
+            {
+                //Local path prepend with @"\\?\" so that long file paths are supported by the search.
+                strPath = @"\\?\" + uri.LocalPath;
+            }
+            return strPath;
+        }
+
+        /// <summary>
+        /// Get File Owner from FullFilePath works with long file paths
+        /// </summary>
+        /// <param name="strFileName"></param>
+        /// <returns></returns>
+        public static string GetFileOwner(string strFileName)
+        {
+            string strOwner = "";
+            string strLongFilePath = LongPathPrepend(strFileName);
+            Microsoft.Win32.Security.SecurityDescriptor secDesc = null;
+            try
+            {
+                if (Common.FileExists(strFileName))
+                {
+                    secDesc = Microsoft.Win32.Security.SecurityDescriptor.GetFileSecurity(strLongFilePath, Microsoft.Win32.Security.SECURITY_INFORMATION.OWNER_SECURITY_INFORMATION);
+                    strOwner = Common.FixNullstring(secDesc.Owner.DomainName) + "\\" + Common.FixNullstring(secDesc.Owner.AccountName);
+                }
+
+            }
+            catch (Exception)
+            {
+                strOwner = "";
+            }
+            finally
+            {
+                if (secDesc != null)
+                {
+                    secDesc.Dispose();
+                    secDesc = null;
+                }
+            }
+
+            return strOwner;
+        }
+
         /// <summary>
         /// Converts Path to URI and makes the link clickable in an email
         /// </summary>
