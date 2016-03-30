@@ -51,6 +51,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
         /// <param name="signatureMode">The signature mode.</param>
         public SimplePatternSignatureChecker(
             int byteoffset,
+            int firstnumberofbytestoread,
             string signature,
             SignatureMode signatureMode
             )
@@ -64,6 +65,14 @@ namespace RansomwareDetection.ContentDetectorLib.Content
                 _pattern = ConvertTextStringToBytes(signature);
             }
             _byteoffset = byteoffset;
+            if (firstnumberofbytestoread <= 0)
+            {
+                _firstnumberofbytestoread = Math.Max(100, (_pattern.Length + _byteoffset));
+            }
+            else
+            {
+                _firstnumberofbytestoread = firstnumberofbytestoread;
+            }
         }
 
 		/// <summary>
@@ -125,7 +134,8 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 		{
 			get
 			{
-				return Math.Max( 100, (_pattern.Length + _byteoffset) );
+				//return Math.Max( 100, (_pattern.Length + _byteoffset) );
+                return _firstnumberofbytestoread;
 			}
 		}
 
@@ -149,6 +159,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 
 		private readonly byte[] _pattern;
         private readonly int _byteoffset;
+        private readonly int _firstnumberofbytestoread;
 
 		// ------------------------------------------------------------------
 		#endregion

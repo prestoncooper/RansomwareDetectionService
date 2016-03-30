@@ -89,6 +89,7 @@
     <Content Include="FindFilesConfig.xml" />
     <Content Include="Ransomware Detection License.txt" />
     <Content Include="Delimon.Win32.IO.dll" />
+    <Content Include="SignaturesConfig.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ProjectInstaller.resx">

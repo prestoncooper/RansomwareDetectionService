@@ -75,7 +75,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 			ProhibitionMode prohibitionMode,
 			SignatureMode signatureMode )
 		{
-			_checker = new SimplePatternSignatureChecker(0,
+			_checker = new SimplePatternSignatureChecker(0,0,
 				hexStringSignature,
 				signatureMode );
 			_signatureName = signatureName;
@@ -94,6 +94,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
         /// <param name="signatureMode">The signature mode.</param>
         public HeaderSignature(
             int byteoffset,
+            int firstnumberofbytestoread,
             string hexStringSignature,
             string signatureName,
             string[] fileExtensions,
@@ -102,6 +103,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
         {
             _checker = new SimplePatternSignatureChecker(
                 byteoffset,
+                firstnumberofbytestoread,
                 hexStringSignature,
                 signatureMode);
             _signatureName = signatureName;
@@ -141,6 +143,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
         /// <param name="prohibitionMode">The prohibition mode.</param>
         public HeaderSignature(
             int byteoffset,
+            int firstnumberofbytestoread,
             string hexStringSignature,
             string signatureName,
             string[] fileExtensions,
@@ -148,6 +151,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
             :
             this(
                 byteoffset,
+                firstnumberofbytestoread,
                 hexStringSignature,
                 signatureName,
                 fileExtensions,
@@ -328,7 +332,6 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 				new HeaderSignature( @"5245474544495434", "", new string[] { @".reg" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"7B5C72746631", "Rich Text Format File", new string[] { @".rtf", @".doc" }, ProhibitionMode.Allowed ),
                 new HeaderSignature( @"7B5C727466", "Rich Text Format File", new string[] { @".rtf",@".doc" }, ProhibitionMode.Allowed ),
-				new HeaderSignature( @"lh", "Lz compression file", new string[] { @".lzh" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"MThd", "", new string[] { @".mid" }, ProhibitionMode.Allowed, SignatureMode.Text ),
 				new HeaderSignature( @"0A050108", "", new string[] { @".pcx" }, ProhibitionMode.Allowed, SignatureMode.Text ),
 				new HeaderSignature( @"25215053", "Adobe EPS File", new string[] { @".eps" }, ProhibitionMode.Allowed ),
@@ -416,7 +419,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 				new HeaderSignature( @"D0CF11E0A1B11AE1", "Microsoft Installer", new string[] { @".msi" }, ProhibitionMode.Allowed ),
                 new HeaderSignature( @"D0CF11E0A1B11AE1", "Outlook Message File", new string[] { @".msg" }, ProhibitionMode.Allowed ),
 				new HeaderSignature( @"DBA52D00", "MS Word 2.0", new string[] { @".doc" }, ProhibitionMode.Allowed ),
-                new HeaderSignature( @"504B0304140000000800", "Smart Notebook", new string[] { @".notebook" }, ProhibitionMode.Allowed ),
+                
                 new HeaderSignature( @"464C56", "Flash Video", new string[] { @".flv" }, ProhibitionMode.Allowed ),
                 new HeaderSignature( @"465753", "Flash Shockwave", new string[] { @".swf" }, ProhibitionMode.Allowed ),
                 new HeaderSignature( @"3026B2758E66CF", "Windows Video File", new string[] { @".wmv" }, ProhibitionMode.Allowed ),
@@ -447,17 +450,18 @@ namespace RansomwareDetection.ContentDetectorLib.Content
                 new HeaderSignature( @"4D534346", "Microsoft Update Installer Package", new string[] { @".msu" }, ProhibitionMode.Allowed ),
                 new HeaderSignature( @"454E49474D412042494E415259", "Finale Music File", new string[] { @".mus" }, ProhibitionMode.Allowed ),
                 new HeaderSignature( @"504B0304140000", "Make Music File", new string[] { @".musx" }, ProhibitionMode.Allowed ),
-                new HeaderSignature( new PogSignatureChecker(), "POG File", new string[] { @".pog"}, ProhibitionMode.Allowed ),
-                //new HeaderSignature(3,"000019000E", "POG File", new string[] { @".pog"}, ProhibitionMode.Allowed ),
                 
-                new HeaderSignature( @"5075726368617365204F72646572", "pof file", new string[] { @".pof" }, ProhibitionMode.Allowed ),
+                
+               
                 new HeaderSignature( @"5B7B3030303231344130", "URL Shortcut File", new string[] { @".url" }, ProhibitionMode.Allowed ),
                 new HeaderSignature( new QBWSignatureChecker(), "Quickbooks file", new string[] { @".qbw", @".tlg"}, ProhibitionMode.Allowed ),
                 new HeaderSignature( @"2F2F5468697320697320517569636B", "Quickbooks configuration file", new string[] { @".nd"}, ProhibitionMode.Allowed ),
                 new HeaderSignature( @"D0CF11E0A1B11AE1", "Quickbooks backup file", new string[] { @".qbb"}, ProhibitionMode.Allowed ),
                 new HeaderSignature( @"5B44454641554C545D", "URL Shortcut File", new string[] { @".url"}, ProhibitionMode.Allowed ),
-                
-
+                new HeaderSignature( @"504B0304140000000800", "Smart Notebook", new string[] { @".notebook" }, ProhibitionMode.Allowed ),
+                new HeaderSignature( @"5075726368617365204F72646572", "pof file", new string[] { @".pof" }, ProhibitionMode.Allowed ),
+                new HeaderSignature( new PogSignatureChecker(), "POG File", new string[] { @".pog"}, ProhibitionMode.Allowed ),
+                //new HeaderSignature(3,"000019000E", "POG File", new string[] { @".pog"}, ProhibitionMode.Allowed ),
                 /*new HeaderSignature( @"", "Windows Media", new string[] { @".wmv", @".asf" }, ProhibitionMode.Prohibited ),*/
 				
 			};
@@ -474,6 +478,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
             string strHexPattern;
             string strSignatureName;
             int intByteOffset = 0;
+            int intFirstNumberOfBytesToRead = 0;
             string strFileExtensions;
             bool blEnabled = false;
             bool blProhibited = false;
@@ -484,6 +489,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
             {
                 blEnabled = FixNullbool(row["Enabled"]);
                 int.TryParse(FixNullstring(row["ByteOffset"]),out intByteOffset);
+                int.TryParse(FixNullstring(row["FirstNumberOfBytesToRead"]), out intFirstNumberOfBytesToRead);
                 strHexPattern = FixNullstring(row["HexPattern"]);
                 strSignatureName=FixNullstring(row["SignatureName"]);
                 strFileExtensions = FixNullstring(row["FileExtensions"]);
@@ -500,7 +506,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
                 }
                 if (blEnabled)
                 {
-                    hds.Add(new HeaderSignature(intByteOffset,strHexPattern, strSignatureName, strArr_FileExtensions, pmode));
+                    hds.Add(new HeaderSignature(intByteOffset,intFirstNumberOfBytesToRead,strHexPattern, strSignatureName, strArr_FileExtensions, pmode));
                 }
             }
             return hds.ToArray();
@@ -618,6 +624,14 @@ namespace RansomwareDetection.ContentDetectorLib.Content
             get
             {
                 return _byteoffset;
+            }
+        }
+
+        public int FirstNumberOfBytesToRead
+        {
+            get
+            {
+               return _checker.FirstNumberOfBytesToRead;
             }
         }
 
