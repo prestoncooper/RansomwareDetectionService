@@ -997,7 +997,7 @@
     <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
     <HexPattern>57415645666D74</HexPattern>
     <SignatureName>Wave File</SignatureName>
-    <FileExtensions>.wav;</FileExtensions>
+    <FileExtensions>.wav;.cda;</FileExtensions>
     <Prohibited>False</Prohibited>
     <Comment />
   </SignaturesConfig>
@@ -1305,7 +1305,7 @@
     <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
     <HexPattern>52494646</HexPattern>
     <SignatureName>Wave File</SignatureName>
-    <FileExtensions>.wav;</FileExtensions>
+    <FileExtensions>.wav;.cda;</FileExtensions>
     <Prohibited>False</Prohibited>
     <Comment />
   </SignaturesConfig>
@@ -1544,7 +1544,7 @@
     <ID>148</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
     <HexPattern>000100005374616E</HexPattern>
     <SignatureName>MS Access 1</SignatureName>
     <FileExtensions>.mdb;.accdb;.accde;.accdr;.accdt;.accdt;.adp;.ade;</FileExtensions>
@@ -1555,7 +1555,7 @@
     <ID>149</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
     <HexPattern>6461726420414345</HexPattern>
     <SignatureName>MS Access 2</SignatureName>
     <FileExtensions>.mdb;.accdb;.accde;.accdr;.accdt;.accdt;.adp;.ade;</FileExtensions>
@@ -1566,7 +1566,7 @@
     <ID>150</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>6</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
     <HexPattern>204442</HexPattern>
     <SignatureName>MS Access 3</SignatureName>
     <FileExtensions>.mdb;.accdb;.accde;.accdr;.accdt;.accdt;.adp;.ade;</FileExtensions>
@@ -1577,7 +1577,7 @@
     <ID>151</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
     <HexPattern>000100005374616E</HexPattern>
     <SignatureName>MS Access 4</SignatureName>
     <FileExtensions>.mdb;.accdb;.accde;.accdr;.accdt;.accdt;.adp;.ade;</FileExtensions>
@@ -1588,7 +1588,7 @@
     <ID>152</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
     <HexPattern>64617264204A6574</HexPattern>
     <SignatureName>MS Access 5</SignatureName>
     <FileExtensions>.mdb;.accdb;.accde;.accdr;.accdt;.accdt;.adp;.ade;</FileExtensions>
@@ -1599,7 +1599,7 @@
     <ID>153</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
     <HexPattern>5374616E64617264204A6574</HexPattern>
     <SignatureName>MS Access 6</SignatureName>
     <FileExtensions>.mdb;.accdb;.accde;.accdr;.accdt;.accdt;.adp;.ade;</FileExtensions>
@@ -1760,4 +1760,16 @@
     <Prohibited>False</Prohibited>
     <Comment />
   </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>169</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>8</FirstNumberOfBytesToRead>
+    <HexPattern>49545346</HexPattern>
+    <SignatureName>chm help file</SignatureName>
+    <FileExtensions>.chm;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  
 </DocumentElement>

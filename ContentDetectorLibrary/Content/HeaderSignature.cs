@@ -312,13 +312,13 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 				new HeaderSignature(0,0,@"474946383961", "GIF 89A", new string[] { @".gif" }, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,0,@"474946383761", "GIF 87A", new string[] { @".gif" }, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,4,@"424D", "Windows Bitmap", new string[] { @".bmp" }, ProhibitionMode.Allowed ),
-				new HeaderSignature(0,20,@"504B0304140006000800000021", "Microsoft Office Open XML Format", new string[] { @".docx",@".pptx",@".xlsx", @".vsdx" }, ProhibitionMode.Allowed ),
-                new HeaderSignature(0,20,@"504B030414000600", "Microsoft Office Open XML Format", new string[] { @".docx",@".pptx",@".xlsx", @".vsdx" }, ProhibitionMode.Allowed ),
-				new HeaderSignature(0,20,@"504B030414000200", "Microsoft Office Open XML Format", new string[] { @".docx",@".pptx",@".xlsx", @".vsdx" }, ProhibitionMode.Allowed ),
+				new HeaderSignature(0,20,@"504B0304140006000800000021", "Microsoft Office Open XML Format", new string[] { @".docx",@".pptx",@".xlsx", @".vsdx", @".dotx",@"dotm",@"docm" }, ProhibitionMode.Allowed ),
+                new HeaderSignature(0,20,@"504B030414000600", "Microsoft Office Open XML Format", new string[] { @".docx",@".pptx",@".xlsx", @".vsdx", @".dotx",@"dotm",@"docm" }, ProhibitionMode.Allowed ),
+				new HeaderSignature(0,20,@"504B030414000200", "Microsoft Office Open XML Format", new string[] { @".docx",@".pptx",@".xlsx", @".vsdx", @".dotx",@"dotm",@"docm" }, ProhibitionMode.Allowed ),
 				
                 
                 new HeaderSignature(0,20,@"3A42617365", "", new string[] { @".cnt" }, ProhibitionMode.Allowed ),
-				new HeaderSignature(0,20,@"D0CF11E0A1B11AE1", "MS Compound Document v1 or Lotus Approach APR file", new string[] { @".doc", @".xls", @".xlt", @".ppt", @".apr", @".dot", @".pps",@".wps",@".vsd",@".qbm",@".pub",@".adp",@".ade" }, ProhibitionMode.Allowed ),
+				new HeaderSignature(0,20,@"D0CF11E0A1B11AE1", "MS Compound Document v1 or Lotus Approach APR file", new string[] { @".doc", @".xls", @".xlt", @".ppt", @".apr", @".dot", @".pps",@".wps",@".vsd",@".qbm",@".pub",@".adp",@".ade",@"docm" }, ProhibitionMode.Allowed ),
                 //EE DE 12 00 01 00 F4 01 00 00 00 00
                 new HeaderSignature(0,20,@"0100000058000000", "", new string[] { @".emf" }, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,20,@"03000000C466C456", "", new string[] { @".evt" }, ProhibitionMode.Allowed ),
@@ -374,9 +374,9 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 				new HeaderSignature(0,10,@"000001B3", "MPEG Movie", new string[] { @".mpg", @".mpeg" }, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,30,@"0902060000001000B9045C00", "MS Excel v2", new string[] { @".xls" }, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,30,@"0904060000001000F6055C00", "MS Excel v4", new string[] { @".xls" }, ProhibitionMode.Allowed ),
-				new HeaderSignature(0,10,@"7FFE340A", "MS Word", new string[] { @".doc" }, ProhibitionMode.Allowed ),
-				new HeaderSignature(0,20,@"1234567890FF", "MS Word 6.0", new string[] { @".doc" }, ProhibitionMode.Allowed ),
-				new HeaderSignature(0,30,@"31BE000000AB0000", "MS Word for DOS 6.0", new string[] { @".doc" }, ProhibitionMode.Allowed ),
+				new HeaderSignature(0,10,@"7FFE340A", "MS Word", new string[] { @".doc", @".xls", @".xlt", @".ppt", @".apr", @".dot", @".pps",@".wps",@".vsd",@".qbm",@".pub",@".adp",@".ade",@"docm" }, ProhibitionMode.Allowed ),
+				new HeaderSignature(0,20,@"1234567890FF", "MS Word 6.0", new string[] { @".doc", @".xls", @".xlt", @".ppt", @".apr", @".dot", @".pps",@".wps",@".vsd",@".qbm",@".pub",@".adp",@".ade",@"docm" }, ProhibitionMode.Allowed ),
+				new HeaderSignature(0,30,@"31BE000000AB0000", "MS Word for DOS 6.0", new string[] { @".doc", @".xls", @".xlt", @".ppt", @".apr", @".dot", @".pps",@".wps",@".vsd",@".qbm",@".pub",@".adp",@".ade",@"docm" }, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,20,@"1A00000300001100", "Notes Database", new string[] { @".nsf" }, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,10,@"7E424B00", "PaintShop Pro Image File", new string[] { @".psp" }, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,10,@"504B0304", "PKZIP Compressed", new string[] { @".zip" }, ProhibitionMode.Allowed ),
@@ -399,7 +399,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 				new HeaderSignature(0,10,@"4D4D2A", "TIFF (Motorola)", new string[] { @".tif", @".tiff" }, ProhibitionMode.Allowed ),
                 new HeaderSignature(0,10,@"4D4D002A", "TIFF (Adobe)", new string[] { @".tif", @".tiff" }, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,10,@"554641", "UFA Archive File", new string[] { @".ufa" }, ProhibitionMode.Allowed ),
-				new HeaderSignature(0,20,@"57415645666D74", "Wave File", new string[] { @".wav" }, ProhibitionMode.Allowed ),
+				new HeaderSignature(0,20,@"57415645666D74", "Wave File", new string[] { @".wav",@".cda" }, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,10,@"D7CDC69A", "Windows Meta File", new string[] { @".wmf" }, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,10,@"4C000000", "Windows Shortcut (Link File)", new string[] { @".lnk" }, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,30,@"504B3030504B0304", "WINZIP Compressed", new string[] { @".zip" }, ProhibitionMode.Allowed ),
@@ -419,7 +419,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
                 new HeaderSignature( new MSAccessSignatureChecker(), "Microsoft Access", new string[] { @".mdb", @".accdb", @".accde", @".accdr",@".accdt",@".adp",@".ade"}, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,20,@"D0CF11E0A1B11AE1", "Microsoft Installer", new string[] { @".msi" }, ProhibitionMode.Allowed ),
                 new HeaderSignature(0,20,@"D0CF11E0A1B11AE1", "Outlook Message File", new string[] { @".msg" }, ProhibitionMode.Allowed ),
-				new HeaderSignature(0,10,@"DBA52D00", "MS Word 2.0", new string[] { @".doc" }, ProhibitionMode.Allowed ),
+				new HeaderSignature(0,10,@"DBA52D00", "MS Word 2.0", new string[] { @".doc", @".xls", @".xlt", @".ppt", @".apr", @".dot", @".pps",@".wps",@".vsd",@".qbm",@".pub",@".adp",@".ade",@"docm" }, ProhibitionMode.Allowed ),
                 
                 new HeaderSignature(0,10,@"464C56", "Flash Video", new string[] { @".flv" }, ProhibitionMode.Allowed ),
                 new HeaderSignature(0,10,@"465753", "Flash Shockwave", new string[] { @".swf" }, ProhibitionMode.Allowed ),
@@ -434,7 +434,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
                 new HeaderSignature(0,20,@"0000002066747970", "Apple Lossless Audio Codec file", new string[] { @".m4a" }, ProhibitionMode.Allowed ),
                 new HeaderSignature(0,10,@"000001BA", "MPEG Movie", new string[] { @".mpg", @".mpeg" }, ProhibitionMode.Allowed ),
                 new HeaderSignature(0,10,@"000001B", "MPEG Movie", new string[] { @".mpg", @".mpeg" }, ProhibitionMode.Allowed ),
-                new HeaderSignature(0,10,@"52494646", "Wave File", new string[] { @".wav" }, ProhibitionMode.Allowed ),
+                new HeaderSignature(0,10,@"52494646", "Wave File", new string[] { @".wav",@".cda" }, ProhibitionMode.Allowed ),
                 new HeaderSignature(0,30,@"53514C6974652066", "SQL Lite Database", new string[] { @".db", @".sqlite" }, ProhibitionMode.Allowed ),
                 new HeaderSignature(0,30,@"6F726D6174203300", "SQL Lite Database", new string[] { @".db", @".sqlite" }, ProhibitionMode.Allowed ),
                 new HeaderSignature(0,30,@"636F6E6563746978", "Virtual PC Virtual HD image", new string[] { @".vhd" }, ProhibitionMode.Allowed ),
@@ -463,7 +463,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 
                 new HeaderSignature(0,20,@"EEDE12000100F40100000000", "APR file", new string[] { @".apr" }, ProhibitionMode.Allowed ),
                 new HeaderSignature(0,10,@"B168DE3A0410", "dcx file", new string[] { @".dcx" }, ProhibitionMode.Allowed ),
-                new HeaderSignature(0,6,@"FF575043", "MS Word", new string[] { @".doc" }, ProhibitionMode.Allowed ),
+                new HeaderSignature(0,6,@"FF575043", "MS Word", new string[] { @".doc", @".xls", @".xlt", @".ppt", @".apr", @".dot", @".pps",@".wps",@".vsd",@".qbm",@".pub",@".adp",@".ade",@"docm" }, ProhibitionMode.Allowed ),
                 new HeaderSignature(0,20,@"0A020101000000009F", "pcx file", new string[] { @".pcx" }, ProhibitionMode.Allowed ),
                 new HeaderSignature(0,20,@"3C003F0078006D006C", "xml file", new string[] { @".xml" }, ProhibitionMode.Allowed ),
                 new HeaderSignature(0,20,@"0000000041000000EC", "db file", new string[] { @".db" }, ProhibitionMode.Allowed ),
@@ -473,6 +473,11 @@ namespace RansomwareDetection.ContentDetectorLib.Content
                 new HeaderSignature(0,20,@"504B0304140000000800", "Smart Notebook", new string[] { @".notebook" }, ProhibitionMode.Allowed ),
                 new HeaderSignature(0,20,@"5075726368617365204F72646572", "pof file", new string[] { @".pof" }, ProhibitionMode.Allowed ),
                 new HeaderSignature( new PogSignatureChecker(), "POG File", new string[] { @".pog"}, ProhibitionMode.Allowed ),
+                new HeaderSignature( 0,8,"49545346", "chm help file", new string[] { @".chm"}, ProhibitionMode.Allowed ),
+                new HeaderSignature( 0,20,"690000000000000000", "bm2 board maker", new string[] { @".bm2"}, ProhibitionMode.Allowed ),
+                
+
+                
                 //new HeaderSignature(3,"000019000E", "POG File", new string[] { @".pog"}, ProhibitionMode.Allowed ),
                 /*new HeaderSignature( @"", "Windows Media", new string[] { @".wmv", @".asf" }, ProhibitionMode.Prohibited ),*/
 				

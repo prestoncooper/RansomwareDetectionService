@@ -40,10 +40,11 @@ namespace RansomwareDetection.DetectionLib
         #region "Variables"
 
         private string ep = "19C235A4-A313-C4C4-48F4-A5B4DC86EBCC";
-
+        /*
         public System.Collections.Generic.List<Delimon.Win32.IO.FileInfo> AllFiles = null;
         public System.Collections.Generic.List<string> FilesDifferent = null;
         public System.Collections.Generic.List<string> FilesMissing = null;
+        */
         /// <summary>
         /// Event Log Class
         /// </summary>
@@ -620,9 +621,6 @@ namespace RansomwareDetection.DetectionLib
         /// <param name="row"></param>
         public CompareFolder()
         {
-            //AllFiles = new System.Collections.Generic.List<Delimon.Win32.IO.FileInfo>();
-            //FilesDifferent = new System.Collections.Generic.List<string>();
-            //FilesMissing = new System.Collections.Generic.List<string>();
             _evt = Common.GetEventLog;
         }
 
@@ -636,9 +634,6 @@ namespace RansomwareDetection.DetectionLib
         public CompareFolder(DataRow row)
         {
             _evt = Common.GetEventLog;
-            //AllFiles = new System.Collections.Generic.List<Delimon.Win32.IO.FileInfo>();
-            //FilesDifferent = new System.Collections.Generic.List<string>();
-            //FilesMissing = new System.Collections.Generic.List<string>();
 
             ID = Common.FixNullInt32(row["ID"]);
             Title = Common.FixNullstring(row["Title"]);
@@ -735,30 +730,6 @@ namespace RansomwareDetection.DetectionLib
         {
             try
             {
-                if (AllFiles != null)
-                {
-                    if (AllFiles.Count > 0)
-                    {
-                        AllFiles.Clear();
-                    }
-                }
-                AllFiles = null;
-                if (FilesDifferent != null)
-                {
-                    if (FilesDifferent.Count > 0)
-                    {
-                        FilesDifferent.Clear();
-                    }
-                }
-                FilesDifferent = null;
-                if (FilesMissing != null)
-                {
-                    if (FilesMissing.Count > 0)
-                    {
-                        FilesMissing.Clear();
-                    }
-                }
-                FilesMissing = null;
                 _evt = null;
             }
             catch (Exception)
@@ -884,6 +855,9 @@ namespace RansomwareDetection.DetectionLib
             bool blFileSame = false;
             string SourceFile = "";
             string FileToCheck = "";
+            List<Delimon.Win32.IO.FileInfo> AllFiles = null;
+            List<string> FilesDifferent = null;
+            List<string> FilesMissing = null;
             try
             {
                 if (Enabled)
@@ -891,9 +865,9 @@ namespace RansomwareDetection.DetectionLib
                     
                     WriteError("Ransomware Detection Service, File Compare Process: Started " + FilePathToCheck, System.Diagnostics.EventLogEntryType.Information, 8000, 80, true);
 
-                    AllFiles = new System.Collections.Generic.List<Delimon.Win32.IO.FileInfo>();
-                    FilesDifferent = new System.Collections.Generic.List<string>();
-                    FilesMissing = new System.Collections.Generic.List<string>();                    
+                    AllFiles = new List<Delimon.Win32.IO.FileInfo>();
+                    FilesDifferent = new List<string>();
+                    FilesMissing = new List<string>();                    
 
                     AllFiles = Common.WalkDirectory(SourcePath, ref blShuttingDown);
 

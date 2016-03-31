@@ -62,10 +62,6 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
 
         private string ep = "19C235A4-A313-C4C4-48F4-A5B4DC86EBCC";
 
-        public System.Collections.Generic.List<ContentDetectorLib.FileResult> FilesVerified = null;
-        public System.Collections.Generic.List<ContentDetectorLib.FileResult> FilesUnVerified = null;
-        public System.Collections.Generic.List<ContentDetectorLib.FileResult> FilesUnknown = null;
-        public System.Collections.Generic.List<ContentDetectorLib.FileResult> FilesProhibited = null;
         
         /// <summary>
         /// Event Log Class
@@ -679,9 +675,6 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
         /// <param name="row"></param>
         public AuditFolder()
         {
-            //FilesVerified = new System.Collections.Generic.List<Delimon.Win32.IO.FileInfo>();
-            //FilesUnVerified = new System.Collections.Generic.List<Delimon.Win32.IO.FileInfo>();
-            //FilesUnknown = new System.Collections.Generic.List<Delimon.Win32.IO.FileInfo>();
             _evt = Common.GetEventLog;
             Signatures = ContentDetectorLib.ContentDetectorEngine.init_dtSignature();
         }
@@ -696,9 +689,6 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
         public AuditFolder(DataRow row, DataTable dtSignatures)
         {
             _evt = Common.GetEventLog;
-            //FilesVerified = new System.Collections.Generic.List<Delimon.Win32.IO.FileInfo>();
-            //FilesUnVerified = new System.Collections.Generic.List<Delimon.Win32.IO.FileInfo>();
-            //FilesUnknown = new System.Collections.Generic.List<Delimon.Win32.IO.FileInfo>();
 
             ID = Common.FixNullInt32(row["ID"]);
             Title = Common.FixNullstring(row["Title"]);
@@ -799,43 +789,8 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
         {
             try
             {
-                if (FilesVerified != null)
-                {
-                    if (FilesVerified.Count > 0)
-                    {
-                        FilesVerified.Clear();
-                    }
-                }
-                FilesVerified = null;
-                if (FilesUnVerified != null)
-                {
-                    if (FilesUnVerified.Count > 0)
-                    {
-                        FilesUnVerified.Clear();
-                    }
-                }
-                FilesUnVerified = null;
-
-
-                if (FilesUnknown != null)
-                {
-                    if (FilesUnknown.Count > 0)
-                    {
-                        FilesUnknown.Clear();
-                    }
-                }
-                FilesUnknown = null;
-
-                if (FilesProhibited != null)
-                {
-                    if (FilesProhibited.Count > 0)
-                    {
-                        FilesProhibited.Clear();
-                    }
-                }
-                FilesProhibited = null;
-
-                //_evt = null;
+                _signatures.Dispose();
+                _evt = null;
             }
             catch (Exception)
             {   
@@ -964,7 +919,10 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
         /// </summary>
         public void Execute(ref bool blShuttingDown)
         {
-
+            List<ContentDetectorLib.FileResult> FilesVerified = null;
+            List<ContentDetectorLib.FileResult> FilesUnVerified = null;
+            List<ContentDetectorLib.FileResult> FilesUnknown = null;
+            List<ContentDetectorLib.FileResult> FilesProhibited = null;
             try
             {
                 if (Enabled)
@@ -972,10 +930,10 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
 
                     WriteError("Ransomware Detection Service, File Audit Process: Started " + FilePathToCheck, System.Diagnostics.EventLogEntryType.Information, 7000, 70, true);
 
-                    FilesVerified = new System.Collections.Generic.List<ContentDetectorLib.FileResult>();
-                    FilesUnVerified = new System.Collections.Generic.List<ContentDetectorLib.FileResult>();
-                    FilesUnknown = new System.Collections.Generic.List<ContentDetectorLib.FileResult>();
-                    FilesProhibited = new System.Collections.Generic.List<ContentDetectorLib.FileResult>();
+                    FilesVerified = new List<ContentDetectorLib.FileResult>();
+                    FilesUnVerified = new List<ContentDetectorLib.FileResult>();
+                    FilesUnknown = new List<ContentDetectorLib.FileResult>();
+                    FilesProhibited = new List<ContentDetectorLib.FileResult>();
 
                     try
                     {
@@ -1187,10 +1145,8 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
         private void WriteError(string strErrorMessage, System.Diagnostics.EventLogEntryType entrytype, int eventid, short category, bool blIsDetailedLoggingError)
         {
             //multi threaded so _evt sometimes is not allocated. 
-            if (_evt == null)
-            {
-                _evt = Common.GetEventLog;
-            }
+            _evt = Common.GetEventLog;
+            
             if (blIsDetailedLoggingError == false)
             {
                 _evt.WriteEntry(strErrorMessage, entrytype, eventid, category);

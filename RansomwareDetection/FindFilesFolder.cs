@@ -163,12 +163,14 @@ namespace RansomwareDetection.DetectionLib
 
         private string ep = "19C235A4-A313-C4C4-48F4-A5B4DC86EBCC";
 
+        /*
         public System.Collections.Generic.List<ContentDetectorLib.FileResult> AllFiles = null;
         public System.Collections.Generic.List<ContentDetectorLib.FileResult> FilesFound = null;
         public System.Collections.Generic.List<ContentDetectorLib.FileResult> FoldersFound = null;
         public System.Collections.Generic.List<ContentDetectorLib.FileResult> FilesDeleted = null;
         public System.Collections.Generic.List<ContentDetectorLib.FileResult> ResultErrors = null;
-        
+        */
+
         /// <summary>
         /// Event Log Class
         /// </summary>
@@ -695,11 +697,6 @@ namespace RansomwareDetection.DetectionLib
         /// <param name="row"></param>
         public FindFilesFolder()
         {
-            //AllFiles = new System.Collections.Generic.List<FileResult>();
-            //FilesFound = new System.Collections.Generic.List<FileResult>();
-            //FoldersFound = new System.Collections.Generic.List<FileResult>();
-            //FilesDeleted = new System.Collections.Generic.List<FileResult>();
-            //ResultErrors = new System.Collections.Generic.List<FileResult>();
             _evt = Common.GetEventLog;
         }
 
@@ -713,11 +710,6 @@ namespace RansomwareDetection.DetectionLib
         public FindFilesFolder(DataRow row, DataTable dtFileFilters)
         {
             _evt = Common.GetEventLog;
-            //AllFiles = new System.Collections.Generic.List<FileResult>();
-            //FilesFound = new System.Collections.Generic.List<FileResult>();
-            //FoldersFound = new System.Collections.Generic.List<FileResult>();
-            //FilesDeleted = new System.Collections.Generic.List<FileResult>();
-            //ResultErrors = new System.Collections.Generic.List<FileResult>();
 
             ID = Common.FixNullInt32(row["ID"]);
             Title = Common.FixNullstring(row["Title"]);
@@ -811,49 +803,6 @@ namespace RansomwareDetection.DetectionLib
         {
             try
             {
-                if (AllFiles != null)
-                {
-                    if (AllFiles.Count > 0)
-                    {
-                        AllFiles.Clear();
-                    }
-                }
-                AllFiles = null;
-                if (FilesFound != null)
-                {
-                    if (FilesFound.Count > 0)
-                    {
-                        FilesFound.Clear();
-                    }
-                }
-                FilesFound = null;
-
-                if (FoldersFound != null)
-                {
-                    if (FoldersFound.Count > 0)
-                    {
-                        FoldersFound.Clear();
-                    }
-                }
-                FoldersFound = null;
-
-                if (FilesDeleted != null)
-                {
-                    if (FilesDeleted.Count > 0)
-                    {
-                        FilesDeleted.Clear();
-                    }
-                }
-                FilesFound = null;
-
-                if (ResultErrors != null)
-                {
-                    if (ResultErrors.Count > 0)
-                    {
-                        ResultErrors.Clear();
-                    }
-                }
-                ResultErrors = null;
                 _evt = null;
             }
             catch (Exception)
@@ -970,16 +919,21 @@ namespace RansomwareDetection.DetectionLib
         /// </summary>
         public void Execute(ref bool blShuttingDown)
         {
+            List<ContentDetectorLib.FileResult> AllFiles = null;
+            List<ContentDetectorLib.FileResult> FilesFound = null;
+            List<ContentDetectorLib.FileResult> FoldersFound = null;
+            List<ContentDetectorLib.FileResult> FilesDeleted = null;
+            List<ContentDetectorLib.FileResult> ResultErrors = null;
             try
             {
                 if (Enabled)
                 {
                     WriteError("Ransomware Detection Service, Files Found Process: Started " + FilePathToCheck, System.Diagnostics.EventLogEntryType.Information, 9000, 90, true);
 
-                    FilesFound = new System.Collections.Generic.List<ContentDetectorLib.FileResult>();
-                    FoldersFound = new System.Collections.Generic.List<ContentDetectorLib.FileResult>();
-                    FilesDeleted = new System.Collections.Generic.List<ContentDetectorLib.FileResult>();
-                    ResultErrors = new System.Collections.Generic.List<ContentDetectorLib.FileResult>();
+                    FilesFound = new List<ContentDetectorLib.FileResult>();
+                    FoldersFound = new List<ContentDetectorLib.FileResult>();
+                    FilesDeleted = new List<ContentDetectorLib.FileResult>();
+                    ResultErrors = new List<ContentDetectorLib.FileResult>();
 
                     if (_fileFilters != null)
                     {
@@ -1181,34 +1135,43 @@ namespace RansomwareDetection.DetectionLib
                         {
                             AllFiles.Clear();
                         }
+                        AllFiles = null;
                     }
+                    
                     if (FilesFound != null)
                     {
                         if (FilesFound.Count > 0)
                         {
                             FilesFound.Clear();
                         }
+                        FilesFound = null;
                     }
+                    
                     if (FoldersFound != null)
                     {
                         if (FoldersFound.Count > 0)
                         {
                             FoldersFound.Clear();
                         }
+                        FoldersFound = null;
                     }
+                    
                     if (FilesDeleted != null)
                     {
                         if (FilesDeleted.Count > 0)
                         {
                             FilesDeleted.Clear();
                         }
+                        FilesDeleted = null;
                     }
+                    
                     if (ResultErrors != null)
                     {
                         if (ResultErrors.Count > 0)
                         {
                             ResultErrors.Clear();
                         }
+                        ResultErrors = null;
                     }
                     
                 }

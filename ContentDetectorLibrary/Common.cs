@@ -58,22 +58,16 @@ namespace RansomwareDetection.ContentDetectorLib
 
         public FileResult(Delimon.Win32.IO.DirectoryInfo ddir)
         {
-            Name = ddir.Name;
-            FullPath = ddir.FullName;
-            Extension = "";
-            CreationTime = ddir.CreationTime;
-            LastWriteTime = ddir.LastWriteTime;
-            Owner = Common.GetFileOwner(FullPath);
-            Length = 0;
-            ParentDirectoryPath = ddir.Parent.FullName;
-            ObjectType = Common.FileFilterObjectType.Folder;
-            Comment = "";
-            FileFilterSearched = "";
-            Deleted = false;
+            FileResultContructor(ddir, "", "");
         }
 
         public FileResult(Delimon.Win32.IO.DirectoryInfo ddir, string strComment)
         {
+            FileResultContructor(ddir, strComment, "");
+        }
+
+        private void FileResultContructor(Delimon.Win32.IO.DirectoryInfo ddir, string strComment, string strFileFilterSearched)
+        {
             Name = ddir.Name;
             FullPath = ddir.FullName;
             Extension = "";
@@ -84,27 +78,26 @@ namespace RansomwareDetection.ContentDetectorLib
             ParentDirectoryPath = ddir.Parent.FullName;
             ObjectType = Common.FileFilterObjectType.Folder;
             Comment = strComment;
-            FileFilterSearched = "";
+            FileFilterSearched = strFileFilterSearched;
             Deleted = false;
+        }
+
+        public FileResult(Delimon.Win32.IO.DirectoryInfo ddir, string strComment, string strFileFilterSearched)
+        {
+            FileResultContructor(ddir, strComment, strFileFilterSearched);
         }
 
         public FileResult(Delimon.Win32.IO.FileInfo dfile)
         {
-            Name = dfile.Name;
-            FullPath = dfile.FullName;
-            Extension = dfile.Extension;
-            CreationTime = dfile.CreationTime;
-            LastWriteTime = dfile.LastWriteTime;
-            Owner = Common.GetFileOwner(FullPath);
-            Length = dfile.Length;
-            ParentDirectoryPath = dfile.Directory.FullName;
-            ObjectType = Common.FileFilterObjectType.File;
-            Comment = "";
-            FileFilterSearched = "";
-            Deleted = false;
+            FileResultContructor(dfile, "", "");
         }
 
         public FileResult(Delimon.Win32.IO.FileInfo dfile, string strComment)
+        {
+            FileResultContructor(dfile, strComment, "");
+        }
+
+        private void FileResultContructor(Delimon.Win32.IO.FileInfo dfile, string strComment, string strFileFilterSearched)
         {
             Name = dfile.Name;
             FullPath = dfile.FullName;
@@ -116,19 +109,52 @@ namespace RansomwareDetection.ContentDetectorLib
             ParentDirectoryPath = dfile.Directory.FullName;
             ObjectType = Common.FileFilterObjectType.File;
             Comment = strComment;
-            FileFilterSearched = "";
+            FileFilterSearched = strFileFilterSearched;
             Deleted = false;
+        }
+
+        public FileResult(Delimon.Win32.IO.FileInfo dfile, string strComment, string strFileFilterSearched)
+        {
+            FileResultContructor(dfile, strComment, strFileFilterSearched);
+            
+        }
+
+        private void FileResultContructor(string strfilefullpath, string strComment, bool blDeleted)
+        {
+            Name = strfilefullpath.Substring(strfilefullpath.LastIndexOf('\\') + 1,strfilefullpath.Length - (strfilefullpath.LastIndexOf('\\') + 1));
+            
+            FullPath = strfilefullpath;
+            Extension = strfilefullpath.Substring(strfilefullpath.LastIndexOf('.'), strfilefullpath.Length - strfilefullpath.LastIndexOf('.'));
+            CreationTime = DateTime.MinValue;
+            LastWriteTime = DateTime.MinValue;
+            Owner = "";
+            Length = 0;
+            ParentDirectoryPath = Common.WindowsPathClean(strfilefullpath.Replace(Name, ""));
+            ObjectType = Common.FileFilterObjectType.File;
+            Comment = strComment;
+            FileFilterSearched = "";
+            Deleted = blDeleted;
+        }
+
+        public FileResult(string strfilefullpath, string strComment, bool blDeleted)
+        {
+            FileResultContructor(strfilefullpath, strComment, blDeleted);
+        }
+
+        public FileResult(string strfilefullpath, string strComment)
+        {
+            FileResultContructor(strfilefullpath, strComment, false);
         }
 
         public static string FileResultCollectionToCSV(List<FileResult> results)
         {
             StringBuilder sbCSV = new StringBuilder();
-            sbCSV.AppendLine("Name,FullPath,Extension,CreationTime,LastWriteTime,Owner,ParentDirectoryPath,FileFilterSearched,Deleted,Comment");
+            sbCSV.AppendLine("\"Name\",\"FullPath\",\"Extension\",\"CreationTime\",\"LastWriteTime\",\"Owner\",\"Length\",\"ParentDirectoryPath\",\"FileFilterSearched\",\"Deleted\",\"Comment\"");
             if (results != null)
             {
                 foreach (FileResult frFile1 in results)
                 {
-                    sbCSV.AppendLine(frFile1.Name + "," + frFile1.FullPath + "," + frFile1.Extension + "," + frFile1.CreationTime.ToString("G") + "," + frFile1.LastWriteTime.ToString("G") + "," + frFile1.Owner + "," + frFile1.ParentDirectoryPath + "," + frFile1.FileFilterSearched + "," + frFile1.Deleted.ToString() + "," + frFile1.Comment);
+                    sbCSV.AppendLine("\"" + frFile1.Name + "\",\"" + frFile1.FullPath + "\",\"" + frFile1.Extension + "\",\"" + frFile1.CreationTime.ToString("G") + "\",\"" + frFile1.LastWriteTime.ToString("G") + "\",\"" + frFile1.Owner + "\",\"" + frFile1.Length.ToString() + "\",\"" + frFile1.ParentDirectoryPath + "\",\"" + frFile1.FileFilterSearched + "\",\"" + frFile1.Deleted.ToString() + "\",\"" + frFile1.Comment + "\"");
                 }
             }
             string strCSV = sbCSV.ToString();
@@ -304,118 +330,7 @@ namespace RansomwareDetection.ContentDetectorLib
         }
 
         
-
-
-        /// <summary>
-        /// Calculates Folder Size by adding up all file.Length
-        /// this works for UNC and Non UNC paths.  This can also handle long file names.
-        /// </summary>
-        /// <param name="folder"></param>
-        /// <returns></returns>
-        public static float CalculateFolderSize(string folder)
-        {
-            float folderSize = 0.0f;
-            try
-            {
-                //Checks if the path is valid or not
-                if (!DirectoryExists(folder))
-                    return folderSize;
-                else
-                {
-                    try
-                    {
-                        foreach (string file in Delimon.Win32.IO.Directory.GetFiles(folder))
-                        {
-                            if (Delimon.Win32.IO.File.Exists(file))
-                            {
-                                Delimon.Win32.IO.FileInfo finfo = new Delimon.Win32.IO.FileInfo(file);
-                                folderSize += (float)finfo.Length;
-                            }
-                        }
-
-                        foreach (string dir in Delimon.Win32.IO.Directory.GetDirectories(folder))
-                        {
-                            folderSize += CalculateFolderSize(dir);
-                        }
-                    }
-                    catch (NotSupportedException)
-                    {
-                        //Console.WriteLine("Unable to calculate folder size: {0}", e.Message);
-                    }
-                }
-            }
-            catch (UnauthorizedAccessException)
-            {
-                //Console.WriteLine("Unable to calculate folder size: {0}", e.Message);
-            }
-            return folderSize;
-        }
-
-
-        /// <summary>
-        /// Gets Number of files in entire folder and sub folder.  Long file paths are supported.
-        /// </summary>
-        /// <param name="folder"></param>
-        /// <returns></returns>
-        public static long GetFolderFileCount(string folder)
-        {
-            long lFileCount = 0;
-            try
-            {
-                //Checks if the path is valid or not
-                if (!DirectoryExists(folder))
-                    return lFileCount;
-                else
-                {
-                    try
-                    {
-                        foreach (string file in Delimon.Win32.IO.Directory.GetFiles(folder))
-                        {
-                            if (Delimon.Win32.IO.File.Exists(file))
-                            {
-                                lFileCount++;
-                            }
-                        }
-
-                        foreach (string dir in Delimon.Win32.IO.Directory.GetDirectories(folder))
-                        {
-                            lFileCount += GetFolderFileCount(dir);
-                        }
-                    }
-                    catch (NotSupportedException)
-                    {
-                        //Console.WriteLine("Unable to calculate folder size: {0}", e.Message);
-                    }
-                }
-            }
-            catch (UnauthorizedAccessException)
-            {
-                //Console.WriteLine("Unable to calculate folder size: {0}", e.Message);
-            }
-            return lFileCount;
-        }
-
-
-
         
-
-
-        /// <summary>
-        /// Removes ".7z" from a filename if it is on the end.
-        /// </summary>
-        /// <param name="FullName"></param>
-        /// <returns></returns>
-        public static string Strip7zExtension(string FullName)
-        {
-            if (FullName.Length > 3)
-            {
-                if (FullName.Substring(FullName.Length - 3, 3) == ".7z")
-                {
-                    FullName = FullName.Substring(0, FullName.Length - 3);
-                }
-            }
-            return FullName;
-        }
 
 
 
@@ -662,88 +577,8 @@ namespace RansomwareDetection.ContentDetectorLib
             return strPath;
         }
 
-        /// <summary>
-        /// Combines two Remote (FTP,FTPS,SFTP) Paths
-        /// </summary>
-        /// <param name="strBasePath"></param>
-        /// <param name="strPath1"></param>
-        /// <returns></returns>
-        public static string RemotePathCombine(string strBasePath, string strPath1)
-        {
-            string strPath = "";
-            strPath = FixNullstring(strBasePath);
-            strPath = strPath.Replace("\\\\", "\\");
-            strPath1 = FixNullstring(strPath1);
-            strPath1 = strPath1.Trim();
-            strPath = strPath.Replace("//", "/");
-            if (strPath.Trim() != "" && strPath.Trim() != "/")
-            {
-                strPath += "/" + strPath1;
-            }
-            else
-            {
-                strPath = strPath1;
-            }
-            strPath = RemotePathClean(strPath);
-            return strPath;
-        }
+       
 
-        /// <summary>
-        /// Combines two Remote (FTP,FTPS,SFTP) Paths and removes the third path passed
-        /// </summary>
-        /// <param name="strBaseDirectory"></param>
-        /// <param name="strPath"></param>
-        /// <param name="strFolderToRemove"></param>
-        /// <returns></returns>
-        public static string RemotePathCombine(string strBaseDirectory, string strPath, string strFolderToRemove)
-        {
-
-            strBaseDirectory = FixNullstring(strBaseDirectory);
-            strBaseDirectory = strBaseDirectory.Replace("\\\\", "\\");
-            strPath = FixNullstring(strPath);
-            strFolderToRemove = FixNullstring(strFolderToRemove);
-            strFolderToRemove = strFolderToRemove.Replace("\\\\", "\\");
-            //strPath = strPath.Trim();
-            strPath = strPath.Replace("\\\\", "\\");
-
-            strPath = strPath.Replace(strFolderToRemove, "").Trim();
-            strPath = strPath.Replace("\\", "/");
-            strPath = strPath.Replace("//", "/");
-            if (strBaseDirectory.Trim() != "" && strBaseDirectory.Trim() != "/")
-            {
-                strPath = strBaseDirectory + "/" + strPath;
-            }
-
-            strPath = RemotePathClean(strPath);
-
-            return strPath;
-        }
-
-        /// <summary>
-        /// Cleans the Remote Path (FTP,SFTP,FTPS)
-        /// </summary>
-        /// <param name="strPath"></param>
-        /// <returns></returns>
-        public static string RemotePathClean(string strPath)
-        {
-            strPath = FixNullstring(strPath);
-            strPath = strPath.Replace("\\", "/");
-            strPath = strPath.Replace("//", "/");
-            strPath = strPath.Replace("//", "/");
-            if (strPath.Trim() == "/")
-            {
-                strPath = "";
-            }
-            if (strPath.Length > 1)
-            {
-                if (strPath.Substring(strPath.Length - 1, 1) == "/")
-                {
-                    strPath = strPath.Remove(strPath.Length - 1);
-                }
-
-            }
-            return strPath;
-        }
 
         /// <summary>
         /// Fixes null strings and returns the string or ""
@@ -950,69 +785,6 @@ namespace RansomwareDetection.ContentDetectorLib
             System.Buffer.BlockCopy(bytes, 0, chars, 0, bytes.Length);
             return new string(chars);
         }
-
-
-
-
-
-
-
-
-
-        /// <summary>
-        /// Walks the path and returns the files only in the first directory
-        /// </summary>
-        /// <param name="dir"></param>
-        /// <returns></returns>
-        public static System.Collections.Generic.List<Delimon.Win32.IO.FileInfo> GetFilesInDirectory(Delimon.Win32.IO.DirectoryInfo dir)
-        {
-            System.Collections.Generic.List<Delimon.Win32.IO.FileInfo> files = new System.Collections.Generic.List<Delimon.Win32.IO.FileInfo>();
-            try
-            {
-                foreach (Delimon.Win32.IO.FileInfo f in dir.GetFiles())
-                {
-                    files.Add(f);
-                }
-            }
-            catch (Exception)
-            {
-            }
-            return files;
-        }
-
-        /// <summary>
-        /// Walks the path and returns the directories only in the path (first level only not recursive)
-        /// </summary>
-        /// <param name="dir"></param>
-        /// <returns></returns>
-        public static System.Collections.Generic.List<Delimon.Win32.IO.DirectoryInfo> GetDirsInDirectory(Delimon.Win32.IO.DirectoryInfo dir)
-        {
-            System.Collections.Generic.List<Delimon.Win32.IO.DirectoryInfo> dirs = new System.Collections.Generic.List<Delimon.Win32.IO.DirectoryInfo>();
-            try
-            {
-                foreach (Delimon.Win32.IO.DirectoryInfo dir1 in dir.GetDirectories())
-                {
-                    dirs.Add(dir1);
-                }
-            }
-            catch (Exception)
-            {
-            }
-            return dirs;
-        }
-
-
-
-
-
-
-
-        
-
-
-
       
-
-
     }
 }
