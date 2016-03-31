@@ -540,9 +540,29 @@ namespace RansomwareDetection
             
             GetServiceStatus();
         }
-        
-        
 
+
+        /// <summary>
+        /// Write Event Log Error
+        /// </summary>
+        /// <param name="strErrorMessage"></param>
+        /// <param name="entrytype"></param>
+        /// <param name="eventid"></param>
+        /// <param name="category"></param>
+        private void WriteError(string strErrorMessage, System.Diagnostics.EventLogEntryType entrytype, int eventid, short category)
+        {
+            //multi threaded so _evt sometimes is not allocated. 
+            if (_evt == null)
+            {
+                _evt = Common.GetEventLog;
+            }
+            if (strErrorMessage.Length > 32765)
+            {
+                strErrorMessage = strErrorMessage.Substring(0, 32760) + " ...";
+            }
+            _evt.WriteEntry(strErrorMessage, entrytype, eventid, category);
+
+        }
 
         /// <summary>
         /// Saves App.config application settings and refreshes.
@@ -585,8 +605,8 @@ namespace RansomwareDetection
             }
             catch (Exception ex)
             {
-                string strErr = ex.Message + " Property: " + strProperty + " Source: " + ex.Source + "  StackTrace: " + ex.StackTrace;
-                _evt.WriteEntry(strErr);
+                string strErr = "RansomwareDetectionServiceTray: " + ex.Message + " Property: " + strProperty + " Source: " + ex.Source + "  StackTrace: " + ex.StackTrace;
+                WriteError(strErr,EventLogEntryType.Error,5000,50);
                 return "";
             }
         }
@@ -727,7 +747,8 @@ namespace RansomwareDetection
             catch (Exception ex)
             {
                 ShowBalloonTip(5000, "Restart Failed", "Restart of RansomwareDetectionService Failed!", ToolTipIcon.Error);
-                WriteEntry(ex.Message);
+                string strErr = "RansomwareDetectionServiceTray: Restart of RansomwareDetectionService Failed! " + ex.Message + " Source: " + ex.Source + "  StackTrace: " + ex.StackTrace;
+                WriteError(strErr, EventLogEntryType.Error, 5000, 50);
             }
             ////GetServiceStatus();
             return blSuccess;
@@ -788,7 +809,8 @@ namespace RansomwareDetection
             catch (Exception ex)
             {
                 ShowBalloonTip(5000, "Stop Failed", "Stop of RansomwareDetectionService Failed.", ToolTipIcon.Error);
-                WriteEntry(ex.Message);
+                string strErr = "RansomwareDetectionServiceTray: Stop of RansomwareDetectionService Failed. " + ex.Message + " Source: " + ex.Source + "  StackTrace: " + ex.StackTrace;
+                WriteError(strErr, EventLogEntryType.Error, 5000, 50);
             }
             //GetServiceStatus();
             return blSuccess;
@@ -1145,8 +1167,9 @@ namespace RansomwareDetection
             }
             catch (Exception ex)
             {
-                string strErr = ex.Message + ": " + ex.Source + "  " + ex.StackTrace;
-                _evt.WriteEntry(strErr);
+                string strErr = "RansomwareDetectionServiceTray: " + ex.Message + " Source: " + ex.Source + "  StackTrace: " + ex.StackTrace;
+                WriteError(strErr, EventLogEntryType.Error, 5000, 50);
+               
             }
             
             
@@ -1345,12 +1368,8 @@ namespace RansomwareDetection
             }
             catch (Exception ex)
             {
-                if (_evt == null)
-                {
-                    _evt = Common.GetEventLog;
-                }
-                string strErr = ex.Message + ": " + ex.Source + "  " + ex.StackTrace;
-                _evt.WriteEntry(strErr);
+                string strErr = "RansomwareDetectionServiceTray: " + ex.Message + " Source: " + ex.Source + "  StackTrace: " + ex.StackTrace;
+                WriteError(strErr, EventLogEntryType.Error, 5000, 50);
 
             }
         }
@@ -1409,12 +1428,8 @@ namespace RansomwareDetection
             }
             catch (Exception ex)
             {
-                if (_evt == null)
-                {
-                    _evt = Common.GetEventLog;
-                }
-                string strErr = ex.Message + ": " + ex.Source + "  " + ex.StackTrace;
-                _evt.WriteEntry(strErr);
+                string strErr = "RansomwareDetectionServiceTray: " + ex.Message + " Source: " + ex.Source + "  StackTrace: " + ex.StackTrace;
+                WriteError(strErr, EventLogEntryType.Error, 5000, 50);
 
             }
 
@@ -1473,8 +1488,8 @@ namespace RansomwareDetection
                 {
                     _evt = Common.GetEventLog;
                 }
-                string strErr = ex.Message + ": " + ex.Source + "  " + ex.StackTrace;
-                _evt.WriteEntry(strErr);
+                string strErr = "RansomwareDetectionServiceTray: " + ex.Message + " Source: " + ex.Source + "  StackTrace: " + ex.StackTrace;
+                WriteError(strErr, EventLogEntryType.Error, 5000, 50);
 
             }
         }
@@ -1530,12 +1545,8 @@ namespace RansomwareDetection
             }
             catch (Exception ex)
             {
-                if (_evt == null)
-                {
-                    _evt = Common.GetEventLog;
-                }
-                string strErr = ex.Message + ": " + ex.Source + "  " + ex.StackTrace;
-                _evt.WriteEntry(strErr);
+                string strErr = "RansomwareDetectionServiceTray: " + ex.Message + " Source: " + ex.Source + "  StackTrace: " + ex.StackTrace;
+                WriteError(strErr, EventLogEntryType.Error, 5000, 50);
 
             }
         }
@@ -1583,12 +1594,8 @@ namespace RansomwareDetection
             }
             catch (Exception ex)
             {
-                if (_evt == null)
-                {
-                    _evt = Common.GetEventLog;
-                }
-                string strErr = ex.Message + ": " + ex.Source + "  " + ex.StackTrace;
-                _evt.WriteEntry(strErr);
+                string strErr = "RansomwareDetectionServiceTray: " + ex.Message + " Source: " + ex.Source + "  StackTrace: " + ex.StackTrace;
+                WriteError(strErr, EventLogEntryType.Error, 5000, 50);
 
             }
         }
@@ -1663,12 +1670,8 @@ namespace RansomwareDetection
             }
             catch (Exception ex)
             {
-                if (_evt == null)
-                {
-                    _evt = Common.GetEventLog;
-                }
-                string strErr = ex.Message + ": " + ex.Source + "  " + ex.StackTrace;
-                _evt.WriteEntry(strErr);
+                string strErr = "RansomwareDetectionServiceTray: " + ex.Message + " Source: " + ex.Source + "  StackTrace: " + ex.StackTrace;
+                WriteError(strErr, EventLogEntryType.Error, 5000, 50);
             }
             
 
@@ -1696,12 +1699,8 @@ namespace RansomwareDetection
             }
             catch (Exception ex)
             {
-                if (_evt == null)
-                {
-                    _evt = Common.GetEventLog;
-                }
-                string strErr = ex.Message + ": " + ex.Source + "  " + ex.StackTrace;
-                _evt.WriteEntry(strErr);
+                string strErr = "RansomwareDetectionServiceTray: " + ex.Message + " Source: " + ex.Source + "  StackTrace: " + ex.StackTrace;
+                WriteError(strErr, EventLogEntryType.Error, 5000, 50);
                 
             }
            
@@ -1864,12 +1863,8 @@ namespace RansomwareDetection
             }
             catch (Exception ex)
             {
-                if (_evt == null)
-                {
-                    _evt = Common.GetEventLog;
-                }
-                string strErr = ex.Message + ": " + ex.Source + "  " + ex.StackTrace;
-                _evt.WriteEntry(strErr);
+                string strErr = "RansomwareDetectionServiceTray: " + ex.Message + " Source: " + ex.Source + "  StackTrace: " + ex.StackTrace;
+                WriteError(strErr, EventLogEntryType.Error, 5000, 50);
             }
             
         }
@@ -1897,13 +1892,17 @@ namespace RansomwareDetection
         {
             try
             {
+
                 _evt.Clear();
                 dsEvents.Tables["Events"].Rows.Clear();
                 _evt.WriteEntry("RanDet Event Log Cleared.");
             }
             catch (Exception)
             {
-              
+                if (_evt == null)
+                {
+                    _evt = Common.GetEventLog;
+                }
             }
             
         }
@@ -2006,44 +2005,57 @@ namespace RansomwareDetection
 
             //Emails regarding restarting the process server
             char[] cdelimiter = { ',' };
-            
-
-            MailMessage mail = new MailMessage();
-            SmtpClient SmtpServer = new SmtpClient(_smtpServer);
-
-            mail.From = new MailAddress(_emailFrom);
-
-            _emailTo = _emailTo.Replace(";", ",");
-            //comma delimiter support for email to
-            string[] ToMultiEmail = _emailTo.Split(cdelimiter, StringSplitOptions.RemoveEmptyEntries);
-            
-            if (ToMultiEmail != null)
+            MailMessage mail;
+            SmtpClient SmtpServer;
+            string[] ToMultiEmail;
+            try
             {
-                //add each email address
-                foreach (string strEmailTo in ToMultiEmail)
-                {
-                    mail.To.Add(strEmailTo);
-                }
-                mail.IsBodyHtml = true;
-                mail.Body = strBody;
-                mail.Subject = strSubject;
 
-                SmtpServer.Port = Common.FixNullInt32(_smtpPort);
-                SmtpServer.UseDefaultCredentials = _smtpUseDefaultCredentials;
-                //credential support (username/password) for SMTP Server
-                if (_smtpPassword != null && _smtpUsername != null)
+            
+                mail = new MailMessage();
+            
+                SmtpServer = new SmtpClient(_smtpServer);
+
+                mail.From = new MailAddress(_emailFrom);
+
+                _emailTo = _emailTo.Replace(";", ",");
+                //comma delimiter support for email to
+                ToMultiEmail = _emailTo.Split(cdelimiter, StringSplitOptions.RemoveEmptyEntries);
+            
+                if (ToMultiEmail != null)
                 {
-                    if (_smtpPassword.Length > 0 && _smtpUsername.Length > 0)
+                    //add each email address
+                    foreach (string strEmailTo in ToMultiEmail)
                     {
-                        AES256 aes = new AES256(ep);
-
-                        string strpw = aes.Decrypt(_smtpPassword);
-                        SmtpServer.Credentials = new System.Net.NetworkCredential(_smtpUsername, strpw);
-                        strpw = "";
+                        mail.To.Add(strEmailTo);
                     }
+                    mail.IsBodyHtml = true;
+                    mail.Body = strBody;
+                    mail.Subject = strSubject;
+
+                    SmtpServer.Port = Common.FixNullInt32(_smtpPort);
+                    SmtpServer.UseDefaultCredentials = _smtpUseDefaultCredentials;
+                    //credential support (username/password) for SMTP Server
+                    if (_smtpPassword != null && _smtpUsername != null)
+                    {
+                        if (_smtpPassword.Length > 0 && _smtpUsername.Length > 0)
+                        {
+                            AES256 aes = new AES256(ep);
+
+                            string strpw = aes.Decrypt(_smtpPassword);
+                            SmtpServer.Credentials = new System.Net.NetworkCredential(_smtpUsername, strpw);
+                            strpw = "";
+                        }
+                    }
+                    SmtpServer.EnableSsl = _smtpUseSSL;
+                    SmtpServer.Send(mail);
                 }
-                SmtpServer.EnableSsl = _smtpUseSSL;
-                SmtpServer.Send(mail);
+            }
+            catch (Exception ex)
+            {
+
+                string strErr = "RansomwareDetectionServiceTray: " + ex.Message + " Source: " + ex.Source + "  StackTrace: " + ex.StackTrace;
+                WriteError(strErr, EventLogEntryType.Error, 5000, 50);
             }
 
         }
@@ -2054,20 +2066,10 @@ namespace RansomwareDetection
 
         private void sendTestEmailToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            try
-            {
-                Save();
-                Send_Email("Test", "Ransomware Detection Email Test");
-            }
-            catch (Exception ex)
-            {
-                if (_evt == null)
-                {
-                    _evt = Common.GetEventLog;
-                }
-                string strErr = ex.Message + ": " + ex.Source + "  " + ex.StackTrace;
-                _evt.WriteEntry(strErr);
-            }
+            
+            Save();
+            Send_Email("Test", "Ransomware Detection Email Test");
+            
         }
 
         private void servicesConsoleToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -2078,20 +2080,10 @@ namespace RansomwareDetection
 
         private void btnSendTestEmail_Click(object sender, EventArgs e)
         {
-            try
-            {
-                Save();
-                Send_Email("Test", "Ransomware Detection Email Test");
-            }
-            catch (Exception ex)
-            {
-                if (_evt == null)
-                {
-                    _evt = Common.GetEventLog;
-                }
-                string strErr = ex.Message + ": " + ex.Source + "  " + ex.StackTrace;
-                _evt.WriteEntry(strErr);
-            }
+            
+            Save();
+            Send_Email("Test", "Ransomware Detection Email Test");
+            
         }
         
 

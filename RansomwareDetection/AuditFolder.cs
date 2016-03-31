@@ -943,7 +943,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                     }
                     catch (Exception ex)
                     {
-                        WriteError(ex.Message + " source: " + ex.Source + " Stacktrace: " + ex.StackTrace, System.Diagnostics.EventLogEntryType.Error, 7000, 70, false);
+                        WriteError("Audit Folder: " + ex.Message + " Source: " + ex.Source + " StackTrace: " + ex.StackTrace, System.Diagnostics.EventLogEntryType.Error, 7000, 70, false);
 
                     }
 
@@ -1145,8 +1145,15 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
         private void WriteError(string strErrorMessage, System.Diagnostics.EventLogEntryType entrytype, int eventid, short category, bool blIsDetailedLoggingError)
         {
             //multi threaded so _evt sometimes is not allocated. 
-            _evt = Common.GetEventLog;
-            
+            if (_evt == null)
+            {
+                _evt = Common.GetEventLog;
+            }
+            if (strErrorMessage.Length > 32765)
+            {
+                strErrorMessage = strErrorMessage.Substring(0, 32760) + " ...";
+            }
+
             if (blIsDetailedLoggingError == false)
             {
                 _evt.WriteEntry(strErrorMessage, entrytype, eventid, category);

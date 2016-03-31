@@ -63,7 +63,15 @@ This License constitutes the entire agreement between the parties with respect t
 
 
 
-//removed Archive classes and extraction code from the original code.
+//removed Archive classes and extraction code from the original code.  3-12-2016
+//Added ByteOffset and FirstBytesToRead to contructors and Signature related classes,SimplePatternSignatureChecker for user specification.  3-13-2016
+//Added more stock signatures 3-17-2016
+//Added SignatureConfig table code to allow user specification of signatures 3-20-2016
+//Added ByteOffset and FirstBytesToRead to HeaderSignature Stock Signature contructors 3-27-2016
+//Added more stock signatures 3-31-2016
+//Added Error Log write procedure and objects needed event log use 3-31-2016
+
+
 //Added more 
 namespace RansomwareDetection.ContentDetectorLib
 {
@@ -95,6 +103,17 @@ namespace RansomwareDetection.ContentDetectorLib
 		#region Public methods.
 		// ------------------------------------------------------------------
 
+        public bool DetailedLogging 
+        {
+            get
+            {
+                return _detailedLogging;
+            }
+            set
+            {
+                _detailedLogging = value;
+            }
+        }
 
         /// <summary>
         /// Initializes the config table for file filters
@@ -153,14 +172,13 @@ namespace RansomwareDetection.ContentDetectorLib
         /// </summary>
         /// <param name="filePath">The file path.</param>
         /// <returns></returns>
-        private static bool ContainsProhibitedFileContent(
+        private bool ContainsProhibitedFileContent(
             Delimon.Win32.IO.FileInfo filePath, HeaderSignature[] sigs)
         {
-            Trace.WriteLine(
-                string.Format(
-                @"Processing content of file '{0}' ({1:0,0} bytes).",
+            WriteError(string.Format(
+                @"Audit Folder ContentDetectorEngine: Processing content of file '{0}' ({1:0,0} bytes).",
                 filePath.FullName,
-                filePath.Length));
+                filePath.Length), System.Diagnostics.EventLogEntryType.Information,6000,60,true);
 
             SingleFileContentProcessor processor =
                 new SingleFileContentProcessor(filePath);
@@ -169,19 +187,19 @@ namespace RansomwareDetection.ContentDetectorLib
 
             if (result)
             {
-                Trace.WriteLine(
+                WriteError(
                     string.Format(
-                        @"Detected PROHIBITED content in file '{0}' ({1:0,0} bytes).",
+                        @"Audit Folder ContentDetectorEngine: Detected PROHIBITED content in file '{0}' ({1:0,0} bytes).",
                         filePath.FullName,
-                        filePath.Length));
+                        filePath.Length), System.Diagnostics.EventLogEntryType.Information, 6000, 60, true);
             }
             else
             {
-                Trace.WriteLine(
+                WriteError(
                     string.Format(
-                        @"Detected NO prohibited content in file '{0}' ({1:0,0} bytes).",
+                        @"Audit Folder ContentDetectorEngine: Detected NO prohibited content in file '{0}' ({1:0,0} bytes).",
                         filePath.FullName,
-                        filePath.Length));
+                        filePath.Length), System.Diagnostics.EventLogEntryType.Information, 6000, 60, true);
             }
 
             return result;
@@ -209,10 +227,10 @@ namespace RansomwareDetection.ContentDetectorLib
             System.Data.DataTable dtSignatures
             )
         {
-            Trace.WriteLine(
+            WriteError(
                 string.Format(
-                @"Checking folder '{0}'.",
-                folderPath.FullName));
+                @"Audit Folder ContentDetectorEngine: Checking folder '{0}'.",
+                folderPath.FullName), System.Diagnostics.EventLogEntryType.Information, 6000, 60, true);
 
             HeaderSignature[] sigs = null;
             try
@@ -247,20 +265,20 @@ namespace RansomwareDetection.ContentDetectorLib
                 {
                     if (blShuttingDown)
                     {
-                        Trace.WriteLine(
+                        WriteError(
                             string.Format(
-                            @"Shutting Down: was about to check file '{0}'.",
-                            filePath.FullName));
+                            @"Audit Folder ContentDetectorEngine: Shutting Down: was about to check file '{0}'.",
+                            filePath.FullName), System.Diagnostics.EventLogEntryType.Information, 6000, 60, true);
                         break;
                     }
                     try
                     {
-                        Trace.WriteLine(
+                        WriteError(
                         string.Format(
-                        @"[{0}/{1}] Checking file '{2}' ({3:0,0} bytes).",
+                        @"Audit Folder ContentDetectorEngine: [{0}/{1}] Checking file '{2}' ({3:0,0} bytes).",
                         index + 1, filePaths.Length,
                         filePath.FullName,
-                        filePath.Length));
+                        filePath.Length), System.Diagnostics.EventLogEntryType.Information, 6000, 60, true);
 
 
 
@@ -287,12 +305,12 @@ namespace RansomwareDetection.ContentDetectorLib
                     }
                     catch (Exception)
                     {
-                        Trace.WriteLine(
+                        WriteError(
                         string.Format(
-                        @"[{0}/{1}] Error Checking file '{2}' ({3:0,0} bytes).",
+                        @"Audit Folder ContentDetectorEngine: [{0}/{1}] Error Checking file '{2}' ({3:0,0} bytes).",
                         index + 1, filePaths.Length,
                         filePath.FullName,
-                        filePath.Length));
+                        filePath.Length), System.Diagnostics.EventLogEntryType.Error, 6000, 60, false);
                         unknownFiles.Add(new FileResult(filePath,"Error checking the file"));
                     }
 
@@ -313,10 +331,10 @@ namespace RansomwareDetection.ContentDetectorLib
                     bool blIgnoreDirectory = false;
                     if (blShuttingDown)
                     {
-                        Trace.WriteLine(
+                        WriteError(
                             string.Format(
-                            @"Shutting Down: was about to check folder '{0}'.",
-                            childFolderPath.FullName));
+                            @"Audit Folder ContentDetectorEngine: Shutting Down: was about to check folder '{0}'.",
+                            childFolderPath.FullName), System.Diagnostics.EventLogEntryType.Information, 6000, 60, true);
                         break;
                     }
                     
@@ -379,11 +397,11 @@ namespace RansomwareDetection.ContentDetectorLib
             }
             else
             {
-                Trace.WriteLine(
+                WriteError(
                     string.Format(
-                    @"Verifying file '{0}' ({1:0,0} bytes).",
+                    @"Audit Folder ContentDetectorEngine: Verifying file '{0}' ({1:0,0} bytes).",
                     filePath.FullName,
-                    filePath.Length));
+                    filePath.Length), System.Diagnostics.EventLogEntryType.Information, 6000, 60, true);
 
                 return IsVerifiedContent(filePath, sigs);
             }
@@ -415,14 +433,14 @@ namespace RansomwareDetection.ContentDetectorLib
         /// </summary>
         /// <param name="filePath">The file path.</param>
         /// <returns></returns>
-        private static bool CoreVerifyFileContent(
+        private bool CoreVerifyFileContent(
             Delimon.Win32.IO.FileInfo filePath, HeaderSignature[] sigs)
         {
-            Trace.WriteLine(
+            WriteError(
                 string.Format(
-                @"Processing content of file '{0}' ({1:0,0} bytes).",
+                @"Audit Folder ContentDetectorEngine: Processing content of file '{0}' ({1:0,0} bytes).",
                 filePath.FullName,
-                filePath.Length));
+                filePath.Length), System.Diagnostics.EventLogEntryType.Information, 6000, 60, true);
             bool result;
             SingleFileContentProcessor processor =
                 new SingleFileContentProcessor(filePath);
@@ -434,25 +452,52 @@ namespace RansomwareDetection.ContentDetectorLib
 
             if (!result)
             {
-                Trace.WriteLine(
+                WriteError(
                     string.Format(
-                        @"Detected Unverified content in file '{0}' ({1:0,0} bytes).",
+                        @"Audit Folder ContentDetectorEngine: Detected Unverified content in file '{0}' ({1:0,0} bytes).",
                         filePath.FullName,
-                        filePath.Length));
+                        filePath.Length), System.Diagnostics.EventLogEntryType.Information, 6000, 60, true);
             }
             else
             {
-                Trace.WriteLine(
+                WriteError(
                     string.Format(
-                        @"Detected Verified content in file '{0}' ({1:0,0} bytes).",
+                        @"Audit Folder ContentDetectorEngine: Detected Verified content in file '{0}' ({1:0,0} bytes).",
                         filePath.FullName,
-                        filePath.Length));
+                        filePath.Length), System.Diagnostics.EventLogEntryType.Information, 6000, 60, true);
             }
 
             return result;
         }
 
-		
+        /// <summary>
+        /// Write Event Log Error
+        /// </summary>
+        /// <param name="strErrorMessage"></param>
+        /// <param name="entrytype"></param>
+        /// <param name="eventid"></param>
+        /// <param name="category"></param>
+        /// <param name="blIsDetailedLoggingError"></param>
+        private void WriteError(string strErrorMessage, System.Diagnostics.EventLogEntryType entrytype, int eventid, short category, bool blIsDetailedLoggingError)
+        {
+            //multi threaded so _evt sometimes is not allocated. 
+            if (_evt == null)
+            {
+                _evt = Common.GetEventLog;
+            }
+            if (blIsDetailedLoggingError == false)
+            {
+                _evt.WriteEntry(strErrorMessage, entrytype, eventid, category);
+            }
+            else
+            {
+                if (DetailedLogging || entrytype == EventLogEntryType.Error)
+                {
+                    _evt.WriteEntry(strErrorMessage, entrytype, eventid, category);
+                }
+            }
+
+        }
 
 		// ------------------------------------------------------------------
 		#endregion
@@ -465,8 +510,9 @@ namespace RansomwareDetection.ContentDetectorLib
 		/// </summary>
 		private const int maximumNestingDepth = 10;
 
+        private static EventLog _evt;
         
-
+        private bool _detailedLogging = false;
 		// ------------------------------------------------------------------
 		#endregion
 	}

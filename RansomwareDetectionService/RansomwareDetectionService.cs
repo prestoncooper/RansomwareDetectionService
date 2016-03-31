@@ -465,7 +465,10 @@ namespace RansomwareDetection
             {
                 _evt = Common.GetEventLog;
             }
-            
+            if (strErrorMessage.Length > 32765)
+            {
+                strErrorMessage = strErrorMessage.Substring(0, 32760) + " ...";
+            }
             _evt.WriteEntry(strErrorMessage, entrytype, eventid, category);
 
         }
