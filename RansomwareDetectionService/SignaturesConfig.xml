@@ -95,7 +95,7 @@
     <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
     <HexPattern>504B0304140006000800000021</HexPattern>
     <SignatureName>Microsoft Office Open XML Format 1</SignatureName>
-    <FileExtensions>.docx;.pptx;.xlsx;.vsdx;</FileExtensions>
+    <FileExtensions>.docx;.pptx;.xlsx;.vsdx;.dotx;.dotm;.docm;</FileExtensions>
     <Prohibited>False</Prohibited>
     <Comment />
   </SignaturesConfig>
@@ -106,7 +106,7 @@
     <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
     <HexPattern>504B030414000600</HexPattern>
     <SignatureName>Microsoft Office Open XML Format 2</SignatureName>
-    <FileExtensions>.docx;.pptx;.xlsx;.vsdx;</FileExtensions>
+    <FileExtensions>.docx;.pptx;.xlsx;.vsdx;.dotx;.dotm;.docm;</FileExtensions>
     <Prohibited>False</Prohibited>
     <Comment />
   </SignaturesConfig>
@@ -117,7 +117,7 @@
     <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
     <HexPattern>504B030414000200</HexPattern>
     <SignatureName>Microsoft Office Open XML Format 3</SignatureName>
-    <FileExtensions>.docx;.pptx;.xlsx;.vsdx;</FileExtensions>
+    <FileExtensions>.docx;.pptx;.xlsx;.vsdx;.dotx;.dotm;.docm;</FileExtensions>
     <Prohibited>False</Prohibited>
     <Comment />
   </SignaturesConfig>
@@ -139,7 +139,7 @@
     <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
     <HexPattern>D0CF11E0A1B11AE1</HexPattern>
     <SignatureName>MS Compound Document v1 or Lotus Approach APR file</SignatureName>
-    <FileExtensions>.doc;.xls;.xlt;.ppt;.apr;.dot;.pps;.wps;.vsd;.qbm;.pub;.adp;.ade;</FileExtensions>
+    <FileExtensions>.doc;.xls;.xlt;.ppt;.apr;.dot;.pps;.wps;.vsd;.qbm;.pub;.adp;.ade;.docm;</FileExtensions>
     <Prohibited>False</Prohibited>
     <Comment />
   </SignaturesConfig>
@@ -719,7 +719,7 @@
     <ID>70</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
     <HexPattern>0902060000001000B9045C00</HexPattern>
     <SignatureName>MS Excel v2</SignatureName>
     <FileExtensions>.xls;</FileExtensions>
@@ -730,7 +730,7 @@
     <ID>71</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
     <HexPattern>0904060000001000F6055C00</HexPattern>
     <SignatureName>MS Excel v4</SignatureName>
     <FileExtensions>.xls;</FileExtensions>
@@ -741,10 +741,10 @@
     <ID>72</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
     <HexPattern>7FFE340A</HexPattern>
     <SignatureName>MS Word</SignatureName>
-    <FileExtensions>.doc;</FileExtensions>
+    <FileExtensions>.doc;.xls;.xlt;.ppt;.apr;.dot;.pps;.wps;.vsd;.qbm;.pub;.adp;.ade;.docm;</FileExtensions>
     <Prohibited>False</Prohibited>
     <Comment />
   </SignaturesConfig>
@@ -752,10 +752,10 @@
     <ID>73</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
     <HexPattern>1234567890FF</HexPattern>
     <SignatureName>MS Word 6.0</SignatureName>
-    <FileExtensions>.doc;</FileExtensions>
+    <FileExtensions>.doc;.xls;.xlt;.ppt;.apr;.dot;.pps;.wps;.vsd;.qbm;.pub;.adp;.ade;.docm;</FileExtensions>
     <Prohibited>False</Prohibited>
     <Comment />
   </SignaturesConfig>
@@ -763,10 +763,10 @@
     <ID>74</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
     <HexPattern>31BE000000AB0000</HexPattern>
     <SignatureName>MS Word for DOS 6.0</SignatureName>
-    <FileExtensions>.doc;</FileExtensions>
+    <FileExtensions>.doc;.xls;.xlt;.ppt;.apr;.dot;.pps;.wps;.vsd;.qbm;.pub;.adp;.ade;.docm;</FileExtensions>
     <Prohibited>False</Prohibited>
     <Comment />
   </SignaturesConfig>
@@ -796,7 +796,7 @@
     <ID>77</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
     <HexPattern>504B0304</HexPattern>
     <SignatureName>PKZIP Compressed</SignatureName>
     <FileExtensions>.zip;</FileExtensions>
@@ -1027,7 +1027,7 @@
     <ID>99</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
     <HexPattern>504B3030504B0304</HexPattern>
     <SignatureName>WINZIP Compressed</SignatureName>
     <FileExtensions>.zip;</FileExtensions>
@@ -1093,7 +1093,7 @@
     <ID>106</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
     <HexPattern>5A4F4F20</HexPattern>
     <SignatureName>ZOO Archive File</SignatureName>
     <FileExtensions>.zoo;</FileExtensions>
@@ -1151,7 +1151,7 @@
     <FirstNumberOfBytesToRead>8</FirstNumberOfBytesToRead>
     <HexPattern>DBA52D00</HexPattern>
     <SignatureName>MS Word 2.0</SignatureName>
-    <FileExtensions>.doc;</FileExtensions>
+    <FileExtensions>.doc;.xls;.xlt;.ppt;.apr;.dot;.pps;.wps;.vsd;.qbm;.pub;.adp;.ade;.docm;</FileExtensions>
     <Prohibited>False</Prohibited>
     <Comment />
   </SignaturesConfig>
@@ -1390,7 +1390,7 @@
     <ID>134</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
     <HexPattern>504B0506</HexPattern>
     <SignatureName>PKZip Compressed</SignatureName>
     <FileExtensions>.zip;.jar;</FileExtensions>
@@ -1401,7 +1401,7 @@
     <ID>135</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
     <HexPattern>504B0708</HexPattern>
     <SignatureName>PKZip Compressed</SignatureName>
     <FileExtensions>.zip;.jar;</FileExtensions>
@@ -1412,7 +1412,7 @@
     <ID>136</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
     <HexPattern>504B0304</HexPattern>
     <SignatureName>Zip Compressed</SignatureName>
     <FileExtensions>.zip;.jar;.odt;.kwd;.sxc;.sxd;.sxi;.sxw;.xps;</FileExtensions>
@@ -1712,7 +1712,7 @@
     <FirstNumberOfBytesToRead>8</FirstNumberOfBytesToRead>
     <HexPattern>FF575043</HexPattern>
     <SignatureName>MS Word</SignatureName>
-    <FileExtensions>.doc;</FileExtensions>
+    <FileExtensions>.doc;.xls;.xlt;.ppt;.apr;.dot;.pps;.wps;.vsd;.qbm;.pub;.adp;.ade;.docm;</FileExtensions>
     <Prohibited>False</Prohibited>
     <Comment />
   </SignaturesConfig>
@@ -1771,5 +1771,4 @@
     <Prohibited>False</Prohibited>
     <Comment />
   </SignaturesConfig>
-  
 </DocumentElement>

@@ -306,11 +306,11 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 			{
 				new HeaderSignature(0,10,@"FFD8FFFE00", "JPG Graphic File", new string[] { @".JPEG", @".JPE", @".JPG" }, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,10,@"FFD8FFE000", "JPG Graphic File", new string[] { @".JPEG", @".JPE", @".JPG" }, ProhibitionMode.Allowed ),
-                new HeaderSignature(0,8,@"FFD8FFE128", "JPG Graphic File", new string[] { @".JPEG", @".JPE", @".JPG" }, ProhibitionMode.Allowed ),
-                new HeaderSignature(0,8,@"FFD8FFE1", "JPG Graphic File", new string[] { @".JPEG", @".JPE", @".JPG" }, ProhibitionMode.Allowed ),
-                new HeaderSignature(0,8,@"FFD8FFE0", "JPG Graphic File", new string[] { @".JPEG", @".JPE", @".JPG" }, ProhibitionMode.Allowed ),
-				new HeaderSignature(0,0,@"474946383961", "GIF 89A", new string[] { @".gif" }, ProhibitionMode.Allowed ),
-				new HeaderSignature(0,0,@"474946383761", "GIF 87A", new string[] { @".gif" }, ProhibitionMode.Allowed ),
+                new HeaderSignature(0,10,@"FFD8FFE128", "JPG Graphic File", new string[] { @".JPEG", @".JPE", @".JPG" }, ProhibitionMode.Allowed ),
+                new HeaderSignature(0,10,@"FFD8FFE1", "JPG Graphic File", new string[] { @".JPEG", @".JPE", @".JPG" }, ProhibitionMode.Allowed ),
+                new HeaderSignature(0,10,@"FFD8FFE0", "JPG Graphic File", new string[] { @".JPEG", @".JPE", @".JPG" }, ProhibitionMode.Allowed ),
+				new HeaderSignature(0,20,@"474946383961", "GIF 89A", new string[] { @".gif" }, ProhibitionMode.Allowed ),
+				new HeaderSignature(0,20,@"474946383761", "GIF 87A", new string[] { @".gif" }, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,4,@"424D", "Windows Bitmap", new string[] { @".bmp" }, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,20,@"504B0304140006000800000021", "Microsoft Office Open XML Format", new string[] { @".docx",@".pptx",@".xlsx", @".vsdx", @".dotx",@"dotm",@"docm" }, ProhibitionMode.Allowed ),
                 new HeaderSignature(0,20,@"504B030414000600", "Microsoft Office Open XML Format", new string[] { @".docx",@".pptx",@".xlsx", @".vsdx", @".dotx",@"dotm",@"docm" }, ProhibitionMode.Allowed ),
@@ -319,7 +319,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
                 
                 new HeaderSignature(0,20,@"3A42617365", "", new string[] { @".cnt" }, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,20,@"D0CF11E0A1B11AE1", "MS Compound Document v1 or Lotus Approach APR file", new string[] { @".doc", @".xls", @".xlt", @".ppt", @".apr", @".dot", @".pps",@".wps",@".vsd",@".qbm",@".pub",@".adp",@".ade",@"docm" }, ProhibitionMode.Allowed ),
-                //EE DE 12 00 01 00 F4 01 00 00 00 00
+                
                 new HeaderSignature(0,20,@"0100000058000000", "", new string[] { @".emf" }, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,20,@"03000000C466C456", "", new string[] { @".evt" }, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,10,@"3F5F0300", "Windows Help File", new string[] { @".gid", @".hlp", @".lhp" }, ProhibitionMode.Allowed ),
