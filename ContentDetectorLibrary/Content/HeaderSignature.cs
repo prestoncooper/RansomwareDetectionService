@@ -319,7 +319,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
                 
                 new HeaderSignature(0,20,@"3A42617365", "", new string[] { @".cnt" }, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,20,@"D0CF11E0A1B11AE1", "MS Compound Document v1 or Lotus Approach APR file", new string[] { @".doc", @".xls", @".xlt", @".ppt", @".apr", @".dot", @".pps",@".wps",@".vsd",@".qbm",@".pub",@".adp",@".ade" }, ProhibitionMode.Allowed ),
-                
+                //EE DE 12 00 01 00 F4 01 00 00 00 00
                 new HeaderSignature(0,20,@"0100000058000000", "", new string[] { @".emf" }, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,20,@"03000000C466C456", "", new string[] { @".evt" }, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,10,@"3F5F0300", "Windows Help File", new string[] { @".gid", @".hlp", @".lhp" }, ProhibitionMode.Allowed ),
@@ -454,11 +454,22 @@ namespace RansomwareDetection.ContentDetectorLib.Content
                 
                 
                
-                new HeaderSignature(0,30,@"5B7B3030303231344130", "URL Shortcut File", new string[] { @".url" }, ProhibitionMode.Allowed ),
+                new HeaderSignature(0,30,@"5B7B3030303231344130", "URL Shortcut File", new string[] { @".url",@".lnk" }, ProhibitionMode.Allowed ),
                 new HeaderSignature( new QBWSignatureChecker(), "Quickbooks file", new string[] { @".qbw", @".tlg"}, ProhibitionMode.Allowed ),
                 new HeaderSignature(0,40,@"2F2F5468697320697320517569636B", "Quickbooks configuration file", new string[] { @".nd"}, ProhibitionMode.Allowed ),
                 new HeaderSignature(0,40,@"D0CF11E0A1B11AE1", "Quickbooks backup file", new string[] { @".qbb"}, ProhibitionMode.Allowed ),
-                new HeaderSignature(0,20,@"5B44454641554C545D", "URL Shortcut File", new string[] { @".url"}, ProhibitionMode.Allowed ),
+                new HeaderSignature(0,20,@"5B44454641554C545D", "URL Shortcut File", new string[] { @".url",@".lnk"}, ProhibitionMode.Allowed ),
+                
+
+                new HeaderSignature(0,20,@"EEDE12000100F40100000000", "APR file", new string[] { @".apr" }, ProhibitionMode.Allowed ),
+                new HeaderSignature(0,10,@"B168DE3A0410", "dcx file", new string[] { @".dcx" }, ProhibitionMode.Allowed ),
+                new HeaderSignature(0,6,@"FF575043", "MS Word", new string[] { @".doc" }, ProhibitionMode.Allowed ),
+                new HeaderSignature(0,20,@"0A020101000000009F", "pcx file", new string[] { @".pcx" }, ProhibitionMode.Allowed ),
+                new HeaderSignature(0,20,@"3C003F0078006D006C", "xml file", new string[] { @".xml" }, ProhibitionMode.Allowed ),
+                new HeaderSignature(0,20,@"0000000041000000EC", "db file", new string[] { @".db" }, ProhibitionMode.Allowed ),
+                new HeaderSignature(0,30,@"5B496E7465726E657453686F7274", "URL Shortcut file", new string[] { @".url",@".lnk" }, ProhibitionMode.Allowed ),
+                
+
                 new HeaderSignature(0,20,@"504B0304140000000800", "Smart Notebook", new string[] { @".notebook" }, ProhibitionMode.Allowed ),
                 new HeaderSignature(0,20,@"5075726368617365204F72646572", "pof file", new string[] { @".pof" }, ProhibitionMode.Allowed ),
                 new HeaderSignature( new PogSignatureChecker(), "POG File", new string[] { @".pog"}, ProhibitionMode.Allowed ),

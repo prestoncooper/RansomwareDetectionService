@@ -4,7 +4,7 @@
     <ID>1</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
     <HexPattern>FFD8FFFE00</HexPattern>
     <SignatureName>JPG Image File</SignatureName>
     <FileExtensions>.jpeg;.jpe;.jpg;</FileExtensions>
@@ -15,7 +15,7 @@
     <ID>3</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
     <HexPattern>FFD8FFE000</HexPattern>
     <SignatureName>JPG Image File</SignatureName>
     <FileExtensions>.jpeg;.jpe;.jpg;</FileExtensions>
@@ -26,7 +26,7 @@
     <ID>4</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
     <HexPattern>FFD8FFE128</HexPattern>
     <SignatureName>JPG Image File</SignatureName>
     <FileExtensions>.jpeg;.jpe;.jpg;</FileExtensions>
@@ -37,7 +37,7 @@
     <ID>5</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
     <HexPattern>FFD8FFE1</HexPattern>
     <SignatureName>JPG Image File</SignatureName>
     <FileExtensions>.jpeg;.jpe;.jpg;</FileExtensions>
@@ -48,7 +48,7 @@
     <ID>6</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
     <HexPattern>FFD8FFE0</HexPattern>
     <SignatureName>JPG Image File</SignatureName>
     <FileExtensions>.jpeg;.jpe;.jpg;</FileExtensions>
@@ -59,7 +59,7 @@
     <ID>7</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
     <HexPattern>474946383961</HexPattern>
     <SignatureName>GIF 89A</SignatureName>
     <FileExtensions>.gif;</FileExtensions>
@@ -70,7 +70,7 @@
     <ID>8</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
     <HexPattern>474946383761</HexPattern>
     <SignatureName>GIF 87A</SignatureName>
     <FileExtensions>.gif;</FileExtensions>
@@ -92,7 +92,7 @@
     <ID>10</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
     <HexPattern>504B0304140006000800000021</HexPattern>
     <SignatureName>Microsoft Office Open XML Format 1</SignatureName>
     <FileExtensions>.docx;.pptx;.xlsx;.vsdx;</FileExtensions>
@@ -103,7 +103,7 @@
     <ID>13</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
     <HexPattern>504B030414000600</HexPattern>
     <SignatureName>Microsoft Office Open XML Format 2</SignatureName>
     <FileExtensions>.docx;.pptx;.xlsx;.vsdx;</FileExtensions>
@@ -114,7 +114,7 @@
     <ID>14</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
     <HexPattern>504B030414000200</HexPattern>
     <SignatureName>Microsoft Office Open XML Format 3</SignatureName>
     <FileExtensions>.docx;.pptx;.xlsx;.vsdx;</FileExtensions>
@@ -125,7 +125,7 @@
     <ID>15</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
     <HexPattern>3A42617365</HexPattern>
     <SignatureName>CNT</SignatureName>
     <FileExtensions>.cnt;</FileExtensions>
@@ -136,7 +136,7 @@
     <ID>16</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
     <HexPattern>D0CF11E0A1B11AE1</HexPattern>
     <SignatureName>MS Compound Document v1 or Lotus Approach APR file</SignatureName>
     <FileExtensions>.doc;.xls;.xlt;.ppt;.apr;.dot;.pps;.wps;.vsd;.qbm;.pub;.adp;.ade;</FileExtensions>
@@ -147,7 +147,7 @@
     <ID>17</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
     <HexPattern>0100000058000000</HexPattern>
     <SignatureName>EMF</SignatureName>
     <FileExtensions>.emf;</FileExtensions>
@@ -158,7 +158,7 @@
     <ID>18</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
     <HexPattern>03000000C466C456</HexPattern>
     <SignatureName>EVT</SignatureName>
     <FileExtensions>.evt;</FileExtensions>
@@ -169,7 +169,7 @@
     <ID>19</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
     <HexPattern>3F5F0300</HexPattern>
     <SignatureName>Windows Help File</SignatureName>
     <FileExtensions>.gid;.hlp;.lhp;</FileExtensions>
@@ -191,7 +191,7 @@
     <ID>22</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
     <HexPattern>28546869732066696C65</HexPattern>
     <SignatureName>HQX</SignatureName>
     <FileExtensions>.hqx;</FileExtensions>
@@ -202,7 +202,7 @@
     <ID>23</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
     <HexPattern>0000010000</HexPattern>
     <SignatureName>Icon File</SignatureName>
     <FileExtensions>.ico;</FileExtensions>
@@ -213,7 +213,7 @@
     <ID>24</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
     <HexPattern>000001000100</HexPattern>
     <SignatureName>Icon File</SignatureName>
     <FileExtensions>.ico;</FileExtensions>
@@ -224,10 +224,10 @@
     <ID>25</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
     <HexPattern>4C000000011402</HexPattern>
     <SignatureName>Windows Link File</SignatureName>
-    <FileExtensions>.lnk;</FileExtensions>
+    <FileExtensions>.lnk;.url;</FileExtensions>
     <Prohibited>False</Prohibited>
     <Comment />
   </SignaturesConfig>
@@ -235,7 +235,7 @@
     <ID>26</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
     <HexPattern>25504446</HexPattern>
     <SignatureName>Adobe PDF File</SignatureName>
     <FileExtensions>.pdf</FileExtensions>
@@ -246,7 +246,7 @@
     <ID>27</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
     <HexPattern>5245474544495434</HexPattern>
     <SignatureName>Windows Registry File</SignatureName>
     <FileExtensions>.reg;</FileExtensions>
@@ -257,7 +257,7 @@
     <ID>28</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
     <HexPattern>7B5C72746631</HexPattern>
     <SignatureName>Rich Text</SignatureName>
     <FileExtensions>.rtf;.doc;</FileExtensions>
@@ -268,7 +268,7 @@
     <ID>29</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
     <HexPattern>7B5C727466</HexPattern>
     <SignatureName>Rich Text</SignatureName>
     <FileExtensions>.rtf;.doc;</FileExtensions>
@@ -290,7 +290,7 @@
     <ID>31</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
     <HexPattern>4D546864</HexPattern>
     <SignatureName>MID</SignatureName>
     <FileExtensions>.mid;</FileExtensions>
@@ -301,7 +301,7 @@
     <ID>32</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
     <HexPattern>0A050108</HexPattern>
     <SignatureName>pcx</SignatureName>
     <FileExtensions>.pcx;</FileExtensions>
@@ -312,7 +312,7 @@
     <ID>33</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
     <HexPattern>25215053</HexPattern>
     <SignatureName>Adobe EPS File</SignatureName>
     <FileExtensions>.eps</FileExtensions>
@@ -400,7 +400,7 @@
     <ID>41</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
     <HexPattern>41564920</HexPattern>
     <SignatureName>Audio Video Interleave (AVI)</SignatureName>
     <FileExtensions>.avi;</FileExtensions>
@@ -411,7 +411,7 @@
     <ID>42</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
     <HexPattern>52494646</HexPattern>
     <SignatureName>Audio Video Interleave (AVI)</SignatureName>
     <FileExtensions>.avi;</FileExtensions>
@@ -422,7 +422,7 @@
     <ID>43</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
     <HexPattern>425A68</HexPattern>
     <SignatureName>Bzip Archive</SignatureName>
     <FileExtensions>.bz;.bz2;</FileExtensions>
@@ -433,7 +433,7 @@
     <ID>44</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
     <HexPattern>49536328</HexPattern>
     <SignatureName>Cabinet File</SignatureName>
     <FileExtensions>.cab;</FileExtensions>
@@ -543,7 +543,7 @@
     <ID>54</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
     <HexPattern>3C646976</HexPattern>
     <SignatureName>HyperText Markup Language 4 Starts with div tag</SignatureName>
     <FileExtensions>.htm;.html;</FileExtensions>
@@ -565,7 +565,7 @@
     <ID>56</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
     <HexPattern>5F27A889</HexPattern>
     <SignatureName>JAR Archive File</SignatureName>
     <FileExtensions>.jar;</FileExtensions>
@@ -1492,7 +1492,7 @@
     <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
     <HexPattern>5B7B3030303231344130</HexPattern>
     <SignatureName>URL Shortcut File</SignatureName>
-    <FileExtensions>.url;</FileExtensions>
+    <FileExtensions>.url;.lnk;</FileExtensions>
     <Prohibited>False</Prohibited>
     <Comment />
   </SignaturesConfig>
@@ -1525,7 +1525,7 @@
     <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
     <HexPattern>5B44454641554C545D</HexPattern>
     <SignatureName>URL Shortcut File</SignatureName>
-    <FileExtensions>.url;</FileExtensions>
+    <FileExtensions>.url;.lnk;</FileExtensions>
     <Prohibited>False</Prohibited>
     <Comment />
   </SignaturesConfig>
@@ -1702,6 +1702,61 @@
     <HexPattern>FF</HexPattern>
     <SignatureName>mp3 Audio File</SignatureName>
     <FileExtensions>.mp3;.mpeg;.mpg;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>163</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>8</FirstNumberOfBytesToRead>
+    <HexPattern>FF575043</HexPattern>
+    <SignatureName>MS Word</SignatureName>
+    <FileExtensions>.doc;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>165</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
+    <HexPattern>3C003F0078006D006C</HexPattern>
+    <SignatureName>XML File</SignatureName>
+    <FileExtensions>.xml;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>166</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
+    <HexPattern>0000000041000000EC</HexPattern>
+    <SignatureName>db file</SignatureName>
+    <FileExtensions>.db;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>167</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
+    <HexPattern>5B496E7465726E657453686F7274</HexPattern>
+    <SignatureName>URL Shortcut File</SignatureName>
+    <FileExtensions>.url;.lnk;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>168</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
+    <HexPattern>504B0304140006000800000021</HexPattern>
+    <SignatureName>MS Access 7</SignatureName>
+    <FileExtensions>.mdb;.accdb;.accde;.accdr;.accdt;.accdt;.adp;.ade;</FileExtensions>
     <Prohibited>False</Prohibited>
     <Comment />
   </SignaturesConfig>
