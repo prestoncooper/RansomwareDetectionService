@@ -95,7 +95,7 @@
     <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
     <HexPattern>504B0304140006000800000021</HexPattern>
     <SignatureName>Microsoft Office Open XML Format 1</SignatureName>
-    <FileExtensions>.docx;.pptx;.xlsx;.vsdx;.dotx;.dotm;.docm;</FileExtensions>
+    <FileExtensions>.docx;.pptx;.xlsx;.vsdx;.dotx;.dotm;.docm;.ppsx;.potx;</FileExtensions>
     <Prohibited>False</Prohibited>
     <Comment />
   </SignaturesConfig>
@@ -106,7 +106,7 @@
     <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
     <HexPattern>504B030414000600</HexPattern>
     <SignatureName>Microsoft Office Open XML Format 2</SignatureName>
-    <FileExtensions>.docx;.pptx;.xlsx;.vsdx;.dotx;.dotm;.docm;</FileExtensions>
+    <FileExtensions>.docx;.pptx;.xlsx;.vsdx;.dotx;.dotm;.docm;.ppsx;.potx;</FileExtensions>
     <Prohibited>False</Prohibited>
     <Comment />
   </SignaturesConfig>
@@ -117,7 +117,7 @@
     <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
     <HexPattern>504B030414000200</HexPattern>
     <SignatureName>Microsoft Office Open XML Format 3</SignatureName>
-    <FileExtensions>.docx;.pptx;.xlsx;.vsdx;.dotx;.dotm;.docm;</FileExtensions>
+    <FileExtensions>.docx;.pptx;.xlsx;.vsdx;.dotx;.dotm;.docm;.ppsx;.potx;</FileExtensions>
     <Prohibited>False</Prohibited>
     <Comment />
   </SignaturesConfig>
@@ -1768,6 +1768,39 @@
     <HexPattern>49545346</HexPattern>
     <SignatureName>chm help file</SignatureName>
     <FileExtensions>.chm;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>170</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>504B0304</HexPattern>
+    <SignatureName>Open Document format</SignatureName>
+    <FileExtensions>.odt;ods;odp;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>171</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
+    <HexPattern>5374616E6461726420</HexPattern>
+    <SignatureName>MS Access 8</SignatureName>
+    <FileExtensions>.mdb;.accdb;.accde;.accdr;.accdt;.accdt;.adp;.ade;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>172</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>690000000000000000</HexPattern>
+    <SignatureName>bm2 board maker</SignatureName>
+    <FileExtensions>.bm2;</FileExtensions>
     <Prohibited>False</Prohibited>
     <Comment />
   </SignaturesConfig>

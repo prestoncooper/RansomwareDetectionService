@@ -86,7 +86,7 @@ namespace RansomwareDetection.ContentDetectorLib
 	using Content;
     using System.Data;
     using System.Text;
-
+    using Ionic.Zip;
 	// ----------------------------------------------------------------------
 	#endregion
 
@@ -224,7 +224,8 @@ namespace RansomwareDetection.ContentDetectorLib
             ref List<FileResult> ProhibitedFiles,
             ref bool blShuttingDown,
             string excludeFolders,
-            System.Data.DataTable dtSignatures
+            System.Data.DataTable dtSignatures,
+            bool blValidateZipFiles
             )
         {
             WriteError(
@@ -280,20 +281,46 @@ namespace RansomwareDetection.ContentDetectorLib
                         filePath.FullName,
                         filePath.Length), System.Diagnostics.EventLogEntryType.Information, 6000, 60, true);
 
+                        bool blVerifiedContent = false;
 
+                        blVerifiedContent = IsVerifiedContent(filePath, sigs);
 
                         //Verify File Headers
                         if (!HeaderSignature.ExtensionSupported(filePath.Extension, sigs))
                         {
                             unknownFiles.Add(new FileResult(filePath));
                         }
-                        else if (!IsVerifiedContent(filePath, sigs))
+                        else if (!blVerifiedContent)
                         {
-                            unVerifiedFiles.Add(new FileResult(filePath));
+                            if (blValidateZipFiles && HeaderSignature.ZipRelatedExtension(filePath.Extension))
+                            {
+                                if (ZipFile.IsZipFile(filePath.OpenRead(), true) == false)
+                                {
+                                    unVerifiedFiles.Add(new FileResult(filePath, "Error: Zip File is Corrupted or Encrypted!"));
+                                }
+                            }
+                            else
+                            {
+                                unVerifiedFiles.Add(new FileResult(filePath, "Extension and file header for the file does not match any expected file signature."));
+                            }
                         }
                         else
                         {
-                            verifiedFiles.Add(new FileResult(filePath));
+                            if (blValidateZipFiles && HeaderSignature.ZipRelatedExtension(filePath.Extension) && blVerifiedContent)
+                            {
+                                if (ZipFile.IsZipFile(filePath.OpenRead(), true) == false)
+                                {
+                                    unVerifiedFiles.Add(new FileResult(filePath, "Error: Zip File is Corrupted or Encrypted!"));
+                                }
+                                else
+                                {
+                                    verifiedFiles.Add(new FileResult(filePath,"Zip File Verified"));
+                                }
+                            }
+                            else
+                            {
+                                verifiedFiles.Add(new FileResult(filePath));
+                            }
                         }
 
                         //check for prohibited files
@@ -301,6 +328,8 @@ namespace RansomwareDetection.ContentDetectorLib
                         {
                             ProhibitedFiles.Add(new FileResult(filePath));
                         }
+
+                        
 
                     }
                     catch (Exception)
@@ -363,7 +392,7 @@ namespace RansomwareDetection.ContentDetectorLib
                     
                     if (!blIgnoreDirectory)
                     {
-                        ContainsFolderVerifyContent(childFolderPath, recursive, ref verifiedFiles, ref unVerifiedFiles, ref unknownFiles,ref ProhibitedFiles, ref blShuttingDown, excludeFolders,dtSignatures);
+                        ContainsFolderVerifyContent(childFolderPath, recursive, ref verifiedFiles, ref unVerifiedFiles, ref unknownFiles,ref ProhibitedFiles, ref blShuttingDown, excludeFolders,dtSignatures,blValidateZipFiles);
                     }
                 }
             }

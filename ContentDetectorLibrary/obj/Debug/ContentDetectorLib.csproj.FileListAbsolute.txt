@@ -15,3 +15,4 @@ C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\ContentDetector
 C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\ContentDetectorLibrary\obj\Debug\RansomwareDetection.ContentDetectorLib.dll
 C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\ContentDetectorLibrary\obj\Debug\RansomwareDetection.ContentDetectorLib.pdb
 C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\ContentDetectorLibrary\bin\Debug\Win32Security.dll
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\ContentDetectorLibrary\bin\Debug\Ionic.Zip.Reduced.dll

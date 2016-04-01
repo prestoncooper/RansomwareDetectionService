@@ -26,3 +26,4 @@ C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\RansomwareDetec
 C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\RansomwareDetectionService\obj\x86\Debug\RansomwareDetectionService.csproj.GenerateResource.Cache
 C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\RansomwareDetectionService\obj\x86\Debug\RansomwareDetectionService.exe
 C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\RansomwareDetectionService\obj\x86\Debug\RansomwareDetectionService.pdb
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\RansomwareDetectionService\bin\Debug\Ionic.Zip.Reduced.dll

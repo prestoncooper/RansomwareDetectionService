@@ -8,3 +8,4 @@ C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\RansomwareDetec
 C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\RansomwareDetection\obj\Debug\RansomwareDetectionLib.csprojResolveAssemblyReference.cache
 C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\RansomwareDetection\obj\Debug\RansomwareDetection.DetectionLib.dll
 C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\RansomwareDetection\obj\Debug\RansomwareDetection.DetectionLib.pdb
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\RansomwareDetection\bin\Debug\Ionic.Zip.Reduced.dll

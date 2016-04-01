@@ -312,10 +312,11 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 				new HeaderSignature(0,20,@"474946383961", "GIF 89A", new string[] { @".gif" }, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,20,@"474946383761", "GIF 87A", new string[] { @".gif" }, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,4,@"424D", "Windows Bitmap", new string[] { @".bmp" }, ProhibitionMode.Allowed ),
-				new HeaderSignature(0,20,@"504B0304140006000800000021", "Microsoft Office Open XML Format", new string[] { @".docx",@".pptx",@".xlsx", @".vsdx", @".dotx",@"dotm",@"docm" }, ProhibitionMode.Allowed ),
-                new HeaderSignature(0,20,@"504B030414000600", "Microsoft Office Open XML Format", new string[] { @".docx",@".pptx",@".xlsx", @".vsdx", @".dotx",@"dotm",@"docm" }, ProhibitionMode.Allowed ),
-				new HeaderSignature(0,20,@"504B030414000200", "Microsoft Office Open XML Format", new string[] { @".docx",@".pptx",@".xlsx", @".vsdx", @".dotx",@"dotm",@"docm" }, ProhibitionMode.Allowed ),
+				new HeaderSignature(0,20,@"504B0304140006000800000021", "Microsoft Office Open XML Format", new string[] { @".docx",@".pptx",@".xlsx", @".vsdx", @".dotx",@"dotm",@"docm",@".ppsx", @".potx"}, ProhibitionMode.Allowed ),
+                new HeaderSignature(0,20,@"504B030414000600", "Microsoft Office Open XML Format", new string[] { @".docx",@".pptx",@".xlsx", @".vsdx", @".dotx",@"dotm",@"docm",@".ppsx", @".potx"}, ProhibitionMode.Allowed ),
+				new HeaderSignature(0,20,@"504B030414000200", "Microsoft Office Open XML Format", new string[] { @".docx",@".pptx",@".xlsx", @".vsdx", @".dotx",@"dotm",@"docm",@".ppsx", @".potx"}, ProhibitionMode.Allowed ),
 				
+                
                 
                 new HeaderSignature(0,20,@"3A42617365", "", new string[] { @".cnt" }, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,20,@"D0CF11E0A1B11AE1", "MS Compound Document v1 or Lotus Approach APR file", new string[] { @".doc", @".xls", @".xlt", @".ppt", @".apr", @".dot", @".pps",@".wps",@".vsd",@".qbm",@".pub",@".adp",@".ade",@"docm" }, ProhibitionMode.Allowed ),
@@ -473,10 +474,12 @@ namespace RansomwareDetection.ContentDetectorLib.Content
                 new HeaderSignature(0,20,@"504B0304140000000800", "Smart Notebook", new string[] { @".notebook" }, ProhibitionMode.Allowed ),
                 new HeaderSignature(0,20,@"5075726368617365204F72646572", "pof file", new string[] { @".pof" }, ProhibitionMode.Allowed ),
                 new HeaderSignature( new PogSignatureChecker(), "POG File", new string[] { @".pog"}, ProhibitionMode.Allowed ),
-                new HeaderSignature( 0,8,"49545346", "chm help file", new string[] { @".chm"}, ProhibitionMode.Allowed ),
-                new HeaderSignature( 0,20,"690000000000000000", "bm2 board maker", new string[] { @".bm2"}, ProhibitionMode.Allowed ),
+                new HeaderSignature(0,8,"49545346", "chm help file", new string[] { @".chm"}, ProhibitionMode.Allowed ),
+                new HeaderSignature(0,20,"690000000000000000", "bm2 board maker", new string[] { @".bm2"}, ProhibitionMode.Allowed ),
+                new HeaderSignature(0,30,"5374616E6461726420", "MS Access", new string[] { @".mdb", @".accdb", @".accde", @".accdr",@".accdt",@".adp",@".ade"}, ProhibitionMode.Allowed ),
+                new HeaderSignature(0,10,@"504B0304", "Open Document format", new string[] { @".odt",@".ods",@".odp"}, ProhibitionMode.Allowed ),
+				
                 
-
                 
                 //new HeaderSignature(3,"000019000E", "POG File", new string[] { @".pog"}, ProhibitionMode.Allowed ),
                 /*new HeaderSignature( @"", "Windows Media", new string[] { @".wmv", @".asf" }, ProhibitionMode.Prohibited ),*/
@@ -571,7 +574,57 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 
         
 
-        
+        public static bool ZipRelatedExtension(string strExtension)
+        {
+            bool blZipExtension = false;
+            //@".docx",@".pptx",@".xlsx", @".vsdx", @".dotx",@"dotm",@"docm",@".ppsx", @".potx"
+            switch(strExtension.ToLower())
+            {
+                case @".zip":
+                    blZipExtension = true;
+                    break;
+                case @".docx":
+                    blZipExtension = true;
+                    break;
+                case @".xlsx":
+                    blZipExtension = true;
+                    break;
+                case @".pptx":
+                    blZipExtension = true;
+                    break;
+                case @".ppsx":
+                    blZipExtension = true;
+                    break;
+                case @".vsdx":
+                    blZipExtension = true;
+                    break;
+                case @".dotx":
+                    blZipExtension = true;
+                    break;
+                case @".dotm":
+                    blZipExtension = true;
+                    break;
+                case @".docm":
+                    blZipExtension = true;
+                    break;
+                case @".potx":
+                    blZipExtension = true;
+                    break;
+                case @".odt":
+                    blZipExtension = true;
+                    break;
+                case @".notebook":
+                    blZipExtension = true;
+                    break;
+                case @".musx":
+                    blZipExtension = true;
+                    break;
+                default:
+                    break;
+            }
+            return blZipExtension;
+
+        }
 
         public static bool ExtensionSupported(string strExtension, HeaderSignature[] sigs)
         {

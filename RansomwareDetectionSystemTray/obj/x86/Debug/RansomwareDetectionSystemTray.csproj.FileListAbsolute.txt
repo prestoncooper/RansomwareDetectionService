@@ -29,3 +29,4 @@ C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\RansomwareDetec
 C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\RansomwareDetectionSystemTray\obj\x86\Debug\RansomwareDetection.RansomwareDetectionSystemTray.resources
 C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\RansomwareDetectionSystemTray\obj\x86\Debug\RansomwareDetection.Properties.Resources.resources
 C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\RansomwareDetectionSystemTray\obj\x86\Debug\RansomwareDetectionSystemTray.csproj.GenerateResource.Cache
+C:\Users\pcooper\Desktop\Folders View\RansomwareDetectionService\RansomwareDetectionSystemTray\bin\Debug\Ionic.Zip.Reduced.dll

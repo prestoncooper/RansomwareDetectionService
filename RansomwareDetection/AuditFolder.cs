@@ -533,6 +533,24 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
             }
         }
 
+        private bool _validateZipFiles = false;
+        /// <summary>
+        /// Check each sub folder in FilePathToCheck to have contents of SourcePath files in each
+        /// </summary>
+        public bool ValidateZipFiles
+        {
+            get
+            {
+                return _validateZipFiles;
+            }
+
+            set
+            {
+                _validateZipFiles = value;
+            }
+        }
+
+
 
         private string _exportCSVPath = "";
         /// <summary>
@@ -770,6 +788,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
        
             SendEmailOnFailure = Common.FixNullbool(row["SendEmailOnFailure"]);
             SendEmailOnSuccess = Common.FixNullbool(row["SendEmailOnSuccess"]);
+            ValidateZipFiles = Common.FixNullbool(row["ValidateZipFiles"]);
             ExportCSVPath = Common.FixNullstring(row["ExportCSVPath"]);
             ExportUnknownToCSV = Common.FixNullbool(row["ExportUnknownToCSV"]);
             ExportUnVerifiedToCSV = Common.FixNullbool(row["ExportUnVerifiedToCSV"]);
@@ -860,6 +879,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
             dtAuditConfig.Columns.Add(new DataColumn("CheckSubFolders", typeof(String)));
             dtAuditConfig.Columns.Add(new DataColumn("SendEmailOnFailure", typeof(String)));
             dtAuditConfig.Columns.Add(new DataColumn("SendEmailOnSuccess", typeof(String)));
+            dtAuditConfig.Columns.Add(new DataColumn("ValidateZipFiles", typeof(String)));
             dtAuditConfig.Columns.Add(new DataColumn("ExportCSVPath", typeof(String)));
             dtAuditConfig.Columns.Add(new DataColumn("ExportUnVerifiedToCSV", typeof(String)));
             dtAuditConfig.Columns.Add(new DataColumn("ExportVerifiedToCSV", typeof(String)));
@@ -903,6 +923,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
             dtAuditConfig.Columns["SendEmailOnSuccess"].DefaultValue = "false";
             dtAuditConfig.Columns["DetailedLogging"].DefaultValue = "false";
             dtAuditConfig.Columns["ExcludeFolders"].DefaultValue = "";
+            dtAuditConfig.Columns["ValidateZipFiles"].DefaultValue = "false";
             dtAuditConfig.Columns["ExportCSVPath"].DefaultValue = "";
             dtAuditConfig.Columns["ExportUnVerifiedToCSV"].DefaultValue = "true";
             dtAuditConfig.Columns["ExportVerifiedToCSV"].DefaultValue = "true";
@@ -939,7 +960,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                     {
                         ContentDetectorLib.ContentDetectorEngine cengine = new ContentDetectorLib.ContentDetectorEngine();
                         Delimon.Win32.IO.DirectoryInfo dFilePathToCheck = new Delimon.Win32.IO.DirectoryInfo(FilePathToCheck);
-                        cengine.ContainsFolderVerifyContent(dFilePathToCheck, CheckSubFolders, ref FilesVerified, ref FilesUnVerified, ref FilesUnknown, ref FilesProhibited, ref blShuttingDown, ExcludeFolders, Signatures);
+                        cengine.ContainsFolderVerifyContent(dFilePathToCheck, CheckSubFolders, ref FilesVerified, ref FilesUnVerified, ref FilesUnknown, ref FilesProhibited, ref blShuttingDown, ExcludeFolders, Signatures,ValidateZipFiles);
                     }
                     catch (Exception ex)
                     {
