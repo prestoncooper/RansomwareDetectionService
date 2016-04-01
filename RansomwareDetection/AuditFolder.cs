@@ -1052,34 +1052,56 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
 
 
                         //send email on failure
-                        if (FilesUnVerified.Count > 0)
+                        if (FilesUnVerified.Count > 0 || FilesProhibited.Count > 0)
                         {
 
                             StringBuilder sbbody1 = new StringBuilder();
                             string strline = "";
-                            strSubject = "Ransomware Detection Service, File Audit - File Extensions Not Matching Content Header!: " + FilesUnVerified.Count.ToString();
-                            sbbody1.AppendLine("Ransomware Detection Service, Possible Ransomware Affected Files Found<br />\r\n<br />");
+                            strSubject = "Ransomware Detection Service, File Audit - File Extensions Not Matching Content Header or Prohibited Files Found! Files Unverified: " + FilesUnVerified.Count.ToString() + " Files Prohibited: " + FilesProhibited.Count.ToString();
+                            sbbody1.AppendLine(@"Ransomware Detection Service, Possible Ransomware Affected Files Found<br />\r\n<br />");
 
-                            strline = "<li>FilePathToCheck: " + Common.GetPathToHTMLAnchor(FilePathToCheck) + "</li>";
+                            strline = @"<li>FilePathToCheck: " + Common.GetPathToHTMLAnchor(FilePathToCheck) + @"</li>";
                             sbbody1.AppendLine(strline);
-                            strline = "<li>Check Sub Folders: " + CheckSubFolders.ToString() + "</li>";
+                            strline = @"<li>Check Sub Folders: " + CheckSubFolders.ToString() + @"</li>";
                             sbbody1.AppendLine(strline);
-                            strline = "<li>ExportCSVPath: " + Common.GetPathToHTMLAnchor(ExportCSVPath) + "</li>";
+                            strline = @"<li>ExportCSVPath: " + Common.GetPathToHTMLAnchor(ExportCSVPath) + @"</li>";
                             sbbody1.AppendLine(strline);
 
 
                             if (FilesUnVerified.Count > 0)
                             {
-                                sbbody1.AppendLine("<br /><br />\r\n<strong>Files UnVerified:</strong><br />");
-                                //Loop through files that are different and list them
+                                sbbody1.AppendLine(@"<br /><br />\r\n<strong>Files UnVerified Count:</strong>" + FilesUnVerified.Count.ToString() + @"<br />");
+                                
+                                /*//Loop through files that are different and list them
                                 foreach (ContentDetectorLib.FileResult unVerifiedFile in FilesUnVerified)
                                 {
                                     sbbody1.AppendLine("<a href=\"#\" style=\"text-decoration:none !important; text-decoration:none;color:black;\">\"" + unVerifiedFile.FullPath + "\"</a><br />");
-                                }
+                                }*/
+                            }
+
+                            if (FilesProhibited.Count > 0)
+                            {
+                                sbbody1.AppendLine(@"<br /><br />\r\n<strong>Files Prohibited Count:</strong>&nbsp;" + FilesProhibited.Count.ToString() + @"<br />");
+
+                                
                                 sbbody1.AppendLine("<br />");
                             }
 
+                            if (FilesUnknown.Count > 0)
+                            {
+                                sbbody1.AppendLine(@"<br /><br />\r\n<strong>Files Unknown Count:</strong>&nbsp;" + FilesUnknown.Count.ToString() + @"<br />");
 
+
+                                sbbody1.AppendLine("<br />");
+                            }
+
+                            if (FilesVerified.Count > 0)
+                            {
+                                sbbody1.AppendLine(@"<br /><br />\r\n<strong>Files Verified Count:</strong>&nbsp;" + FilesVerified.Count.ToString() + @"<br />");
+
+
+                                sbbody1.AppendLine("<br />");
+                            }
 
                             strBody = sbbody1.ToString();
                             sbbody1.Clear();
@@ -1087,10 +1109,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                             {
                                 Send_Email(strSubject, strBody);
                             }
-                            if (strBody.Length > 32765)
-                            {
-                                strBody = strBody.Substring(0, 32760) + " ...";
-                            }
+                            
 
                             WriteError(strBody, System.Diagnostics.EventLogEntryType.Error, 7000, 70, false);
 
@@ -1101,9 +1120,26 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                             strBody = "";
                             strSubject = "Ransomware Detection Service, File Audit: Success!";
 
-                            sbbody2.AppendLine("Ransomware Detection Service, File Audit: Success! - All Files from FilePathToCheck file extensions match the file header Files Verified:" + FilesVerified.Count.ToString() + "<br /><br />");
-                            sbbody2.AppendLine("<br /><strong>FilePathToCheck:</strong> " + FilePathToCheck);
-                            sbbody2.AppendLine("<br />Check Sub Folders: " + CheckSubFolders.ToString());
+                            sbbody2.AppendLine("Ransomware Detection Service, File Audit: Success! - All Files Verified or Unknown:" + FilesVerified.Count.ToString() + "<br /><br />");
+                            sbbody2.AppendLine(@"<br /><strong>FilePathToCheck:</strong> " + FilePathToCheck);
+                            sbbody2.AppendLine(@"<br />Check Sub Folders: " + CheckSubFolders.ToString());
+
+                            if (FilesUnknown.Count > 0)
+                            {
+                                sbbody2.AppendLine(@"<br /><br />\r\n<strong>Files Unknown Count:</strong>&nbsp;" + FilesUnknown.Count.ToString() + @"<br />");
+
+
+                                sbbody2.AppendLine("<br />");
+                            }
+
+                            if (FilesVerified.Count > 0)
+                            {
+                                sbbody2.AppendLine(@"<br /><br />\r\n<strong>Files Verified Count:</strong>&nbsp;" + FilesVerified.Count.ToString() + @"<br />");
+
+
+                                sbbody2.AppendLine("<br />");
+                            }
+
                             strBody = sbbody2.ToString();
                             sbbody2.Clear();
                             //send email on success
