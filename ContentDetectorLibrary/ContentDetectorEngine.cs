@@ -734,6 +734,10 @@ namespace RansomwareDetection.ContentDetectorLib
             {
                 _evt = Common.GetEventLog;
             }
+            if (strErrorMessage.Length > 31800)
+            {
+                strErrorMessage = strErrorMessage.Substring(0, 31800) + " ...";
+            }
             if (blIsDetailedLoggingError == false)
             {
                 _evt.WriteEntry(strErrorMessage, entrytype, eventid, category);

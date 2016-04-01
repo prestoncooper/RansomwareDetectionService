@@ -1200,9 +1200,9 @@ namespace RansomwareDetection.DetectionLib
             {
                 _evt = Common.GetEventLog;
             }
-            if (strErrorMessage.Length > 32765)
+            if (strErrorMessage.Length > 31800)
             {
-                strErrorMessage = strErrorMessage.Substring(0, 32760) + " ...";
+                strErrorMessage = strErrorMessage.Substring(0, 31800) + " ...";
             }
             if (blIsDetailedLoggingError == false)
             {

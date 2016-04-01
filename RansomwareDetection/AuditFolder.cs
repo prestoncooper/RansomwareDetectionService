@@ -1222,14 +1222,16 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
         /// <param name="blIsDetailedLoggingError"></param>
         private void WriteError(string strErrorMessage, System.Diagnostics.EventLogEntryType entrytype, int eventid, short category, bool blIsDetailedLoggingError)
         {
+            //const int MaxEventLogMsgLength_VistaOrHigher = 31839;
+
             //multi threaded so _evt sometimes is not allocated. 
             if (_evt == null)
             {
                 _evt = Common.GetEventLog;
             }
-            if (strErrorMessage.Length > 32765)
+            if (strErrorMessage.Length > 31800)
             {
-                strErrorMessage = strErrorMessage.Substring(0, 32760) + " ...";
+                strErrorMessage = strErrorMessage.Substring(0, 31800) + " ...";
             }
 
             if (blIsDetailedLoggingError == false)
