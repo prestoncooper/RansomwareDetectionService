@@ -60,11 +60,11 @@ namespace RansomwareDetection.ContentDetectorLib.Content
         /// <returns>
         /// 	<c>true</c> if [contains prohibited content]; otherwise, <c>false</c>.
         /// </returns>
-        public bool VerifyHeaderContent(HeaderSignature[] sigs)
+        public bool VerifyHeaderContent(HeaderSignature[] sigs, bool ignoreExtension)
         {
             foreach (HeaderSignature signature in sigs)
             {
-                if (signature.MatchesFile(_filePath, false))
+                if (signature.MatchesFile(_filePath, ignoreExtension))
                 {
                     return true;
                 }

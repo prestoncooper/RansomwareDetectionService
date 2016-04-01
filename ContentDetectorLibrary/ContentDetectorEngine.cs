@@ -173,7 +173,7 @@ namespace RansomwareDetection.ContentDetectorLib
         /// <param name="filePath">The file path.</param>
         /// <returns></returns>
         private bool ContainsProhibitedFileContent(
-            Delimon.Win32.IO.FileInfo filePath, HeaderSignature[] sigs)
+            Delimon.Win32.IO.FileInfo filePath, HeaderSignature[] sigs, bool ignoreExtension)
         {
             WriteError(string.Format(
                 @"Audit Folder ContentDetectorEngine: Processing content of file '{0}' ({1:0,0} bytes).",
@@ -183,7 +183,7 @@ namespace RansomwareDetection.ContentDetectorLib
             SingleFileContentProcessor processor =
                 new SingleFileContentProcessor(filePath);
 
-            bool result = processor.ContainsProhibitedContent(true,sigs);
+            bool result = processor.ContainsProhibitedContent(ignoreExtension,sigs);
 
             if (result)
             {
@@ -204,7 +204,25 @@ namespace RansomwareDetection.ContentDetectorLib
 
             return result;
         }
-        
+
+        public void ContainsFolderVerifyContent(
+            Delimon.Win32.IO.DirectoryInfo folderPath,
+            bool recursive,
+            ref List<FileResult> verifiedFiles,
+            ref List<FileResult> unVerifiedFiles,
+            ref List<FileResult> unknownFiles,
+            ref List<FileResult> ProhibitedFiles,
+            ref bool blShuttingDown,
+            string excludeFolders,
+            bool blValidateZipFiles,
+            bool blHeaderVerificationIgnoreFileExtensions,
+            bool blProhibitedFilesIgnoreFileExtensions
+            )
+        {
+            System.Data.DataTable dtSignatures = null;
+            ContainsFolderVerifyContent(folderPath, recursive, ref verifiedFiles, ref unVerifiedFiles, ref unknownFiles, ref ProhibitedFiles, ref blShuttingDown, excludeFolders, dtSignatures, blValidateZipFiles, blHeaderVerificationIgnoreFileExtensions, blProhibitedFilesIgnoreFileExtensions);
+        }
+
         /// <summary>
         /// Determines whether the specified folder contains files with
         /// file extensions that do not match the content.
@@ -225,7 +243,9 @@ namespace RansomwareDetection.ContentDetectorLib
             ref bool blShuttingDown,
             string excludeFolders,
             System.Data.DataTable dtSignatures,
-            bool blValidateZipFiles
+            bool blValidateZipFiles,
+            bool blHeaderVerificationIgnoreFileExtensions,
+            bool blProhibitedFilesIgnoreFileExtensions
             )
         {
             WriteError(
@@ -236,17 +256,20 @@ namespace RansomwareDetection.ContentDetectorLib
             HeaderSignature[] sigs = null;
             try
             {
-                if (sigs == null)
+                
+                if (dtSignatures == null)
                 {
-                    if (dtSignatures == null || dtSignatures.Rows.Count == 0)
-                    {
-                        sigs = HeaderSignature.StockSignatures;
-                    }
-                    else
-                    {
-                        sigs = HeaderSignature.CustomSignatures(dtSignatures);
-                    }
+                    sigs = HeaderSignature.StockSignatures;
                 }
+                else if (dtSignatures.Rows.Count == 0)
+                {
+                    sigs = HeaderSignature.StockSignatures;
+                }
+                else
+                {
+                    sigs = HeaderSignature.CustomSignatures(dtSignatures);
+                }
+                
             }
             catch (Exception)
             {
@@ -255,103 +278,154 @@ namespace RansomwareDetection.ContentDetectorLib
 
             if (sigs != null)
             {
-                Delimon.Win32.IO.FileInfo[] filePaths = folderPath.GetFiles();
-                
-                int index = 0;
-                //Load either default signatures or custom for determining ExtensionSupported?
-                
+                containsFolderVerifyContent(folderPath, recursive, ref verifiedFiles, ref unVerifiedFiles, ref unknownFiles, ref ProhibitedFiles, ref blShuttingDown, excludeFolders, sigs, blValidateZipFiles, blHeaderVerificationIgnoreFileExtensions, blProhibitedFilesIgnoreFileExtensions);
+            }
+            else
+            {
+                WriteError(
+                string.Format(
+                @"Audit Folder ContentDetectorEngine: Error Checking folder '{0}' Error loading signatures.",
+                folderPath.FullName), System.Diagnostics.EventLogEntryType.Error, 6000, 60, false);
+            }
+        }
 
-                
-                foreach (Delimon.Win32.IO.FileInfo filePath in filePaths)
+
+        /// <summary>
+        /// Determines whether the specified folder contains files with
+        /// file extensions that do not match the content.
+        /// </summary>
+        /// <param name="folderPath">The folder path.</param>
+        /// <param name="recursive">if set to <c>true</c> [recursive].</param>
+        /// <returns>
+        /// 	<c>true</c> if [contains folder prohibited content] 
+        /// [the specified folder path]; otherwise, <c>false</c>.
+        /// </returns>
+        private void containsFolderVerifyContent(
+            Delimon.Win32.IO.DirectoryInfo folderPath,
+            bool recursive,
+            ref List<FileResult> verifiedFiles,
+            ref List<FileResult> unVerifiedFiles,
+            ref List<FileResult> unknownFiles,
+            ref List<FileResult> ProhibitedFiles,
+            ref bool blShuttingDown,
+            string excludeFolders,
+            HeaderSignature[] sigs,
+            bool blValidateZipFiles,
+            bool blHeaderVerificationIgnoreFileExtensions,
+            bool blProhibitedFilesIgnoreFileExtensions
+            )
+        {
+            WriteError(
+                string.Format(
+                @"Audit Folder ContentDetectorEngine: Checking folder '{0}'.",
+                folderPath.FullName), System.Diagnostics.EventLogEntryType.Information, 6000, 60, true);
+
+            
+            
+            if (sigs == null)
+            {
+                sigs = HeaderSignature.StockSignatures;
+            }
+            
+
+            
+            Delimon.Win32.IO.FileInfo[] filePaths = folderPath.GetFiles();
+
+            int index = 0;
+            //Load either default signatures or custom for determining ExtensionSupported?
+
+
+
+            foreach (Delimon.Win32.IO.FileInfo filePath in filePaths)
+            {
+                if (blShuttingDown)
                 {
-                    if (blShuttingDown)
-                    {
-                        WriteError(
-                            string.Format(
-                            @"Audit Folder ContentDetectorEngine: Shutting Down: was about to check file '{0}'.",
-                            filePath.FullName), System.Diagnostics.EventLogEntryType.Information, 6000, 60, true);
-                        break;
-                    }
-                    try
-                    {
-                        WriteError(
+                    WriteError(
                         string.Format(
-                        @"Audit Folder ContentDetectorEngine: [{0}/{1}] Checking file '{2}' ({3:0,0} bytes).",
-                        index + 1, filePaths.Length,
-                        filePath.FullName,
-                        filePath.Length), System.Diagnostics.EventLogEntryType.Information, 6000, 60, true);
+                        @"Audit Folder ContentDetectorEngine: Shutting Down: was about to check file '{0}'.",
+                        filePath.FullName), System.Diagnostics.EventLogEntryType.Information, 6000, 60, true);
+                    break;
+                }
+                try
+                {
+                    WriteError(
+                    string.Format(
+                    @"Audit Folder ContentDetectorEngine: [{0}/{1}] Checking file '{2}' ({3:0,0} bytes).",
+                    index + 1, filePaths.Length,
+                    filePath.FullName,
+                    filePath.Length), System.Diagnostics.EventLogEntryType.Information, 6000, 60, true);
 
-                        bool blVerifiedContent = false;
+                    bool blVerifiedContent = false;
 
-                        blVerifiedContent = IsVerifiedContent(filePath, sigs);
+                    blVerifiedContent = DoVerifyFileHeader(filePath, sigs, blHeaderVerificationIgnoreFileExtensions);
 
-                        //Verify File Headers
-                        if (!HeaderSignature.ExtensionSupported(filePath.Extension, sigs))
+                    //Verify File Headers
+                    if (!HeaderSignature.ExtensionSupported(filePath.Extension, sigs))
+                    {
+                        unknownFiles.Add(new FileResult(filePath));
+                    }
+                    else if (!blVerifiedContent)
+                    {
+                        if (blValidateZipFiles && HeaderSignature.ZipRelatedExtension(filePath.Extension))
                         {
-                            unknownFiles.Add(new FileResult(filePath));
-                        }
-                        else if (!blVerifiedContent)
-                        {
-                            if (blValidateZipFiles && HeaderSignature.ZipRelatedExtension(filePath.Extension))
+                            if (ZipFile.IsZipFile(filePath.Open(Delimon.Win32.IO.FileMode.Open, Delimon.Win32.IO.FileAccess.Read, Delimon.Win32.IO.FileShare.Read), true) == false)
                             {
-                                if (ZipFile.IsZipFile(filePath.OpenRead(), true) == false)
-                                {
-                                    unVerifiedFiles.Add(new FileResult(filePath, "Error: Zip File is Corrupted or Encrypted!"));
-                                }
-                            }
-                            else
-                            {
-                                unVerifiedFiles.Add(new FileResult(filePath, "Extension and file header for the file does not match any expected file signature."));
+                                unVerifiedFiles.Add(new FileResult(filePath, "Error: Zip File is Corrupted or Encrypted!"));
                             }
                         }
                         else
                         {
-                            if (blValidateZipFiles && HeaderSignature.ZipRelatedExtension(filePath.Extension) && blVerifiedContent)
+                            unVerifiedFiles.Add(new FileResult(filePath, "Extension and file header for the file does not match any expected file signature."));
+                        }
+                    }
+                    else
+                    {
+                        if (blValidateZipFiles && blVerifiedContent && HeaderSignature.IsZipRelatedFile(filePath))
+                        {
+                            if (ZipFile.IsZipFile(filePath.OpenRead(), true) == false)
                             {
-                                if (ZipFile.IsZipFile(filePath.OpenRead(), true) == false)
-                                {
-                                    unVerifiedFiles.Add(new FileResult(filePath, "Error: Zip File is Corrupted or Encrypted!"));
-                                }
-                                else
-                                {
-                                    verifiedFiles.Add(new FileResult(filePath,"Zip File Verified"));
-                                }
+                                unVerifiedFiles.Add(new FileResult(filePath, "Error: Zip File is Corrupted or Encrypted!"));
                             }
                             else
                             {
-                                verifiedFiles.Add(new FileResult(filePath));
+                                verifiedFiles.Add(new FileResult(filePath, "Zip File Verified"));
                             }
                         }
-
-                        //check for prohibited files
-                        if (ContainsProhibitedFileContent(filePath, sigs))
+                        else
                         {
-                            ProhibitedFiles.Add(new FileResult(filePath));
+                            verifiedFiles.Add(new FileResult(filePath));
                         }
-
-                        
-
                     }
-                    catch (Exception)
+
+                    //check for prohibited files
+                    if (ContainsProhibitedFileContent(filePath, sigs, blProhibitedFilesIgnoreFileExtensions))
                     {
-                        WriteError(
-                        string.Format(
-                        @"Audit Folder ContentDetectorEngine: [{0}/{1}] Error Checking file '{2}' ({3:0,0} bytes).",
-                        index + 1, filePaths.Length,
-                        filePath.FullName,
-                        filePath.Length), System.Diagnostics.EventLogEntryType.Error, 6000, 60, false);
-                        unknownFiles.Add(new FileResult(filePath,"Error checking the file"));
+                        ProhibitedFiles.Add(new FileResult(filePath));
                     }
 
 
-                    index++;
+
                 }
+                catch (Exception)
+                {
+                    WriteError(
+                    string.Format(
+                    @"Audit Folder ContentDetectorEngine: [{0}/{1}] Error Checking file '{2}' ({3:0,0} bytes).",
+                    index + 1, filePaths.Length,
+                    filePath.FullName,
+                    filePath.Length), System.Diagnostics.EventLogEntryType.Error, 6000, 60, false);
+                    unknownFiles.Add(new FileResult(filePath, "Error checking the file"));
+                }
+
+
+                index++;
             }
             
 
+
             // --
 
-            if (recursive && sigs !=null)
+            if (recursive)
             {
                 Delimon.Win32.IO.DirectoryInfo[] folderPaths = folderPath.GetDirectories();
 
@@ -366,10 +440,10 @@ namespace RansomwareDetection.ContentDetectorLib
                             childFolderPath.FullName), System.Diagnostics.EventLogEntryType.Information, 6000, 60, true);
                         break;
                     }
-                    
+
                     try
                     {
-                        
+
                         char[] delimiters = new char[] { ';' };
                         string[] strArr_excludedfolders = excludeFolders.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
 
@@ -387,20 +461,18 @@ namespace RansomwareDetection.ContentDetectorLib
                     }
                     catch (Exception)
                     {
-                        
+
                     }
-                    
+
                     if (!blIgnoreDirectory)
                     {
-                        ContainsFolderVerifyContent(childFolderPath, recursive, ref verifiedFiles, ref unVerifiedFiles, ref unknownFiles,ref ProhibitedFiles, ref blShuttingDown, excludeFolders,dtSignatures,blValidateZipFiles);
+                        containsFolderVerifyContent(childFolderPath, recursive, ref verifiedFiles, ref unVerifiedFiles, ref unknownFiles, ref ProhibitedFiles, ref blShuttingDown, excludeFolders, sigs, blValidateZipFiles, blHeaderVerificationIgnoreFileExtensions,blProhibitedFilesIgnoreFileExtensions);
                     }
                 }
             }
 
-            
+
         }
-
-
         
 
 		// ------------------------------------------------------------------
@@ -418,7 +490,7 @@ namespace RansomwareDetection.ContentDetectorLib
         /// <param name="indentLevel">The nesting depth.</param>
         /// <returns></returns>
         private bool DoVerifyFileHeader(
-            Delimon.Win32.IO.FileInfo filePath, HeaderSignature[] sigs)
+            Delimon.Win32.IO.FileInfo filePath, HeaderSignature[] sigs, bool ignoreExtension)
         {
             if (filePath == null || !filePath.Exists || filePath.Length <= 0)
             {
@@ -432,7 +504,7 @@ namespace RansomwareDetection.ContentDetectorLib
                     filePath.FullName,
                     filePath.Length), System.Diagnostics.EventLogEntryType.Information, 6000, 60, true);
 
-                return IsVerifiedContent(filePath, sigs);
+                return IsVerifiedContent(filePath, sigs,ignoreExtension);
             }
         }
 
@@ -447,10 +519,10 @@ namespace RansomwareDetection.ContentDetectorLib
         /// <returns>
         /// 	<c>true</c> if [is prohibited content] [the specified file path]; otherwise, <c>false</c>.
         /// </returns>
-        private bool IsVerifiedContent(Delimon.Win32.IO.FileInfo filePath, HeaderSignature[] sigs)
+        private bool IsVerifiedContent(Delimon.Win32.IO.FileInfo filePath, HeaderSignature[] sigs, bool ignoreExtension)
         {
 
-                return CoreVerifyFileContent(filePath, sigs);
+                return CoreVerifyFileContent(filePath, sigs,ignoreExtension);
         }
 
 		
@@ -463,7 +535,7 @@ namespace RansomwareDetection.ContentDetectorLib
         /// <param name="filePath">The file path.</param>
         /// <returns></returns>
         private bool CoreVerifyFileContent(
-            Delimon.Win32.IO.FileInfo filePath, HeaderSignature[] sigs)
+            Delimon.Win32.IO.FileInfo filePath, HeaderSignature[] sigs, bool ignoreExtension)
         {
             WriteError(
                 string.Format(
@@ -475,7 +547,7 @@ namespace RansomwareDetection.ContentDetectorLib
                 new SingleFileContentProcessor(filePath);
 
            
-            result = processor.VerifyHeaderContent(sigs);
+            result = processor.VerifyHeaderContent(sigs, ignoreExtension);
             
             
 

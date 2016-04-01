@@ -680,6 +680,23 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
             }
         }
 
+        private bool _prohibitedFilesIgnoreFileExtension = true;
+        /// <summary>
+        /// Exclude Folders separate folder names by semicolon
+        /// </summary>
+        public bool ProhibitedFilesIgnoreFileExtension
+        {
+            get
+            {
+                return _prohibitedFilesIgnoreFileExtension;
+            }
+            set
+            {
+                _prohibitedFilesIgnoreFileExtension = value;
+            }
+
+        }
+
         #endregion
 
 
@@ -794,6 +811,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
             ExportUnVerifiedToCSV = Common.FixNullbool(row["ExportUnVerifiedToCSV"]);
             ExportVerifiedToCSV = Common.FixNullbool(row["ExportVerifiedToCSV"]);
             ExportProhibitedToCSV = Common.FixNullbool(row["ExportProhibitedToCSV"]);
+            ProhibitedFilesIgnoreFileExtension = Common.FixNullbool(row["ProhibitedFilesIgnoreFileExtension"]);
             ExcludeFolders = Common.FixNullstring(row["ExcludeFolders"]);
             Comment = Common.FixNullstring(row["Comment"]);
             DetailedLogging = Common.FixNullbool(row["DetailedLogging"]);
@@ -885,6 +903,8 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
             dtAuditConfig.Columns.Add(new DataColumn("ExportVerifiedToCSV", typeof(String)));
             dtAuditConfig.Columns.Add(new DataColumn("ExportUnknownToCSV", typeof(String)));
             dtAuditConfig.Columns.Add(new DataColumn("ExportProhibitedToCSV", typeof(String)));
+            dtAuditConfig.Columns.Add(new DataColumn("ProhibitedFilesIgnoreFileExtension", typeof(String)));
+            
             dtAuditConfig.Columns.Add(new DataColumn("ExcludeFolders", typeof(String)));
             dtAuditConfig.Columns.Add(new DataColumn("StartDate", typeof(String)));
             dtAuditConfig.Columns.Add(new DataColumn("EndDate", typeof(String)));
@@ -929,6 +949,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
             dtAuditConfig.Columns["ExportVerifiedToCSV"].DefaultValue = "true";
             dtAuditConfig.Columns["ExportUnknownToCSV"].DefaultValue = "true";
             dtAuditConfig.Columns["ExportProhibitedToCSV"].DefaultValue = "true";
+            dtAuditConfig.Columns["ProhibitedFilesIgnoreFileExtension"].DefaultValue = "true";
             dtAuditConfig.Columns["StartDate"].DefaultValue = DateTime.Now.ToString("d");
             return dtAuditConfig;
 
@@ -960,7 +981,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                     {
                         ContentDetectorLib.ContentDetectorEngine cengine = new ContentDetectorLib.ContentDetectorEngine();
                         Delimon.Win32.IO.DirectoryInfo dFilePathToCheck = new Delimon.Win32.IO.DirectoryInfo(FilePathToCheck);
-                        cengine.ContainsFolderVerifyContent(dFilePathToCheck, CheckSubFolders, ref FilesVerified, ref FilesUnVerified, ref FilesUnknown, ref FilesProhibited, ref blShuttingDown, ExcludeFolders, Signatures,ValidateZipFiles);
+                        cengine.ContainsFolderVerifyContent(dFilePathToCheck, CheckSubFolders, ref FilesVerified, ref FilesUnVerified, ref FilesUnknown, ref FilesProhibited, ref blShuttingDown, ExcludeFolders, Signatures, ValidateZipFiles, false, ProhibitedFilesIgnoreFileExtension);
                     }
                     catch (Exception ex)
                     {

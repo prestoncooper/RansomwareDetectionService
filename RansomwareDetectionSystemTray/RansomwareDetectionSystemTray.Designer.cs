@@ -234,6 +234,7 @@
             this.dgvAuditChkColExportVerifiedToCSV = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dgvAuditChkCol1ExportUnknownToCSV = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dgvAuditchkColExportProhibitedToCSV = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dgvAuditchkColProhibitedFilesIgnoreFileExtension = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewCheckBoxColumn64 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewCheckBoxColumn65 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dgvAuditCalColStartDate = new System.Windows.Forms.CalendarColumn();
@@ -1756,6 +1757,7 @@
             this.dgvAuditChkColExportVerifiedToCSV,
             this.dgvAuditChkCol1ExportUnknownToCSV,
             this.dgvAuditchkColExportProhibitedToCSV,
+            this.dgvAuditchkColProhibitedFilesIgnoreFileExtension,
             this.dataGridViewCheckBoxColumn64,
             this.dataGridViewCheckBoxColumn65,
             this.dgvAuditCalColStartDate,
@@ -2159,6 +2161,13 @@
             this.dgvAuditchkColExportProhibitedToCSV.Name = "dgvAuditchkColExportProhibitedToCSV";
             this.dgvAuditchkColExportProhibitedToCSV.Width = 162;
             // 
+            // dgvAuditchkColProhibitedFilesIgnoreFileExtension
+            // 
+            this.dgvAuditchkColProhibitedFilesIgnoreFileExtension.DataPropertyName = "ProhibitedFilesIgnoreFileExtension";
+            this.dgvAuditchkColProhibitedFilesIgnoreFileExtension.HeaderText = "ProhibitedFilesIgnoreFileExtension";
+            this.dgvAuditchkColProhibitedFilesIgnoreFileExtension.Name = "dgvAuditchkColProhibitedFilesIgnoreFileExtension";
+            this.dgvAuditchkColProhibitedFilesIgnoreFileExtension.Width = 230;
+            // 
             // dataGridViewCheckBoxColumn64
             // 
             this.dataGridViewCheckBoxColumn64.DataPropertyName = "SendEmailOnFailure";
@@ -2452,6 +2461,7 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn dgvAuditChkColExportVerifiedToCSV;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dgvAuditChkCol1ExportUnknownToCSV;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dgvAuditchkColExportProhibitedToCSV;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dgvAuditchkColProhibitedFilesIgnoreFileExtension;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn64;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn65;
         private System.Windows.Forms.CalendarColumn dgvAuditCalColStartDate;

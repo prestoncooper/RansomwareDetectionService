@@ -327,7 +327,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 				new HeaderSignature(0,6,@"1F8B08", "GZ Compressed File", new string[] { @".gz" }, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,20,@"28546869732066696C65", "", new string[] { @".hqx" }, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,10,@"0000010000", "Icon File", new string[] { @".ico" }, ProhibitionMode.Allowed ),
-                new HeaderSignature(0,20,@"000001000100", "Icon File", new string[] { @".ico" }, ProhibitionMode.Allowed ),
+                new HeaderSignature(0,12,@"000001000100", "Icon File", new string[] { @".ico" }, ProhibitionMode.Allowed ),
 
 				new HeaderSignature(0,20,@"4C000000011402", "Windows Link File", new string[] { @".lnk" }, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,20,@"25504446", "Adobe PDF File", new string[] { @".pdf" }, ProhibitionMode.Allowed ),
@@ -441,11 +441,11 @@ namespace RansomwareDetection.ContentDetectorLib.Content
                 new HeaderSignature(0,30,@"636F6E6563746978", "Virtual PC Virtual HD image", new string[] { @".vhd" }, ProhibitionMode.Allowed ),
                 new HeaderSignature(0,10,@"4B444D56", "VMWare Disk file", new string[] { @".vmdk" }, ProhibitionMode.Allowed ),
                 new HeaderSignature(0,20,@"504B0304140000000000", "epub book", new string[] { @".epub" }, ProhibitionMode.Allowed ),
-                new HeaderSignature(0,20,@"504B0304140008000800", "Java JAR File", new string[] { @".jar" }, ProhibitionMode.Allowed ),
+                new HeaderSignature(0,20,@"504B0304140008000800", "Java JAR File", new string[] { @".jar",@".xps",@".oxps" }, ProhibitionMode.Allowed ),
                 new HeaderSignature(0,20,@"4A4152435300", "JARCS compressed archive", new string[] { @".jar" }, ProhibitionMode.Allowed ),
                 new HeaderSignature(0,10,@"504B0506", "PKZip Compressed", new string[] { @".zip", @".jar" }, ProhibitionMode.Allowed ),
                 new HeaderSignature(0,10,@"504B0708", "PKZip Compressed", new string[] { @".zip", @".jar" }, ProhibitionMode.Allowed ),
-                new HeaderSignature(0,10,@"504B0304", "Zip Compressed", new string[] { @".zip", @".jar", @".odt", @".odp", @".odt", @"kwd", @".sxc", @".sxd", @".sxi", @".sxw", @".xps" }, ProhibitionMode.Allowed ),
+                new HeaderSignature(0,10,@"504B0304", "Zip Compressed", new string[] { @".zip", @".jar", @".odt", @".odp", @".ods", @"kwd", @".sxc", @".sxd", @".sxi", @".sxw", @".xps",@".oxps" }, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,10,@"EFBBBF3C", "XML Document", new string[] { @".xml",@".config" }, ProhibitionMode.Allowed ),
                 new HeaderSignature(0,20,@"46726F6D3A", "Web Archive", new string[] { @".mht" }, ProhibitionMode.Allowed ),
                 new HeaderSignature(0,20,@"D0CF11E0A1B11AE1", "msp Installer", new string[] { @".msp" }, ProhibitionMode.Allowed ),
@@ -578,6 +578,9 @@ namespace RansomwareDetection.ContentDetectorLib.Content
         {
             bool blZipExtension = false;
             //@".docx",@".pptx",@".xlsx", @".vsdx", @".dotx",@"dotm",@"docm",@".ppsx", @".potx"
+            //@".zip", @".jar", @".odt", @".odp", @".odt", @"kwd", @".sxc", @".sxd", @".sxi", @".sxw", @".xps"
+            //504B
+            
             switch(strExtension.ToLower())
             {
                 case @".zip":
@@ -613,15 +616,68 @@ namespace RansomwareDetection.ContentDetectorLib.Content
                 case @".odt":
                     blZipExtension = true;
                     break;
+                case @".ods":
+                    blZipExtension = true;
+                    break;
+                case @".odp":
+                    blZipExtension = true;
+                    break;
                 case @".notebook":
                     blZipExtension = true;
                     break;
                 case @".musx":
                     blZipExtension = true;
                     break;
+                case @".epub":
+                    blZipExtension = true;
+                    break;
+                case @".jar":
+                    blZipExtension = true;
+                    break;
+                case @".xps":
+                    blZipExtension = true;
+                    break;
+                case @".oxps":
+                    blZipExtension = true;
+                    break;
                 default:
                     break;
             }
+            return blZipExtension;
+
+        }
+
+        public static bool IsZipRelatedFile(Delimon.Win32.IO.FileInfo file1)
+        {
+            bool blZipExtension = false;
+
+            byte[] Zipbytes = {0x50,0x4B};
+            //504B
+
+            
+            FileStream fs = file1.Open(Delimon.Win32.IO.FileMode.Open, Delimon.Win32.IO.FileAccess.Read, Delimon.Win32.IO.FileShare.Read);
+            if (fs == null)
+            {
+                return false;
+            }
+            else
+            {
+                int read = 2;
+
+                byte[] buffer = new byte[read];
+                int readCount = fs.Read(buffer, 0, read);
+
+                using (MemoryStream ms = new MemoryStream(buffer))
+                {
+                    ms.Seek(0, SeekOrigin.Begin);
+
+                    byte[] realBuffer = new byte[readCount];
+                    ms.Read(realBuffer, 0, readCount);
+
+                    blZipExtension = realBuffer == Zipbytes;
+                }
+            }
+            
             return blZipExtension;
 
         }
