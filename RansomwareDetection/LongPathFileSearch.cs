@@ -402,6 +402,7 @@ namespace RansomwareDetection.DetectionLib
                                 }
 
 
+
                                 if (!blIgnoreDirectory && !(currentFileName == "." || currentFileName == ".."))
                                 {
                                     if (checkSubFolders)
@@ -467,6 +468,7 @@ namespace RansomwareDetection.DetectionLib
             string strDirConverted = LongPathPrepend(dirName);
             List<ContentDetectorLib.FileResult> results = new List<ContentDetectorLib.FileResult>();
             IntPtr findHandle = INVALID_HANDLE_VALUE;
+            bool blIgnoreFile = false;
             WIN32_FIND_DATA findData;
             if (dtFilters != null)
             {
@@ -501,7 +503,7 @@ namespace RansomwareDetection.DetectionLib
                                         do
                                         {
                                             string currentFileName = findData.cFileName;
-                                            bool blIgnoreFile = false;
+                                            blIgnoreFile = false;
                                             char[] delimiters = new char[] { ';' };
                                             if (filter.ExcludeFiles != "")
                                             {
@@ -511,7 +513,7 @@ namespace RansomwareDetection.DetectionLib
                                                     //loop through excluded folders
                                                     foreach (string strExclude in strArr_excludedfiles)
                                                     {
-                                                        if (currentFileName.ToLower() == strExclude)
+                                                        if (currentFileName.ToLower() == strExclude.ToLower())
                                                         {
                                                             blIgnoreFile = true;
                                                         }

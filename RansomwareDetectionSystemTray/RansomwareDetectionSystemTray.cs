@@ -57,7 +57,7 @@ namespace RansomwareDetection
         /// Service Controller for restaring the RansomwareDetectionService
         /// </summary>
         ServiceController sc;
-
+        ServiceController scFileServer;
 
 
 
@@ -343,7 +343,14 @@ namespace RansomwareDetection
                 {
                     trayIcon.Dispose();
                 }
-                sc.Dispose();
+                if (sc != null)
+                {
+                    sc.Dispose();
+                }
+                if (scFileServer != null)
+                {
+                    scFileServer.Dispose();
+                }
                 //dtSyncConfig.Dispose();
                 if (dtCompareConfig != null)
                 {
@@ -414,6 +421,7 @@ namespace RansomwareDetection
             
 
             sc = new ServiceController("RansomwareDetectionService");
+            scFileServer = new ServiceController("LanmanServer");
              // Create a simple tray menu with only one item.
             trayMenu = new ContextMenu();
             trayMenu.MenuItems.Add("Settings", OnShowForm);
@@ -743,6 +751,7 @@ namespace RansomwareDetection
                     ShowBalloonTip(5000, "Restart Failed", "RansomwareDetectionService is not in a proper state to restart", ToolTipIcon.Error);
 
                 }
+                
             }
             catch (Exception ex)
             {
@@ -750,10 +759,65 @@ namespace RansomwareDetection
                 string strErr = "RansomwareDetectionServiceTray: Restart of RansomwareDetectionService Failed! " + ex.Message + " Source: " + ex.Source + "  StackTrace: " + ex.StackTrace;
                 WriteError(strErr, EventLogEntryType.Error, 5000, 50);
             }
-            ////GetServiceStatus();
+            Application.DoEvents();
+            GetServiceStatus();
+            Application.DoEvents();
             return blSuccess;
         }
 
+
+        /// <summary>
+        /// Restarts or Starts RansomwareDetectionService
+        /// </summary>
+        /// <returns></returns>
+        private bool StartFileServer()
+        {
+            bool blSuccess = false;
+            string strStatus = "";
+            TimeSpan timeout = TimeSpan.FromMilliseconds(120000);
+            try
+            {
+                
+                strStatus = scFileServer.Status.ToString();
+
+                //Restart
+                if (strStatus == "Running")
+                {
+                    ShowBalloonTip(5000, "Start Failed", "File Server Service is already started", ToolTipIcon.Error);
+                    
+                } //Already Stopped Just Start
+                else if (strStatus == "Stopped")
+                {
+                    scFileServer.Start();
+                    scFileServer.WaitForStatus(ServiceControllerStatus.Running, timeout);
+                    if (scFileServer.Status.ToString() == "Running")
+                    {
+                        ShowBalloonTip(5000, "Start", "File Server Service Started Successfully", ToolTipIcon.Info);
+                        blSuccess = true;
+                    }
+                    else
+                    {
+                        ShowBalloonTip(5000, "Start", "File Server Service Start Timed Out", ToolTipIcon.Error);
+                    }
+                }
+                else
+                {
+                    ShowBalloonTip(5000, "Start Failed", "File Server Service is not in a proper state to restart", ToolTipIcon.Error);
+
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                ShowBalloonTip(5000, "Start Failed", "Start of File Server Service Failed!", ToolTipIcon.Error);
+                string strErr = "RansomwareDetectionServiceTray: Start of File Server Service Failed! " + ex.Message + " Source: " + ex.Source + "  StackTrace: " + ex.StackTrace;
+                WriteError(strErr, EventLogEntryType.Error, 5000, 50);
+            }
+            Application.DoEvents();
+            GetServiceStatus();
+            Application.DoEvents();
+            return blSuccess;
+        }
 
         /// <summary>
         /// OnRestart Event Handler
@@ -805,6 +869,7 @@ namespace RansomwareDetection
                     ShowBalloonTip(5000, "Stop Failed", "RansomwareDetectionService is not in a proper state to stop.", ToolTipIcon.Error);
 
                 }
+                
             }
             catch (Exception ex)
             {
@@ -812,7 +877,63 @@ namespace RansomwareDetection
                 string strErr = "RansomwareDetectionServiceTray: Stop of RansomwareDetectionService Failed. " + ex.Message + " Source: " + ex.Source + "  StackTrace: " + ex.StackTrace;
                 WriteError(strErr, EventLogEntryType.Error, 5000, 50);
             }
-            //GetServiceStatus();
+            Application.DoEvents();
+            GetServiceStatus();
+            Application.DoEvents();
+            return blSuccess;
+        }
+
+
+        /// <summary>
+        /// Stops File Server Service (lanmanserver)
+        /// </summary>
+        /// <returns></returns>
+        private bool StopFileServer()
+        {
+            bool blSuccess = false;
+            string strStatus = "";
+            TimeSpan timeout = TimeSpan.FromMilliseconds(120000);
+            try
+            {
+                strStatus = scFileServer.Status.ToString();
+
+                if (strStatus == "Running")
+                {
+                    scFileServer.Stop();
+
+                    scFileServer.WaitForStatus(ServiceControllerStatus.Stopped, timeout);
+
+                    if (scFileServer.Status.ToString() == "Stopped")
+                    {
+                        ShowBalloonTip(5000, "Stop", "File Server Service Stopped Successfully", ToolTipIcon.Info);
+                        blSuccess = true;
+                    }
+                    else
+                    {
+                        ShowBalloonTip(5000, "Stop Failed", "File Server Service timed out stopping.", ToolTipIcon.Error);
+                    }
+                }
+                else if (strStatus == "Stopped")
+                {
+                    ShowBalloonTip(5000, "Stop", "File Server Service Already Stopped", ToolTipIcon.Info);
+                    blSuccess = true;
+                }
+                else
+                {
+                    ShowBalloonTip(5000, "Stop Failed", "File Server Service is not in a proper state to stop.", ToolTipIcon.Error);
+
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                ShowBalloonTip(5000, "Stop Failed", "Stop of File Server Service Failed.", ToolTipIcon.Error);
+                string strErr = "RansomwareDetectionServiceTray: Stop of File Server Service Failed. " + ex.Message + " Source: " + ex.Source + "  StackTrace: " + ex.StackTrace;
+                WriteError(strErr, EventLogEntryType.Error, 5000, 50);
+            }
+            Application.DoEvents();
+            GetServiceStatus();
+            Application.DoEvents();
             return blSuccess;
         }
 
@@ -1383,7 +1504,7 @@ namespace RansomwareDetection
         {
             try
             {
-                if (dgvFindFiles.Columns[e.ColumnIndex].HeaderText == "FilePathToCheck")
+                if (dgvFindFiles.Columns[e.ColumnIndex].HeaderText == "FilePathToCheck" || dgvFindFiles.Columns[e.ColumnIndex].HeaderText == "ExportCSVPath")
                 {
                     DataGridViewTextBoxCell cell = dgvFindFiles[e.ColumnIndex, e.RowIndex] as DataGridViewTextBoxCell;
                     if (cell != null)
@@ -1629,6 +1750,8 @@ namespace RansomwareDetection
         {
             try
             {
+
+                //Ransomware Detection Service Status
                 sc.Refresh();
                 string strStatus = sc.Status.ToString();
                 txtServiceStatus.Text = strStatus;
@@ -1666,6 +1789,40 @@ namespace RansomwareDetection
                     trayMenu.MenuItems[2].Enabled = true;
                     trayMenu.MenuItems[3].Enabled = true;
                     txtServiceStatus.BackColor = Color.DarkRed;
+                }
+
+
+
+
+                //File Server Status
+                scFileServer.Refresh();
+                strStatus = scFileServer.Status.ToString();
+                txtFileServerStatus.Text = strStatus;
+                cStatus = scFileServer.Status;
+                //if (strStatus == "Running" || strStatus == "StartPending")
+                if (cStatus == ServiceControllerStatus.Running || cStatus == ServiceControllerStatus.StartPending || cStatus == ServiceControllerStatus.ContinuePending)
+                {
+                    //service running
+                    btnStartFileServer.Enabled = false;
+                    btnStopFileServer.Enabled = true;
+
+
+                    txtFileServerStatus.BackColor = Color.DarkGreen;
+                }
+                else if (cStatus == ServiceControllerStatus.Stopped || cStatus == ServiceControllerStatus.StopPending || cStatus == ServiceControllerStatus.Paused || cStatus == ServiceControllerStatus.PausePending)
+                {
+                    //service not running
+                    btnStartFileServer.Enabled = true;
+                    btnStopFileServer.Enabled = false;
+                    txtFileServerStatus.BackColor = Color.DarkRed;
+                }
+                else
+                {
+                    //unknown status allow all
+                    btnStartFileServer.Enabled = true;
+                    btnStopFileServer.Enabled = true;
+
+                    txtFileServerStatus.BackColor = Color.DarkRed;
                 }
             }
             catch (Exception ex)
@@ -1781,7 +1938,7 @@ namespace RansomwareDetection
         /// <param name="e"></param>
         private void dgvFindFiles_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvFindFiles.Columns[e.ColumnIndex].HeaderText == "FilePathToCheck")
+            if (dgvFindFiles.Columns[e.ColumnIndex].HeaderText == "FilePathToCheck" || dgvFindFiles.Columns[e.ColumnIndex].HeaderText == "ExportCSVPath")
             {
                 DataGridViewTextBoxCell cell = dgvFindFiles[e.ColumnIndex, e.RowIndex] as DataGridViewTextBoxCell;
                 CellFolderBrowser(ref cell);
@@ -1933,7 +2090,12 @@ namespace RansomwareDetection
                 case "Restart":
                     Restart();
                     break;
-
+                case "StartFileServer":
+                    StartFileServer();
+                    break;
+                case "StopFileServer":
+                    StopFileServer();
+                    break;
             }
         }
 
@@ -2105,13 +2267,28 @@ namespace RansomwareDetection
             System.Diagnostics.Process.Start("c:\\windows\\explorer.exe");
         }
 
+        private void btnStartFileServer_Click(object sender, EventArgs e)
+        {
+            backgroundWorker1.RunWorkerAsync("StartFileServer");
+        }
+
+        private void btnStopFileServer_Click(object sender, EventArgs e)
+        {
+            backgroundWorker1.RunWorkerAsync("StopFileServer");
+        }
+
+        
+       
         #endregion
 
         
 
-        
 
-        
+
+
+
+
+
 
 
 

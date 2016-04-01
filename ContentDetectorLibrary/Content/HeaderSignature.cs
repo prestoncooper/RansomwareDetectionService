@@ -326,9 +326,6 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 				new HeaderSignature(0,10,@"3F5F0300", "Windows Help File", new string[] { @".gid", @".hlp", @".lhp" }, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,6,@"1F8B08", "GZ Compressed File", new string[] { @".gz" }, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,20,@"28546869732066696C65", "", new string[] { @".hqx" }, ProhibitionMode.Allowed ),
-				new HeaderSignature(0,10,@"0000010000", "Icon File", new string[] { @".ico" }, ProhibitionMode.Allowed ),
-                new HeaderSignature(0,12,@"000001000100", "Icon File", new string[] { @".ico" }, ProhibitionMode.Allowed ),
-
 				new HeaderSignature(0,20,@"4C000000011402", "Windows Link File", new string[] { @".lnk" }, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,20,@"25504446", "Adobe PDF File", new string[] { @".pdf" }, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,20,@"5245474544495434", "", new string[] { @".reg" }, ProhibitionMode.Allowed ),
@@ -356,7 +353,9 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 				new HeaderSignature(0,10,@"91334846", "HAP Archive File", new string[] { @".hap" }, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,20,@"3C68746D6C3E", "HyperText Markup Language 1", new string[] { @".htm", @".html" }, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,20,@"3C48544D4C3E", "HyperText Markup Language 2", new string[] { @".htm", @".html" }, ProhibitionMode.Allowed ),
-				new HeaderSignature(0,20,@"3C21444F4354", "HyperText Markup Language 3", new string[] { @".htm", @".html" }, ProhibitionMode.Allowed ),
+				
+                
+
                 new HeaderSignature(0,20,@"3C646976", "HyperText Markup Language No Header Starts with div tag", new string[] { @".htm", @".html" }, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,3,@"100", "ICON File", new string[] { @".ico" }, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,20,@"5F27A889", "JAR Archive File", new string[] { @".jar" }, ProhibitionMode.Allowed ),
@@ -453,7 +452,6 @@ namespace RansomwareDetection.ContentDetectorLib.Content
                 new HeaderSignature(0,30,@"454E49474D412042494E415259", "Finale Music File", new string[] { @".mus" }, ProhibitionMode.Allowed ),
                 new HeaderSignature(0,30,@"504B0304140000", "Make Music File", new string[] { @".musx" }, ProhibitionMode.Allowed ),
                 
-                
                
                 new HeaderSignature(0,30,@"5B7B3030303231344130", "URL Shortcut File", new string[] { @".url",@".lnk" }, ProhibitionMode.Allowed ),
                 new HeaderSignature( new QBWSignatureChecker(), "Quickbooks file", new string[] { @".qbw", @".tlg"}, ProhibitionMode.Allowed ),
@@ -480,7 +478,10 @@ namespace RansomwareDetection.ContentDetectorLib.Content
                 new HeaderSignature(0,10,@"504B0304", "Open Document format", new string[] { @".odt",@".ods",@".odp"}, ProhibitionMode.Allowed ),
 				
                 
-                
+                new HeaderSignature(0,10,@"00000100", "Icon File", new string[] { @".ico" }, ProhibitionMode.Allowed ),
+                new HeaderSignature(0,16,@"667479704D3441", "Apple Lossless Audio Codec file", new string[] { @".m4a" }, ProhibitionMode.Allowed ),
+                new HeaderSignature(0,50,@"3C21444F4354595045", "HyperText Markup Language 3", new string[] { @".htm", @".html" }, ProhibitionMode.Allowed ),
+                new HeaderSignature(0,0,@"3C68746D6C", "HyperText Markup Language 3", new string[] { @".htm", @".html" }, ProhibitionMode.Allowed ),
                 //new HeaderSignature(3,"000019000E", "POG File", new string[] { @".pog"}, ProhibitionMode.Allowed ),
                 /*new HeaderSignature( @"", "Windows Media", new string[] { @".wmv", @".asf" }, ProhibitionMode.Prohibited ),*/
 				

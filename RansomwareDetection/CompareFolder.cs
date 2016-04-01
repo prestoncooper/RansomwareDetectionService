@@ -1127,31 +1127,31 @@ namespace RansomwareDetection.DetectionLib
                             StringBuilder sbbody1 = new StringBuilder();
                             string strline = "";
                             strSubject = "Ransomware Detection Service, File Compare - Files Different!: " + FilesDifferent.Count.ToString() + " Files Missing: " + FilesMissing.Count.ToString();
-                            sbbody1.AppendLine("Ransomware Detection Service, Possible Ransomware Found<br />\r\n<br />");
-                            sbbody1.AppendLine("<br /><ul><li>SourcePath: " + SourcePath + "</li>");
-                            strline = "<li>FilePathToCheck: " + Common.GetPathToHTMLAnchor(FilePathToCheck) + "</li>";
+                            sbbody1.AppendLine(@"Ransomware Detection Service, Possible Ransomware Found<br /><br />");
+                            sbbody1.AppendLine(@"<br /><ul><li>SourcePath: " + SourcePath + @"</li>");
+                            strline = @"<li>FilePathToCheck: " + Common.GetPathToHTMLAnchor(FilePathToCheck) + @"</li>";
                             sbbody1.AppendLine(strline);
-                            strline = "<li>Check Sub Folders: " + CheckSubFolders.ToString() + "</li>";
+                            strline = @"<li>Check Sub Folders: " + CheckSubFolders.ToString() + @"</li>";
                             sbbody1.AppendLine(strline);
-                            strline = "<li>Check MainFolder Folder: " + CheckMainFolder.ToString() + "</li></ul>";
+                            strline = @"<li>Check MainFolder Folder: " + CheckMainFolder.ToString() + @"</li></ul>";
                             sbbody1.AppendLine(strline);
                             if (FilesDifferent.Count > 0)
                             {
-                                sbbody1.AppendLine("<br /><br />\r\n<strong>Files Different:</strong><br />");
+                                sbbody1.AppendLine(@"<br /><br /><strong>Files Different:</strong><br />");
                                 //Loop through files that are different and list them
                                 foreach (string strFileDiff in FilesDifferent)
                                 {
-                                    sbbody1.AppendLine("<a href=\"#\" style=\"text-decoration:none !important; text-decoration:none;color:black;\">\"" + strFileDiff + "\"</a><br />");
+                                    sbbody1.AppendLine("<a href=\"#\" style=\"text-decoration:none !important; text-decoration:none;color:black;\">\"" + strFileDiff + "\"" + @"</a><br />");
                                 }
-                                sbbody1.AppendLine("<br />");
+                                sbbody1.AppendLine(@"<br />");
                             }
                             if (FilesMissing.Count > 0)
                             {
-                                sbbody1.Append("<br /><br /><strong>Files Missing:</strong><br />");
+                                sbbody1.Append(@"<br /><br /><strong>Files Missing:</strong><br />");
                                 //Loop through the files that are missing and list them
                                 foreach (string strFileMissing in FilesMissing)
                                 {
-                                    sbbody1.AppendLine("<a href=\"#\" style=\"text-decoration:none !important; text-decoration:none;color:black;\">\"" + strFileMissing + "\"</a><br />");
+                                    sbbody1.AppendLine("<a href=\"#\" style=\"text-decoration:none !important; text-decoration:none;color:black;\">\"" + strFileMissing + "\"" + @"</a><br />");
                                 }
                             }
 
@@ -1162,10 +1162,7 @@ namespace RansomwareDetection.DetectionLib
                             {
                                 Send_Email(strSubject, strBody);
                             }
-                            if (strBody.Length > 32765)
-                            {
-                                strBody = strBody.Substring(0, 32760) + " ...";
-                            }
+                            
 
                             WriteError(strBody, System.Diagnostics.EventLogEntryType.Error, 8000, 80, false);
 
@@ -1175,11 +1172,11 @@ namespace RansomwareDetection.DetectionLib
                             StringBuilder sbbody2 = new StringBuilder();
                             strBody = "";
                             strSubject = "Ransomware Detection Service, File Compare: Success! (all files are the same and exist)";
-                            sbbody2.Append("Ransomware Detection Service, File Compare: Success! - All Files from SourcePath Files are the Same on FilePathToCheck Files Different: " + FilesDifferent.Count.ToString() + " Files Missing: " + FilesMissing.Count.ToString() + "<br /><br />\r\n");
-                            sbbody2.Append("SourcePath: " + SourcePath);
-                            sbbody2.Append("<br />\r\n<strong>FilePathToCheck:</strong> " + FilePathToCheck);
-                            sbbody2.Append("<br />\r\nCheck MainFolder Folder: " + CheckMainFolder.ToString());
-                            sbbody2.Append("<br />\r\nCheck Sub Folders: " + CheckSubFolders.ToString());
+                            sbbody2.AppendLine(@"Ransomware Detection Service, File Compare: Success! - All Files from SourcePath Files are the Same on FilePathToCheck Files Different: " + FilesDifferent.Count.ToString() + " Files Missing: " + FilesMissing.Count.ToString() + @"<br /><br />");
+                            sbbody2.AppendLine("SourcePath: " + SourcePath);
+                            sbbody2.AppendLine(@"<br /><strong>FilePathToCheck:</strong> " + FilePathToCheck);
+                            sbbody2.AppendLine(@"<br />Check MainFolder Folder: " + CheckMainFolder.ToString());
+                            sbbody2.AppendLine(@"<br />Check Sub Folders: " + CheckSubFolders.ToString());
                             strBody = sbbody2.ToString();
                             sbbody2.Clear();
                             //send email on success

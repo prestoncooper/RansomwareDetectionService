@@ -999,41 +999,77 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
 
                             if (ExportUnVerifiedToCSV)
                             {
-                                if (Common.FileExists(ExportCSVPath + "\\UnVerifiedFiles.csv"))
+                                try
                                 {
-                                    Delimon.Win32.IO.File.Delete(ExportCSVPath + "\\UnVerifiedFiles.csv");
+                                    if (Common.FileExists(ExportCSVPath + "\\" + Title + "UnVerifiedFiles.csv"))
+                                    {
+                                        Delimon.Win32.IO.File.Delete(ExportCSVPath + "\\" + Title + "UnVerifiedFiles.csv");
+                                    }
+                                    Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\" + Title + "UnVerifiedFiles.csv", ContentDetectorLib.FileResult.FileResultCollectionToCSV(FilesUnVerified));
                                 }
-                                Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\UnVerifiedFiles.csv", ContentDetectorLib.FileResult.FileResultCollectionToCSV(FilesUnVerified));
+                                catch (Exception)
+                                {
+                                    Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\" + Title + "UnVerifiedFiles" + Guid.NewGuid().ToString() + ".csv" , ContentDetectorLib.FileResult.FileResultCollectionToCSV(FilesUnVerified));
+                                    
+                                }
+                                
                             }
 
                             if (ExportVerifiedToCSV)
                             {
-                                if (Common.FileExists(ExportCSVPath + "\\VerifiedFiles.csv"))
+                                try
                                 {
-                                    Delimon.Win32.IO.File.Delete(ExportCSVPath + "\\VerifiedFiles.csv");
+                                    if (Common.FileExists(ExportCSVPath + "\\" + Title + "VerifiedFiles.csv"))
+                                    {
+                                        Delimon.Win32.IO.File.Delete(ExportCSVPath + "\\" + Title + "VerifiedFiles.csv");
+                                    }
+                                    Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\" + Title + "VerifiedFiles.csv", ContentDetectorLib.FileResult.FileResultCollectionToCSV(FilesVerified));
+                   
                                 }
-                                Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\VerifiedFiles.csv", ContentDetectorLib.FileResult.FileResultCollectionToCSV(FilesVerified));
+                                catch (Exception)
+                                {
+
+                                    Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\" + Title + "VerifiedFiles" + Guid.NewGuid().ToString() + ".csv", ContentDetectorLib.FileResult.FileResultCollectionToCSV(FilesVerified));
+                                    
+                                }
                             }
 
                             if (ExportUnknownToCSV)
                             {
-                                if (Common.FileExists(ExportCSVPath + "\\UnknownFiles.csv"))
+                                try
                                 {
-                                    Delimon.Win32.IO.File.Delete(ExportCSVPath + "\\UnknownFiles.csv");
-                                }
-                                Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\UnknownFiles.csv", ContentDetectorLib.FileResult.FileResultCollectionToCSV(FilesUnknown));
+                                    if (Common.FileExists(ExportCSVPath + "\\" + Title + "UnknownFiles.csv"))
+                                    {
+                                        Delimon.Win32.IO.File.Delete(ExportCSVPath + "\\" + Title + "UnknownFiles.csv");
+                                    }
+                                    Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\" + Title + "UnknownFiles.csv", ContentDetectorLib.FileResult.FileResultCollectionToCSV(FilesUnknown));
 
+                                }
+                                catch (Exception)
+                                {
+                                    Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\" + Title + "UnknownFiles" + Guid.NewGuid().ToString() + ".csv", ContentDetectorLib.FileResult.FileResultCollectionToCSV(FilesUnknown));
+                                    
+                                    
+                                }
+                                
                             }
 
                             if (ExportProhibitedToCSV)
                             {
-
-                                if (Common.FileExists(ExportCSVPath + "\\ProhibitedFiles.csv"))
+                                try
                                 {
-                                    Delimon.Win32.IO.File.Delete(ExportCSVPath + "\\ProhibitedFiles.csv");
-                                }
-                                Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\ProhibitedFiles.csv", ContentDetectorLib.FileResult.FileResultCollectionToCSV(FilesProhibited));
+                                    if (Common.FileExists(ExportCSVPath + "\\" + Title + "ProhibitedFiles.csv"))
+                                    {
+                                        Delimon.Win32.IO.File.Delete(ExportCSVPath + "\\" + Title + "ProhibitedFiles.csv");
+                                    }
+                                    Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\" + Title + "ProhibitedFiles.csv", ContentDetectorLib.FileResult.FileResultCollectionToCSV(FilesProhibited));
 
+                                }
+                                catch (Exception)
+                                {
+                                    Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\" + Title + "ProhibitedFiles" + Guid.NewGuid().ToString() + ".csv", ContentDetectorLib.FileResult.FileResultCollectionToCSV(FilesProhibited));
+                                }
+                                
                             }
 
                         }
@@ -1058,7 +1094,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                             StringBuilder sbbody1 = new StringBuilder();
                             string strline = "";
                             strSubject = "Ransomware Detection Service, File Audit - File Extensions Not Matching Content Header or Prohibited Files Found! Files Unverified: " + FilesUnVerified.Count.ToString() + " Files Prohibited: " + FilesProhibited.Count.ToString();
-                            sbbody1.AppendLine(@"Ransomware Detection Service, Possible Ransomware Affected Files Found<br />\r\n<br />");
+                            sbbody1.AppendLine(@"Ransomware Detection Service, Possible Ransomware Affected Files Found<br /><br />");
 
                             strline = @"<li>FilePathToCheck: " + Common.GetPathToHTMLAnchor(FilePathToCheck) + @"</li>";
                             sbbody1.AppendLine(strline);
@@ -1070,37 +1106,38 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
 
                             if (FilesUnVerified.Count > 0)
                             {
-                                sbbody1.AppendLine(@"<br /><br />\r\n<strong>Files UnVerified Count:</strong>" + FilesUnVerified.Count.ToString() + @"<br />");
+                                sbbody1.AppendLine(@"<br /><br /><strong>Files UnVerified Count:</strong>&nbsp;" + FilesUnVerified.Count.ToString());
                                 
                                 /*//Loop through files that are different and list them
                                 foreach (ContentDetectorLib.FileResult unVerifiedFile in FilesUnVerified)
                                 {
                                     sbbody1.AppendLine("<a href=\"#\" style=\"text-decoration:none !important; text-decoration:none;color:black;\">\"" + unVerifiedFile.FullPath + "\"</a><br />");
                                 }*/
+                                sbbody1.AppendLine(@"<br />");
                             }
 
                             if (FilesProhibited.Count > 0)
                             {
-                                sbbody1.AppendLine(@"<br /><br />\r\n<strong>Files Prohibited Count:</strong>&nbsp;" + FilesProhibited.Count.ToString() + @"<br />");
+                                sbbody1.AppendLine(@"<br /><strong>Files Prohibited Count:</strong>&nbsp;" + FilesProhibited.Count.ToString());
 
+                                sbbody1.AppendLine(@"<br />");
                                 
-                                sbbody1.AppendLine("<br />");
                             }
 
                             if (FilesUnknown.Count > 0)
                             {
-                                sbbody1.AppendLine(@"<br /><br />\r\n<strong>Files Unknown Count:</strong>&nbsp;" + FilesUnknown.Count.ToString() + @"<br />");
+                                sbbody1.AppendLine(@"<br />Files Unknown Count:&nbsp;" + FilesUnknown.Count.ToString());
 
-
-                                sbbody1.AppendLine("<br />");
+                                sbbody1.AppendLine(@"<br />");
+                                
                             }
 
                             if (FilesVerified.Count > 0)
                             {
-                                sbbody1.AppendLine(@"<br /><br />\r\n<strong>Files Verified Count:</strong>&nbsp;" + FilesVerified.Count.ToString() + @"<br />");
+                                sbbody1.AppendLine(@"<br />Files Verified Count:&nbsp;" + FilesVerified.Count.ToString());
 
 
-                                sbbody1.AppendLine("<br />");
+                                sbbody1.AppendLine(@"<br />");
                             }
 
                             strBody = sbbody1.ToString();
@@ -1126,7 +1163,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
 
                             if (FilesUnknown.Count > 0)
                             {
-                                sbbody2.AppendLine(@"<br /><br />\r\n<strong>Files Unknown Count:</strong>&nbsp;" + FilesUnknown.Count.ToString() + @"<br />");
+                                sbbody2.AppendLine(@"<br /><strong>Files Unknown Count:</strong>&nbsp;" + FilesUnknown.Count.ToString() );
 
 
                                 sbbody2.AppendLine("<br />");
@@ -1134,7 +1171,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
 
                             if (FilesVerified.Count > 0)
                             {
-                                sbbody2.AppendLine(@"<br /><br />\r\n<strong>Files Verified Count:</strong>&nbsp;" + FilesVerified.Count.ToString() + @"<br />");
+                                sbbody2.AppendLine(@"<br /><strong>Files Verified Count:</strong>&nbsp;" + FilesVerified.Count.ToString() );
 
 
                                 sbbody2.AppendLine("<br />");
@@ -1142,11 +1179,16 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
 
                             strBody = sbbody2.ToString();
                             sbbody2.Clear();
+                            
+                           
+
                             //send email on success
                             if (SendEmailOnSuccess)
                             {
                                 Send_Email(strSubject, strBody);
                             }
+                            
+                            
 
                             WriteError(strBody, System.Diagnostics.EventLogEntryType.Information, 7000, 70, true);
                         }
