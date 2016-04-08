@@ -654,6 +654,41 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
         
         }
 
+        private bool _fixUnverifiedFilesFromBackup = true;
+        /// <summary>
+        /// Exclude Folders separate folder names by semicolon
+        /// </summary>
+        public bool FixUnverifiedFilesFromBackup
+        {
+            get
+            {
+                return _fixUnverifiedFilesFromBackup;
+            }
+            set
+            {
+                _fixUnverifiedFilesFromBackup = value;
+            }
+
+        }
+
+        private string _restoredFilesPath = "";
+        /// <summary>
+        /// Exclude Folders separate folder names by semicolon
+        /// </summary>
+        public string RestoredFilesPath
+        {
+            get
+            {
+                return _restoredFilesPath;
+            }
+            set
+            {
+                _restoredFilesPath = value;
+            }
+
+        }
+
+
         private bool _detailedLogging = false;
         public bool DetailedLogging
         {
@@ -811,6 +846,10 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
             ExportUnVerifiedToCSV = Common.FixNullbool(row["ExportUnVerifiedToCSV"]);
             ExportVerifiedToCSV = Common.FixNullbool(row["ExportVerifiedToCSV"]);
             ExportProhibitedToCSV = Common.FixNullbool(row["ExportProhibitedToCSV"]);
+
+            FixUnverifiedFilesFromBackup = Common.FixNullbool(row["FixUnverifiedFilesFromBackup"]);
+            RestoredFilesPath = Common.FixNullstring(row["RestoredFilesPath"]);
+
             ProhibitedFilesIgnoreFileExtension = Common.FixNullbool(row["ProhibitedFilesIgnoreFileExtension"]);
             ExcludeFolders = Common.FixNullstring(row["ExcludeFolders"]);
             Comment = Common.FixNullstring(row["Comment"]);
@@ -904,7 +943,11 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
             dtAuditConfig.Columns.Add(new DataColumn("ExportUnknownToCSV", typeof(String)));
             dtAuditConfig.Columns.Add(new DataColumn("ExportProhibitedToCSV", typeof(String)));
             dtAuditConfig.Columns.Add(new DataColumn("ProhibitedFilesIgnoreFileExtension", typeof(String)));
-            
+
+
+            dtAuditConfig.Columns.Add(new DataColumn("FixUnverifiedFilesFromBackup", typeof(String)));
+            dtAuditConfig.Columns.Add(new DataColumn("RestoredFilesPath", typeof(String)));
+
             dtAuditConfig.Columns.Add(new DataColumn("ExcludeFolders", typeof(String)));
             dtAuditConfig.Columns.Add(new DataColumn("StartDate", typeof(String)));
             dtAuditConfig.Columns.Add(new DataColumn("EndDate", typeof(String)));
@@ -912,47 +955,80 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
             dtAuditConfig.Columns.Add(new DataColumn("Comment", typeof(String)));
             dtAuditConfig.Columns.Add(new DataColumn("DetailedLogging", typeof(String)));
 
-            dtAuditConfig.Columns["Enabled"].DefaultValue = "true";
+            dtAuditConfig.Columns["Enabled"].DefaultValue = "True";
             dtAuditConfig.Columns["Time"].DefaultValue = "01:00";
             dtAuditConfig.Columns["IntervalType"].DefaultValue = "Daily";
             dtAuditConfig.Columns["Interval"].DefaultValue = "0";
-            dtAuditConfig.Columns["Monday"].DefaultValue = "true";
-            dtAuditConfig.Columns["Tuesday"].DefaultValue = "true";
-            dtAuditConfig.Columns["Wednesday"].DefaultValue = "true";
-            dtAuditConfig.Columns["Thursday"].DefaultValue = "true";
-            dtAuditConfig.Columns["Friday"].DefaultValue = "true";
-            dtAuditConfig.Columns["Saturday"].DefaultValue = "true";
-            dtAuditConfig.Columns["Sunday"].DefaultValue = "true";
-            dtAuditConfig.Columns["January"].DefaultValue = "true";
-            dtAuditConfig.Columns["February"].DefaultValue = "true";
-            dtAuditConfig.Columns["March"].DefaultValue = "true";
-            dtAuditConfig.Columns["April"].DefaultValue = "true";
-            dtAuditConfig.Columns["May"].DefaultValue = "true";
-            dtAuditConfig.Columns["June"].DefaultValue = "true";
-            dtAuditConfig.Columns["July"].DefaultValue = "true";
-            dtAuditConfig.Columns["August"].DefaultValue = "true";
-            dtAuditConfig.Columns["September"].DefaultValue = "true";
-            dtAuditConfig.Columns["October"].DefaultValue = "true";
-            dtAuditConfig.Columns["November"].DefaultValue = "true";
-            dtAuditConfig.Columns["December"].DefaultValue = "true";
+            dtAuditConfig.Columns["Monday"].DefaultValue = "True";
+            dtAuditConfig.Columns["Tuesday"].DefaultValue = "True";
+            dtAuditConfig.Columns["Wednesday"].DefaultValue = "True";
+            dtAuditConfig.Columns["Thursday"].DefaultValue = "True";
+            dtAuditConfig.Columns["Friday"].DefaultValue = "True";
+            dtAuditConfig.Columns["Saturday"].DefaultValue = "True";
+            dtAuditConfig.Columns["Sunday"].DefaultValue = "True";
+            dtAuditConfig.Columns["January"].DefaultValue = "True";
+            dtAuditConfig.Columns["February"].DefaultValue = "True";
+            dtAuditConfig.Columns["March"].DefaultValue = "True";
+            dtAuditConfig.Columns["April"].DefaultValue = "True";
+            dtAuditConfig.Columns["May"].DefaultValue = "True";
+            dtAuditConfig.Columns["June"].DefaultValue = "True";
+            dtAuditConfig.Columns["July"].DefaultValue = "True";
+            dtAuditConfig.Columns["August"].DefaultValue = "True";
+            dtAuditConfig.Columns["September"].DefaultValue = "True";
+            dtAuditConfig.Columns["October"].DefaultValue = "True";
+            dtAuditConfig.Columns["November"].DefaultValue = "True";
+            dtAuditConfig.Columns["December"].DefaultValue = "True";
             dtAuditConfig.Columns["DayOfMonth"].DefaultValue = "0";
             dtAuditConfig.Columns["FilePathToCheck"].DefaultValue = "";
-            dtAuditConfig.Columns["CheckSubFolders"].DefaultValue = "true";
+            dtAuditConfig.Columns["CheckSubFolders"].DefaultValue = "True";
             dtAuditConfig.Columns["Comment"].DefaultValue = "";
-            dtAuditConfig.Columns["SendEmailOnFailure"].DefaultValue = "false";
-            dtAuditConfig.Columns["SendEmailOnSuccess"].DefaultValue = "false";
-            dtAuditConfig.Columns["DetailedLogging"].DefaultValue = "false";
+            dtAuditConfig.Columns["SendEmailOnFailure"].DefaultValue = "False";
+            dtAuditConfig.Columns["SendEmailOnSuccess"].DefaultValue = "False";
+            dtAuditConfig.Columns["DetailedLogging"].DefaultValue = "False";
             dtAuditConfig.Columns["ExcludeFolders"].DefaultValue = "";
-            dtAuditConfig.Columns["ValidateZipFiles"].DefaultValue = "false";
+            dtAuditConfig.Columns["ValidateZipFiles"].DefaultValue = "False";
             dtAuditConfig.Columns["ExportCSVPath"].DefaultValue = "";
-            dtAuditConfig.Columns["ExportUnVerifiedToCSV"].DefaultValue = "true";
-            dtAuditConfig.Columns["ExportVerifiedToCSV"].DefaultValue = "true";
-            dtAuditConfig.Columns["ExportUnknownToCSV"].DefaultValue = "true";
-            dtAuditConfig.Columns["ExportProhibitedToCSV"].DefaultValue = "true";
-            dtAuditConfig.Columns["ProhibitedFilesIgnoreFileExtension"].DefaultValue = "true";
+            dtAuditConfig.Columns["ExportUnVerifiedToCSV"].DefaultValue = "True";
+            dtAuditConfig.Columns["ExportVerifiedToCSV"].DefaultValue = "True";
+            dtAuditConfig.Columns["ExportUnknownToCSV"].DefaultValue = "True";
+            dtAuditConfig.Columns["ExportProhibitedToCSV"].DefaultValue = "True";
+
+            dtAuditConfig.Columns["FixUnverifiedFilesFromBackup"].DefaultValue = "False";
+            dtAuditConfig.Columns["RestoredFilesPath"].DefaultValue = "";
+
+            dtAuditConfig.Columns["ProhibitedFilesIgnoreFileExtension"].DefaultValue = "True";
             dtAuditConfig.Columns["StartDate"].DefaultValue = DateTime.Now.ToString("d");
             return dtAuditConfig;
 
+        }
+
+        private void replaceCorruptedFile(string strFilePathToCheck,string strFilePath, string strRestoredPath)
+        {
+            string strRestoredFile = "";
+            try
+            {
+                strFilePathToCheck = Common.WindowsPathClean(strFilePathToCheck);
+                strRestoredPath = Common.WindowsPathClean(strRestoredPath);
+
+                strRestoredFile = strFilePath.Replace(strFilePathToCheck, strRestoredPath);
+
+                if (Common.FileExists(strFilePath) && Common.FileExists(strRestoredFile))
+                {
+                    Delimon.Win32.IO.File.Copy(strRestoredFile, strFilePath, true);
+                    WriteError("Audit Folder: FixUnverifiedFileFromBackup: Success BackupFile \"" + strRestoredFile + "\" replaced \"" + strFilePath + "\"", System.Diagnostics.EventLogEntryType.Information, 7000, 70, true);
+                }
+                else
+                {
+                    WriteError("Audit Folder: FixUnverifiedFileFromBackup: Error BackupFile \"" + strRestoredFile + "\" FAILED TO replace \"" + strFilePath + "\"", System.Diagnostics.EventLogEntryType.Error, 7000, 70, false);
+                }
+            }
+            catch (Exception ex)
+            {
+                WriteError("Audit Folder: " + ex.Message + " Source: " + ex.Source + " StackTrace: " + ex.StackTrace, System.Diagnostics.EventLogEntryType.Error, 7000, 70, false);
+            }
+            
+
+            
         }
 
 
@@ -1011,6 +1087,26 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                                 {
                                     Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\" + Title + "UnVerifiedFiles" + Guid.NewGuid().ToString() + ".csv" , ContentDetectorLib.FileResult.FileResultCollectionToCSV(FilesUnVerified));
                                     
+                                }
+                                
+                                if (FixUnverifiedFilesFromBackup )
+                                {
+                                    RestoredFilesPath = Common.WindowsPathClean(RestoredFilesPath);
+                                    if ( Common.DirectoryExists(RestoredFilesPath))
+                                    {
+                                        WriteError("Audit Folder: FixUnverifiedFileFromBackup: Starting Replace of Files from  \"" + RestoredFilesPath + "\" to \"" + FilePathToCheck + "\"", System.Diagnostics.EventLogEntryType.Information, 7000, 70, true);
+                
+                                        foreach (ContentDetectorLib.FileResult unverifiedfile1 in FilesUnVerified)
+                                        {
+                                            replaceCorruptedFile(FilePathToCheck, unverifiedfile1.FullPath, RestoredFilesPath);
+                                        }
+                                        WriteError("Audit Folder: FixUnverifiedFileFromBackup: Finished Replace of Files from  \"" + RestoredFilesPath + "\" to \"" + FilePathToCheck + "\"", System.Diagnostics.EventLogEntryType.Information, 7000, 70, true);
+                
+                                    }
+                                    else
+                                    {
+                                        WriteError("Audit Folder: FixUnverifiedFileFromBackup: Error RestoredFilesPath \"" + RestoredFilesPath + "\" does not exist" , System.Diagnostics.EventLogEntryType.Error, 7000, 70, false);
+                                    }
                                 }
                                 
                             }

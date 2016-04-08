@@ -758,8 +758,11 @@ namespace RansomwareDetection.DetectionLib
             bool blSuccess = false;
             try
             {
-                strPath = WindowsPathClean(strPath);
-                blSuccess = Delimon.Win32.IO.Directory.Exists(strPath);
+                if (strPath != null && strPath.Length > 0)
+                {
+                    strPath = WindowsPathClean(strPath);
+                    blSuccess = Delimon.Win32.IO.Directory.Exists(strPath);
+                }
             }
             catch (Exception)
             {
@@ -773,8 +776,11 @@ namespace RansomwareDetection.DetectionLib
             bool blSuccess = false;
             try
             {
-                strPath = WindowsPathClean(strPath);
-                blSuccess = Delimon.Win32.IO.File.Exists(strPath);
+                if (strPath != null && strPath.Length > 0)
+                {
+                    strPath = WindowsPathClean(strPath);
+                    blSuccess = Delimon.Win32.IO.File.Exists(strPath);
+                }
             }
             catch (Exception)
             {

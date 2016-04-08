@@ -655,29 +655,42 @@ namespace RansomwareDetection.ContentDetectorLib.Content
             byte[] Zipbytes = {0x50,0x4B};
             //504B
 
-            
-            FileStream fs = file1.Open(Delimon.Win32.IO.FileMode.Open, Delimon.Win32.IO.FileAccess.Read, Delimon.Win32.IO.FileShare.Read);
-            if (fs == null)
-            {
-                return false;
-            }
-            else
-            {
-                int read = 2;
 
-                byte[] buffer = new byte[read];
-                int readCount = fs.Read(buffer, 0, read);
-
-                using (MemoryStream ms = new MemoryStream(buffer))
+            using (FileStream fs = file1.Open(Delimon.Win32.IO.FileMode.Open, Delimon.Win32.IO.FileAccess.Read, Delimon.Win32.IO.FileShare.Read))
+            {
+                if (fs == null)
                 {
-                    ms.Seek(0, SeekOrigin.Begin);
-
-                    byte[] realBuffer = new byte[readCount];
-                    ms.Read(realBuffer, 0, readCount);
-
-                    blZipExtension = realBuffer == Zipbytes;
+                    return false;
                 }
+                else
+                {
+                    int read = 2;
+
+                    byte[] buffer = new byte[read];
+                    int readCount = fs.Read(buffer, 0, read);
+
+                    using (MemoryStream ms = new MemoryStream(buffer))
+                    {
+                        ms.Seek(0, SeekOrigin.Begin);
+
+                        byte[] realBuffer = new byte[readCount];
+                        ms.Read(realBuffer, 0, readCount);
+
+                        blZipExtension = realBuffer == Zipbytes;
+                    }
+                }
+                try
+                {
+                    fs.Close();
+                }
+                catch (Exception)
+                {
+                    
+                    
+                }
+                
             }
+            
             
             return blZipExtension;
 

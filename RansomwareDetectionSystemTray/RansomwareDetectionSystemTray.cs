@@ -1561,7 +1561,7 @@ namespace RansomwareDetection
         {
             try
             {
-                if (dgvAudit.Columns[e.ColumnIndex].HeaderText == "FilePathToCheck" || dgvAudit.Columns[e.ColumnIndex].HeaderText == "ExportCSVPath")
+                if (dgvAudit.Columns[e.ColumnIndex].HeaderText == "FilePathToCheck" || dgvAudit.Columns[e.ColumnIndex].HeaderText == "ExportCSVPath" || dgvAudit.Columns[e.ColumnIndex].HeaderText == "RestoredFilesPath")
                 {
                     DataGridViewTextBoxCell cell = dgvAudit[e.ColumnIndex, e.RowIndex] as DataGridViewTextBoxCell;
                     if (cell != null)
@@ -1602,6 +1602,23 @@ namespace RansomwareDetection
                         e.Cancel = true;
                     }
                 }
+                else if (dgvAudit.Columns[e.ColumnIndex].HeaderText == "FixUnverifiedFilesFromBackup")
+                {
+                    DataGridViewCheckBoxCell cell = dgvAudit[e.ColumnIndex, e.RowIndex] as DataGridViewCheckBoxCell;
+                    if (cell != null)
+                    {
+                        if (e.FormattedValue.ToString().ToLower() == "true")
+                        {
+
+                            MessageBox.Show("Warning:  This option will replace unverified files in the FilePathToCheck from the files in the RestoredFilesPath. Make a current backup of FilePathToCheck folder before using this option. Run this task at least once with FixUnverifiedFilesFromBackup option unchecked for review.  Review the csv files and confirm the unverified files are corrupted. Fix as many unknownfiles as possible.");
+                            e.Cancel = false;
+                        }
+
+
+
+                    }
+                }
+
             }
             catch (Exception ex)
             {
@@ -1906,7 +1923,7 @@ namespace RansomwareDetection
 
         private void dgvAudit_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvAudit.Columns[e.ColumnIndex].HeaderText == "ExportCSVPath" || dgvAudit.Columns[e.ColumnIndex].HeaderText == "FilePathToCheck")
+            if (dgvAudit.Columns[e.ColumnIndex].HeaderText == "ExportCSVPath" || dgvAudit.Columns[e.ColumnIndex].HeaderText == "FilePathToCheck" || dgvAudit.Columns[e.ColumnIndex].HeaderText == "RestoredFilesPath")
             {
                 DataGridViewTextBoxCell cell = dgvAudit[e.ColumnIndex, e.RowIndex] as DataGridViewTextBoxCell;
                 CellFolderBrowser(ref cell);
