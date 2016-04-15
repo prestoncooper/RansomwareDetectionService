@@ -438,8 +438,8 @@ namespace RansomwareDetection
             trayIcon.Text = "RansomwareDetectionTray";
             try
             {
-                trayIcon.Icon = Properties.Resources.IcoWoodDriveTime;//new Icon(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\wood_drive_time_machine.ico", 40, 40);
-                this.Icon = Properties.Resources.IcoWoodDriveTime;
+                trayIcon.Icon = Properties.Resources.IconBlueExternalDrive;//new Icon(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\wood_drive_time_machine.ico", 40, 40);
+                this.Icon = Properties.Resources.IconBlueExternalDrive;
             }
             catch (Exception)
             {

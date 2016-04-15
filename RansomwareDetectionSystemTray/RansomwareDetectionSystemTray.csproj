@@ -52,7 +52,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>wood_drive_time_machine.ico</ApplicationIcon>
+    <ApplicationIcon>BlueExternalDrive.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Delimon.Win32.IO, Version=4.0.4764.1936, Culture=neutral, PublicKeyToken=6f601db60ebd9657, processorArchitecture=MSIL">
@@ -117,13 +117,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BlueExternalDrive.ico" />
+    <None Include="BlueExternalDrive.png" />
     <Content Include="Error.gif" />
     <Content Include="Message.gif" />
     <Content Include="NotFound.gif" />
     <None Include="Resources\ImgError.bmp" />
     <Content Include="Warning.gif" />
-    <Content Include="wood_drive_time_machine.ico" />
-    <Content Include="wood_drive_time_machine.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

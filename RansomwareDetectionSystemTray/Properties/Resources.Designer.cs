@@ -63,10 +63,20 @@ namespace RansomwareDetection.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon IcoWoodDriveTime {
+        internal static System.Drawing.Icon IconBlueExternalDrive {
             get {
-                object obj = ResourceManager.GetObject("IcoWoodDriveTime", resourceCulture);
+                object obj = ResourceManager.GetObject("IconBlueExternalDrive", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ImgBlueExternalDrive {
+            get {
+                object obj = ResourceManager.GetObject("ImgBlueExternalDrive", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -106,16 +116,6 @@ namespace RansomwareDetection.Properties {
         internal static System.Drawing.Bitmap ImgWarning {
             get {
                 object obj = ResourceManager.GetObject("ImgWarning", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ImgWoodDriveTime {
-            get {
-                object obj = ResourceManager.GetObject("ImgWoodDriveTime", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

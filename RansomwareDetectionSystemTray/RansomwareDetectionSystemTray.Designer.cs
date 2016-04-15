@@ -198,17 +198,6 @@
             this.dgvcoltxtFileFiltersComment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabAudit = new System.Windows.Forms.TabPage();
             this.dgvAudit = new System.Windows.Forms.DataGridView();
-            this.tabSignatures = new System.Windows.Forms.TabPage();
-            this.dgvSignatures = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewCheckBoxColumn60 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dgvSignaturestxtcolByteOffset = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvSignaturestxtcolFirstNumberOfBytesToRead = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvSignaturestxtColFileExtensions = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewCheckBoxColumn62 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvAuditTxtColID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewCheckBoxColumn21 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dgvAuditTxtColTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -253,6 +242,17 @@
             this.dgvAuditCalColEndDate = new System.Windows.Forms.CalendarColumn();
             this.dgvAuditTxtColComment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewCheckBoxColumn66 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.tabSignatures = new System.Windows.Forms.TabPage();
+            this.dgvSignatures = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewCheckBoxColumn60 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dgvSignaturestxtcolByteOffset = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvSignaturestxtcolFirstNumberOfBytesToRead = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvSignaturestxtColFileExtensions = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewCheckBoxColumn62 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBoxServerService.SuspendLayout();
@@ -725,11 +725,11 @@
             // 
             // pbRightIcon
             // 
-            this.pbRightIcon.Image = global::RansomwareDetection.Properties.Resources.ImgWoodDriveTime;
-            this.pbRightIcon.InitialImage = global::RansomwareDetection.Properties.Resources.ImgWoodDriveTime;
-            this.pbRightIcon.Location = new System.Drawing.Point(12, 9);
+            this.pbRightIcon.Image = global::RansomwareDetection.Properties.Resources.ImgBlueExternalDrive;
+            this.pbRightIcon.InitialImage = global::RansomwareDetection.Properties.Resources.ImgBlueExternalDrive;
+            this.pbRightIcon.Location = new System.Drawing.Point(8, 9);
             this.pbRightIcon.Name = "pbRightIcon";
-            this.pbRightIcon.Size = new System.Drawing.Size(118, 127);
+            this.pbRightIcon.Size = new System.Drawing.Size(127, 127);
             this.pbRightIcon.TabIndex = 34;
             this.pbRightIcon.TabStop = false;
             // 
@@ -1882,114 +1882,6 @@
             this.dgvAudit.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAudit_CellDoubleClick);
             this.dgvAudit.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvAudit_CellValidating);
             // 
-            // tabSignatures
-            // 
-            this.tabSignatures.Controls.Add(this.dgvSignatures);
-            this.tabSignatures.Location = new System.Drawing.Point(4, 25);
-            this.tabSignatures.Name = "tabSignatures";
-            this.tabSignatures.Size = new System.Drawing.Size(769, 140);
-            this.tabSignatures.TabIndex = 10;
-            this.tabSignatures.Text = "Audit Signatures";
-            this.tabSignatures.UseVisualStyleBackColor = true;
-            // 
-            // dgvSignatures
-            // 
-            this.dgvSignatures.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgvSignatures.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSignatures.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewCheckBoxColumn60,
-            this.dgvSignaturestxtcolByteOffset,
-            this.dgvSignaturestxtcolFirstNumberOfBytesToRead,
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8,
-            this.dgvSignaturestxtColFileExtensions,
-            this.dataGridViewCheckBoxColumn62,
-            this.dataGridViewTextBoxColumn10});
-            this.dgvSignatures.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvSignatures.Location = new System.Drawing.Point(0, 0);
-            this.dgvSignatures.Name = "dgvSignatures";
-            this.dgvSignatures.Size = new System.Drawing.Size(769, 140);
-            this.dgvSignatures.TabIndex = 19;
-            this.dgvSignatures.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvSignatures_CellValidating);
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "ID";
-            this.dataGridViewTextBoxColumn6.HeaderText = "ID";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            this.dataGridViewTextBoxColumn6.Width = 46;
-            // 
-            // dataGridViewCheckBoxColumn60
-            // 
-            this.dataGridViewCheckBoxColumn60.DataPropertyName = "Enabled";
-            this.dataGridViewCheckBoxColumn60.FalseValue = "false";
-            this.dataGridViewCheckBoxColumn60.HeaderText = "Enabled";
-            this.dataGridViewCheckBoxColumn60.IndeterminateValue = "";
-            this.dataGridViewCheckBoxColumn60.Name = "dataGridViewCheckBoxColumn60";
-            this.dataGridViewCheckBoxColumn60.TrueValue = "true";
-            this.dataGridViewCheckBoxColumn60.Width = 66;
-            // 
-            // dgvSignaturestxtcolByteOffset
-            // 
-            this.dgvSignaturestxtcolByteOffset.DataPropertyName = "ByteOffset";
-            this.dgvSignaturestxtcolByteOffset.HeaderText = "ByteOffset";
-            this.dgvSignaturestxtcolByteOffset.Name = "dgvSignaturestxtcolByteOffset";
-            this.dgvSignaturestxtcolByteOffset.ToolTipText = "Characters preceding Hex Pattern to ignore, if any otherwise enter 0.  ByteOffset" +
-    " + HexPattern Length must be less than 100.";
-            this.dgvSignaturestxtcolByteOffset.Width = 99;
-            // 
-            // dgvSignaturestxtcolFirstNumberOfBytesToRead
-            // 
-            this.dgvSignaturestxtcolFirstNumberOfBytesToRead.DataPropertyName = "FirstNumberOfBytesToRead";
-            this.dgvSignaturestxtcolFirstNumberOfBytesToRead.HeaderText = "FirstNumberOfBytesToRead";
-            this.dgvSignaturestxtcolFirstNumberOfBytesToRead.Name = "dgvSignaturestxtcolFirstNumberOfBytesToRead";
-            this.dgvSignaturestxtcolFirstNumberOfBytesToRead.ToolTipText = "Number of Bytes to Read to Compare to the Hex Pattern. (0 defaults to 100 or (hex" +
-    "string length + byteoffset) if greater than 100.";
-            this.dgvSignaturestxtcolFirstNumberOfBytesToRead.Width = 211;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "HexPattern";
-            this.dataGridViewTextBoxColumn7.HeaderText = "HexPattern";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.ToolTipText = "Hexadecimal Pattern to Search for at the beginning of a file.  Anywhere within th" +
-    "e first 100 bytes.";
-            this.dataGridViewTextBoxColumn7.Width = 103;
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.DataPropertyName = "SignatureName";
-            this.dataGridViewTextBoxColumn8.HeaderText = "SignatureName";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.ToolTipText = "Name of File Type";
-            this.dataGridViewTextBoxColumn8.Width = 131;
-            // 
-            // dgvSignaturestxtColFileExtensions
-            // 
-            this.dgvSignaturestxtColFileExtensions.DataPropertyName = "FileExtensions";
-            this.dgvSignaturestxtColFileExtensions.HeaderText = "FileExtensions";
-            this.dgvSignaturestxtColFileExtensions.Name = "dgvSignaturestxtColFileExtensions";
-            this.dgvSignaturestxtColFileExtensions.ToolTipText = "Semicolon separated list of file extensions including period (e.g   .doc;.docx)";
-            this.dgvSignaturestxtColFileExtensions.Width = 123;
-            // 
-            // dataGridViewCheckBoxColumn62
-            // 
-            this.dataGridViewCheckBoxColumn62.DataPropertyName = "Prohibited";
-            this.dataGridViewCheckBoxColumn62.HeaderText = "Prohibited";
-            this.dataGridViewCheckBoxColumn62.Name = "dataGridViewCheckBoxColumn62";
-            this.dataGridViewCheckBoxColumn62.ToolTipText = "Prohibited File Type?";
-            this.dataGridViewCheckBoxColumn62.Width = 78;
-            // 
-            // dataGridViewTextBoxColumn10
-            // 
-            this.dataGridViewTextBoxColumn10.DataPropertyName = "Comment";
-            this.dataGridViewTextBoxColumn10.HeaderText = "Comment";
-            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
-            this.dataGridViewTextBoxColumn10.ToolTipText = "Comment for this task";
-            this.dataGridViewTextBoxColumn10.Width = 92;
-            // 
             // dgvAuditTxtColID
             // 
             this.dgvAuditTxtColID.DataPropertyName = "ID";
@@ -2353,6 +2245,114 @@
             this.dataGridViewCheckBoxColumn66.ToolTipText = "Detailed Error Logging even on successful check of files.";
             this.dataGridViewCheckBoxColumn66.Width = 117;
             // 
+            // tabSignatures
+            // 
+            this.tabSignatures.Controls.Add(this.dgvSignatures);
+            this.tabSignatures.Location = new System.Drawing.Point(4, 25);
+            this.tabSignatures.Name = "tabSignatures";
+            this.tabSignatures.Size = new System.Drawing.Size(769, 140);
+            this.tabSignatures.TabIndex = 10;
+            this.tabSignatures.Text = "Audit Signatures";
+            this.tabSignatures.UseVisualStyleBackColor = true;
+            // 
+            // dgvSignatures
+            // 
+            this.dgvSignatures.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvSignatures.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSignatures.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewCheckBoxColumn60,
+            this.dgvSignaturestxtcolByteOffset,
+            this.dgvSignaturestxtcolFirstNumberOfBytesToRead,
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8,
+            this.dgvSignaturestxtColFileExtensions,
+            this.dataGridViewCheckBoxColumn62,
+            this.dataGridViewTextBoxColumn10});
+            this.dgvSignatures.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvSignatures.Location = new System.Drawing.Point(0, 0);
+            this.dgvSignatures.Name = "dgvSignatures";
+            this.dgvSignatures.Size = new System.Drawing.Size(769, 140);
+            this.dgvSignatures.TabIndex = 19;
+            this.dgvSignatures.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvSignatures_CellValidating);
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "ID";
+            this.dataGridViewTextBoxColumn6.HeaderText = "ID";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Width = 46;
+            // 
+            // dataGridViewCheckBoxColumn60
+            // 
+            this.dataGridViewCheckBoxColumn60.DataPropertyName = "Enabled";
+            this.dataGridViewCheckBoxColumn60.FalseValue = "false";
+            this.dataGridViewCheckBoxColumn60.HeaderText = "Enabled";
+            this.dataGridViewCheckBoxColumn60.IndeterminateValue = "";
+            this.dataGridViewCheckBoxColumn60.Name = "dataGridViewCheckBoxColumn60";
+            this.dataGridViewCheckBoxColumn60.TrueValue = "true";
+            this.dataGridViewCheckBoxColumn60.Width = 66;
+            // 
+            // dgvSignaturestxtcolByteOffset
+            // 
+            this.dgvSignaturestxtcolByteOffset.DataPropertyName = "ByteOffset";
+            this.dgvSignaturestxtcolByteOffset.HeaderText = "ByteOffset";
+            this.dgvSignaturestxtcolByteOffset.Name = "dgvSignaturestxtcolByteOffset";
+            this.dgvSignaturestxtcolByteOffset.ToolTipText = "Characters preceding Hex Pattern to ignore, if any otherwise enter 0.  ByteOffset" +
+    " + HexPattern Length must be less than 100.";
+            this.dgvSignaturestxtcolByteOffset.Width = 99;
+            // 
+            // dgvSignaturestxtcolFirstNumberOfBytesToRead
+            // 
+            this.dgvSignaturestxtcolFirstNumberOfBytesToRead.DataPropertyName = "FirstNumberOfBytesToRead";
+            this.dgvSignaturestxtcolFirstNumberOfBytesToRead.HeaderText = "FirstNumberOfBytesToRead";
+            this.dgvSignaturestxtcolFirstNumberOfBytesToRead.Name = "dgvSignaturestxtcolFirstNumberOfBytesToRead";
+            this.dgvSignaturestxtcolFirstNumberOfBytesToRead.ToolTipText = "Number of Bytes to Read to Compare to the Hex Pattern. (0 defaults to 100 or (hex" +
+    "string length + byteoffset) if greater than 100.";
+            this.dgvSignaturestxtcolFirstNumberOfBytesToRead.Width = 211;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "HexPattern";
+            this.dataGridViewTextBoxColumn7.HeaderText = "HexPattern";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ToolTipText = "Hexadecimal Pattern to Search for at the beginning of a file.  Anywhere within th" +
+    "e first 100 bytes.";
+            this.dataGridViewTextBoxColumn7.Width = 103;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.DataPropertyName = "SignatureName";
+            this.dataGridViewTextBoxColumn8.HeaderText = "SignatureName";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ToolTipText = "Name of File Type";
+            this.dataGridViewTextBoxColumn8.Width = 131;
+            // 
+            // dgvSignaturestxtColFileExtensions
+            // 
+            this.dgvSignaturestxtColFileExtensions.DataPropertyName = "FileExtensions";
+            this.dgvSignaturestxtColFileExtensions.HeaderText = "FileExtensions";
+            this.dgvSignaturestxtColFileExtensions.Name = "dgvSignaturestxtColFileExtensions";
+            this.dgvSignaturestxtColFileExtensions.ToolTipText = "Semicolon separated list of file extensions including period (e.g   .doc;.docx)";
+            this.dgvSignaturestxtColFileExtensions.Width = 123;
+            // 
+            // dataGridViewCheckBoxColumn62
+            // 
+            this.dataGridViewCheckBoxColumn62.DataPropertyName = "Prohibited";
+            this.dataGridViewCheckBoxColumn62.HeaderText = "Prohibited";
+            this.dataGridViewCheckBoxColumn62.Name = "dataGridViewCheckBoxColumn62";
+            this.dataGridViewCheckBoxColumn62.ToolTipText = "Prohibited File Type?";
+            this.dataGridViewCheckBoxColumn62.Width = 78;
+            // 
+            // dataGridViewTextBoxColumn10
+            // 
+            this.dataGridViewTextBoxColumn10.DataPropertyName = "Comment";
+            this.dataGridViewTextBoxColumn10.HeaderText = "Comment";
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.dataGridViewTextBoxColumn10.ToolTipText = "Comment for this task";
+            this.dataGridViewTextBoxColumn10.Width = 92;
+            // 
             // RansomwareDetectionSystemTray
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2361,6 +2361,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "RansomwareDetectionSystemTray";
             this.Text = "RansomwareDetectionSystemTray";
