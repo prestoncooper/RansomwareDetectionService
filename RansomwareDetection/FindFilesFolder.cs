@@ -1206,7 +1206,7 @@ namespace RansomwareDetection.DetectionLib
                             sbbody1.AppendLine(strline);
                             strline = @"<li>Check Sub Folders: " + CheckSubFolders.ToString() + @"</li></ul>";
                             sbbody1.AppendLine(strline);
-                            if (FilesFound.Count > 0)
+                            if (FilesFound.Count > 0 && FilesFound.Count < 200)
                             {
                                 sbbody1.AppendLine(@"<br /><br /><strong>Possible Ransomware Files:</strong><br />");
                                 //Loop through files found and list them
@@ -1215,7 +1215,7 @@ namespace RansomwareDetection.DetectionLib
                                         sbbody1.AppendLine("<a href=\"#\" style=\"text-decoration:none !important; text-decoration:none;color:black;\">" + "\"" + frFile1.FullPath + "\",FileCreated: " + frFile1.CreationTime.ToString("G") + ",Owner: " + frFile1.Owner + ",Length" + frFile1.Length.ToString() + @"</a><br />");
                                 }
                             }
-                            if (FoldersFound.Count > 0)
+                            if (FoldersFound.Count > 0 && FoldersFound.Count < 200)
                             {
                                 sbbody1.AppendLine(@"<br /><br /><strong>Possible Ransomware Folders:</strong><br />");
                                 //Loop through folders and list them
@@ -1225,7 +1225,7 @@ namespace RansomwareDetection.DetectionLib
                                 }
                             }
 
-                            if (FilesDeleted.Count > 0)
+                            if (FilesDeleted.Count > 0 && FilesDeleted.Count < 200)
                             {
                                 sbbody1.AppendLine(@"<br /><br /><strong>Possible Ransomware Files Deleted:</strong><br />");
                                 //Loop through files found and list them
@@ -1234,7 +1234,7 @@ namespace RansomwareDetection.DetectionLib
                                         sbbody1.AppendLine("<a href=\"#\" style=\"text-decoration:none !important; text-decoration:none;color:black;\">File Deleted: " + "\"" + frFile1.FullPath + "\",FileCreated: " + frFile1.CreationTime.ToString("G") + ",Owner: " + frFile1.Owner + ",Length" + frFile1.Length.ToString() + "</a><br />");
                                 }
                             }
-                            if (ResultErrors.Count > 0)
+                            if (ResultErrors.Count > 0 && ResultErrors.Count < 200)
                             {
                                 sbbody1.AppendLine(@"<br /><br /><br /><strong>Errors:</strong><br />");
                                 //Loop through Errors and list them

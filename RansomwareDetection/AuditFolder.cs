@@ -637,6 +637,8 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
 
         }
 
+        
+
         private string _excludeFolders = "";
         /// <summary>
         /// Exclude Folders separate folder names by semicolon
@@ -667,6 +669,23 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
             set
             {
                 _fixUnverifiedFilesFromBackup = value;
+            }
+
+        }
+
+        private bool _detectDifferentFilesComparedWithBackup = true;
+        /// <summary>
+        /// Exclude Folders separate folder names by semicolon
+        /// </summary>
+        public bool DetectDifferentFilesComparedWithBackup
+        {
+            get
+            {
+                return _detectDifferentFilesComparedWithBackup;
+            }
+            set
+            {
+                _detectDifferentFilesComparedWithBackup = value;
             }
 
         }
@@ -848,6 +867,8 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
             ExportProhibitedToCSV = Common.FixNullbool(row["ExportProhibitedToCSV"]);
 
             FixUnverifiedFilesFromBackup = Common.FixNullbool(row["FixUnverifiedFilesFromBackup"]);
+
+            DetectDifferentFilesComparedWithBackup = Common.FixNullbool(row["DetectDifferentFilesComparedWithBackup"]);
             RestoredFilesPath = Common.FixNullstring(row["RestoredFilesPath"]);
 
             ProhibitedFilesIgnoreFileExtension = Common.FixNullbool(row["ProhibitedFilesIgnoreFileExtension"]);
@@ -946,6 +967,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
 
 
             dtAuditConfig.Columns.Add(new DataColumn("FixUnverifiedFilesFromBackup", typeof(String)));
+            dtAuditConfig.Columns.Add(new DataColumn("DetectDifferentFilesComparedWithBackup", typeof(String)));
             dtAuditConfig.Columns.Add(new DataColumn("RestoredFilesPath", typeof(String)));
 
             dtAuditConfig.Columns.Add(new DataColumn("ExcludeFolders", typeof(String)));
@@ -994,6 +1016,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
             dtAuditConfig.Columns["ExportProhibitedToCSV"].DefaultValue = "True";
 
             dtAuditConfig.Columns["FixUnverifiedFilesFromBackup"].DefaultValue = "False";
+            dtAuditConfig.Columns["DetectDifferentFilesComparedWithBackup"].DefaultValue = "False";
             dtAuditConfig.Columns["RestoredFilesPath"].DefaultValue = "";
 
             dtAuditConfig.Columns["ProhibitedFilesIgnoreFileExtension"].DefaultValue = "True";
@@ -1032,6 +1055,44 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
         }
 
 
+        private void detectDifferentFiles(string strFilePathToCheck, string strFilePath, string strRestoredPath, ref List<ContentDetectorLib.FileResult> differentFiles)
+        {
+            string strRestoredFile = "";
+            try
+            {
+                Delimon.Win32.IO.FileInfo fileinShare = new Delimon.Win32.IO.FileInfo(strFilePath);
+                    
+                strFilePathToCheck = Common.WindowsPathClean(strFilePathToCheck);
+                strRestoredPath = Common.WindowsPathClean(strRestoredPath);
+
+                strRestoredFile = strFilePath.Replace(strFilePathToCheck, strRestoredPath);
+
+                if (!(Common.FileExists(strFilePath) && Common.FileExists(strRestoredFile)))
+                {
+                    differentFiles.Add(new ContentDetectorLib.FileResult(fileinShare, "File does not exist in Restored Backup, New File?"));
+                    WriteError("Audit Folder: Find Different Files: File does not exist is both backup location and share folder Backup File \"" + strRestoredFile + "\" vs shared file \"" + strFilePath + "\"", System.Diagnostics.EventLogEntryType.Information, 7000, 70, true);
+                }
+                else
+                {
+                    Delimon.Win32.IO.FileInfo backupfile = new Delimon.Win32.IO.FileInfo(strRestoredFile);
+                    if (fileinShare.Length != backupfile.Length || fileinShare.LastWriteTime != backupfile.LastWriteTime)
+                    {
+                        differentFiles.Add(new ContentDetectorLib.FileResult(fileinShare,"File Size or LastWriteTime is Different Compared with Restored Backup"));
+                        WriteError("Audit Folder: Find Different Files: File size different from backup file vs share file, backup File: \"" + strRestoredFile + "\" vs shared file: \"" + strFilePath + "\"", System.Diagnostics.EventLogEntryType.Information, 7000, 70, true);
+                    }
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                WriteError("Audit Folder: detectDifferentFiles: " + ex.Message + " Source: " + ex.Source + " StackTrace: " + ex.StackTrace, System.Diagnostics.EventLogEntryType.Error, 7000, 70, false);
+            }
+
+
+
+        }
+
+
         /// <summary>
         /// Executes Compare of all files extensions vs file headers
         /// </summary>
@@ -1041,6 +1102,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
             List<ContentDetectorLib.FileResult> FilesUnVerified = null;
             List<ContentDetectorLib.FileResult> FilesUnknown = null;
             List<ContentDetectorLib.FileResult> FilesProhibited = null;
+            List<ContentDetectorLib.FileResult> FilesDifferent = null;
             try
             {
                 if (Enabled)
@@ -1052,6 +1114,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                     FilesUnVerified = new List<ContentDetectorLib.FileResult>();
                     FilesUnknown = new List<ContentDetectorLib.FileResult>();
                     FilesProhibited = new List<ContentDetectorLib.FileResult>();
+                    FilesDifferent = new List<ContentDetectorLib.FileResult>();
 
                     try
                     {
@@ -1068,8 +1131,46 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                     try
                     {
 
+                        if (DetectDifferentFilesComparedWithBackup && Common.DirectoryExists(RestoredFilesPath) && Common.DirectoryExists(ExportCSVPath))
+                        {
+                            RestoredFilesPath = Common.WindowsPathClean(RestoredFilesPath);
+                            if (Common.DirectoryExists(RestoredFilesPath))
+                            {
+                                WriteError("Audit Folder: DetectNewFiles: Starting from  \"" + RestoredFilesPath + "\" to \"" + FilePathToCheck + "\"", System.Diagnostics.EventLogEntryType.Information, 7000, 70, true);
 
-                        if (Common.FixNullstring(ExportUnVerifiedToCSV).Trim() != "" && Common.DirectoryExists(ExportCSVPath))
+                                foreach (ContentDetectorLib.FileResult unverifiedfile1 in FilesUnVerified)
+                                {
+                                    detectDifferentFiles(FilePathToCheck, unverifiedfile1.FullPath, RestoredFilesPath, ref FilesDifferent);
+                                }
+                                foreach (ContentDetectorLib.FileResult verifiedfile1 in FilesVerified)
+                                {
+                                    detectDifferentFiles(FilePathToCheck, verifiedfile1.FullPath, RestoredFilesPath, ref FilesDifferent);
+                                }
+                                foreach (ContentDetectorLib.FileResult unknownfile1 in FilesUnknown)
+                                {
+                                    detectDifferentFiles(FilePathToCheck, unknownfile1.FullPath, RestoredFilesPath, ref FilesDifferent);
+                                }
+                                try
+                                {
+                                    if (Common.FileExists(ExportCSVPath + "\\" + Title + "DifferentFiles.csv"))
+                                    {
+                                        Delimon.Win32.IO.File.Delete(ExportCSVPath + "\\" + Title + "DifferentFiles.csv");
+                                    }
+                                    Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\" + Title + "DifferentFiles.csv", ContentDetectorLib.FileResult.FileResultCollectionToCSV(FilesDifferent));
+                                }
+                                catch (Exception)
+                                {
+                                    Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\" + Title + "DifferentFiles" + Guid.NewGuid().ToString() + ".csv", ContentDetectorLib.FileResult.FileResultCollectionToCSV(FilesDifferent));
+                                }
+                                WriteError("Audit Folder: DetectNewFiles: Finished from  \"" + RestoredFilesPath + "\" to \"" + FilePathToCheck + "\"", System.Diagnostics.EventLogEntryType.Information, 7000, 70, true);
+
+                            }
+                            else
+                            {
+                                WriteError("Audit Folder: DetectNewFiles: Error RestoredFilesPath \"" + RestoredFilesPath + "\" does not exist", System.Diagnostics.EventLogEntryType.Error, 7000, 70, false);
+                            }
+                        }
+                        if (Common.FixNullstring(ExportCSVPath).Trim() != "" && Common.DirectoryExists(ExportCSVPath))
                         {
                             ExportCSVPath = Common.WindowsPathClean(ExportCSVPath);
 
@@ -1085,31 +1186,35 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                                 }
                                 catch (Exception)
                                 {
-                                    Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\" + Title + "UnVerifiedFiles" + Guid.NewGuid().ToString() + ".csv" , ContentDetectorLib.FileResult.FileResultCollectionToCSV(FilesUnVerified));
-                                    
+                                    Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\" + Title + "UnVerifiedFiles" + Guid.NewGuid().ToString() + ".csv", ContentDetectorLib.FileResult.FileResultCollectionToCSV(FilesUnVerified));
+
                                 }
-                                
-                                if (FixUnverifiedFilesFromBackup )
-                                {
-                                    RestoredFilesPath = Common.WindowsPathClean(RestoredFilesPath);
-                                    if ( Common.DirectoryExists(RestoredFilesPath))
-                                    {
-                                        WriteError("Audit Folder: FixUnverifiedFileFromBackup: Starting Replace of Files from  \"" + RestoredFilesPath + "\" to \"" + FilePathToCheck + "\"", System.Diagnostics.EventLogEntryType.Information, 7000, 70, true);
-                
-                                        foreach (ContentDetectorLib.FileResult unverifiedfile1 in FilesUnVerified)
-                                        {
-                                            replaceCorruptedFile(FilePathToCheck, unverifiedfile1.FullPath, RestoredFilesPath);
-                                        }
-                                        WriteError("Audit Folder: FixUnverifiedFileFromBackup: Finished Replace of Files from  \"" + RestoredFilesPath + "\" to \"" + FilePathToCheck + "\"", System.Diagnostics.EventLogEntryType.Information, 7000, 70, true);
-                
-                                    }
-                                    else
-                                    {
-                                        WriteError("Audit Folder: FixUnverifiedFileFromBackup: Error RestoredFilesPath \"" + RestoredFilesPath + "\" does not exist" , System.Diagnostics.EventLogEntryType.Error, 7000, 70, false);
-                                    }
-                                }
-                                
+
+
+
                             }
+
+                            if (FixUnverifiedFilesFromBackup)
+                            {
+                                RestoredFilesPath = Common.WindowsPathClean(RestoredFilesPath);
+                                if (Common.DirectoryExists(RestoredFilesPath))
+                                {
+                                    WriteError("Audit Folder: FixUnverifiedFileFromBackup: Starting Replace of Files from  \"" + RestoredFilesPath + "\" to \"" + FilePathToCheck + "\"", System.Diagnostics.EventLogEntryType.Information, 7000, 70, true);
+
+                                    foreach (ContentDetectorLib.FileResult unverifiedfile1 in FilesUnVerified)
+                                    {
+                                        replaceCorruptedFile(FilePathToCheck, unverifiedfile1.FullPath, RestoredFilesPath);
+                                    }
+                                    WriteError("Audit Folder: FixUnverifiedFileFromBackup: Finished Replace of Files from  \"" + RestoredFilesPath + "\" to \"" + FilePathToCheck + "\"", System.Diagnostics.EventLogEntryType.Information, 7000, 70, true);
+
+                                }
+                                else
+                                {
+                                    WriteError("Audit Folder: FixUnverifiedFileFromBackup: Error RestoredFilesPath \"" + RestoredFilesPath + "\" does not exist", System.Diagnostics.EventLogEntryType.Error, 7000, 70, false);
+                                }
+                            }
+
+
 
                             if (ExportVerifiedToCSV)
                             {
@@ -1120,13 +1225,13 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                                         Delimon.Win32.IO.File.Delete(ExportCSVPath + "\\" + Title + "VerifiedFiles.csv");
                                     }
                                     Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\" + Title + "VerifiedFiles.csv", ContentDetectorLib.FileResult.FileResultCollectionToCSV(FilesVerified));
-                   
+
                                 }
                                 catch (Exception)
                                 {
 
                                     Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\" + Title + "VerifiedFiles" + Guid.NewGuid().ToString() + ".csv", ContentDetectorLib.FileResult.FileResultCollectionToCSV(FilesVerified));
-                                    
+
                                 }
                             }
 
@@ -1144,10 +1249,10 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                                 catch (Exception)
                                 {
                                     Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\" + Title + "UnknownFiles" + Guid.NewGuid().ToString() + ".csv", ContentDetectorLib.FileResult.FileResultCollectionToCSV(FilesUnknown));
-                                    
-                                    
+
+
                                 }
-                                
+
                             }
 
                             if (ExportProhibitedToCSV)
@@ -1165,10 +1270,11 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                                 {
                                     Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\" + Title + "ProhibitedFiles" + Guid.NewGuid().ToString() + ".csv", ContentDetectorLib.FileResult.FileResultCollectionToCSV(FilesProhibited));
                                 }
-                                
-                            }
 
+                            }
                         }
+                            
+                        
                     }
                     catch (Exception ex)
                     {
@@ -1236,6 +1342,14 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                                 sbbody1.AppendLine(@"<br />");
                             }
 
+                            if (FilesDifferent.Count > 0)
+                            {
+                                sbbody1.AppendLine(@"<br />Files Different Count:&nbsp;" + FilesDifferent.Count.ToString());
+
+
+                                sbbody1.AppendLine(@"<br />");
+                            }
+
                             strBody = sbbody1.ToString();
                             sbbody1.Clear();
                             if (SendEmailOnFailure)
@@ -1271,6 +1385,14 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
 
 
                                 sbbody2.AppendLine("<br />");
+                            }
+
+                            if (FilesDifferent.Count > 0)
+                            {
+                                sbbody2.AppendLine(@"<br />Files Different Count:&nbsp;" + FilesDifferent.Count.ToString());
+
+
+                                sbbody2.AppendLine(@"<br />");
                             }
 
                             strBody = sbbody2.ToString();

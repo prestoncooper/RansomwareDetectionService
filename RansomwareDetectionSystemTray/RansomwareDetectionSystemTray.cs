@@ -1444,7 +1444,7 @@ namespace RansomwareDetection
         {
             try
             {
-                if (dgvCompare.Columns[e.ColumnIndex].HeaderText == "SourcePath" || dgvCompare.Columns[e.ColumnIndex].HeaderText == "FilePathToCheck")
+                if (dgvCompare.Columns[e.ColumnIndex].HeaderText == "SourcePath" || dgvCompare.Columns[e.ColumnIndex].HeaderText == "FilePathToCheck" || dgvCompare.Columns[e.ColumnIndex].HeaderText == "ExportCSVPath")
                 {
                     DataGridViewTextBoxCell cell = dgvCompare[e.ColumnIndex, e.RowIndex] as DataGridViewTextBoxCell;
                     if (cell != null)
@@ -1940,7 +1940,7 @@ namespace RansomwareDetection
         /// <param name="e"></param>
         private void dgvCompare_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvCompare.Columns[e.ColumnIndex].HeaderText == "SourcePath" || dgvCompare.Columns[e.ColumnIndex].HeaderText == "FilePathToCheck")
+            if (dgvCompare.Columns[e.ColumnIndex].HeaderText == "SourcePath" || dgvCompare.Columns[e.ColumnIndex].HeaderText == "FilePathToCheck" || dgvCompare.Columns[e.ColumnIndex].HeaderText == "ExportCSVPath")
             {
                 DataGridViewTextBoxCell cell = dgvCompare[e.ColumnIndex, e.RowIndex] as DataGridViewTextBoxCell;
                 CellFolderBrowser(ref cell);

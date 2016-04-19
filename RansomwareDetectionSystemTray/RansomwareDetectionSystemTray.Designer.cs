@@ -32,13 +32,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RansomwareDetectionSystemTray));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RansomwareDetectionSystemTray));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sendTestEmailToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -104,45 +104,6 @@
             this.dgvColEventEventID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabCompare = new System.Windows.Forms.TabPage();
             this.dgvCompare = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewComboBoxColumn1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewCheckBoxColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewCheckBoxColumn3 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewCheckBoxColumn4 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewCheckBoxColumn5 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewCheckBoxColumn6 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewCheckBoxColumn7 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewCheckBoxColumn8 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewCheckBoxColumn9 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewCheckBoxColumn10 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewCheckBoxColumn11 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewCheckBoxColumn12 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewCheckBoxColumn13 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewCheckBoxColumn14 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewCheckBoxColumn15 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewCheckBoxColumn16 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewCheckBoxColumn17 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewCheckBoxColumn18 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewCheckBoxColumn19 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewCheckBoxColumn20 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.chkCheckMainfolder = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.chkCheckSubFolders = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.txtExcludeFolders = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.chkCopySourceFiles = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.chkCopySourceFilesSubFolders = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.chkSendEmail = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.chkSendEmailOnSuccess = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.calendarColumn1 = new System.Windows.Forms.CalendarColumn();
-            this.calendarColumn2 = new System.Windows.Forms.CalendarColumn();
-            this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.chkDetailedLogging = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabFindFiles = new System.Windows.Forms.TabPage();
             this.dgvFindFiles = new System.Windows.Forms.DataGridView();
@@ -198,6 +159,17 @@
             this.dgvcoltxtFileFiltersComment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabAudit = new System.Windows.Forms.TabPage();
             this.dgvAudit = new System.Windows.Forms.DataGridView();
+            this.tabSignatures = new System.Windows.Forms.TabPage();
+            this.dgvSignatures = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewCheckBoxColumn60 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dgvSignaturestxtcolByteOffset = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvSignaturestxtcolFirstNumberOfBytesToRead = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvSignaturestxtColFileExtensions = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewCheckBoxColumn62 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvAuditTxtColID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewCheckBoxColumn21 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dgvAuditTxtColTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -236,23 +208,55 @@
             this.dgvAuditchkColProhibitedFilesIgnoreFileExtension = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dgvAuditchkcolFixUnverifiedFilesFromBackup = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dgvAudittxtcolRestoredFilesPath = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvAuditChkcolDetectDifferentFilesComparedWithBackup = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewCheckBoxColumn64 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewCheckBoxColumn65 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dgvAuditCalColStartDate = new System.Windows.Forms.CalendarColumn();
             this.dgvAuditCalColEndDate = new System.Windows.Forms.CalendarColumn();
             this.dgvAuditTxtColComment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewCheckBoxColumn66 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.tabSignatures = new System.Windows.Forms.TabPage();
-            this.dgvSignatures = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewCheckBoxColumn60 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dgvSignaturestxtcolByteOffset = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvSignaturestxtcolFirstNumberOfBytesToRead = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvSignaturestxtColFileExtensions = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewCheckBoxColumn62 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewComboBoxColumn1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewCheckBoxColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewCheckBoxColumn3 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewCheckBoxColumn4 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewCheckBoxColumn5 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewCheckBoxColumn6 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewCheckBoxColumn7 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewCheckBoxColumn8 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewCheckBoxColumn9 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewCheckBoxColumn10 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewCheckBoxColumn11 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewCheckBoxColumn12 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewCheckBoxColumn13 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewCheckBoxColumn14 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewCheckBoxColumn15 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewCheckBoxColumn16 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewCheckBoxColumn17 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewCheckBoxColumn18 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewCheckBoxColumn19 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewCheckBoxColumn20 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chkCheckMainfolder = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.chkCheckSubFolders = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.txtExcludeFolders = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvComparetxtcolExportCSVPath = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvComparechkcolExportFilesDifferentToCSV = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dgvComparechkcolExportFilesMissingToCSV = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.chkCopySourceFiles = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.chkCopySourceFilesSubFolders = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.chkSendEmail = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.chkSendEmailOnSuccess = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.calendarColumn1 = new System.Windows.Forms.CalendarColumn();
+            this.calendarColumn2 = new System.Windows.Forms.CalendarColumn();
+            this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chkDetailedLogging = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBoxServerService.SuspendLayout();
@@ -962,6 +966,9 @@
             this.chkCheckMainfolder,
             this.chkCheckSubFolders,
             this.txtExcludeFolders,
+            this.dgvComparetxtcolExportCSVPath,
+            this.dgvComparechkcolExportFilesDifferentToCSV,
+            this.dgvComparechkcolExportFilesMissingToCSV,
             this.chkCopySourceFiles,
             this.chkCopySourceFilesSubFolders,
             this.chkSendEmail,
@@ -977,330 +984,6 @@
             this.dgvCompare.TabIndex = 16;
             this.dgvCompare.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCompare_CellDoubleClick);
             this.dgvCompare.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvCompare_CellValidating);
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "ID";
-            this.dataGridViewTextBoxColumn1.HeaderText = "ID";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 46;
-            // 
-            // dataGridViewCheckBoxColumn1
-            // 
-            this.dataGridViewCheckBoxColumn1.DataPropertyName = "Enabled";
-            this.dataGridViewCheckBoxColumn1.FalseValue = "false";
-            this.dataGridViewCheckBoxColumn1.HeaderText = "Enabled";
-            this.dataGridViewCheckBoxColumn1.IndeterminateValue = "";
-            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
-            this.dataGridViewCheckBoxColumn1.TrueValue = "true";
-            this.dataGridViewCheckBoxColumn1.Width = 66;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Title";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Title";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 60;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Time";
-            this.dataGridViewTextBoxColumn3.HeaderText = "StartTime";
-            this.dataGridViewTextBoxColumn3.MaxInputLength = 5;
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Width = 94;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "EndTime";
-            this.dataGridViewTextBoxColumn4.HeaderText = "EndTime";
-            this.dataGridViewTextBoxColumn4.MaxInputLength = 5;
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ToolTipText = "End Time is required for Hourly Interval Type";
-            this.dataGridViewTextBoxColumn4.Width = 89;
-            // 
-            // dataGridViewComboBoxColumn1
-            // 
-            this.dataGridViewComboBoxColumn1.DataPropertyName = "IntervalType";
-            this.dataGridViewComboBoxColumn1.HeaderText = "IntervalType";
-            this.dataGridViewComboBoxColumn1.Items.AddRange(new object[] {
-            "Hourly",
-            "Daily",
-            "Monthly"});
-            this.dataGridViewComboBoxColumn1.Name = "dataGridViewComboBoxColumn1";
-            this.dataGridViewComboBoxColumn1.Width = 92;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "Interval";
-            this.dataGridViewTextBoxColumn5.HeaderText = "Interval";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ToolTipText = resources.GetString("dataGridViewTextBoxColumn5.ToolTipText");
-            this.dataGridViewTextBoxColumn5.Width = 79;
-            // 
-            // dataGridViewCheckBoxColumn2
-            // 
-            this.dataGridViewCheckBoxColumn2.DataPropertyName = "Monday";
-            this.dataGridViewCheckBoxColumn2.FalseValue = "false";
-            this.dataGridViewCheckBoxColumn2.HeaderText = "Mon";
-            this.dataGridViewCheckBoxColumn2.Name = "dataGridViewCheckBoxColumn2";
-            this.dataGridViewCheckBoxColumn2.TrueValue = "true";
-            this.dataGridViewCheckBoxColumn2.Width = 41;
-            // 
-            // dataGridViewCheckBoxColumn3
-            // 
-            this.dataGridViewCheckBoxColumn3.DataPropertyName = "Tuesday";
-            this.dataGridViewCheckBoxColumn3.FalseValue = "false";
-            this.dataGridViewCheckBoxColumn3.HeaderText = "Tue";
-            this.dataGridViewCheckBoxColumn3.Name = "dataGridViewCheckBoxColumn3";
-            this.dataGridViewCheckBoxColumn3.TrueValue = "true";
-            this.dataGridViewCheckBoxColumn3.Width = 39;
-            // 
-            // dataGridViewCheckBoxColumn4
-            // 
-            this.dataGridViewCheckBoxColumn4.DataPropertyName = "Wednesday";
-            this.dataGridViewCheckBoxColumn4.FalseValue = "false";
-            this.dataGridViewCheckBoxColumn4.HeaderText = "Wed";
-            this.dataGridViewCheckBoxColumn4.Name = "dataGridViewCheckBoxColumn4";
-            this.dataGridViewCheckBoxColumn4.TrueValue = "true";
-            this.dataGridViewCheckBoxColumn4.Width = 43;
-            // 
-            // dataGridViewCheckBoxColumn5
-            // 
-            this.dataGridViewCheckBoxColumn5.DataPropertyName = "Thursday";
-            this.dataGridViewCheckBoxColumn5.FalseValue = "false";
-            this.dataGridViewCheckBoxColumn5.HeaderText = "Thu";
-            this.dataGridViewCheckBoxColumn5.Name = "dataGridViewCheckBoxColumn5";
-            this.dataGridViewCheckBoxColumn5.TrueValue = "true";
-            this.dataGridViewCheckBoxColumn5.Width = 39;
-            // 
-            // dataGridViewCheckBoxColumn6
-            // 
-            this.dataGridViewCheckBoxColumn6.DataPropertyName = "Friday";
-            this.dataGridViewCheckBoxColumn6.FalseValue = "false";
-            this.dataGridViewCheckBoxColumn6.HeaderText = "Fri";
-            this.dataGridViewCheckBoxColumn6.Name = "dataGridViewCheckBoxColumn6";
-            this.dataGridViewCheckBoxColumn6.TrueValue = "true";
-            this.dataGridViewCheckBoxColumn6.Width = 30;
-            // 
-            // dataGridViewCheckBoxColumn7
-            // 
-            this.dataGridViewCheckBoxColumn7.DataPropertyName = "Saturday";
-            this.dataGridViewCheckBoxColumn7.FalseValue = "false";
-            this.dataGridViewCheckBoxColumn7.HeaderText = "Sat";
-            this.dataGridViewCheckBoxColumn7.Name = "dataGridViewCheckBoxColumn7";
-            this.dataGridViewCheckBoxColumn7.TrueValue = "true";
-            this.dataGridViewCheckBoxColumn7.Width = 35;
-            // 
-            // dataGridViewCheckBoxColumn8
-            // 
-            this.dataGridViewCheckBoxColumn8.DataPropertyName = "Sunday";
-            this.dataGridViewCheckBoxColumn8.FalseValue = "false";
-            this.dataGridViewCheckBoxColumn8.HeaderText = "Sun";
-            this.dataGridViewCheckBoxColumn8.Name = "dataGridViewCheckBoxColumn8";
-            this.dataGridViewCheckBoxColumn8.TrueValue = "true";
-            this.dataGridViewCheckBoxColumn8.Width = 39;
-            // 
-            // dataGridViewCheckBoxColumn9
-            // 
-            this.dataGridViewCheckBoxColumn9.DataPropertyName = "January";
-            this.dataGridViewCheckBoxColumn9.HeaderText = "Jan";
-            this.dataGridViewCheckBoxColumn9.Name = "dataGridViewCheckBoxColumn9";
-            this.dataGridViewCheckBoxColumn9.Width = 37;
-            // 
-            // dataGridViewCheckBoxColumn10
-            // 
-            this.dataGridViewCheckBoxColumn10.DataPropertyName = "February";
-            this.dataGridViewCheckBoxColumn10.HeaderText = "Feb";
-            this.dataGridViewCheckBoxColumn10.Name = "dataGridViewCheckBoxColumn10";
-            this.dataGridViewCheckBoxColumn10.Width = 38;
-            // 
-            // dataGridViewCheckBoxColumn11
-            // 
-            this.dataGridViewCheckBoxColumn11.DataPropertyName = "March";
-            this.dataGridViewCheckBoxColumn11.HeaderText = "Mar";
-            this.dataGridViewCheckBoxColumn11.Name = "dataGridViewCheckBoxColumn11";
-            this.dataGridViewCheckBoxColumn11.Width = 38;
-            // 
-            // dataGridViewCheckBoxColumn12
-            // 
-            this.dataGridViewCheckBoxColumn12.DataPropertyName = "April";
-            this.dataGridViewCheckBoxColumn12.HeaderText = "Apr";
-            this.dataGridViewCheckBoxColumn12.Name = "dataGridViewCheckBoxColumn12";
-            this.dataGridViewCheckBoxColumn12.Width = 36;
-            // 
-            // dataGridViewCheckBoxColumn13
-            // 
-            this.dataGridViewCheckBoxColumn13.DataPropertyName = "May";
-            this.dataGridViewCheckBoxColumn13.HeaderText = "May";
-            this.dataGridViewCheckBoxColumn13.Name = "dataGridViewCheckBoxColumn13";
-            this.dataGridViewCheckBoxColumn13.Width = 40;
-            // 
-            // dataGridViewCheckBoxColumn14
-            // 
-            this.dataGridViewCheckBoxColumn14.DataPropertyName = "June";
-            this.dataGridViewCheckBoxColumn14.HeaderText = "June";
-            this.dataGridViewCheckBoxColumn14.Name = "dataGridViewCheckBoxColumn14";
-            this.dataGridViewCheckBoxColumn14.Width = 45;
-            // 
-            // dataGridViewCheckBoxColumn15
-            // 
-            this.dataGridViewCheckBoxColumn15.DataPropertyName = "July";
-            this.dataGridViewCheckBoxColumn15.HeaderText = "July";
-            this.dataGridViewCheckBoxColumn15.Name = "dataGridViewCheckBoxColumn15";
-            this.dataGridViewCheckBoxColumn15.Width = 39;
-            // 
-            // dataGridViewCheckBoxColumn16
-            // 
-            this.dataGridViewCheckBoxColumn16.DataPropertyName = "August";
-            this.dataGridViewCheckBoxColumn16.HeaderText = "Aug";
-            this.dataGridViewCheckBoxColumn16.Name = "dataGridViewCheckBoxColumn16";
-            this.dataGridViewCheckBoxColumn16.Width = 39;
-            // 
-            // dataGridViewCheckBoxColumn17
-            // 
-            this.dataGridViewCheckBoxColumn17.DataPropertyName = "September";
-            this.dataGridViewCheckBoxColumn17.HeaderText = "Sept";
-            this.dataGridViewCheckBoxColumn17.Name = "dataGridViewCheckBoxColumn17";
-            this.dataGridViewCheckBoxColumn17.Width = 43;
-            // 
-            // dataGridViewCheckBoxColumn18
-            // 
-            this.dataGridViewCheckBoxColumn18.DataPropertyName = "October";
-            this.dataGridViewCheckBoxColumn18.HeaderText = "Oct";
-            this.dataGridViewCheckBoxColumn18.Name = "dataGridViewCheckBoxColumn18";
-            this.dataGridViewCheckBoxColumn18.Width = 36;
-            // 
-            // dataGridViewCheckBoxColumn19
-            // 
-            this.dataGridViewCheckBoxColumn19.DataPropertyName = "November";
-            this.dataGridViewCheckBoxColumn19.HeaderText = "Nov";
-            this.dataGridViewCheckBoxColumn19.Name = "dataGridViewCheckBoxColumn19";
-            this.dataGridViewCheckBoxColumn19.Width = 39;
-            // 
-            // dataGridViewCheckBoxColumn20
-            // 
-            this.dataGridViewCheckBoxColumn20.DataPropertyName = "December";
-            this.dataGridViewCheckBoxColumn20.HeaderText = "Dec";
-            this.dataGridViewCheckBoxColumn20.Name = "dataGridViewCheckBoxColumn20";
-            this.dataGridViewCheckBoxColumn20.Width = 39;
-            // 
-            // dataGridViewTextBoxColumn11
-            // 
-            this.dataGridViewTextBoxColumn11.DataPropertyName = "SourcePath";
-            this.dataGridViewTextBoxColumn11.HeaderText = "SourcePath";
-            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
-            this.dataGridViewTextBoxColumn11.ToolTipText = "Source Files and sub folders to verify against FilePathToCheck and possibly copy";
-            this.dataGridViewTextBoxColumn11.Width = 107;
-            // 
-            // dataGridViewTextBoxColumn12
-            // 
-            this.dataGridViewTextBoxColumn12.DataPropertyName = "FilePathToCheck";
-            this.dataGridViewTextBoxColumn12.HeaderText = "FilePathToCheck";
-            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
-            this.dataGridViewTextBoxColumn12.ToolTipText = "File Path to examine and see if corruption, changes to content of the file, or en" +
-    "cryption has ruined files (binary compare)";
-            this.dataGridViewTextBoxColumn12.Width = 140;
-            // 
-            // chkCheckMainfolder
-            // 
-            this.chkCheckMainfolder.DataPropertyName = "CheckMainFolder";
-            this.chkCheckMainfolder.HeaderText = "CheckMainFolder";
-            this.chkCheckMainfolder.Name = "chkCheckMainfolder";
-            this.chkCheckMainfolder.ToolTipText = "Check the Main Folder contents of FilePathToCheck";
-            this.chkCheckMainfolder.Width = 123;
-            // 
-            // chkCheckSubFolders
-            // 
-            this.chkCheckSubFolders.DataPropertyName = "CheckSubFolders";
-            this.chkCheckSubFolders.HeaderText = "CheckSubFolders";
-            this.chkCheckSubFolders.Name = "chkCheckSubFolders";
-            this.chkCheckSubFolders.ToolTipText = "Check Immediate Sub Folders of FilePathToCheck";
-            this.chkCheckSubFolders.Width = 125;
-            // 
-            // txtExcludeFolders
-            // 
-            this.txtExcludeFolders.DataPropertyName = "ExcludeFolders";
-            this.txtExcludeFolders.HeaderText = "ExcludeFolders";
-            this.txtExcludeFolders.Name = "txtExcludeFolders";
-            this.txtExcludeFolders.ToolTipText = "Exclude folders from sub folder check and copy separate each folder with semicolo" +
-    "n ; no slashes";
-            this.txtExcludeFolders.Width = 129;
-            // 
-            // chkCopySourceFiles
-            // 
-            this.chkCopySourceFiles.DataPropertyName = "CopySourceFiles";
-            this.chkCopySourceFiles.HeaderText = "CopySourceFiles";
-            this.chkCopySourceFiles.Name = "chkCopySourceFiles";
-            this.chkCopySourceFiles.ToolTipText = "Copy source files to Main Folder in FilePathToCheck path only";
-            this.chkCopySourceFiles.Width = 120;
-            // 
-            // chkCopySourceFilesSubFolders
-            // 
-            this.chkCopySourceFilesSubFolders.DataPropertyName = "CopySourceFilesSubFolders";
-            this.chkCopySourceFilesSubFolders.HeaderText = "CopySourceFilesSubFolders";
-            this.chkCopySourceFilesSubFolders.Name = "chkCopySourceFilesSubFolders";
-            this.chkCopySourceFilesSubFolders.ToolTipText = "Copies sources files to FilePathToCheck first layer of subfolders if the files do" +
-    " not exist in each";
-            this.chkCopySourceFilesSubFolders.Width = 192;
-            // 
-            // chkSendEmail
-            // 
-            this.chkSendEmail.DataPropertyName = "SendEmailOnFailure";
-            this.chkSendEmail.HeaderText = "SendEmailOnFailure";
-            this.chkSendEmail.Name = "chkSendEmail";
-            this.chkSendEmail.ToolTipText = "On compare failure send summary email regarding changed or missing files each tim" +
-    "e this task runs";
-            this.chkSendEmail.Width = 143;
-            // 
-            // chkSendEmailOnSuccess
-            // 
-            this.chkSendEmailOnSuccess.DataPropertyName = "SendEmailOnSuccess";
-            this.chkSendEmailOnSuccess.HeaderText = "SendEmailOnSuccess";
-            this.chkSendEmailOnSuccess.Name = "chkSendEmailOnSuccess";
-            this.chkSendEmailOnSuccess.ToolTipText = "On success send summary email of summary to notify that the files were compared.";
-            this.chkSendEmailOnSuccess.Width = 153;
-            // 
-            // calendarColumn1
-            // 
-            this.calendarColumn1.DataPropertyName = "StartDate";
-            dataGridViewCellStyle1.Format = "MM/dd/yyyy";
-            this.calendarColumn1.DefaultCellStyle = dataGridViewCellStyle1;
-            this.calendarColumn1.HeaderText = "StartDate";
-            this.calendarColumn1.Name = "calendarColumn1";
-            this.calendarColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.calendarColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.calendarColumn1.ToolTipText = "Scheduled Start Date that this task should run";
-            this.calendarColumn1.Width = 93;
-            // 
-            // calendarColumn2
-            // 
-            this.calendarColumn2.DataPropertyName = "EndDate";
-            dataGridViewCellStyle2.Format = "MM/dd/yyyy";
-            this.calendarColumn2.DefaultCellStyle = dataGridViewCellStyle2;
-            this.calendarColumn2.HeaderText = "EndDate";
-            this.calendarColumn2.Name = "calendarColumn2";
-            this.calendarColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.calendarColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.calendarColumn2.ToolTipText = "Scheduled End Date of this compare task";
-            this.calendarColumn2.Width = 88;
-            // 
-            // dataGridViewTextBoxColumn15
-            // 
-            this.dataGridViewTextBoxColumn15.DataPropertyName = "Comment";
-            this.dataGridViewTextBoxColumn15.HeaderText = "Comment";
-            this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
-            this.dataGridViewTextBoxColumn15.ToolTipText = "Comment for this task";
-            this.dataGridViewTextBoxColumn15.Width = 92;
-            // 
-            // chkDetailedLogging
-            // 
-            this.chkDetailedLogging.DataPropertyName = "DetailedLogging";
-            this.chkDetailedLogging.HeaderText = "DetailedLogging";
-            this.chkDetailedLogging.Name = "chkDetailedLogging";
-            this.chkDetailedLogging.ToolTipText = "Detailed Error Logging even on successful check of files.";
-            this.chkDetailedLogging.Width = 117;
             // 
             // tabControl
             // 
@@ -1868,6 +1551,7 @@
             this.dgvAuditchkColProhibitedFilesIgnoreFileExtension,
             this.dgvAuditchkcolFixUnverifiedFilesFromBackup,
             this.dgvAudittxtcolRestoredFilesPath,
+            this.dgvAuditChkcolDetectDifferentFilesComparedWithBackup,
             this.dataGridViewCheckBoxColumn64,
             this.dataGridViewCheckBoxColumn65,
             this.dgvAuditCalColStartDate,
@@ -1881,6 +1565,114 @@
             this.dgvAudit.TabIndex = 17;
             this.dgvAudit.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAudit_CellDoubleClick);
             this.dgvAudit.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvAudit_CellValidating);
+            // 
+            // tabSignatures
+            // 
+            this.tabSignatures.Controls.Add(this.dgvSignatures);
+            this.tabSignatures.Location = new System.Drawing.Point(4, 25);
+            this.tabSignatures.Name = "tabSignatures";
+            this.tabSignatures.Size = new System.Drawing.Size(769, 140);
+            this.tabSignatures.TabIndex = 10;
+            this.tabSignatures.Text = "Audit Signatures";
+            this.tabSignatures.UseVisualStyleBackColor = true;
+            // 
+            // dgvSignatures
+            // 
+            this.dgvSignatures.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvSignatures.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSignatures.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewCheckBoxColumn60,
+            this.dgvSignaturestxtcolByteOffset,
+            this.dgvSignaturestxtcolFirstNumberOfBytesToRead,
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8,
+            this.dgvSignaturestxtColFileExtensions,
+            this.dataGridViewCheckBoxColumn62,
+            this.dataGridViewTextBoxColumn10});
+            this.dgvSignatures.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvSignatures.Location = new System.Drawing.Point(0, 0);
+            this.dgvSignatures.Name = "dgvSignatures";
+            this.dgvSignatures.Size = new System.Drawing.Size(769, 140);
+            this.dgvSignatures.TabIndex = 19;
+            this.dgvSignatures.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvSignatures_CellValidating);
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "ID";
+            this.dataGridViewTextBoxColumn6.HeaderText = "ID";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Width = 46;
+            // 
+            // dataGridViewCheckBoxColumn60
+            // 
+            this.dataGridViewCheckBoxColumn60.DataPropertyName = "Enabled";
+            this.dataGridViewCheckBoxColumn60.FalseValue = "false";
+            this.dataGridViewCheckBoxColumn60.HeaderText = "Enabled";
+            this.dataGridViewCheckBoxColumn60.IndeterminateValue = "";
+            this.dataGridViewCheckBoxColumn60.Name = "dataGridViewCheckBoxColumn60";
+            this.dataGridViewCheckBoxColumn60.TrueValue = "true";
+            this.dataGridViewCheckBoxColumn60.Width = 66;
+            // 
+            // dgvSignaturestxtcolByteOffset
+            // 
+            this.dgvSignaturestxtcolByteOffset.DataPropertyName = "ByteOffset";
+            this.dgvSignaturestxtcolByteOffset.HeaderText = "ByteOffset";
+            this.dgvSignaturestxtcolByteOffset.Name = "dgvSignaturestxtcolByteOffset";
+            this.dgvSignaturestxtcolByteOffset.ToolTipText = "Characters preceding Hex Pattern to ignore, if any otherwise enter 0.  ByteOffset" +
+    " + HexPattern Length must be less than 100.";
+            this.dgvSignaturestxtcolByteOffset.Width = 99;
+            // 
+            // dgvSignaturestxtcolFirstNumberOfBytesToRead
+            // 
+            this.dgvSignaturestxtcolFirstNumberOfBytesToRead.DataPropertyName = "FirstNumberOfBytesToRead";
+            this.dgvSignaturestxtcolFirstNumberOfBytesToRead.HeaderText = "FirstNumberOfBytesToRead";
+            this.dgvSignaturestxtcolFirstNumberOfBytesToRead.Name = "dgvSignaturestxtcolFirstNumberOfBytesToRead";
+            this.dgvSignaturestxtcolFirstNumberOfBytesToRead.ToolTipText = "Number of Bytes to Read to Compare to the Hex Pattern. (0 defaults to 100 or (hex" +
+    "string length + byteoffset) if greater than 100.";
+            this.dgvSignaturestxtcolFirstNumberOfBytesToRead.Width = 211;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "HexPattern";
+            this.dataGridViewTextBoxColumn7.HeaderText = "HexPattern";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ToolTipText = "Hexadecimal Pattern to Search for at the beginning of a file.  Anywhere within th" +
+    "e first 100 bytes.";
+            this.dataGridViewTextBoxColumn7.Width = 103;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.DataPropertyName = "SignatureName";
+            this.dataGridViewTextBoxColumn8.HeaderText = "SignatureName";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ToolTipText = "Name of File Type";
+            this.dataGridViewTextBoxColumn8.Width = 131;
+            // 
+            // dgvSignaturestxtColFileExtensions
+            // 
+            this.dgvSignaturestxtColFileExtensions.DataPropertyName = "FileExtensions";
+            this.dgvSignaturestxtColFileExtensions.HeaderText = "FileExtensions";
+            this.dgvSignaturestxtColFileExtensions.Name = "dgvSignaturestxtColFileExtensions";
+            this.dgvSignaturestxtColFileExtensions.ToolTipText = "Semicolon separated list of file extensions including period (e.g   .doc;.docx)";
+            this.dgvSignaturestxtColFileExtensions.Width = 123;
+            // 
+            // dataGridViewCheckBoxColumn62
+            // 
+            this.dataGridViewCheckBoxColumn62.DataPropertyName = "Prohibited";
+            this.dataGridViewCheckBoxColumn62.HeaderText = "Prohibited";
+            this.dataGridViewCheckBoxColumn62.Name = "dataGridViewCheckBoxColumn62";
+            this.dataGridViewCheckBoxColumn62.ToolTipText = "Prohibited File Type?";
+            this.dataGridViewCheckBoxColumn62.Width = 78;
+            // 
+            // dataGridViewTextBoxColumn10
+            // 
+            this.dataGridViewTextBoxColumn10.DataPropertyName = "Comment";
+            this.dataGridViewTextBoxColumn10.HeaderText = "Comment";
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.dataGridViewTextBoxColumn10.ToolTipText = "Comment for this task";
+            this.dataGridViewTextBoxColumn10.Width = 92;
             // 
             // dgvAuditTxtColID
             // 
@@ -2188,6 +1980,15 @@
     "FilePathToCheck.";
             this.dgvAudittxtcolRestoredFilesPath.Width = 149;
             // 
+            // dgvAuditChkcolDetectDifferentFilesComparedWithBackup
+            // 
+            this.dgvAuditChkcolDetectDifferentFilesComparedWithBackup.DataPropertyName = "DetectDifferentFilesComparedWithBackup";
+            this.dgvAuditChkcolDetectDifferentFilesComparedWithBackup.HeaderText = "DetectDifferentFilesComparedWithBackup";
+            this.dgvAuditChkcolDetectDifferentFilesComparedWithBackup.Name = "dgvAuditChkcolDetectDifferentFilesComparedWithBackup";
+            this.dgvAuditChkcolDetectDifferentFilesComparedWithBackup.ToolTipText = "Compares FilePathToCheck vs RestoredFilesPath files and exports differences to cs" +
+    "v file.";
+            this.dgvAuditChkcolDetectDifferentFilesComparedWithBackup.Width = 278;
+            // 
             // dataGridViewCheckBoxColumn64
             // 
             this.dataGridViewCheckBoxColumn64.DataPropertyName = "SendEmailOnFailure";
@@ -2245,113 +2046,354 @@
             this.dataGridViewCheckBoxColumn66.ToolTipText = "Detailed Error Logging even on successful check of files.";
             this.dataGridViewCheckBoxColumn66.Width = 117;
             // 
-            // tabSignatures
+            // dataGridViewTextBoxColumn1
             // 
-            this.tabSignatures.Controls.Add(this.dgvSignatures);
-            this.tabSignatures.Location = new System.Drawing.Point(4, 25);
-            this.tabSignatures.Name = "tabSignatures";
-            this.tabSignatures.Size = new System.Drawing.Size(769, 140);
-            this.tabSignatures.TabIndex = 10;
-            this.tabSignatures.Text = "Audit Signatures";
-            this.tabSignatures.UseVisualStyleBackColor = true;
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "ID";
+            this.dataGridViewTextBoxColumn1.HeaderText = "ID";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 46;
             // 
-            // dgvSignatures
+            // dataGridViewCheckBoxColumn1
             // 
-            this.dgvSignatures.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgvSignatures.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSignatures.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewCheckBoxColumn60,
-            this.dgvSignaturestxtcolByteOffset,
-            this.dgvSignaturestxtcolFirstNumberOfBytesToRead,
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8,
-            this.dgvSignaturestxtColFileExtensions,
-            this.dataGridViewCheckBoxColumn62,
-            this.dataGridViewTextBoxColumn10});
-            this.dgvSignatures.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvSignatures.Location = new System.Drawing.Point(0, 0);
-            this.dgvSignatures.Name = "dgvSignatures";
-            this.dgvSignatures.Size = new System.Drawing.Size(769, 140);
-            this.dgvSignatures.TabIndex = 19;
-            this.dgvSignatures.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvSignatures_CellValidating);
+            this.dataGridViewCheckBoxColumn1.DataPropertyName = "Enabled";
+            this.dataGridViewCheckBoxColumn1.FalseValue = "false";
+            this.dataGridViewCheckBoxColumn1.HeaderText = "Enabled";
+            this.dataGridViewCheckBoxColumn1.IndeterminateValue = "";
+            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+            this.dataGridViewCheckBoxColumn1.TrueValue = "true";
+            this.dataGridViewCheckBoxColumn1.Width = 66;
             // 
-            // dataGridViewTextBoxColumn6
+            // dataGridViewTextBoxColumn2
             // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "ID";
-            this.dataGridViewTextBoxColumn6.HeaderText = "ID";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            this.dataGridViewTextBoxColumn6.Width = 46;
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Title";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Title";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Width = 60;
             // 
-            // dataGridViewCheckBoxColumn60
+            // dataGridViewTextBoxColumn3
             // 
-            this.dataGridViewCheckBoxColumn60.DataPropertyName = "Enabled";
-            this.dataGridViewCheckBoxColumn60.FalseValue = "false";
-            this.dataGridViewCheckBoxColumn60.HeaderText = "Enabled";
-            this.dataGridViewCheckBoxColumn60.IndeterminateValue = "";
-            this.dataGridViewCheckBoxColumn60.Name = "dataGridViewCheckBoxColumn60";
-            this.dataGridViewCheckBoxColumn60.TrueValue = "true";
-            this.dataGridViewCheckBoxColumn60.Width = 66;
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Time";
+            this.dataGridViewTextBoxColumn3.HeaderText = "StartTime";
+            this.dataGridViewTextBoxColumn3.MaxInputLength = 5;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.Width = 94;
             // 
-            // dgvSignaturestxtcolByteOffset
+            // dataGridViewTextBoxColumn4
             // 
-            this.dgvSignaturestxtcolByteOffset.DataPropertyName = "ByteOffset";
-            this.dgvSignaturestxtcolByteOffset.HeaderText = "ByteOffset";
-            this.dgvSignaturestxtcolByteOffset.Name = "dgvSignaturestxtcolByteOffset";
-            this.dgvSignaturestxtcolByteOffset.ToolTipText = "Characters preceding Hex Pattern to ignore, if any otherwise enter 0.  ByteOffset" +
-    " + HexPattern Length must be less than 100.";
-            this.dgvSignaturestxtcolByteOffset.Width = 99;
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "EndTime";
+            this.dataGridViewTextBoxColumn4.HeaderText = "EndTime";
+            this.dataGridViewTextBoxColumn4.MaxInputLength = 5;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ToolTipText = "End Time is required for Hourly Interval Type";
+            this.dataGridViewTextBoxColumn4.Width = 89;
             // 
-            // dgvSignaturestxtcolFirstNumberOfBytesToRead
+            // dataGridViewComboBoxColumn1
             // 
-            this.dgvSignaturestxtcolFirstNumberOfBytesToRead.DataPropertyName = "FirstNumberOfBytesToRead";
-            this.dgvSignaturestxtcolFirstNumberOfBytesToRead.HeaderText = "FirstNumberOfBytesToRead";
-            this.dgvSignaturestxtcolFirstNumberOfBytesToRead.Name = "dgvSignaturestxtcolFirstNumberOfBytesToRead";
-            this.dgvSignaturestxtcolFirstNumberOfBytesToRead.ToolTipText = "Number of Bytes to Read to Compare to the Hex Pattern. (0 defaults to 100 or (hex" +
-    "string length + byteoffset) if greater than 100.";
-            this.dgvSignaturestxtcolFirstNumberOfBytesToRead.Width = 211;
+            this.dataGridViewComboBoxColumn1.DataPropertyName = "IntervalType";
+            this.dataGridViewComboBoxColumn1.HeaderText = "IntervalType";
+            this.dataGridViewComboBoxColumn1.Items.AddRange(new object[] {
+            "Hourly",
+            "Daily",
+            "Monthly"});
+            this.dataGridViewComboBoxColumn1.Name = "dataGridViewComboBoxColumn1";
+            this.dataGridViewComboBoxColumn1.Width = 92;
             // 
-            // dataGridViewTextBoxColumn7
+            // dataGridViewTextBoxColumn5
             // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "HexPattern";
-            this.dataGridViewTextBoxColumn7.HeaderText = "HexPattern";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.ToolTipText = "Hexadecimal Pattern to Search for at the beginning of a file.  Anywhere within th" +
-    "e first 100 bytes.";
-            this.dataGridViewTextBoxColumn7.Width = 103;
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "Interval";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Interval";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ToolTipText = resources.GetString("dataGridViewTextBoxColumn5.ToolTipText");
+            this.dataGridViewTextBoxColumn5.Width = 79;
             // 
-            // dataGridViewTextBoxColumn8
+            // dataGridViewCheckBoxColumn2
             // 
-            this.dataGridViewTextBoxColumn8.DataPropertyName = "SignatureName";
-            this.dataGridViewTextBoxColumn8.HeaderText = "SignatureName";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.ToolTipText = "Name of File Type";
-            this.dataGridViewTextBoxColumn8.Width = 131;
+            this.dataGridViewCheckBoxColumn2.DataPropertyName = "Monday";
+            this.dataGridViewCheckBoxColumn2.FalseValue = "false";
+            this.dataGridViewCheckBoxColumn2.HeaderText = "Mon";
+            this.dataGridViewCheckBoxColumn2.Name = "dataGridViewCheckBoxColumn2";
+            this.dataGridViewCheckBoxColumn2.TrueValue = "true";
+            this.dataGridViewCheckBoxColumn2.Width = 41;
             // 
-            // dgvSignaturestxtColFileExtensions
+            // dataGridViewCheckBoxColumn3
             // 
-            this.dgvSignaturestxtColFileExtensions.DataPropertyName = "FileExtensions";
-            this.dgvSignaturestxtColFileExtensions.HeaderText = "FileExtensions";
-            this.dgvSignaturestxtColFileExtensions.Name = "dgvSignaturestxtColFileExtensions";
-            this.dgvSignaturestxtColFileExtensions.ToolTipText = "Semicolon separated list of file extensions including period (e.g   .doc;.docx)";
-            this.dgvSignaturestxtColFileExtensions.Width = 123;
+            this.dataGridViewCheckBoxColumn3.DataPropertyName = "Tuesday";
+            this.dataGridViewCheckBoxColumn3.FalseValue = "false";
+            this.dataGridViewCheckBoxColumn3.HeaderText = "Tue";
+            this.dataGridViewCheckBoxColumn3.Name = "dataGridViewCheckBoxColumn3";
+            this.dataGridViewCheckBoxColumn3.TrueValue = "true";
+            this.dataGridViewCheckBoxColumn3.Width = 39;
             // 
-            // dataGridViewCheckBoxColumn62
+            // dataGridViewCheckBoxColumn4
             // 
-            this.dataGridViewCheckBoxColumn62.DataPropertyName = "Prohibited";
-            this.dataGridViewCheckBoxColumn62.HeaderText = "Prohibited";
-            this.dataGridViewCheckBoxColumn62.Name = "dataGridViewCheckBoxColumn62";
-            this.dataGridViewCheckBoxColumn62.ToolTipText = "Prohibited File Type?";
-            this.dataGridViewCheckBoxColumn62.Width = 78;
+            this.dataGridViewCheckBoxColumn4.DataPropertyName = "Wednesday";
+            this.dataGridViewCheckBoxColumn4.FalseValue = "false";
+            this.dataGridViewCheckBoxColumn4.HeaderText = "Wed";
+            this.dataGridViewCheckBoxColumn4.Name = "dataGridViewCheckBoxColumn4";
+            this.dataGridViewCheckBoxColumn4.TrueValue = "true";
+            this.dataGridViewCheckBoxColumn4.Width = 43;
             // 
-            // dataGridViewTextBoxColumn10
+            // dataGridViewCheckBoxColumn5
             // 
-            this.dataGridViewTextBoxColumn10.DataPropertyName = "Comment";
-            this.dataGridViewTextBoxColumn10.HeaderText = "Comment";
-            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
-            this.dataGridViewTextBoxColumn10.ToolTipText = "Comment for this task";
-            this.dataGridViewTextBoxColumn10.Width = 92;
+            this.dataGridViewCheckBoxColumn5.DataPropertyName = "Thursday";
+            this.dataGridViewCheckBoxColumn5.FalseValue = "false";
+            this.dataGridViewCheckBoxColumn5.HeaderText = "Thu";
+            this.dataGridViewCheckBoxColumn5.Name = "dataGridViewCheckBoxColumn5";
+            this.dataGridViewCheckBoxColumn5.TrueValue = "true";
+            this.dataGridViewCheckBoxColumn5.Width = 39;
+            // 
+            // dataGridViewCheckBoxColumn6
+            // 
+            this.dataGridViewCheckBoxColumn6.DataPropertyName = "Friday";
+            this.dataGridViewCheckBoxColumn6.FalseValue = "false";
+            this.dataGridViewCheckBoxColumn6.HeaderText = "Fri";
+            this.dataGridViewCheckBoxColumn6.Name = "dataGridViewCheckBoxColumn6";
+            this.dataGridViewCheckBoxColumn6.TrueValue = "true";
+            this.dataGridViewCheckBoxColumn6.Width = 30;
+            // 
+            // dataGridViewCheckBoxColumn7
+            // 
+            this.dataGridViewCheckBoxColumn7.DataPropertyName = "Saturday";
+            this.dataGridViewCheckBoxColumn7.FalseValue = "false";
+            this.dataGridViewCheckBoxColumn7.HeaderText = "Sat";
+            this.dataGridViewCheckBoxColumn7.Name = "dataGridViewCheckBoxColumn7";
+            this.dataGridViewCheckBoxColumn7.TrueValue = "true";
+            this.dataGridViewCheckBoxColumn7.Width = 35;
+            // 
+            // dataGridViewCheckBoxColumn8
+            // 
+            this.dataGridViewCheckBoxColumn8.DataPropertyName = "Sunday";
+            this.dataGridViewCheckBoxColumn8.FalseValue = "false";
+            this.dataGridViewCheckBoxColumn8.HeaderText = "Sun";
+            this.dataGridViewCheckBoxColumn8.Name = "dataGridViewCheckBoxColumn8";
+            this.dataGridViewCheckBoxColumn8.TrueValue = "true";
+            this.dataGridViewCheckBoxColumn8.Width = 39;
+            // 
+            // dataGridViewCheckBoxColumn9
+            // 
+            this.dataGridViewCheckBoxColumn9.DataPropertyName = "January";
+            this.dataGridViewCheckBoxColumn9.HeaderText = "Jan";
+            this.dataGridViewCheckBoxColumn9.Name = "dataGridViewCheckBoxColumn9";
+            this.dataGridViewCheckBoxColumn9.Width = 37;
+            // 
+            // dataGridViewCheckBoxColumn10
+            // 
+            this.dataGridViewCheckBoxColumn10.DataPropertyName = "February";
+            this.dataGridViewCheckBoxColumn10.HeaderText = "Feb";
+            this.dataGridViewCheckBoxColumn10.Name = "dataGridViewCheckBoxColumn10";
+            this.dataGridViewCheckBoxColumn10.Width = 38;
+            // 
+            // dataGridViewCheckBoxColumn11
+            // 
+            this.dataGridViewCheckBoxColumn11.DataPropertyName = "March";
+            this.dataGridViewCheckBoxColumn11.HeaderText = "Mar";
+            this.dataGridViewCheckBoxColumn11.Name = "dataGridViewCheckBoxColumn11";
+            this.dataGridViewCheckBoxColumn11.Width = 38;
+            // 
+            // dataGridViewCheckBoxColumn12
+            // 
+            this.dataGridViewCheckBoxColumn12.DataPropertyName = "April";
+            this.dataGridViewCheckBoxColumn12.HeaderText = "Apr";
+            this.dataGridViewCheckBoxColumn12.Name = "dataGridViewCheckBoxColumn12";
+            this.dataGridViewCheckBoxColumn12.Width = 36;
+            // 
+            // dataGridViewCheckBoxColumn13
+            // 
+            this.dataGridViewCheckBoxColumn13.DataPropertyName = "May";
+            this.dataGridViewCheckBoxColumn13.HeaderText = "May";
+            this.dataGridViewCheckBoxColumn13.Name = "dataGridViewCheckBoxColumn13";
+            this.dataGridViewCheckBoxColumn13.Width = 40;
+            // 
+            // dataGridViewCheckBoxColumn14
+            // 
+            this.dataGridViewCheckBoxColumn14.DataPropertyName = "June";
+            this.dataGridViewCheckBoxColumn14.HeaderText = "June";
+            this.dataGridViewCheckBoxColumn14.Name = "dataGridViewCheckBoxColumn14";
+            this.dataGridViewCheckBoxColumn14.Width = 45;
+            // 
+            // dataGridViewCheckBoxColumn15
+            // 
+            this.dataGridViewCheckBoxColumn15.DataPropertyName = "July";
+            this.dataGridViewCheckBoxColumn15.HeaderText = "July";
+            this.dataGridViewCheckBoxColumn15.Name = "dataGridViewCheckBoxColumn15";
+            this.dataGridViewCheckBoxColumn15.Width = 39;
+            // 
+            // dataGridViewCheckBoxColumn16
+            // 
+            this.dataGridViewCheckBoxColumn16.DataPropertyName = "August";
+            this.dataGridViewCheckBoxColumn16.HeaderText = "Aug";
+            this.dataGridViewCheckBoxColumn16.Name = "dataGridViewCheckBoxColumn16";
+            this.dataGridViewCheckBoxColumn16.Width = 39;
+            // 
+            // dataGridViewCheckBoxColumn17
+            // 
+            this.dataGridViewCheckBoxColumn17.DataPropertyName = "September";
+            this.dataGridViewCheckBoxColumn17.HeaderText = "Sept";
+            this.dataGridViewCheckBoxColumn17.Name = "dataGridViewCheckBoxColumn17";
+            this.dataGridViewCheckBoxColumn17.Width = 43;
+            // 
+            // dataGridViewCheckBoxColumn18
+            // 
+            this.dataGridViewCheckBoxColumn18.DataPropertyName = "October";
+            this.dataGridViewCheckBoxColumn18.HeaderText = "Oct";
+            this.dataGridViewCheckBoxColumn18.Name = "dataGridViewCheckBoxColumn18";
+            this.dataGridViewCheckBoxColumn18.Width = 36;
+            // 
+            // dataGridViewCheckBoxColumn19
+            // 
+            this.dataGridViewCheckBoxColumn19.DataPropertyName = "November";
+            this.dataGridViewCheckBoxColumn19.HeaderText = "Nov";
+            this.dataGridViewCheckBoxColumn19.Name = "dataGridViewCheckBoxColumn19";
+            this.dataGridViewCheckBoxColumn19.Width = 39;
+            // 
+            // dataGridViewCheckBoxColumn20
+            // 
+            this.dataGridViewCheckBoxColumn20.DataPropertyName = "December";
+            this.dataGridViewCheckBoxColumn20.HeaderText = "Dec";
+            this.dataGridViewCheckBoxColumn20.Name = "dataGridViewCheckBoxColumn20";
+            this.dataGridViewCheckBoxColumn20.Width = 39;
+            // 
+            // dataGridViewTextBoxColumn11
+            // 
+            this.dataGridViewTextBoxColumn11.DataPropertyName = "SourcePath";
+            this.dataGridViewTextBoxColumn11.HeaderText = "SourcePath";
+            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            this.dataGridViewTextBoxColumn11.ToolTipText = "Source Files and sub folders to verify against FilePathToCheck and possibly copy";
+            this.dataGridViewTextBoxColumn11.Width = 107;
+            // 
+            // dataGridViewTextBoxColumn12
+            // 
+            this.dataGridViewTextBoxColumn12.DataPropertyName = "FilePathToCheck";
+            this.dataGridViewTextBoxColumn12.HeaderText = "FilePathToCheck";
+            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
+            this.dataGridViewTextBoxColumn12.ToolTipText = "File Path to examine and see if corruption, changes to content of the file, or en" +
+    "cryption has ruined files (binary compare)";
+            this.dataGridViewTextBoxColumn12.Width = 140;
+            // 
+            // chkCheckMainfolder
+            // 
+            this.chkCheckMainfolder.DataPropertyName = "CheckMainFolder";
+            this.chkCheckMainfolder.HeaderText = "CheckMainFolder";
+            this.chkCheckMainfolder.Name = "chkCheckMainfolder";
+            this.chkCheckMainfolder.ToolTipText = "Check the Main Folder contents of FilePathToCheck";
+            this.chkCheckMainfolder.Width = 123;
+            // 
+            // chkCheckSubFolders
+            // 
+            this.chkCheckSubFolders.DataPropertyName = "CheckSubFolders";
+            this.chkCheckSubFolders.HeaderText = "CheckSubFolders";
+            this.chkCheckSubFolders.Name = "chkCheckSubFolders";
+            this.chkCheckSubFolders.ToolTipText = "Check immediate sub folders of FilePathToCheck repeatedly for same files in Sourc" +
+    "ePath for each.";
+            this.chkCheckSubFolders.Width = 125;
+            // 
+            // txtExcludeFolders
+            // 
+            this.txtExcludeFolders.DataPropertyName = "ExcludeFolders";
+            this.txtExcludeFolders.HeaderText = "ExcludeFolders";
+            this.txtExcludeFolders.Name = "txtExcludeFolders";
+            this.txtExcludeFolders.ToolTipText = "Exclude folders from sub folder check and copy separate each folder with semicolo" +
+    "n ; no slashes";
+            this.txtExcludeFolders.Width = 129;
+            // 
+            // dgvComparetxtcolExportCSVPath
+            // 
+            this.dgvComparetxtcolExportCSVPath.DataPropertyName = "ExportCSVPath";
+            this.dgvComparetxtcolExportCSVPath.HeaderText = "ExportCSVPath";
+            this.dgvComparetxtcolExportCSVPath.Name = "dgvComparetxtcolExportCSVPath";
+            this.dgvComparetxtcolExportCSVPath.ToolTipText = "Path where csv files will be saved.";
+            this.dgvComparetxtcolExportCSVPath.Width = 129;
+            // 
+            // dgvComparechkcolExportFilesDifferentToCSV
+            // 
+            this.dgvComparechkcolExportFilesDifferentToCSV.DataPropertyName = "ExportFilesDifferentToCSV";
+            this.dgvComparechkcolExportFilesDifferentToCSV.HeaderText = "ExportFilesDifferentToCSV";
+            this.dgvComparechkcolExportFilesDifferentToCSV.Name = "dgvComparechkcolExportFilesDifferentToCSV";
+            this.dgvComparechkcolExportFilesDifferentToCSV.ToolTipText = "Export files changed/different to csv file to ExportCSVPath.";
+            this.dgvComparechkcolExportFilesDifferentToCSV.Width = 181;
+            // 
+            // dgvComparechkcolExportFilesMissingToCSV
+            // 
+            this.dgvComparechkcolExportFilesMissingToCSV.DataPropertyName = "ExportFilesMissingToCSV";
+            this.dgvComparechkcolExportFilesMissingToCSV.HeaderText = "ExportFilesMissingToCSV";
+            this.dgvComparechkcolExportFilesMissingToCSV.Name = "dgvComparechkcolExportFilesMissingToCSV";
+            this.dgvComparechkcolExportFilesMissingToCSV.ToolTipText = "Export files missing to csv file to ExportCSVPath.";
+            this.dgvComparechkcolExportFilesMissingToCSV.Width = 174;
+            // 
+            // chkCopySourceFiles
+            // 
+            this.chkCopySourceFiles.DataPropertyName = "CopySourceFiles";
+            this.chkCopySourceFiles.HeaderText = "CopySourceFiles";
+            this.chkCopySourceFiles.Name = "chkCopySourceFiles";
+            this.chkCopySourceFiles.ToolTipText = "Copy source files to Main Folder in FilePathToCheck path only";
+            this.chkCopySourceFiles.Width = 120;
+            // 
+            // chkCopySourceFilesSubFolders
+            // 
+            this.chkCopySourceFilesSubFolders.DataPropertyName = "CopySourceFilesSubFolders";
+            this.chkCopySourceFilesSubFolders.HeaderText = "CopySourceFilesSubFolders";
+            this.chkCopySourceFilesSubFolders.Name = "chkCopySourceFilesSubFolders";
+            this.chkCopySourceFilesSubFolders.ToolTipText = "Copies sources files to FilePathToCheck first layer of subfolders if the files do" +
+    " not exist in each";
+            this.chkCopySourceFilesSubFolders.Width = 192;
+            // 
+            // chkSendEmail
+            // 
+            this.chkSendEmail.DataPropertyName = "SendEmailOnFailure";
+            this.chkSendEmail.HeaderText = "SendEmailOnFailure";
+            this.chkSendEmail.Name = "chkSendEmail";
+            this.chkSendEmail.ToolTipText = "On compare failure send summary email regarding changed or missing files each tim" +
+    "e this task runs";
+            this.chkSendEmail.Width = 143;
+            // 
+            // chkSendEmailOnSuccess
+            // 
+            this.chkSendEmailOnSuccess.DataPropertyName = "SendEmailOnSuccess";
+            this.chkSendEmailOnSuccess.HeaderText = "SendEmailOnSuccess";
+            this.chkSendEmailOnSuccess.Name = "chkSendEmailOnSuccess";
+            this.chkSendEmailOnSuccess.ToolTipText = "On success send summary email of summary to notify that the files were compared.";
+            this.chkSendEmailOnSuccess.Width = 153;
+            // 
+            // calendarColumn1
+            // 
+            this.calendarColumn1.DataPropertyName = "StartDate";
+            dataGridViewCellStyle1.Format = "MM/dd/yyyy";
+            this.calendarColumn1.DefaultCellStyle = dataGridViewCellStyle1;
+            this.calendarColumn1.HeaderText = "StartDate";
+            this.calendarColumn1.Name = "calendarColumn1";
+            this.calendarColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.calendarColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.calendarColumn1.ToolTipText = "Scheduled Start Date that this task should run";
+            this.calendarColumn1.Width = 93;
+            // 
+            // calendarColumn2
+            // 
+            this.calendarColumn2.DataPropertyName = "EndDate";
+            dataGridViewCellStyle2.Format = "MM/dd/yyyy";
+            this.calendarColumn2.DefaultCellStyle = dataGridViewCellStyle2;
+            this.calendarColumn2.HeaderText = "EndDate";
+            this.calendarColumn2.Name = "calendarColumn2";
+            this.calendarColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.calendarColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.calendarColumn2.ToolTipText = "Scheduled End Date of this compare task";
+            this.calendarColumn2.Width = 88;
+            // 
+            // dataGridViewTextBoxColumn15
+            // 
+            this.dataGridViewTextBoxColumn15.DataPropertyName = "Comment";
+            this.dataGridViewTextBoxColumn15.HeaderText = "Comment";
+            this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
+            this.dataGridViewTextBoxColumn15.ToolTipText = "Comment for this task";
+            this.dataGridViewTextBoxColumn15.Width = 92;
+            // 
+            // chkDetailedLogging
+            // 
+            this.chkDetailedLogging.DataPropertyName = "DetailedLogging";
+            this.chkDetailedLogging.HeaderText = "DetailedLogging";
+            this.chkDetailedLogging.Name = "chkDetailedLogging";
+            this.chkDetailedLogging.ToolTipText = "Detailed Error Logging even on successful check of files.";
+            this.chkDetailedLogging.Width = 117;
             // 
             // RansomwareDetectionSystemTray
             // 
@@ -2459,45 +2501,6 @@
         private System.Windows.Forms.Label lblSMTPUsername;
         private System.Windows.Forms.Button btnSendTestEmail;
         private System.Windows.Forms.Label lblDetectionServiceStatus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn2;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn3;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn4;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn5;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn6;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn7;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn8;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn9;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn10;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn11;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn12;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn13;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn14;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn15;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn16;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn17;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn18;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn19;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn20;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn chkCheckMainfolder;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn chkCheckSubFolders;
-        private System.Windows.Forms.DataGridViewTextBoxColumn txtExcludeFolders;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn chkCopySourceFiles;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn chkCopySourceFilesSubFolders;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn chkSendEmail;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn chkSendEmailOnSuccess;
-        private System.Windows.Forms.CalendarColumn calendarColumn1;
-        private System.Windows.Forms.CalendarColumn calendarColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn chkDetailedLogging;
         private System.Windows.Forms.ToolStripMenuItem ransomwareDetectionServiceCodePlexPageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem onlineHelpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fileExplorerToolStripMenuItem;
@@ -2605,12 +2608,55 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn dgvAuditchkColProhibitedFilesIgnoreFileExtension;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dgvAuditchkcolFixUnverifiedFilesFromBackup;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvAudittxtcolRestoredFilesPath;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dgvAuditChkcolDetectDifferentFilesComparedWithBackup;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn64;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn65;
         private System.Windows.Forms.CalendarColumn dgvAuditCalColStartDate;
         private System.Windows.Forms.CalendarColumn dgvAuditCalColEndDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvAuditTxtColComment;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn66;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn2;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn3;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn4;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn5;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn6;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn7;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn8;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn9;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn10;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn11;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn12;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn13;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn14;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn15;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn16;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn17;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn18;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn19;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn20;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn chkCheckMainfolder;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn chkCheckSubFolders;
+        private System.Windows.Forms.DataGridViewTextBoxColumn txtExcludeFolders;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvComparetxtcolExportCSVPath;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dgvComparechkcolExportFilesDifferentToCSV;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dgvComparechkcolExportFilesMissingToCSV;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn chkCopySourceFiles;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn chkCopySourceFilesSubFolders;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn chkSendEmail;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn chkSendEmailOnSuccess;
+        private System.Windows.Forms.CalendarColumn calendarColumn1;
+        private System.Windows.Forms.CalendarColumn calendarColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn chkDetailedLogging;
     }
 }
 

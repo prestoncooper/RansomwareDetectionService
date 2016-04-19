@@ -347,6 +347,58 @@ namespace RansomwareDetection.DetectionLib
         }
 
 
+        private string _exportCSVPath = "";
+        /// <summary>
+        /// Exclude Folders separate folder names by semicolon
+        /// </summary>
+        public string ExportCSVPath
+        {
+            get
+            {
+                return _exportCSVPath;
+            }
+            set
+            {
+                _exportCSVPath = Common.WindowsPathClean(value);
+            }
+
+        }
+
+        private bool _exportFilesDifferentToCSV = true;
+        /// <summary>
+        /// Exclude Folders separate folder names by semicolon
+        /// </summary>
+        public bool ExportFilesDifferentToCSV
+        {
+            get
+            {
+                return _exportFilesDifferentToCSV;
+            }
+            set
+            {
+                _exportFilesDifferentToCSV = value;
+            }
+
+        }
+
+        private bool _exportFilesMissingToCSV = true;
+        /// <summary>
+        /// Exclude Folders separate folder names by semicolon
+        /// </summary>
+        public bool ExportFilesMissingToCSV
+        {
+            get
+            {
+                return _exportFilesMissingToCSV = true;
+                
+            }
+            set
+            {
+                _exportFilesMissingToCSV = true;
+            }
+
+        }
+
         private bool _sendEmailOnFailure = false;
         /// <summary>
         /// Send email on failure of binary file comparison
@@ -715,6 +767,11 @@ namespace RansomwareDetection.DetectionLib
             CheckSubFolders = Common.FixNullbool(row["CheckSubFolders"]);
             CopySourceFiles = Common.FixNullbool(row["CopySourceFiles"]);
             CopySourceFilesSubFolders = Common.FixNullbool(row["CopySourceFilesSubFolders"]);
+
+            ExportCSVPath = Common.FixNullstring(row["ExportCSVPath"]);
+            ExportFilesDifferentToCSV = Common.FixNullbool(row["ExportFilesDifferentToCSV"]);
+            ExportFilesMissingToCSV = Common.FixNullbool(row["ExportFilesMissingToCSV"]);
+
             SendEmailOnFailure = Common.FixNullbool(row["SendEmailOnFailure"]);
             SendEmailOnSuccess = Common.FixNullbool(row["SendEmailOnSuccess"]);
             ExcludeFolders = Common.FixNullstring(row["ExcludeFolders"]);
@@ -797,6 +854,11 @@ namespace RansomwareDetection.DetectionLib
             dtCompareConfig.Columns.Add(new DataColumn("CheckSubFolders", typeof(String)));
             dtCompareConfig.Columns.Add(new DataColumn("CopySourceFiles", typeof(String)));
             dtCompareConfig.Columns.Add(new DataColumn("CopySourceFilesSubFolders", typeof(String)));
+
+            dtCompareConfig.Columns.Add(new DataColumn("ExportCSVPath", typeof(String)));
+            dtCompareConfig.Columns.Add(new DataColumn("ExportFilesDifferentToCSV", typeof(String)));
+            dtCompareConfig.Columns.Add(new DataColumn("ExportFilesMissingToCSV", typeof(String)));
+            
             dtCompareConfig.Columns.Add(new DataColumn("SendEmailOnFailure", typeof(String)));
             dtCompareConfig.Columns.Add(new DataColumn("SendEmailOnSuccess", typeof(String)));
             dtCompareConfig.Columns.Add(new DataColumn("ExcludeFolders", typeof(String)));
@@ -834,6 +896,11 @@ namespace RansomwareDetection.DetectionLib
             dtCompareConfig.Columns["FilePathToCheck"].DefaultValue = "";
             dtCompareConfig.Columns["CheckMainFolder"].DefaultValue = "true";
             dtCompareConfig.Columns["CheckSubFolders"].DefaultValue = "true";
+
+            dtCompareConfig.Columns["ExportCSVPath"].DefaultValue = "";
+            dtCompareConfig.Columns["ExportFilesDifferentToCSV"].DefaultValue = "true";
+            dtCompareConfig.Columns["ExportFilesMissingToCSV"].DefaultValue = "true";
+
             dtCompareConfig.Columns["Comment"].DefaultValue = "";
             dtCompareConfig.Columns["CopySourceFiles"].DefaultValue = "false";
             dtCompareConfig.Columns["CopySourceFilesSubFolders"].DefaultValue = "false";
@@ -856,8 +923,8 @@ namespace RansomwareDetection.DetectionLib
             string SourceFile = "";
             string FileToCheck = "";
             List<Delimon.Win32.IO.FileInfo> AllFiles = null;
-            List<string> FilesDifferent = null;
-            List<string> FilesMissing = null;
+            List<ContentDetectorLib.FileResult> FilesDifferent = null;
+            List<ContentDetectorLib.FileResult> FilesMissing = null;
             try
             {
                 if (Enabled)
@@ -866,8 +933,8 @@ namespace RansomwareDetection.DetectionLib
                     WriteError("Ransomware Detection Service, File Compare Process: Started " + FilePathToCheck, System.Diagnostics.EventLogEntryType.Information, 8000, 80, true);
 
                     AllFiles = new List<Delimon.Win32.IO.FileInfo>();
-                    FilesDifferent = new List<string>();
-                    FilesMissing = new List<string>();                    
+                    FilesDifferent = new List<ContentDetectorLib.FileResult>();
+                    FilesMissing = new List<ContentDetectorLib.FileResult>();                    
 
                     AllFiles = Common.WalkDirectory(SourcePath, ref blShuttingDown);
 
@@ -891,7 +958,7 @@ namespace RansomwareDetection.DetectionLib
                                 if (Common.FileExists(FileToCheck) == false && CopySourceFiles)    //If file does not exist and CopySourceFiles is true then run this statement
                                 {
                                     //File Missing
-                                    FilesMissing.Add(FileToCheck);
+                                    FilesMissing.Add(new ContentDetectorLib.FileResult(FileToCheck, "Possible Ransomware Change Detected: File Missing SourceFile: " + SourceFile + " FileToCheck: " + FileToCheck));
                                     //Create Source Folder Structure in FilePathToCheck
                                     if (CheckMainFolder)
                                     {
@@ -913,7 +980,7 @@ namespace RansomwareDetection.DetectionLib
                                         if (blFileSame == false)
                                         {
                                             //Add file to File Different list for emailing later!
-                                            FilesDifferent.Add(FileToCheck);
+                                            FilesDifferent.Add(new ContentDetectorLib.FileResult(FileToCheck, "File Changed SourceFile: " + SourceFile + " Different than FileToCheck"));
 
                                             string strErr = "FileCompare: File Compare Failed! (Possible Ransomware Change Detected) SourceFile: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
                                             WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8002, 80, false);
@@ -929,7 +996,7 @@ namespace RansomwareDetection.DetectionLib
                                        
                                         if (CheckMainFolder)//(CopySourceFiles == false && CopySourceFilesSubFolders == true )  
                                         {
-                                            FilesMissing.Add(FileToCheck);
+                                            FilesMissing.Add(new ContentDetectorLib.FileResult(FileToCheck, "Possible Ransomware Change Detected: FileToCheck Missing: user delete or new sub folder Sourcefile: " + SourceFile));
 
                                             string strErr = "FileCompare: File Compare Failed! (Possible Ransomware Change Detected, user delete or new sub folder) FileToCheck File Did Not Exist: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
                                             WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8004, 80, false);
@@ -1020,7 +1087,7 @@ namespace RansomwareDetection.DetectionLib
                                             {
                                                 if (Common.FileExists(FileToCheck) == false)  //file is missing
                                                 {
-                                                    FilesMissing.Add(FileToCheck);
+                                                    FilesMissing.Add(new ContentDetectorLib.FileResult(FileToCheck, "File Missing FileToCheck when compared with SourceFile: " + SourceFile));
                                                     //Create Source Folder Structure in each immediate subfolder in FilePathToCheck
                                                     Common.CreateDestinationFolders(SourcePath, dir1.FullName);
                                                     //Only copy the file to a 1st layer sub folder if it does not exist.  (We want to keep source files there for checking of changes)
@@ -1036,7 +1103,7 @@ namespace RansomwareDetection.DetectionLib
                                                     if (blFileSame == false)
                                                     {
                                                         //Add file to list for emailing later!
-                                                        FilesDifferent.Add(FileToCheck);
+                                                        FilesDifferent.Add(new ContentDetectorLib.FileResult(FileToCheck, "File Different FilePathToCheck from SourceFile: " + SourceFile));
                                                         
                                                         string strErr = "FileCompare: File Compare Failed! (Possible Ransomware Change Detected) SourceFile: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
                                                         WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8002, 80, false);
@@ -1052,7 +1119,7 @@ namespace RansomwareDetection.DetectionLib
                                             {
                                                 if (Common.FileExists(FileToCheck) == false)  //file is missing
                                                 {
-                                                    FilesMissing.Add(FileToCheck);
+                                                    FilesMissing.Add(new ContentDetectorLib.FileResult(FileToCheck, "File Missing from FilePathToCheck: SourceFile: " + SourceFile));
                                                     
                                                     string strErr = "FileCompare: File Compare Failed! FileToCheck in subfolder, File Did Not Exist!: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
                                                     WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8003, 80, false);
@@ -1064,7 +1131,7 @@ namespace RansomwareDetection.DetectionLib
                                                     if (blFileSame == false)
                                                     {
                                                         //Add file to list for emailing later!
-                                                        FilesDifferent.Add(FileToCheck);
+                                                        FilesDifferent.Add(new ContentDetectorLib.FileResult(FileToCheck, "SourceFile: " + SourceFile + " Different than FileToCheck"));
                                                         
                                                         string strErr = "FileCompare: File Compare Failed! SourceFile: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
                                                         WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8002, 80, false);
@@ -1095,7 +1162,9 @@ namespace RansomwareDetection.DetectionLib
                                     //Directory does not exist error and copy files is not checked
                                     if (Common.DirectoryExists(FilePathToCheck) == false)
                                     {
-                                        FilesMissing.Add(FilePathToCheck);
+                                        FilesMissing.Add(new ContentDetectorLib.FileResult(FilePathToCheck, "File Compare Failed Directory for FilePathToCheck Does not Exist"));
+                                        //ContentDetectorLib.FileResult result = new ContentDetectorLib.FileResult(FilePathToCheck, "FileCompare: File Compare Failed Directory for FilePathToCheck Does not Exist: " + FilePathToCheck);
+
                                         string strErr = "FileCompare: File Compare Failed Directory for FilePathToCheck Does not Exist: " + FilePathToCheck;
                                         WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8007, 80, false);
                                     }
@@ -1106,12 +1175,55 @@ namespace RansomwareDetection.DetectionLib
                             }
                             catch (Exception ex1)      //unknown error
                             {
+
                                 string strErr = ex1.Message + ": " + ex1.Source + " inside main for each  " + ex1.StackTrace;
                                 WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8000, 80, false);
                             }
                         }
                         //end loop
-                    } 
+                    }
+
+
+
+                    if (Common.FixNullstring(ExportCSVPath).Trim() != "" && Common.DirectoryExists(ExportCSVPath))
+                    {
+                        ExportCSVPath = Common.WindowsPathClean(ExportCSVPath);
+
+                        if (ExportFilesDifferentToCSV)
+                        {
+                            try
+                            {
+                                if (Common.FileExists(ExportCSVPath + "\\" + Title + "DifferentFiles.csv"))
+                                {
+                                    Delimon.Win32.IO.File.Delete(ExportCSVPath + "\\" + Title + "DifferentFiles.csv");
+                                }
+                                Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\" + Title + "DifferentFiles.csv", ContentDetectorLib.FileResult.FileResultCollectionToCSV(FilesDifferent));
+                            }
+                            catch (Exception)
+                            {
+                                Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\" + Title + "DifferentFiles" + Guid.NewGuid().ToString() + ".csv", ContentDetectorLib.FileResult.FileResultCollectionToCSV(FilesDifferent));
+
+                            }
+                        }
+
+                        if (ExportFilesMissingToCSV)
+                        {
+                            try
+                            {
+                                if (Common.FileExists(ExportCSVPath + "\\" + Title + "MissingFiles.csv"))
+                                {
+                                    Delimon.Win32.IO.File.Delete(ExportCSVPath + "\\" + Title + "MissingFiles.csv");
+                                }
+                                Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\" + Title + "MissingFiles.csv", ContentDetectorLib.FileResult.FileResultCollectionToCSV(FilesMissing));
+                            }
+                            catch (Exception)
+                            {
+                                Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\" + Title + "MissingFiles" + Guid.NewGuid().ToString() + ".csv", ContentDetectorLib.FileResult.FileResultCollectionToCSV(FilesMissing));
+
+                            }
+                        }
+
+                    }
 
                     //Send Summary Email 
                     if (SendEmailOnFailure || SendEmailOnSuccess)
@@ -1135,23 +1247,23 @@ namespace RansomwareDetection.DetectionLib
                             sbbody1.AppendLine(strline);
                             strline = @"<li>Check MainFolder Folder: " + CheckMainFolder.ToString() + @"</li></ul>";
                             sbbody1.AppendLine(strline);
-                            if (FilesDifferent.Count > 0)
+                            if (FilesDifferent.Count > 0 && FilesDifferent.Count < 200)
                             {
                                 sbbody1.AppendLine(@"<br /><br /><strong>Files Different:</strong><br />");
                                 //Loop through files that are different and list them
-                                foreach (string strFileDiff in FilesDifferent)
+                                foreach (ContentDetectorLib.FileResult fsFileDiff in FilesDifferent)
                                 {
-                                    sbbody1.AppendLine("<a href=\"#\" style=\"text-decoration:none !important; text-decoration:none;color:black;\">\"" + strFileDiff + "\"" + @"</a><br />");
+                                    sbbody1.AppendLine("<a href=\"#\" style=\"text-decoration:none !important; text-decoration:none;color:black;\">\"" + fsFileDiff.FullPath + "\"" + @"</a><br />");
                                 }
                                 sbbody1.AppendLine(@"<br />");
                             }
-                            if (FilesMissing.Count > 0)
+                            if (FilesMissing.Count > 0 && FilesMissing.Count < 200)
                             {
                                 sbbody1.Append(@"<br /><br /><strong>Files Missing:</strong><br />");
                                 //Loop through the files that are missing and list them
-                                foreach (string strFileMissing in FilesMissing)
+                                foreach (ContentDetectorLib.FileResult fsFileMissing in FilesMissing)
                                 {
-                                    sbbody1.AppendLine("<a href=\"#\" style=\"text-decoration:none !important; text-decoration:none;color:black;\">\"" + strFileMissing + "\"" + @"</a><br />");
+                                    sbbody1.AppendLine("<a href=\"#\" style=\"text-decoration:none !important; text-decoration:none;color:black;\">\"" + fsFileMissing.FullPath + "\"" + @"</a><br />");
                                 }
                             }
 
