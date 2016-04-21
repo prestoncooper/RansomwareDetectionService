@@ -389,12 +389,12 @@ namespace RansomwareDetection.DetectionLib
         {
             get
             {
-                return _exportFilesMissingToCSV = true;
+                return _exportFilesMissingToCSV;
                 
             }
             set
             {
-                _exportFilesMissingToCSV = true;
+                _exportFilesMissingToCSV = value;
             }
 
         }
@@ -660,6 +660,112 @@ namespace RansomwareDetection.DetectionLib
                 _detailedLogging = value;
             }
         }
+
+
+        private bool _executeCommandOnUserScopeOnly = false;
+        public bool ExecuteCommandOnUserScopeOnly
+        {
+            get
+            {
+                return _executeCommandOnUserScopeOnly;
+            }
+            set
+            {
+                _executeCommandOnUserScopeOnly = value;
+            }
+        }
+
+        private bool _executeCommandOnDetectFileMissing = false;
+        public bool ExecuteCommandOnDetectFileMissing
+        {
+            get
+            {
+                return _executeCommandOnDetectFileMissing;
+            }
+            set
+            {
+                _executeCommandOnDetectFileMissing = value;
+            }
+        }
+
+        private bool _executeCommandOnDetectFileDifferent = false;
+        public bool ExecuteCommandOnDetectFileDifferent
+        {
+            get
+            {
+                return _executeCommandOnDetectFileDifferent;
+            }
+            set
+            {
+                _executeCommandOnDetectFileDifferent = value;
+            }
+        }
+
+        private bool _executeCommandOnDetectFolderMissing = false;
+        public bool ExecuteCommandOnDetectFolderMissing
+        {
+            get
+            {
+                return _executeCommandOnDetectFolderMissing;
+            }
+            set
+            {
+                _executeCommandOnDetectFolderMissing = value;
+            }
+        }
+
+        private string _commandWorkingDirectory = "";
+        public string CommandWorkingDirectory
+        {
+            get
+            {
+                return _commandWorkingDirectory;
+            }
+            set
+            {
+                _commandWorkingDirectory = value;
+            }
+        }
+
+        private string _commandProgram = "";
+        public string CommandProgram
+        {
+            get
+            {
+                return _commandProgram;
+            }
+            set
+            {
+                _commandProgram = value;
+            }
+        }
+
+        private string _commandArguments = "";
+        public string CommandArguments
+        {
+            get
+            {
+                return _commandArguments;
+            }
+            set
+            {
+                _commandArguments = value;
+            }
+        }
+
+        private int _commandTimeout = 60;
+        public int CommandTimeout
+        {
+            get
+            {
+                return _commandTimeout;
+            }
+            set
+            {
+                _commandTimeout = value;
+            }
+        }
+
         #endregion
 
 
@@ -772,6 +878,16 @@ namespace RansomwareDetection.DetectionLib
             ExportFilesDifferentToCSV = Common.FixNullbool(row["ExportFilesDifferentToCSV"]);
             ExportFilesMissingToCSV = Common.FixNullbool(row["ExportFilesMissingToCSV"]);
 
+            ExecuteCommandOnDetectFileMissing = Common.FixNullbool(row["ExecuteCommandOnDetectFileMissing"]);
+            ExecuteCommandOnDetectFileDifferent = Common.FixNullbool(row["ExecuteCommandOnDetectFileDifferent"]);
+            ExecuteCommandOnDetectFolderMissing = Common.FixNullbool(row["ExecuteCommandOnDetectFolderMissing"]);
+            ExecuteCommandOnUserScopeOnly = Common.FixNullbool(row["ExecuteCommandOnUserScopeOnly"]);
+
+            CommandWorkingDirectory = Common.FixNullstring(row["CommandWorkingDirectory"]);
+            CommandProgram = Common.FixNullstring(row["CommandProgram"]);
+            CommandArguments = Common.FixNullstring(row["CommandArguments"]);
+            CommandTimeout = Common.FixNullInt32(row["CommandTimeout"]);
+
             SendEmailOnFailure = Common.FixNullbool(row["SendEmailOnFailure"]);
             SendEmailOnSuccess = Common.FixNullbool(row["SendEmailOnSuccess"]);
             ExcludeFolders = Common.FixNullstring(row["ExcludeFolders"]);
@@ -858,7 +974,16 @@ namespace RansomwareDetection.DetectionLib
             dtCompareConfig.Columns.Add(new DataColumn("ExportCSVPath", typeof(String)));
             dtCompareConfig.Columns.Add(new DataColumn("ExportFilesDifferentToCSV", typeof(String)));
             dtCompareConfig.Columns.Add(new DataColumn("ExportFilesMissingToCSV", typeof(String)));
-            
+
+            dtCompareConfig.Columns.Add(new DataColumn("ExecuteCommandOnDetectFileMissing", typeof(String)));
+            dtCompareConfig.Columns.Add(new DataColumn("ExecuteCommandOnDetectFolderMissing", typeof(String)));
+            dtCompareConfig.Columns.Add(new DataColumn("ExecuteCommandOnDetectFileDifferent", typeof(String)));
+            dtCompareConfig.Columns.Add(new DataColumn("ExecuteCommandOnUserScopeOnly", typeof(String)));
+            dtCompareConfig.Columns.Add(new DataColumn("CommandWorkingDirectory", typeof(String)));
+            dtCompareConfig.Columns.Add(new DataColumn("CommandProgram", typeof(String)));
+            dtCompareConfig.Columns.Add(new DataColumn("CommandArguments", typeof(String)));
+            dtCompareConfig.Columns.Add(new DataColumn("CommandTimeout", typeof(String)));
+
             dtCompareConfig.Columns.Add(new DataColumn("SendEmailOnFailure", typeof(String)));
             dtCompareConfig.Columns.Add(new DataColumn("SendEmailOnSuccess", typeof(String)));
             dtCompareConfig.Columns.Add(new DataColumn("ExcludeFolders", typeof(String)));
@@ -904,6 +1029,15 @@ namespace RansomwareDetection.DetectionLib
             dtCompareConfig.Columns["Comment"].DefaultValue = "";
             dtCompareConfig.Columns["CopySourceFiles"].DefaultValue = "false";
             dtCompareConfig.Columns["CopySourceFilesSubFolders"].DefaultValue = "false";
+            dtCompareConfig.Columns["ExecuteCommandOnDetectFolderMissing"].DefaultValue = "false";
+            dtCompareConfig.Columns["ExecuteCommandOnDetectFileMissing"].DefaultValue = "false";
+            dtCompareConfig.Columns["ExecuteCommandOnDetectFileDifferent"].DefaultValue = "false";
+            dtCompareConfig.Columns["ExecuteCommandOnUserScopeOnly"].DefaultValue = "true";
+            dtCompareConfig.Columns["CommandWorkingDirectory"].DefaultValue = "";
+            dtCompareConfig.Columns["CommandProgram"].DefaultValue = "";
+            dtCompareConfig.Columns["CommandArguments"].DefaultValue = "";
+            dtCompareConfig.Columns["CommandTimeout"].DefaultValue = "60";
+
             dtCompareConfig.Columns["SendEmailOnFailure"].DefaultValue = "false";
             dtCompareConfig.Columns["SendEmailOnSuccess"].DefaultValue = "false";
             dtCompareConfig.Columns["DetailedLogging"].DefaultValue = "false";
@@ -913,6 +1047,164 @@ namespace RansomwareDetection.DetectionLib
 
         }
 
+        private void ransomwareDetectedCommand(string strUsernameDetected, string strFileName, string strParentFolder)
+        {
+            System.Diagnostics.Process process=null;
+            try
+            {
+                if (ExecuteCommandOnDetectFileDifferent || ExecuteCommandOnDetectFileMissing || ExecuteCommandOnDetectFolderMissing)
+                {
+                    if (!(ExecuteCommandOnUserScopeOnly && Common.FixNullstring(strUsernameDetected).Trim() == ""))
+                    {
+
+                        //_evt.WriteEntry("Script: Starting Script: " + Common.FixNullstring(CommandProgram) + " " + Common.FixNullstring(CommandArguments), EventLogEntryType.Information);
+                        process = new System.Diagnostics.Process();
+                        System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+                        startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+                        startInfo.RedirectStandardError = false;
+                        startInfo.RedirectStandardOutput = false;
+                        startInfo.UseShellExecute = true;
+                        startInfo.WorkingDirectory = Common.WindowsPathClean(Common.FixNullstring(CommandWorkingDirectory));
+                        startInfo.FileName = Common.WindowsPathClean(Common.FixNullstring(CommandProgram));
+                        if (Common.FixNullstring(CommandArguments).Trim().Length > 0)
+                        {
+                            string strArguments = "";
+                            strArguments = strArguments.Replace("[Username]", strUsernameDetected);
+                            strArguments = strArguments.Replace("[FullFilePath]", strFileName);
+                            strArguments = Common.WindowsArgumentClean(strArguments.Replace("[FullFolderPath]", strParentFolder));
+
+                            startInfo.Arguments = strArguments;
+                            //startInfo.Arguments = Arguments;
+                        }
+                        //left off debugging here
+                        process.StartInfo = startInfo;
+                        //process.OutputDataReceived += new DataReceivedEventHandler(OutputHandler);
+                        ////process.Exited += new EventHandler(ProcessExitHandler);
+                        //process.ErrorDataReceived += new DataReceivedEventHandler(ErrorOutputHandler);
+                        process.Start();
+
+
+                        process.WaitForExit(1000 * 60 * CommandTimeout);
+                        process.Refresh();
+
+                        process.Kill();
+                        process.Close();
+                        process = null;
+                    }
+                }
+            }
+            catch (Exception ex2)
+            {
+                WriteError("Ransomware Detection Service, File Compare Process: Execute Command Error: " + FilePathToCheck + " " + ex2.Message, System.Diagnostics.EventLogEntryType.Information, 8000, 80, false);
+                
+            }
+            finally
+            {
+                try
+                {
+                    if (process != null)
+                    {
+                        if (!process.HasExited)
+                        {
+                            process.WaitForExit(1000 * 60 * CommandTimeout);
+                            process.Kill();
+                            process.Close();
+                        }
+                        else
+                        {
+                            process.Close();
+                        }
+                        process.Dispose();
+                    }
+                    process = null;
+                }
+                catch (Exception)
+                {
+                    
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Gets Username from Home Directory Path
+        /// </summary>
+        /// <param name="strPath"></param>
+        /// <returns></returns>
+        private string getUserFromPath(string strPath)
+        {
+            string strUsername = "";
+            string strtemp = "";
+            
+            strPath = Common.FixNullstring(strPath);
+            strUsername = strPath.Replace(FilePathToCheck, "");
+
+            if (strUsername.Length > 2)
+            {
+                if (strUsername.Substring(0, 1) == @"\")
+                {
+                    strUsername = strUsername.Substring(1, strUsername.Length - 1);
+
+                }
+                if (strUsername.Substring(0, 1) == @"\")
+                {
+                    strUsername = strUsername.Substring(1, strUsername.Length - 1);
+
+                }
+                try
+                {
+                    strtemp = strUsername.Substring(strUsername.IndexOf("\\"), strUsername.Length - strUsername.IndexOf("\\"));
+                    if (strtemp.Length > 0)
+                    {
+                        strUsername = strUsername.Replace(strtemp, "");
+                    }
+                }
+                catch (Exception)
+                {
+
+                }
+
+
+
+            }
+
+            return strUsername;
+        }
+
+        /// <summary>
+        /// Returns first username found from the folder path or acl
+        /// </summary>
+        /// <param name="strPath"></param>
+        /// <returns></returns>
+        private string getUsernameFromFolder(string strPath)
+        {
+            string strUsername = "";
+            Microsoft.Win32.Security.SecurityDescriptor secDesc;
+            List<string> lUsernames = new List<string>();
+            strUsername = getUserFromPath(FilePathToCheck);
+            if (Common.TestAcl(strPath, strUsername))
+            {
+                return strUsername;
+            }
+            else
+            {
+                //not a home folder
+                secDesc = Microsoft.Win32.Security.SecurityDescriptor.GetFileSecurity(strPath, Microsoft.Win32.Security.SECURITY_INFORMATION.DACL_SECURITY_INFORMATION);
+                Microsoft.Win32.Security.Dacl dacl = secDesc.Dacl;
+
+                for (int i = 0; i < dacl.AceCount; i++)
+                {
+                    Microsoft.Win32.Security.Ace ace = dacl.GetAce(i);
+                    if (ace.Sid.AccountName.ToLower() != "administrator" && ace.Sid.AccountName.ToLower() != "domain admins" && ace.Sid.AccountName.ToLower() != "administrators" && ace.Sid.AccountName.ToLower() != "mme" && ace.Sid.AccountName.ToLower() != "system" && ace.Sid.AccountName.ToLower() != "users" && ace.Sid.AccountName.ToLower() != "everyone" && ace.Sid.AccountName.ToLower() != "authenticated users" && ace.Sid.AccountName.ToLower() != "backup operators" && ace.Sid.AccountName.ToLower() != "guest" && ace.Sid.AccountName.ToLower() != "guests" && ace.Sid.AccountName.ToLower() != "iis_iusrs" && ace.Sid.AccountName.ToLower() != "network configuration operators" && ace.Sid.AccountName.ToLower() != "power users" && ace.Sid.AccountName.ToLower() != "remote desktop users" && ace.Sid.AccountName.ToLower() != "replicator" && ace.Sid.AccountName.ToLower() != "offer remote assistance helpers" && ace.Sid.AccountName.ToLower() != "performance monitor users" && ace.Sid.AccountName.ToLower() != "performance log users" && ace.Sid.AccountName.ToLower() != "distributed com users" && ace.Sid.AccountName.ToLower() != "cryptographic operators" && ace.Sid.AccountName.ToLower() != "server operators" && ace.Sid.AccountName.ToLower() != "remote management users" && ace.Sid.AccountName.ToLower() != "account operators" && ace.Sid.AccountName.ToLower() != "hyper-v administrators" && ace.Sid.AccountName.ToLower() != "access control assistance operators" && ace.Sid.AccountName.ToLower() != "certificate service dcom access" && ace.Sid.AccountName.ToLower() != "event log readers" && ace.Sid.AccountName.ToLower() != "incoming forest trust builders" && ace.Sid.AccountName.ToLower() != "print operators" && ace.Sid.AccountName.ToLower() != "remote management users" && ace.Sid.AccountName.ToLower() != "creator owner id" && ace.Sid.AccountName.ToLower() != "creator group id" && ace.Sid.AccountName.ToLower() != "local" && ace.Sid.AccountName.ToLower() != "world" && ace.Sid.AccountName.ToLower() != "null sid" && ace.Sid.AccountName.ToLower() != "security_anonymous_logon_rid" && ace.Sid.AccountName.ToLower() != "security_authenticated_user_rid" && ace.Sid.AccountName.ToLower() != "security_local_system_rid" && ace.Sid.AccountName.ToLower() != "security_bultin_domain_rid" && ace.Sid.AccountName.ToLower() != "security_service_rid" && ace.Sid.AccountName.ToLower() != "security_network_rid")
+                    {
+                        return ace.Sid.AccountName;
+                    }
+                }
+            }
+            return strUsername;
+            
+            
+        }
 
          /// <summary>
         /// Executes Compare of all files
@@ -934,255 +1226,329 @@ namespace RansomwareDetection.DetectionLib
 
                     AllFiles = new List<Delimon.Win32.IO.FileInfo>();
                     FilesDifferent = new List<ContentDetectorLib.FileResult>();
-                    FilesMissing = new List<ContentDetectorLib.FileResult>();                    
+                    FilesMissing = new List<ContentDetectorLib.FileResult>();
 
-                    AllFiles = Common.WalkDirectory(SourcePath, ref blShuttingDown);
-
-                    if (AllFiles != null)
+                    if (!Common.DirectoryExists(SourcePath))
                     {
-                        //loop through all source files and folders
-                        foreach (Delimon.Win32.IO.FileInfo file1 in AllFiles)
+                        WriteError("Ransomware Detection Service, File Compare Process: SourcePath Missing: " + SourcePath, System.Diagnostics.EventLogEntryType.Information, 8000, 80, false);
+                    }
+                    else
+                    {
+                        AllFiles = Common.WalkDirectory(SourcePath, ref blShuttingDown);
+
+                        if (AllFiles != null)
                         {
-                            
-                            //if the service is shutting down we need to stop looping through the source files
-                            if (blShuttingDown)
-                            {
-                                throw new Exception("Shutting Down");
-                            }
-                            try
+                            //loop through all source files and folders
+                            foreach (Delimon.Win32.IO.FileInfo file1 in AllFiles)
                             {
 
-                                //compares source files in the main folder
-                                SourceFile = file1.FullName;
-                                FileToCheck = Common.WindowsPathCombine(FilePathToCheck, file1.FullName, SourcePath);
-                                if (Common.FileExists(FileToCheck) == false && CopySourceFiles)    //If file does not exist and CopySourceFiles is true then run this statement
+                                //if the service is shutting down we need to stop looping through the source files
+                                if (blShuttingDown)
                                 {
-                                    //File Missing
-                                    FilesMissing.Add(new ContentDetectorLib.FileResult(FileToCheck, "Possible Ransomware Change Detected: File Missing SourceFile: " + SourceFile + " FileToCheck: " + FileToCheck));
-                                    //Create Source Folder Structure in FilePathToCheck
-                                    if (CheckMainFolder)
-                                    {
-                                        Common.CreateDestinationFolders(SourcePath, FilePathToCheck);
-                                    }
-                                    //this only copies the file if it does not exist
-                                    //We are coping files for detection of changes we do not want.
-                                    Delimon.Win32.IO.File.Copy(SourceFile, FileToCheck,false);
-                                    string strErr = "FileCompare: File Compare Failed! (Possible Ransomware Change Detected, user delete or new sub folder) FileToCheck File Did Not Exist Yet, File Copied: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
-                                    WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8003, 80, false);
+                                    throw new Exception("Shutting Down");
                                 }
-                                else
+                                try
                                 {
-                                    //If the file exists then we can compare
-                                    if (Common.FileExists(FileToCheck) && CheckMainFolder)
+                                    if (!Common.DirectoryExists(FilePathToCheck))
                                     {
-                                        //compare file
-                                        blFileSame = Compare_Files(SourceFile, FileToCheck);
-                                        if (blFileSame == false)
+                                        WriteError("Ransomware Detection Service, File Compare Process: FilePathToCheck Missing: " + FilePathToCheck, System.Diagnostics.EventLogEntryType.Information, 8000, 80, false);
+                                            
+                                        if (ExecuteCommandOnDetectFolderMissing)
                                         {
-                                            //Add file to File Different list for emailing later!
-                                            FilesDifferent.Add(new ContentDetectorLib.FileResult(FileToCheck, "File Changed SourceFile: " + SourceFile + " Different than FileToCheck"));
+                                            //folder missing
+                                            //left off here
 
-                                            string strErr = "FileCompare: File Compare Failed! (Possible Ransomware Change Detected) SourceFile: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
-                                            WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8002, 80, false);
-                                        }
-                                        else
-                                        {
-                                            string strErr = "FileCompare: File Compare Succeeded SourceFile: " + SourceFile + " Same as FileToCheck: " + FileToCheck;   
-                                            WriteError(strErr, System.Diagnostics.EventLogEntryType.Information, 8001, 80, true);
+                                            //string strUsername = getUsernameFromFolder(FilePathToCheck);
+                                            ransomwareDetectedCommand("", "", FilePathToCheck);
                                         }
                                     }
                                     else
                                     {
-                                       
-                                        if (CheckMainFolder)//(CopySourceFiles == false && CopySourceFilesSubFolders == true )  
+                                        //compares source files in the main folder
+                                        SourceFile = file1.FullName;
+                                        FileToCheck = Common.WindowsPathCombine(FilePathToCheck, file1.FullName, SourcePath);
+                                        if (Common.FileExists(FileToCheck) == false && CopySourceFiles)    //If file does not exist and CopySourceFiles is true then run this statement
                                         {
-                                            FilesMissing.Add(new ContentDetectorLib.FileResult(FileToCheck, "Possible Ransomware Change Detected: FileToCheck Missing: user delete or new sub folder Sourcefile: " + SourceFile));
-
-                                            string strErr = "FileCompare: File Compare Failed! (Possible Ransomware Change Detected, user delete or new sub folder) FileToCheck File Did Not Exist: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
-                                            WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8004, 80, false);
-                                        }
-                                    }
-                                }
-
-
-                                bool blIgnoreSourceDirectory = false;
-
-                                //Loops through the first layer of subfolders and compares current source file in each sub folder of FilePathToCheck
-                                if (CheckSubFolders && Common.DirectoryExists(FilePathToCheck))
-                                {
-                                    System.Collections.Generic.List<Delimon.Win32.IO.DirectoryInfo> dirs;
-                                    Delimon.Win32.IO.DirectoryInfo dirToCheck = new Delimon.Win32.IO.DirectoryInfo(FilePathToCheck);
-                                    dirs = Common.GetDirsInDirectory(dirToCheck);
-
-                                    foreach (Delimon.Win32.IO.DirectoryInfo dir1 in dirs)
-                                    {
-                                        
-                                        blIgnoreSourceDirectory = false;
-
-                                        
-
-                                        //If the service is shutting down we need to stop traversing the folders
-                                        if (blShuttingDown)
-                                        {
-                                            throw new Exception("Ransomware Detection Service Shutting Down");
-                                        }
-                                        try
-                                        {
-                                            try
+                                            //File Missing
+                                            FilesMissing.Add(new ContentDetectorLib.FileResult(FileToCheck, "Possible Ransomware Change Detected: File Missing SourceFile: " + SourceFile + " FileToCheck: " + FileToCheck));
+                                            //Create Source Folder Structure in FilePathToCheck
+                                            if (CheckMainFolder)
                                             {
-                                                if (CheckSubFolders)
+                                                Common.CreateDestinationFolders(SourcePath, FilePathToCheck);
+                                            }
+
+                                            if (ExecuteCommandOnDetectFileMissing)
+                                            {
+                                                //left off here
+                                                //string strUsername = getUsernameFromFolder(FilePathToCheck);
+                                                ransomwareDetectedCommand("", FileToCheck, FilePathToCheck);
+                                            }
+                                            //this only copies the file if it does not exist
+                                            //We are coping files for detection of changes we do not want.
+                                            Delimon.Win32.IO.File.Copy(SourceFile, FileToCheck, false);
+                                            string strErr = "FileCompare: File Compare Failed! (Possible Ransomware Change Detected, user delete or new sub folder) FileToCheck File Did Not Exist Yet, File Copied: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
+                                            WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8003, 80, false);
+                                        }
+                                        else
+                                        {
+                                            //If the file exists then we can compare
+                                            if (Common.FileExists(FileToCheck) && CheckMainFolder)
+                                            {
+                                                //compare file
+                                                blFileSame = Compare_Files(SourceFile, FileToCheck);
+                                                if (blFileSame == false)
                                                 {
-                                                    //Check if SourceFolder is one of the sub folders.  (would create extra source directories inside a source directory if not ignored)
-                                                    if (CheckMainFolder && CheckSubFolders)
+                                                    //Add file to File Different list for emailing later!
+                                                    FilesDifferent.Add(new ContentDetectorLib.FileResult(FileToCheck, "File Changed SourceFile: " + SourceFile + " Different than FileToCheck"));
+
+                                                    if (ExecuteCommandOnDetectFileDifferent)
                                                     {
-                                                        System.Collections.Generic.List<Delimon.Win32.IO.DirectoryInfo> Sourcedirs;
-                                                        Delimon.Win32.IO.DirectoryInfo dirSourceToCheck = new Delimon.Win32.IO.DirectoryInfo(SourcePath);
-                                                        Sourcedirs = Common.GetDirsInDirectory(dirSourceToCheck);
-                                                        foreach (Delimon.Win32.IO.DirectoryInfo sdir1 in Sourcedirs)
-                                                        {
-                                                        
-                                                                if (sdir1.Name == dir1.Name)
-                                                                {
-                                                                    blIgnoreSourceDirectory = true;
-                                                                }
-                                                        
-                                                        }
-                                                        Sourcedirs.Clear();
+                                                        ransomwareDetectedCommand(Common.GetFileOwner(FileToCheck),FileToCheck,new Delimon.Win32.IO.FileInfo(FileToCheck).Directory.FullName);
                                                     }
 
-                                                    //Check if excluded folder is the current folder being checked.
-                                                    char[] delimiters = new char[] { ';' };
-                                                    string[] strArr_excludedfolders = ExcludeFolders.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
-                                                    
-                                                    if (blIgnoreSourceDirectory == false && !(strArr_excludedfolders == null || strArr_excludedfolders.Length == 0))
+                                                    string strErr = "FileCompare: File Compare Failed! (Possible Ransomware Change Detected) SourceFile: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
+                                                    WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8002, 80, false);
+                                                }
+                                                else
+                                                {
+                                                    string strErr = "FileCompare: File Compare Succeeded SourceFile: " + SourceFile + " Same as FileToCheck: " + FileToCheck;
+                                                    WriteError(strErr, System.Diagnostics.EventLogEntryType.Information, 8001, 80, true);
+                                                }
+                                            }
+                                            else
+                                            {
+
+                                                if (CheckMainFolder)// These are true here (CopySourceFiles == false && CopySourceFilesSubFolders == true )  
+                                                {
+                                                    FilesMissing.Add(new ContentDetectorLib.FileResult(FileToCheck, "Possible Ransomware Change Detected: FileToCheck Missing: user delete or new sub folder Sourcefile: " + SourceFile));
+
+                                                    //check if folder exists then this one or other
+                                                    if (ExecuteCommandOnDetectFileMissing)
                                                     {
-                                                        //loop through excluded folders
-                                                        foreach (string strExclude in strArr_excludedfolders)
+                                                        //get next file or folder owner
+                                                        //ransomwareDetectedCommand(Common.GetFileOwner(FileToCheck));
+                                                        //string strUsername = getUsernameFromFolder(FilePathToCheck);
+                                                        ransomwareDetectedCommand("", FileToCheck, FilePathToCheck);
+                                                    }
+                                                    string strErr = "FileCompare: File Compare Failed! (Possible Ransomware Change Detected, user delete or new sub folder) FileToCheck File Did Not Exist: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
+                                                    WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8004, 80, false);
+                                                }
+                                            }
+                                        }
+
+
+                                        bool blIgnoreSourceDirectory = false;
+
+                                        //Loops through the first layer of subfolders and compares current source file in each sub folder of FilePathToCheck
+                                        if (CheckSubFolders && Common.DirectoryExists(FilePathToCheck))
+                                        {
+                                            System.Collections.Generic.List<Delimon.Win32.IO.DirectoryInfo> dirs;
+                                            Delimon.Win32.IO.DirectoryInfo dirToCheck = new Delimon.Win32.IO.DirectoryInfo(FilePathToCheck);
+                                            dirs = Common.GetDirsInDirectory(dirToCheck);
+
+                                            foreach (Delimon.Win32.IO.DirectoryInfo dir1 in dirs)
+                                            {
+
+                                                blIgnoreSourceDirectory = false;
+
+
+
+                                                //If the service is shutting down we need to stop traversing the folders
+                                                if (blShuttingDown)
+                                                {
+                                                    throw new Exception("Ransomware Detection Service Shutting Down");
+                                                }
+                                                try
+                                                {
+                                                    try
+                                                    {
+                                                        if (CheckSubFolders)
                                                         {
-                                                            if (dir1.Name.ToLower() == strExclude.ToLower())
+                                                            //Check if SourceFolder is one of the sub folders.  (would create extra source directories inside a source directory if not ignored)
+                                                            if (CheckMainFolder && CheckSubFolders)
                                                             {
-                                                                blIgnoreSourceDirectory = true;
+                                                                System.Collections.Generic.List<Delimon.Win32.IO.DirectoryInfo> Sourcedirs;
+                                                                Delimon.Win32.IO.DirectoryInfo dirSourceToCheck = new Delimon.Win32.IO.DirectoryInfo(SourcePath);
+                                                                Sourcedirs = Common.GetDirsInDirectory(dirSourceToCheck);
+                                                                foreach (Delimon.Win32.IO.DirectoryInfo sdir1 in Sourcedirs)
+                                                                {
+
+                                                                    if (sdir1.Name == dir1.Name)
+                                                                    {
+                                                                        blIgnoreSourceDirectory = true;
+                                                                    }
+
+                                                                }
+                                                                Sourcedirs.Clear();
+                                                            }
+
+                                                            //Check if excluded folder is the current folder being checked.
+                                                            char[] delimiters = new char[] { ';' };
+                                                            string[] strArr_excludedfolders = ExcludeFolders.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+
+                                                            if (blIgnoreSourceDirectory == false && !(strArr_excludedfolders == null || strArr_excludedfolders.Length == 0))
+                                                            {
+                                                                //loop through excluded folders
+                                                                foreach (string strExclude in strArr_excludedfolders)
+                                                                {
+                                                                    if (dir1.Name.ToLower() == strExclude.ToLower())
+                                                                    {
+                                                                        blIgnoreSourceDirectory = true;
+                                                                    }
+                                                                }
+                                                            }
+                                                            if (blIgnoreSourceDirectory)
+                                                            {
+                                                                continue;
                                                             }
                                                         }
                                                     }
-                                                    if (blIgnoreSourceDirectory)
+                                                    catch (Exception ex)
                                                     {
-                                                        continue;
+                                                        string strErr = ex.Message + ": " + ex.Source + " Sourcedirs  " + ex.StackTrace;
+                                                        WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8000, 80, false);
                                                     }
-                                                }
-                                            }
-                                            catch (Exception ex)
-                                            {
-                                                string strErr = ex.Message + ": " + ex.Source + " Sourcedirs  " + ex.StackTrace;
-                                                WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8000, 80, false);
-                                            }
-                                            
-                                            
 
-                                            //Check sub folders for contents of sourcepath
-                                            SourceFile = file1.FullName;
-                                            FileToCheck = Common.WindowsPathCombine(dir1.FullName, file1.FullName, SourcePath);
-                                            //Copy to Sub Folders and check the files too
-                                            if (CopySourceFilesSubFolders)
+
+
+                                                    //Check sub folders for contents of sourcepath
+                                                    SourceFile = file1.FullName;
+                                                    FileToCheck = Common.WindowsPathCombine(dir1.FullName, file1.FullName, SourcePath);
+                                                    //Copy to Sub Folders and check the files too
+                                                    if (CopySourceFilesSubFolders)
+                                                    {
+                                                        if (Common.FileExists(FileToCheck) == false)  //file is missing
+                                                        {
+                                                            FilesMissing.Add(new ContentDetectorLib.FileResult(FileToCheck, "File Missing FileToCheck when compared with SourceFile: " + SourceFile));
+
+                                                            if (ExecuteCommandOnDetectFileMissing)
+                                                            {
+                                                                //get next file or folder owner
+                                                                //ransomwareDetectedCommand(Common.GetFileOwner(FileToCheck));
+                                                                //left off here
+                                                                string strUsername = getUsernameFromFolder(dir1.FullName);
+                                                                ransomwareDetectedCommand(strUsername, FileToCheck, dir1.FullName);
+                                                            }
+                                                            //Create Source Folder Structure in each immediate subfolder in FilePathToCheck
+                                                            Common.CreateDestinationFolders(SourcePath, dir1.FullName);
+                                                            //Only copy the file to a 1st layer sub folder if it does not exist.  (We want to keep source files there for checking of changes)
+                                                            Delimon.Win32.IO.File.Copy(SourceFile, FileToCheck, false);
+
+                                                            string strErr = "FileCompare: File Compare Failed! FileToCheck in subfolder, File Did Not Exist! (Possible Ransomware, unless user deleted) and File Copied: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
+                                                            WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8003, 80, false);
+                                                        }
+                                                        else  //file exists, contents need to be checked
+                                                        {
+                                                            //compare source file in this subfolder
+                                                            blFileSame = Compare_Files(SourceFile, FileToCheck);
+                                                            if (blFileSame == false)
+                                                            {
+                                                                //Add file to list for emailing later!
+                                                                FilesDifferent.Add(new ContentDetectorLib.FileResult(FileToCheck, "File Different FilePathToCheck from SourceFile: " + SourceFile));
+
+                                                                if (ExecuteCommandOnDetectFileDifferent)
+                                                                {
+                                                                    ransomwareDetectedCommand(Common.GetFileOwner(FileToCheck),FileToCheck,new Delimon.Win32.IO.FileInfo(FileToCheck).Directory.FullName);
+                                                                }
+
+                                                                string strErr = "FileCompare: File Compare Failed! (Possible Ransomware Change Detected) SourceFile: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
+                                                                WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8002, 80, false);
+                                                            }
+                                                            else    //File is the same
+                                                            {
+                                                                string strErr = "FileCompare: File Compare Succeeded SourceFile: " + SourceFile + " Same as FileToCheck: " + FileToCheck;
+                                                                WriteError(strErr, System.Diagnostics.EventLogEntryType.Information, 8001, 80, true);
+                                                            }
+                                                        }
+                                                    }
+                                                    else       //Do Not Copy Sub folders, but check files
+                                                    {
+                                                        if (Common.FileExists(FileToCheck) == false)  //file is missing
+                                                        {
+                                                            FilesMissing.Add(new ContentDetectorLib.FileResult(FileToCheck, "File Missing from FilePathToCheck: SourceFile: " + SourceFile));
+
+                                                            if (ExecuteCommandOnDetectFileMissing)
+                                                            {
+                                                                //get next file or folder owner
+                                                                //ransomwareDetectedCommand(Common.GetFileOwner(FileToCheck));
+                                                                
+                                                                string strUsername = getUsernameFromFolder(dir1.FullName);
+                                                                ransomwareDetectedCommand(strUsername, FileToCheck, dir1.FullName);
+                                                            }
+
+                                                            string strErr = "FileCompare: File Compare Failed! FileToCheck in subfolder, File Did Not Exist!: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
+                                                            WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8003, 80, false);
+                                                        }
+                                                        else  //file exists, check contents of the file
+                                                        {
+                                                            //compare source file in this subfolder
+                                                            blFileSame = Compare_Files(SourceFile, FileToCheck);
+                                                            if (blFileSame == false)
+                                                            {
+                                                                //Add file to list for emailing later!
+                                                                FilesDifferent.Add(new ContentDetectorLib.FileResult(FileToCheck, "SourceFile: " + SourceFile + " Different than FileToCheck"));
+
+                                                                if (ExecuteCommandOnDetectFileDifferent)
+                                                                {
+                                                                    ransomwareDetectedCommand(Common.GetFileOwner(FileToCheck), FileToCheck, new Delimon.Win32.IO.FileInfo(FileToCheck).Directory.FullName);
+                                                                }
+
+                                                                string strErr = "FileCompare: File Compare Failed! SourceFile: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
+                                                                WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8002, 80, false);
+                                                            }
+                                                            else    //file contents are the same
+                                                            {
+                                                                string strErr = "FileCompare: File Compare Succeeded SourceFile: " + SourceFile + " Same as FileToCheck: " + FileToCheck;
+                                                                WriteError(strErr, System.Diagnostics.EventLogEntryType.Information, 8001, 80, true);
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                catch (Exception ex)
+                                                {
+                                                    string strErr = ex.Message + ": " + ex.Source + " foreach sub folder  " + ex.StackTrace;
+                                                    WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8000, 80, false);
+
+                                                }
+
+
+                                            } //end for each loop sub folders check/copy
+
+                                            dirs.Clear();
+
+                                        }
+                                        else
+                                        {   //CheckSubFolders==false || Common.DirectoryExists(FilePathToCheck) == false
+                                            //Directory does not exist error and copy files is not checked
+                                            if (Common.DirectoryExists(FilePathToCheck) == false)
                                             {
-                                                if (Common.FileExists(FileToCheck) == false)  //file is missing
+                                                FilesMissing.Add(new ContentDetectorLib.FileResult(FilePathToCheck, "File Compare Failed Directory for FilePathToCheck Does not Exist"));
+                                                //ContentDetectorLib.FileResult result = new ContentDetectorLib.FileResult(FilePathToCheck, "FileCompare: File Compare Failed Directory for FilePathToCheck Does not Exist: " + FilePathToCheck);
+                                                if (ExecuteCommandOnDetectFolderMissing)
                                                 {
-                                                    FilesMissing.Add(new ContentDetectorLib.FileResult(FileToCheck, "File Missing FileToCheck when compared with SourceFile: " + SourceFile));
-                                                    //Create Source Folder Structure in each immediate subfolder in FilePathToCheck
-                                                    Common.CreateDestinationFolders(SourcePath, dir1.FullName);
-                                                    //Only copy the file to a 1st layer sub folder if it does not exist.  (We want to keep source files there for checking of changes)
-                                                    Delimon.Win32.IO.File.Copy(SourceFile, FileToCheck,false);
-                                                    
-                                                    string strErr = "FileCompare: File Compare Failed! FileToCheck in subfolder, File Did Not Exist! (Possible Ransomware, unless user deleted) and File Copied: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
-                                                    WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8003, 80, false);
+                                                    //folder missing
+                                                    //left off here
+                                                    ransomwareDetectedCommand("", "", FilePathToCheck);
                                                 }
-                                                else  //file exists, contents need to be checked
-                                                {
-                                                    //compare source file in this subfolder
-                                                    blFileSame = Compare_Files(SourceFile, FileToCheck);
-                                                    if (blFileSame == false)
-                                                    {
-                                                        //Add file to list for emailing later!
-                                                        FilesDifferent.Add(new ContentDetectorLib.FileResult(FileToCheck, "File Different FilePathToCheck from SourceFile: " + SourceFile));
-                                                        
-                                                        string strErr = "FileCompare: File Compare Failed! (Possible Ransomware Change Detected) SourceFile: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
-                                                        WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8002, 80, false);
-                                                    }
-                                                    else    //File is the same
-                                                    {
-                                                        string strErr = "FileCompare: File Compare Succeeded SourceFile: " + SourceFile + " Same as FileToCheck: " + FileToCheck;
-                                                        WriteError(strErr, System.Diagnostics.EventLogEntryType.Information, 8001, 80, true);
-                                                    }
-                                                }
-                                            }
-                                            else       //Do Not Copy Sub folders, but check files
-                                            {
-                                                if (Common.FileExists(FileToCheck) == false)  //file is missing
-                                                {
-                                                    FilesMissing.Add(new ContentDetectorLib.FileResult(FileToCheck, "File Missing from FilePathToCheck: SourceFile: " + SourceFile));
-                                                    
-                                                    string strErr = "FileCompare: File Compare Failed! FileToCheck in subfolder, File Did Not Exist!: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
-                                                    WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8003, 80, false);
-                                                }
-                                                else  //file exists, check contents of the file
-                                                {
-                                                    //compare source file in this subfolder
-                                                    blFileSame = Compare_Files(SourceFile, FileToCheck);
-                                                    if (blFileSame == false)
-                                                    {
-                                                        //Add file to list for emailing later!
-                                                        FilesDifferent.Add(new ContentDetectorLib.FileResult(FileToCheck, "SourceFile: " + SourceFile + " Different than FileToCheck"));
-                                                        
-                                                        string strErr = "FileCompare: File Compare Failed! SourceFile: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
-                                                        WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8002, 80, false);
-                                                    }
-                                                    else    //file contents are the same
-                                                    {
-                                                        string strErr = "FileCompare: File Compare Succeeded SourceFile: " + SourceFile + " Same as FileToCheck: " + FileToCheck;
-                                                        WriteError(strErr, System.Diagnostics.EventLogEntryType.Information, 8001, 80, true);
-                                                    }
-                                                }
+
+                                                string strErr = "FileCompare: File Compare Failed Directory for FilePathToCheck Does not Exist: " + FilePathToCheck;
+                                                WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8007, 80, false);
                                             }
                                         }
-                                        catch (Exception ex)
-                                        {
-                                            string strErr = ex.Message + ": " + ex.Source + " foreach sub folder  " + ex.StackTrace;
-                                            WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8000, 80, false);
-                                            
-                                        }
-                                        
-                                        
-                                    } //end for each loop sub folders check/copy
 
-                                    dirs.Clear();
-
-                                }
-                                else
-                                {
-                                    //Directory does not exist error and copy files is not checked
-                                    if (Common.DirectoryExists(FilePathToCheck) == false)
-                                    {
-                                        FilesMissing.Add(new ContentDetectorLib.FileResult(FilePathToCheck, "File Compare Failed Directory for FilePathToCheck Does not Exist"));
-                                        //ContentDetectorLib.FileResult result = new ContentDetectorLib.FileResult(FilePathToCheck, "FileCompare: File Compare Failed Directory for FilePathToCheck Does not Exist: " + FilePathToCheck);
-
-                                        string strErr = "FileCompare: File Compare Failed Directory for FilePathToCheck Does not Exist: " + FilePathToCheck;
-                                        WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8007, 80, false);
                                     }
+
                                 }
+                                catch (Exception ex1)      //unknown error
+                                {
 
-
-
+                                    string strErr = ex1.Message + ": " + ex1.Source + " inside main for each  " + ex1.StackTrace;
+                                    WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8000, 80, false);
+                                }
                             }
-                            catch (Exception ex1)      //unknown error
-                            {
-
-                                string strErr = ex1.Message + ": " + ex1.Source + " inside main for each  " + ex1.StackTrace;
-                                WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 8000, 80, false);
-                            }
+                            //end loop
                         }
-                        //end loop
                     }
-
 
 
                     if (Common.FixNullstring(ExportCSVPath).Trim() != "" && Common.DirectoryExists(ExportCSVPath))

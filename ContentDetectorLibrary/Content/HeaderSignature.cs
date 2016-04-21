@@ -230,7 +230,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 				if ( ignoreExtension ||
 					MatchesFileExtension( filePath.Extension ) )
 				{
-                    using (FileStream fs = filePath.Open(Delimon.Win32.IO.FileMode.Open,Delimon.Win32.IO.FileAccess.Read,Delimon.Win32.IO.FileShare.Read))
+                    using (FileStream fs = filePath.Open(Delimon.Win32.IO.FileMode.Open,Delimon.Win32.IO.FileAccess.Read,Delimon.Win32.IO.FileShare.ReadWrite))
 					{
 						return MatchesStream( fs );
 					}
@@ -312,9 +312,10 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 				new HeaderSignature(0,20,@"474946383961", "GIF 89A", new string[] { @".gif" }, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,20,@"474946383761", "GIF 87A", new string[] { @".gif" }, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,4,@"424D", "Windows Bitmap", new string[] { @".bmp" }, ProhibitionMode.Allowed ),
-				new HeaderSignature(0,20,@"504B0304140006000800000021", "Microsoft Office Open XML Format", new string[] { @".docx",@".pptx",@".xlsx", @".vsdx", @".dotx",@"dotm",@"docm",@".ppsx", @".potx"}, ProhibitionMode.Allowed ),
-                new HeaderSignature(0,20,@"504B030414000600", "Microsoft Office Open XML Format", new string[] { @".docx",@".pptx",@".xlsx", @".vsdx", @".dotx",@"dotm",@"docm",@".ppsx", @".potx"}, ProhibitionMode.Allowed ),
-				new HeaderSignature(0,20,@"504B030414000200", "Microsoft Office Open XML Format", new string[] { @".docx",@".pptx",@".xlsx", @".vsdx", @".dotx",@"dotm",@"docm",@".ppsx", @".potx"}, ProhibitionMode.Allowed ),
+				new HeaderSignature(0,20,@"504B0304140006000800000021", "Microsoft Office Open XML Format", new string[] { @".doc",@".docx",@".pptx",@".xlsx", @".vsdx", @".dotx",@"dotm",@"docm",@".ppsx", @".potx"}, ProhibitionMode.Allowed ),
+                new HeaderSignature(0,20,@"504B030414000600", "Microsoft Office Open XML Format", new string[] { @".doc",@".docx",@".pptx",@".xlsx", @".vsdx", @".dotx",@"dotm",@"docm",@".ppsx", @".potx"}, ProhibitionMode.Allowed ),
+				new HeaderSignature(0,20,@"504B030414000200", "Microsoft Office Open XML Format", new string[] { @".doc",@".docx",@".pptx",@".xlsx", @".vsdx", @".dotx",@"dotm",@"docm",@".ppsx", @".potx"}, ProhibitionMode.Allowed ),
+				new HeaderSignature(0,20,@"504B03040A00", "Microsoft Office Open XML Format", new string[] { @".doc",@".docx",@".pptx",@".xlsx", @".vsdx", @".dotx",@"dotm",@"docm",@".ppsx", @".potx"}, ProhibitionMode.Allowed ),
 				
                 
                 
@@ -473,15 +474,24 @@ namespace RansomwareDetection.ContentDetectorLib.Content
                 new HeaderSignature(0,20,@"5075726368617365204F72646572", "pof file", new string[] { @".pof" }, ProhibitionMode.Allowed ),
                 new HeaderSignature( new PogSignatureChecker(), "POG File", new string[] { @".pog"}, ProhibitionMode.Allowed ),
                 new HeaderSignature(0,8,"49545346", "chm help file", new string[] { @".chm"}, ProhibitionMode.Allowed ),
-                new HeaderSignature(0,20,"690000000000000000", "bm2 board maker", new string[] { @".bm2"}, ProhibitionMode.Allowed ),
+                
                 new HeaderSignature(0,30,"5374616E6461726420", "MS Access", new string[] { @".mdb", @".accdb", @".accde", @".accdr",@".accdt",@".adp",@".ade"}, ProhibitionMode.Allowed ),
                 new HeaderSignature(0,10,@"504B0304", "Open Document format", new string[] { @".odt",@".ods",@".odp"}, ProhibitionMode.Allowed ),
 				
                 
+                new HeaderSignature(0,3,@"100", "Icon File", new string[] { @".ico" }, ProhibitionMode.Allowed ),
                 new HeaderSignature(0,10,@"00000100", "Icon File", new string[] { @".ico" }, ProhibitionMode.Allowed ),
                 new HeaderSignature(0,16,@"667479704D3441", "Apple Lossless Audio Codec file", new string[] { @".m4a" }, ProhibitionMode.Allowed ),
                 new HeaderSignature(0,50,@"3C21444F4354595045", "HyperText Markup Language 3", new string[] { @".htm", @".html" }, ProhibitionMode.Allowed ),
                 new HeaderSignature(0,0,@"3C68746D6C", "HyperText Markup Language 3", new string[] { @".htm", @".html" }, ProhibitionMode.Allowed ),
+                new HeaderSignature(0,16,@"C5D0D3C6", "EPS Image", new string[] { @".eps" }, ProhibitionMode.Allowed ),
+                new HeaderSignature(0,2,@"3C", "xml file", new string[] { @".xml" }, ProhibitionMode.Allowed ),
+                new HeaderSignature(0,6,@"FE37001C00", "MS Word", new string[] { @".doc", @".xls", @".xlt", @".ppt", @".apr", @".dot", @".pps",@".wps",@".vsd",@".qbm",@".pub",@".adp",@".ade",@"docm" }, ProhibitionMode.Allowed ),
+                new HeaderSignature(0,20,@"B168DE3A0410", "DCX Survey file", new string[] { @".dcx" }, ProhibitionMode.Allowed ),
+                new HeaderSignature(0,20,"690000000000000000", "bm2 board maker", new string[] { @".bm2"}, ProhibitionMode.Allowed ),
+                new HeaderSignature(0,20,"770000000000000000", "bm2 board maker", new string[] { @".bm2"}, ProhibitionMode.Allowed ),
+                new HeaderSignature(0,30,"0101D430", "bm2 board maker", new string[] { @".bm2"}, ProhibitionMode.Allowed ),
+                new HeaderSignature(0,30,"0A020101000000009F0697", "pcx survey", new string[] { @".pcx"}, ProhibitionMode.Allowed ),
                 //new HeaderSignature(3,"000019000E", "POG File", new string[] { @".pog"}, ProhibitionMode.Allowed ),
                 /*new HeaderSignature( @"", "Windows Media", new string[] { @".wmv", @".asf" }, ProhibitionMode.Prohibited ),*/
 				
@@ -656,7 +666,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
             //504B
 
 
-            using (FileStream fs = file1.Open(Delimon.Win32.IO.FileMode.Open, Delimon.Win32.IO.FileAccess.Read, Delimon.Win32.IO.FileShare.Read))
+            using (FileStream fs = file1.Open(Delimon.Win32.IO.FileMode.Open, Delimon.Win32.IO.FileAccess.Read, Delimon.Win32.IO.FileShare.ReadWrite))
             {
                 if (fs == null)
                 {

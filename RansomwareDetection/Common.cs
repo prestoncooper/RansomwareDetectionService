@@ -355,6 +355,80 @@ namespace RansomwareDetection.DetectionLib
             return strPath;
         }
 
+        public static bool TestAcl(Microsoft.Win32.Security.Dacl acl, string userName)
+        {
+            for (int i = 0; i < acl.AceCount; i++)
+            {
+                Microsoft.Win32.Security.Ace ace = acl.GetAce(i);
+                if (ace.Sid.AccountName == userName)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public static bool TestAcl(string strPath, string userName)
+        {
+            Microsoft.Win32.Security.SecurityDescriptor secDesc;
+
+            secDesc = Microsoft.Win32.Security.SecurityDescriptor.GetFileSecurity(strPath, Microsoft.Win32.Security.SECURITY_INFORMATION.DACL_SECURITY_INFORMATION);
+                    Microsoft.Win32.Security.Dacl dacl = secDesc.Dacl;
+
+            return TestAcl(dacl,userName);        
+        }
+
+
+        public static List<string> GetAclUsernames(string strPath)
+        {
+            Microsoft.Win32.Security.SecurityDescriptor secDesc;
+            List<string> lUsernames = new List<string>();
+
+            try
+            {
+                secDesc = Microsoft.Win32.Security.SecurityDescriptor.GetFileSecurity(strPath, Microsoft.Win32.Security.SECURITY_INFORMATION.DACL_SECURITY_INFORMATION);
+                Microsoft.Win32.Security.Dacl dacl = secDesc.Dacl;
+
+                for (int i = 0; i < dacl.AceCount; i++)
+                {
+                    Microsoft.Win32.Security.Ace ace = dacl.GetAce(i);
+                    lUsernames.Add(ace.Sid.AccountName);
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+
+            return lUsernames;
+        }
+
+        public static List<string> GetAclFullUsernames(string strPath)
+        {
+            Microsoft.Win32.Security.SecurityDescriptor secDesc;
+            string strFullUsername = "";
+            List<string> lUsernames = new List<string>();
+
+            try
+            {
+                secDesc = Microsoft.Win32.Security.SecurityDescriptor.GetFileSecurity(strPath, Microsoft.Win32.Security.SECURITY_INFORMATION.DACL_SECURITY_INFORMATION);
+                Microsoft.Win32.Security.Dacl dacl = secDesc.Dacl;
+
+                for (int i = 0; i < dacl.AceCount; i++)
+                {
+                    Microsoft.Win32.Security.Ace ace = dacl.GetAce(i);
+                    strFullUsername = ace.Sid.DomainName + "\\" + ace.Sid.AccountName;
+                    lUsernames.Add(strFullUsername);
+                }
+            }
+            catch (Exception)
+            {
+                
+            }
+            
+            return lUsernames;
+        }
+
         /// <summary>
         /// Get File Owner from FullFilePath works with long file paths
         /// </summary>
@@ -371,6 +445,9 @@ namespace RansomwareDetection.DetectionLib
                 {
                     secDesc = Microsoft.Win32.Security.SecurityDescriptor.GetFileSecurity(strLongFilePath, Microsoft.Win32.Security.SECURITY_INFORMATION.OWNER_SECURITY_INFORMATION);
                     strOwner = Common.FixNullstring(secDesc.Owner.DomainName) + "\\" + Common.FixNullstring(secDesc.Owner.AccountName);
+                    
+                    
+                    
                 }
 
             }
@@ -594,7 +671,7 @@ namespace RansomwareDetection.DetectionLib
             try
             {
                 file.IsReadOnly = false;
-                stream = new FileStream(file.FullName, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
+                stream = new FileStream(file.FullName, FileMode.Open, FileAccess.ReadWrite, FileShare.Read);
             }
             catch (Exception)
             {

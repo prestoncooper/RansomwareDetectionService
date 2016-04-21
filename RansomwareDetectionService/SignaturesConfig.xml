@@ -89,24 +89,13 @@
     <Comment />
   </SignaturesConfig>
   <SignaturesConfig>
-    <ID>10</ID>
-    <Enabled>true</Enabled>
-    <ByteOffset>0</ByteOffset>
-    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
-    <HexPattern>504B0304140006000800000021</HexPattern>
-    <SignatureName>Microsoft Office Open XML Format 1</SignatureName>
-    <FileExtensions>.docx;.pptx;.xlsx;.vsdx;.dotx;.dotm;.docm;.ppsx;.potx;</FileExtensions>
-    <Prohibited>False</Prohibited>
-    <Comment />
-  </SignaturesConfig>
-  <SignaturesConfig>
     <ID>13</ID>
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
     <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
-    <HexPattern>504B030414000600</HexPattern>
-    <SignatureName>Microsoft Office Open XML Format 2</SignatureName>
-    <FileExtensions>.docx;.pptx;.xlsx;.vsdx;.dotx;.dotm;.docm;.ppsx;.potx;</FileExtensions>
+    <HexPattern>504B0304140006</HexPattern>
+    <SignatureName>Microsoft Office Open XML Format 1</SignatureName>
+    <FileExtensions>.doc;.docx;.pptx;.xlsx;.vsdx;.dotx;.dotm;.docm;.ppsx;.potx;</FileExtensions>
     <Prohibited>False</Prohibited>
     <Comment />
   </SignaturesConfig>
@@ -115,9 +104,9 @@
     <Enabled>true</Enabled>
     <ByteOffset>0</ByteOffset>
     <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
-    <HexPattern>504B030414000200</HexPattern>
-    <SignatureName>Microsoft Office Open XML Format 3</SignatureName>
-    <FileExtensions>.docx;.pptx;.xlsx;.vsdx;.dotx;.dotm;.docm;.ppsx;.potx;</FileExtensions>
+    <HexPattern>504B0304140002</HexPattern>
+    <SignatureName>Microsoft Office Open XML Format 2</SignatureName>
+    <FileExtensions>.doc;.docx;.pptx;.xlsx;.vsdx;.dotx;.dotm;.docm;.ppsx;.potx;</FileExtensions>
     <Prohibited>False</Prohibited>
     <Comment />
   </SignaturesConfig>
@@ -1691,7 +1680,6 @@
     <HexPattern>494433</HexPattern>
     <SignatureName>mp3 Audio File IDT</SignatureName>
     <FileExtensions>.mp3;.mpeg;.mpg;</FileExtensions>
-    <Prohibited>False</Prohibited>
     <Comment />
   </SignaturesConfig>
   <SignaturesConfig>
@@ -1702,7 +1690,6 @@
     <HexPattern>FF</HexPattern>
     <SignatureName>mp3 Audio File</SignatureName>
     <FileExtensions>.mp3;.mpeg;.mpg;</FileExtensions>
-    <Prohibited>False</Prohibited>
     <Comment />
   </SignaturesConfig>
   <SignaturesConfig>
@@ -1711,7 +1698,7 @@
     <ByteOffset>0</ByteOffset>
     <FirstNumberOfBytesToRead>8</FirstNumberOfBytesToRead>
     <HexPattern>FF575043</HexPattern>
-    <SignatureName>MS Word</SignatureName>
+    <SignatureName>MS Office</SignatureName>
     <FileExtensions>.doc;.xls;.xlt;.ppt;.apr;.dot;.pps;.wps;.vsd;.qbm;.pub;.adp;.ade;.docm;</FileExtensions>
     <Prohibited>False</Prohibited>
     <Comment />
@@ -1801,6 +1788,105 @@
     <HexPattern>690000000000000000</HexPattern>
     <SignatureName>bm2 board maker</SignatureName>
     <FileExtensions>.bm2;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>173</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
+    <HexPattern>0A020101000000009F0697</HexPattern>
+    <SignatureName>pcx survey</SignatureName>
+    <FileExtensions>.pcx;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>174</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>00000100</HexPattern>
+    <SignatureName>Icon File</SignatureName>
+    <FileExtensions>.ico;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>175</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
+    <HexPattern>770000000000000000</HexPattern>
+    <SignatureName>Board Maker</SignatureName>
+    <FileExtensions>.bm2;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>176</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
+    <HexPattern>0101D430</HexPattern>
+    <SignatureName>Board Maker</SignatureName>
+    <FileExtensions>.bm2;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>177</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
+    <HexPattern>B168DE3A0410</HexPattern>
+    <SignatureName>dcx survey</SignatureName>
+    <FileExtensions>.dcx;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>178</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>FE37001C00</HexPattern>
+    <SignatureName>MS Office</SignatureName>
+    <FileExtensions>.doc;.xls;.xlt;.ppt;.apr;.dot;.pps;.wps;.vsd;.qbm;.pub;.adp;.ade;.docm;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>179</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>2</FirstNumberOfBytesToRead>
+    <HexPattern>3C</HexPattern>
+    <SignatureName>XML</SignatureName>
+    <FileExtensions>.xml;.config;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>181</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>504B03040A00</HexPattern>
+    <SignatureName>Microsoft Office Open XML Format 3</SignatureName>
+    <FileExtensions>.doc;.docx;.pptx;.xlsx;.vsdx;.dotx;.dotm;.docm;.ppsx;.potx;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>182</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>C5D0D3C6</HexPattern>
+    <SignatureName>EPS Image</SignatureName>
+    <FileExtensions>.eps;</FileExtensions>
     <Prohibited>False</Prohibited>
     <Comment />
   </SignaturesConfig>

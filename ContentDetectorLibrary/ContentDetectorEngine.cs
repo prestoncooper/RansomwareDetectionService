@@ -516,7 +516,7 @@ namespace RansomwareDetection.ContentDetectorLib
                     {
                         if (blValidateZipFiles && HeaderSignature.ZipRelatedExtension(filePath.Extension))
                         {
-                            using (Stream filestream1 = filePath.Open(Delimon.Win32.IO.FileMode.Open, Delimon.Win32.IO.FileAccess.Read, Delimon.Win32.IO.FileShare.Read))
+                            using (Stream filestream1 = filePath.Open(Delimon.Win32.IO.FileMode.Open, Delimon.Win32.IO.FileAccess.Read, Delimon.Win32.IO.FileShare.ReadWrite))
                             {
                                 
                                 try
@@ -539,7 +539,7 @@ namespace RansomwareDetection.ContentDetectorLib
                                 {
                                     WriteError(
                                         string.Format(
-                                        @"Audit Folder ContentDetectorEngine: [{0}/{1}] Error Zip Checking file '{2}' ({3:0,0} bytes).",
+                                        @"Audit Folder ContentDetectorEngine: [{0}/{1}] Error Zip Checking file '{2}' ({3:0,0} bytes). " + ex.Message,
                                         index + 1, filePaths.Length,
                                         filePath.FullName,
                                         filePath.Length), System.Diagnostics.EventLogEntryType.Error, 6000, 60, false);

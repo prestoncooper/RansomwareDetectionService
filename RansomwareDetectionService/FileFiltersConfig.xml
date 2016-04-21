@@ -118,6 +118,7 @@
     <ID>20</ID>
     <Enabled>true</Enabled>
     <FileFilter>*.enc</FileFilter>
+    <ExcludeFiles>DellInst.enc;</ExcludeFiles>
     <ObjectType>File</ObjectType>
   </FileFiltersConfig>
   <FileFiltersConfig>
@@ -1175,5 +1176,315 @@
     <Enabled>true</Enabled>
     <FileFilter>ATTENTION.RTF</FileFilter>
     <ObjectType>File</ObjectType>
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>197</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>jbossass.jsp</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>198</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>jbossass_jsp.class</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>199</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>shellinvoker.jsp</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>200</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>shellinvoker_jsp.class</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>201</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>mela.jsp</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>202</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>mela_jsp.class</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>203</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>zecmd.jsp</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>204</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>zecmd_jsp.class</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>205</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>cmd.jsp</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>206</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>cmd_jsp.class</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>207</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>wstats.jsp</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>208</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>wstats_jsp.class</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>209</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>idssvc.jsp</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>210</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>idssvc_jsp.class</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>211</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>iesvc.jsp</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>212</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>iesvc_jsp.class</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>213</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>*.kkk</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>214</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>*.fun</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>215</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>*.gws</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>216</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>*.btc</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>217</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>*.surprise</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>218</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>*.rokku</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>219</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>*_UNLOCK.TXT</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>220</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>*_UNLOCK.HTML</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>221</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>*.coverton</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>222</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>*.enigma</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>223</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>*.czvxce</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>224</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>*-WARNING-*.html</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>225</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>*-WARNING-*.txt</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>226</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>*.crypted</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>227</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>*.PoAr2w</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
   </FileFiltersConfig>
 </DocumentElement>
