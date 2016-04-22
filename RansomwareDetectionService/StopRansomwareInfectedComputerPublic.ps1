@@ -2,11 +2,19 @@
 
 import-module ActiveDirectory
 
+#Prerequisites for this Powershell script
+#RSAT Tools
+    #RSAT Tools for Windows 10                 https://www.microsoft.com/en-us/download/details.aspx?id=45520&751be11f-ede8-5a0c-058c-2ee190a24fa6=True&e6b34bbe-475b-1abd-2c51-b5034bcdd6d2=True
+    #RSAT Tools for Windows 8.1                https://www.microsoft.com/en-us/download/details.aspx?id=39296&e6b34bbe-475b-1abd-2c51-b5034bcdd6d2=True
+    #RSAT Tools for Windows 7 SP1              https://www.microsoft.com/en-us/download/details.aspx?id=7887
+
+#RansomwareDetectionService 2.0.4.1 or higher  https://ransomwaredetectionservice.codeplex.com/
+#MySQL NET Connector 6.9 or higher             https://dev.mysql.com/downloads/connector/net/6.9.html  c# MySQL Connector can be downloaded here install on the computer you are using to run this script
 
 #*********************************************************************************************************************
 # Object Name: StopRansomwareInfectedComputerPublic.ps1
 # Object Type: Powershell 2.0 script
-# Related Objects: MySQL Connector 6.9 and Dell Kace K1000
+# Related Objects: MySQL Connector 6.9, Dell Kace K1000, RSAT Tools, RansomwareDetectionService
 # Object Description: This will accept the username as a parameter from the Ransomware Detection Service and query 
 #					the dell kace k1000 mysql host for the computers associated with the username with ransomware activity
 

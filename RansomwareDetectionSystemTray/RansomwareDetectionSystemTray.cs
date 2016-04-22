@@ -1444,7 +1444,7 @@ namespace RansomwareDetection
         {
             try
             {
-                if (dgvCompare.Columns[e.ColumnIndex].HeaderText == "SourcePath" || dgvCompare.Columns[e.ColumnIndex].HeaderText == "FilePathToCheck" || dgvCompare.Columns[e.ColumnIndex].HeaderText == "ExportCSVPath")
+                if (dgvCompare.Columns[e.ColumnIndex].HeaderText == "SourcePath" || dgvCompare.Columns[e.ColumnIndex].HeaderText == "FilePathToCheck" || dgvCompare.Columns[e.ColumnIndex].HeaderText == "ExportCSVPath"  || dgvCompare.Columns[e.ColumnIndex].HeaderText == "CommandWorkingDirectory")
                 {
                     DataGridViewTextBoxCell cell = dgvCompare[e.ColumnIndex, e.RowIndex] as DataGridViewTextBoxCell;
                     if (cell != null)
@@ -1486,6 +1486,25 @@ namespace RansomwareDetection
                         e.Cancel = true;
                     }
                 }
+                else if (dgvCompare.Columns[e.ColumnIndex].HeaderText == "CommandTimeout")
+                {
+                    DataGridViewTextBoxCell cell = dgvCompare[e.ColumnIndex, e.RowIndex] as DataGridViewTextBoxCell;
+                    if (cell != null)
+                    {
+                        if (Common.FixNullstring(e.FormattedValue).Length > 0)
+                        {
+                            int intctimeout = Common.FixNullInt32(e.FormattedValue.ToString());
+                            if (intctimeout < 0 || intctimeout > 2880)
+                            {
+                                MessageBox.Show("Only positive integer value less than 2880 is allowed.");
+                                e.Cancel = true;
+                            }
+
+
+                        }
+                    }
+                }
+
             }
             catch (Exception ex)
             {
@@ -1940,7 +1959,7 @@ namespace RansomwareDetection
         /// <param name="e"></param>
         private void dgvCompare_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvCompare.Columns[e.ColumnIndex].HeaderText == "SourcePath" || dgvCompare.Columns[e.ColumnIndex].HeaderText == "FilePathToCheck" || dgvCompare.Columns[e.ColumnIndex].HeaderText == "ExportCSVPath")
+            if (dgvCompare.Columns[e.ColumnIndex].HeaderText == "SourcePath" || dgvCompare.Columns[e.ColumnIndex].HeaderText == "FilePathToCheck" || dgvCompare.Columns[e.ColumnIndex].HeaderText == "ExportCSVPath" || dgvCompare.Columns[e.ColumnIndex].HeaderText == "CommandWorkingDirectory")
             {
                 DataGridViewTextBoxCell cell = dgvCompare[e.ColumnIndex, e.RowIndex] as DataGridViewTextBoxCell;
                 CellFolderBrowser(ref cell);

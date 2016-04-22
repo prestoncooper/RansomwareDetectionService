@@ -2,9 +2,9 @@
 <DocumentElement>
   <CompareConfig>
     <ID>1</ID>
-    <Enabled>true</Enabled>
-    <Title>test reg</Title>
-    <Time>13:33</Time>
+    <Enabled>false</Enabled>
+    <Title>test home directory only</Title>
+    <Time>08:40</Time>
     <IntervalType>Daily</IntervalType>
     <Interval>0</Interval>
     <Monday>true</Monday>
@@ -28,12 +28,20 @@
     <December>true</December>
     <DayOfMonth>0</DayOfMonth>
     <SourcePath>C:\TEMP\source</SourcePath>
-    <FilePathToCheck>C:\TEMP\filestocheck</FilePathToCheck>
+    <FilePathToCheck>C:\TEMP\newtest</FilePathToCheck>
     <CheckSubFolders>True</CheckSubFolders>
-    <CopySourceFilesSubFolders>false</CopySourceFilesSubFolders>
+    <ExportCSVPath>C:\TEMP\ExportCSV</ExportCSVPath>
+    <ExportFilesDifferentToCSV>True</ExportFilesDifferentToCSV>
+    <ExportFilesMissingToCSV>True</ExportFilesMissingToCSV>
+    <ExecuteCommandOnUserScopeOnly>True</ExecuteCommandOnUserScopeOnly>
+    <CommandWorkingDirectory>C:\Program Files (x86)\Ransomware Detection Service</CommandWorkingDirectory>
+    <CommandProgram>powershell.exe</CommandProgram>
+    <CommandArguments>-ExecutionPolicy UNRESTRICTED -File "C:\Program Files (x86)\Ransomware Detection Service\StopRansomwareInfectedComputerPublic.ps1" -username [Username]</CommandArguments>
+    <CommandTimeout>10</CommandTimeout>
     <SendEmailOnFailure>True</SendEmailOnFailure>
     <SendEmailOnSuccess>True</SendEmailOnSuccess>
     <StartDate>2/15/2016</StartDate>
     <Comment />
+    <DetailedLogging>True</DetailedLogging>
   </CompareConfig>
 </DocumentElement>
