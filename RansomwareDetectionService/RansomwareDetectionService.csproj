@@ -109,6 +109,7 @@
     <None Include="RansomwareDetectionServiceDocumentation.docx" />
     <None Include="RansomwareDetectionServiceDocumentation.pdf" />
     <None Include="StopRansomwareInfectedComputerPublic.ps1" />
+    <None Include="StopRansomwareInfectedUserPublic.ps1" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
