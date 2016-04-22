@@ -108,6 +108,8 @@
     </None>
     <None Include="RansomwareDetectionServiceDocumentation.docx" />
     <None Include="RansomwareDetectionServiceDocumentation.pdf" />
+    <None Include="StartAllWindowsFileServersAfterRansomwareActivityDetected.cmd" />
+    <None Include="StopAllWindowsFileServersAfterRansomwareActivityDetected.cmd" />
     <None Include="StopRansomwareInfectedComputerPublic.ps1" />
     <None Include="StopRansomwareInfectedUserPublic.ps1" />
   </ItemGroup>

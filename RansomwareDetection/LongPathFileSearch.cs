@@ -199,7 +199,7 @@ namespace RansomwareDetection.DetectionLib
             try
             {
                 //If the pattern can convert to regex then it is a valid file filter
-                Regex regex = FindFilesPatternToRegex.Convert(pattern);
+                Regex regex = findFilesPatternToRegex.Convert(pattern);
                 return true;
             }
             catch (Exception)
@@ -212,7 +212,7 @@ namespace RansomwareDetection.DetectionLib
         /// <summary>
         /// This class is used to verify File Filters
         /// </summary>
-        internal static class FindFilesPatternToRegex
+        internal static class findFilesPatternToRegex
         {
             private static Regex HasQuestionMarkRegEx = new Regex(@"\?", RegexOptions.Compiled);
             private static Regex IlegalCharactersRegex = new Regex("[" + @"\/:<>|" + "\"]", RegexOptions.Compiled);

@@ -34,13 +34,13 @@
         "Entry"
         {
         "MsmKey" = "8:_15D79E4FDDD825355999D2EA0026C5C5"
-        "OwnerKey" = "8:_A343AFD26AB173A777F1723E2A652383"
+        "OwnerKey" = "8:_89F62414D2934618B7F3EDB520403314"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_15D79E4FDDD825355999D2EA0026C5C5"
-        "OwnerKey" = "8:_89F62414D2934618B7F3EDB520403314"
+        "OwnerKey" = "8:_A343AFD26AB173A777F1723E2A652383"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -76,7 +76,7 @@
         "Entry"
         {
         "MsmKey" = "8:_3FA4BB3D46BC8AF7879B062E01184822"
-        "OwnerKey" = "8:_CA28197264680E4ABF512A915F6F76D8"
+        "OwnerKey" = "8:_89F62414D2934618B7F3EDB520403314"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -88,7 +88,7 @@
         "Entry"
         {
         "MsmKey" = "8:_3FA4BB3D46BC8AF7879B062E01184822"
-        "OwnerKey" = "8:_89F62414D2934618B7F3EDB520403314"
+        "OwnerKey" = "8:_CA28197264680E4ABF512A915F6F76D8"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -118,7 +118,7 @@
         "Entry"
         {
         "MsmKey" = "8:_7E6724BCADDAEB2FAF18092D62BC0C01"
-        "OwnerKey" = "8:_A343AFD26AB173A777F1723E2A652383"
+        "OwnerKey" = "8:_89F62414D2934618B7F3EDB520403314"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -130,7 +130,7 @@
         "Entry"
         {
         "MsmKey" = "8:_7E6724BCADDAEB2FAF18092D62BC0C01"
-        "OwnerKey" = "8:_89F62414D2934618B7F3EDB520403314"
+        "OwnerKey" = "8:_A343AFD26AB173A777F1723E2A652383"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -166,13 +166,13 @@
         "Entry"
         {
         "MsmKey" = "8:_A343AFD26AB173A777F1723E2A652383"
-        "OwnerKey" = "8:_CA28197264680E4ABF512A915F6F76D8"
+        "OwnerKey" = "8:_89F62414D2934618B7F3EDB520403314"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_A343AFD26AB173A777F1723E2A652383"
-        "OwnerKey" = "8:_89F62414D2934618B7F3EDB520403314"
+        "OwnerKey" = "8:_CA28197264680E4ABF512A915F6F76D8"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -213,6 +213,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_E7A2AD1A00A24BC9AD9052E281819699"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_ED16BE60EA5D4A4B851295FDF8FB8C6F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_F0B835EB44BF4809971393F2EA3ABF3A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -226,25 +238,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_7E6724BCADDAEB2FAF18092D62BC0C01"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_15D79E4FDDD825355999D2EA0026C5C5"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_3FA4BB3D46BC8AF7879B062E01184822"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_A343AFD26AB173A777F1723E2A652383"
+        "OwnerKey" = "8:_89F62414D2934618B7F3EDB520403314"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -256,7 +250,25 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_89F62414D2934618B7F3EDB520403314"
+        "OwnerKey" = "8:_A343AFD26AB173A777F1723E2A652383"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_3FA4BB3D46BC8AF7879B062E01184822"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_15D79E4FDDD825355999D2EA0026C5C5"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_7E6724BCADDAEB2FAF18092D62BC0C01"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -589,7 +601,7 @@
             "ReadOnly" = "11:FALSE"
             "Hidden" = "11:FALSE"
             "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
+            "Permanent" = "11:TRUE"
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
@@ -848,6 +860,46 @@
             "Hidden" = "11:FALSE"
             "System" = "11:FALSE"
             "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E7A2AD1A00A24BC9AD9052E281819699"
+            {
+            "SourcePath" = "8:..\\RansomwareDetectionService\\StopAllWindowsFileServersAfterRansomwareActivityDetected.cmd"
+            "TargetName" = "8:StopAllWindowsFileServersAfterRansomwareActivityDetected.cmd"
+            "Tag" = "8:"
+            "Folder" = "8:_C5AF46734EA14A1AA9497D39D1F34E0A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:TRUE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_ED16BE60EA5D4A4B851295FDF8FB8C6F"
+            {
+            "SourcePath" = "8:..\\RansomwareDetectionService\\StartAllWindowsFileServersAfterRansomwareActivityDetected.cmd"
+            "TargetName" = "8:StartAllWindowsFileServersAfterRansomwareActivityDetected.cmd"
+            "Tag" = "8:"
+            "Folder" = "8:_C5AF46734EA14A1AA9497D39D1F34E0A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:TRUE"
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"

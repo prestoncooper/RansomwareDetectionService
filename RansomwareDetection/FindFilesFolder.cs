@@ -1026,7 +1026,7 @@ namespace RansomwareDetection.DetectionLib
             {
                 if (Enabled)
                 {
-                    WriteError("Ransomware Detection Service, Files Found Process: Started " + FilePathToCheck, System.Diagnostics.EventLogEntryType.Information, 9000, 90, true);
+                    writeError("Ransomware Detection Service, Files Found Process: Started " + FilePathToCheck, System.Diagnostics.EventLogEntryType.Information, 9000, 90, true);
 
                     FilesFound = new List<ContentDetectorLib.FileResult>();
                     FoldersFound = new List<ContentDetectorLib.FileResult>();
@@ -1058,28 +1058,28 @@ namespace RansomwareDetection.DetectionLib
 
                                         //Log error for ransomware file found
                                         string strerror = "Ransomware Detection Service, Find Files: Possible Ransomware File Found: " + frFile1.FullPath + " " + frFile1.Comment;
-                                        WriteError(strerror, System.Diagnostics.EventLogEntryType.Error, 9001, 90, false);
+                                        writeError(strerror, System.Diagnostics.EventLogEntryType.Error, 9001, 90, false);
                                     }
                                     else if (frFile1.ObjectType == ContentDetectorLib.Common.FileFilterObjectType.Folder && frFile1.Deleted == false)
                                     {
                                         //Add the Folder to the list
                                         FoldersFound.Add(frFile1);
                                         string strerror = "Ransomware Detection Service, Find Files: Possible Ransomware Folder Found: " + frFile1.FullPath + " " + frFile1.Comment;
-                                        WriteError(strerror, System.Diagnostics.EventLogEntryType.Error, 9001, 90, false);
+                                        writeError(strerror, System.Diagnostics.EventLogEntryType.Error, 9001, 90, false);
                                     }
                                     else if (frFile1.ObjectType == ContentDetectorLib.Common.FileFilterObjectType.None && frFile1.Deleted == false)
                                     {
                                         //Error
                                         ResultErrors.Add(frFile1);
                                         string strerror = "Ransomware Detection Service, Find Files: Error: " + frFile1.FullPath + " " + frFile1.Comment;
-                                        WriteError(strerror, System.Diagnostics.EventLogEntryType.Error, 9001, 90, false);
+                                        writeError(strerror, System.Diagnostics.EventLogEntryType.Error, 9001, 90, false);
                                     }
                                     else if (frFile1.Deleted)
                                     {
                                         //File Deleted
                                         FilesDeleted.Add(frFile1);
                                         string strerror = "Ransomware Detection Service, Find Files: Possible Ransomware File Found and Deleted: " + frFile1.FullPath + " " + frFile1.Comment;
-                                        WriteError(strerror, System.Diagnostics.EventLogEntryType.Error, 9001, 90, false);
+                                        writeError(strerror, System.Diagnostics.EventLogEntryType.Error, 9001, 90, false);
 
                                     }
                                     else
@@ -1089,7 +1089,7 @@ namespace RansomwareDetection.DetectionLib
 
                                         //Log error for ransomware file found
                                         string strerror = "Ransomware Detection Service, Find Files: Possible Ransomware File Found Unknown Error: " + frFile1.FullPath + " " + frFile1.Comment;
-                                        WriteError(strerror, System.Diagnostics.EventLogEntryType.Error, 9001, 90, false);
+                                        writeError(strerror, System.Diagnostics.EventLogEntryType.Error, 9001, 90, false);
                                     }
                                     
                                 }
@@ -1098,7 +1098,7 @@ namespace RansomwareDetection.DetectionLib
                             else
                             {
                                 string strerror = "Ransomware Detection Service, File Path Error: " + FilePathToCheck;   
-                                WriteError(strerror, System.Diagnostics.EventLogEntryType.Error, 9010, 90, false);
+                                writeError(strerror, System.Diagnostics.EventLogEntryType.Error, 9010, 90, false);
                             }
                             
 
@@ -1107,7 +1107,7 @@ namespace RansomwareDetection.DetectionLib
                         {
                             
                             string strerror = "Ransomware Detection Service, Files Found Error: " + FilePathToCheck + " Error: " + ex.Message + " Source: " + ex.Source + " Stack Trace: " + ex.StackTrace;
-                            WriteError(strerror, System.Diagnostics.EventLogEntryType.Error, 9002, 90, false);
+                            writeError(strerror, System.Diagnostics.EventLogEntryType.Error, 9002, 90, false);
 
                         }
                     }
@@ -1249,11 +1249,11 @@ namespace RansomwareDetection.DetectionLib
                             sbbody1.Clear();
                             if (SendEmailOnFailure)
                             {
-                                Send_Email(strSubject, strBody);
+                                send_Email(strSubject, strBody);
                             }
                             
                             
-                            WriteError(strBody, System.Diagnostics.EventLogEntryType.Error, 9004, 90, false);
+                            writeError(strBody, System.Diagnostics.EventLogEntryType.Error, 9004, 90, false);
 
                         }
                         else
@@ -1272,17 +1272,17 @@ namespace RansomwareDetection.DetectionLib
                             //send email on success
                             if (SendEmailOnSuccess)
                             {
-                                Send_Email(strSubject, strBody);
+                                send_Email(strSubject, strBody);
                             }
                             
-                            WriteError(strBody, System.Diagnostics.EventLogEntryType.Information, 9003, 90, true);
+                            writeError(strBody, System.Diagnostics.EventLogEntryType.Information, 9003, 90, true);
                         }
 
 
                     }
                     
 
-                    WriteError("Ransomware Detection Service, Files Found Process: Finished " + FilePathToCheck, System.Diagnostics.EventLogEntryType.Information, 9000, 90, true);
+                    writeError("Ransomware Detection Service, Files Found Process: Finished " + FilePathToCheck, System.Diagnostics.EventLogEntryType.Information, 9000, 90, true);
 
                 } //end enabled if
 
@@ -1290,7 +1290,7 @@ namespace RansomwareDetection.DetectionLib
             catch (Exception ex)
             {
                 string strErr = ex.Message + " Source: " + ex.Source + " StackTrace: " + ex.StackTrace; 
-                WriteError(strErr, System.Diagnostics.EventLogEntryType.Error, 9000, 90, false);
+                writeError(strErr, System.Diagnostics.EventLogEntryType.Error, 9000, 90, false);
             }
             finally
             {
@@ -1360,7 +1360,7 @@ namespace RansomwareDetection.DetectionLib
         /// <param name="eventid"></param>
         /// <param name="category"></param>
         /// <param name="blIsDetailedLoggingError"></param>
-        private void WriteError(string strErrorMessage, System.Diagnostics.EventLogEntryType entrytype, int eventid, short category, bool blIsDetailedLoggingError)
+        private void writeError(string strErrorMessage, System.Diagnostics.EventLogEntryType entrytype, int eventid, short category, bool blIsDetailedLoggingError)
         {
             //multi threaded so _evt sometimes is not allocated. 
             if (_evt == null)
@@ -1390,7 +1390,7 @@ namespace RansomwareDetection.DetectionLib
         /// </summary>
         /// <param name="strSubject"></param>
         /// <param name="strBody"></param>
-        public void Send_Email(string strSubject, string strBody)
+        private void send_Email(string strSubject, string strBody)
         {
 
             //Emails regarding restarting the process server

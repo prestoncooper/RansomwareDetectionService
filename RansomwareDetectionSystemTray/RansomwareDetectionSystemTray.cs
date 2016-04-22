@@ -11,6 +11,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using System.Net.Mail;
+
 using RansomwareDetection.DetectionLib;
 
 /*
@@ -56,8 +57,8 @@ namespace RansomwareDetection
         /// <summary>
         /// Service Controller for restaring the RansomwareDetectionService
         /// </summary>
-        ServiceController sc;
-        ServiceController scFileServer;
+        private ServiceController sc;
+        private ServiceController scFileServer;
 
 
 
@@ -79,7 +80,7 @@ namespace RansomwareDetection
         /// <summary>
         /// About Box
         /// </summary>
-        private AboutBox FrmAboutBox;
+        private AboutBox frmAboutBox;
 
 
         /// <summary>
@@ -114,7 +115,7 @@ namespace RansomwareDetection
         {
             get
             {
-                string str = GetAppSetting("ServiceInterval");
+                string str = getAppSetting("ServiceInterval");
                 if (!String.IsNullOrEmpty(str))
                 {
                     long.TryParse(str, out _serviceInterval);
@@ -144,7 +145,7 @@ namespace RansomwareDetection
         {
             get
             {
-                string str = GetAppSetting("SMTPServer");
+                string str = getAppSetting("SMTPServer");
                 if (!String.IsNullOrEmpty(str))
                 {
                     _smtpServer = str;
@@ -164,7 +165,7 @@ namespace RansomwareDetection
         {
             get
             {
-                string str = GetAppSetting("SMTPPort");
+                string str = getAppSetting("SMTPPort");
                 if (!String.IsNullOrEmpty(str))
                 {
                     int.TryParse(str, out _smtpPort);
@@ -190,7 +191,7 @@ namespace RansomwareDetection
         {
             get
             {
-                string str = GetAppSetting("EmailFrom");
+                string str = getAppSetting("EmailFrom");
                 if (!String.IsNullOrEmpty(str))
                 {
                     _emailFrom = str;
@@ -210,7 +211,7 @@ namespace RansomwareDetection
         {
             get
             {
-                string str = GetAppSetting("EmailTo");
+                string str = getAppSetting("EmailTo");
                 if (!String.IsNullOrEmpty(str))
                 {
                     _emailTo = str;
@@ -233,7 +234,7 @@ namespace RansomwareDetection
         {
             get
             {
-                _smtpUseSSL = Common.FixNullbool(GetAppSetting("SMTPUseSSL"));
+                _smtpUseSSL = Common.FixNullbool(getAppSetting("SMTPUseSSL"));
                 return _smtpUseSSL;
             }
             set
@@ -250,7 +251,7 @@ namespace RansomwareDetection
         {
             get
             {
-                _smtpUseDefaultCredentials = Common.FixNullbool(GetAppSetting("SMTPUseDefaultCredentials"));
+                _smtpUseDefaultCredentials = Common.FixNullbool(getAppSetting("SMTPUseDefaultCredentials"));
                 return _smtpUseDefaultCredentials;
             }
             set
@@ -268,7 +269,7 @@ namespace RansomwareDetection
             get
             {
 
-                _smtpUsername = Common.FixNullstring(GetAppSetting("SMTPUsername"));
+                _smtpUsername = Common.FixNullstring(getAppSetting("SMTPUsername"));
                 return _smtpUsername;
             }
             set
@@ -287,7 +288,7 @@ namespace RansomwareDetection
             get
             {
                 
-                _smtpPassword= Common.FixNullstring(GetAppSetting("SMTPPassword"));
+                _smtpPassword= Common.FixNullstring(getAppSetting("SMTPPassword"));
                 return _smtpPassword;
             }
             set
@@ -424,11 +425,11 @@ namespace RansomwareDetection
             scFileServer = new ServiceController("LanmanServer");
              // Create a simple tray menu with only one item.
             trayMenu = new ContextMenu();
-            trayMenu.MenuItems.Add("Settings", OnShowForm);
-            trayMenu.MenuItems.Add("Start RansomwareDetectionService", OnRestart);
-            trayMenu.MenuItems.Add("Restart RansomwareDetectionService", OnRestart);
-            trayMenu.MenuItems.Add("Stop RansomwareDetectionService", OnStop);
-            trayMenu.MenuItems.Add("Close Tray", OnExit);
+            trayMenu.MenuItems.Add("Settings", onShowForm);
+            trayMenu.MenuItems.Add("Start RansomwareDetectionService", onRestart);
+            trayMenu.MenuItems.Add("Restart RansomwareDetectionService", onRestart);
+            trayMenu.MenuItems.Add("Stop RansomwareDetectionService", onStop);
+            trayMenu.MenuItems.Add("Close Tray", onExit);
             
 
             // Create a tray icon. In this example we use a
@@ -546,7 +547,7 @@ namespace RansomwareDetection
             FolderBrowserD = new FolderBrowserDialog();
             FileBrowserD = new OpenFileDialog();
             
-            GetServiceStatus();
+            getServiceStatus();
         }
 
 
@@ -557,7 +558,7 @@ namespace RansomwareDetection
         /// <param name="entrytype"></param>
         /// <param name="eventid"></param>
         /// <param name="category"></param>
-        private void WriteError(string strErrorMessage, System.Diagnostics.EventLogEntryType entrytype, int eventid, short category)
+        private void writeError(string strErrorMessage, System.Diagnostics.EventLogEntryType entrytype, int eventid, short category)
         {
             //multi threaded so _evt sometimes is not allocated. 
             if (_evt == null)
@@ -577,7 +578,7 @@ namespace RansomwareDetection
         /// </summary>
         /// <param name="strProperty"></param>
         /// <param name="strValue"></param>
-        public static void SaveAppSetting(string strProperty, string strValue)
+        private static void saveAppSetting(string strProperty, string strValue)
         {
             System.Configuration.Configuration config = ConfigurationManager.OpenExeConfiguration(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\RansomwareDetectionService.exe");
 
@@ -599,7 +600,7 @@ namespace RansomwareDetection
         /// </summary>
         /// <param name="strProperty"></param>
         /// <returns></returns>
-        public string GetAppSetting(string strProperty)
+        private string getAppSetting(string strProperty)
         {
             try
             {
@@ -614,7 +615,7 @@ namespace RansomwareDetection
             catch (Exception ex)
             {
                 string strErr = "RansomwareDetectionServiceTray: " + ex.Message + " Property: " + strProperty + " Source: " + ex.Source + "  StackTrace: " + ex.StackTrace;
-                WriteError(strErr,EventLogEntryType.Error,5000,50);
+                writeError(strErr,EventLogEntryType.Error,5000,50);
                 return "";
             }
         }
@@ -636,7 +637,7 @@ namespace RansomwareDetection
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnExit(object sender, EventArgs e)
+        private void onExit(object sender, EventArgs e)
         {
             //CloseRansomwareDetectionSystemTray();
 
@@ -679,11 +680,11 @@ namespace RansomwareDetection
         /// WriteEntry invokes the form in case it is called from another thread.
         /// </summary>
         /// <param name="message"></param>
-        private void WriteEntry(string message)
+        private void writeEntry(string message)
         {
             if (this.InvokeRequired)
             {
-                d_WriteEntry d = new d_WriteEntry(WriteEntry);
+                d_WriteEntry d = new d_WriteEntry(writeEntry);
 
                 this.Invoke(d, new object[] { message });
             }
@@ -697,7 +698,7 @@ namespace RansomwareDetection
         /// Restarts or Starts RansomwareDetectionService
         /// </summary>
         /// <returns></returns>
-        private bool Restart()
+        private bool restart()
         {
             bool blSuccess = false;
             string strStatus = "";
@@ -711,7 +712,7 @@ namespace RansomwareDetection
                 {
                     sc.Stop();
                     sc.WaitForStatus(ServiceControllerStatus.Stopped, timeout);
-                    GetServiceStatus();
+                    getServiceStatus();
                     Application.DoEvents();
                     if (sc.Status.ToString() == "Stopped")
                     {
@@ -757,20 +758,48 @@ namespace RansomwareDetection
             {
                 ShowBalloonTip(5000, "Restart Failed", "Restart of RansomwareDetectionService Failed!", ToolTipIcon.Error);
                 string strErr = "RansomwareDetectionServiceTray: Restart of RansomwareDetectionService Failed! " + ex.Message + " Source: " + ex.Source + "  StackTrace: " + ex.StackTrace;
-                WriteError(strErr, EventLogEntryType.Error, 5000, 50);
+                writeError(strErr, EventLogEntryType.Error, 5000, 50);
             }
             Application.DoEvents();
-            GetServiceStatus();
+            getServiceStatus();
             Application.DoEvents();
             return blSuccess;
         }
 
 
+        private static string getServiceStartMode(string serviceName)
+        {
+            //Auto, Manual, Disabled 
+
+            string filter = String.Format("SELECT * FROM Win32_Service WHERE Name = '{0}'", serviceName);
+
+            System.Management.ManagementObjectSearcher query = new System.Management.ManagementObjectSearcher(filter);
+
+            // No match = failed condition
+            if (query == null) return "";
+
+            try
+            {
+                System.Management.ManagementObjectCollection services = query.Get();
+
+                foreach (System.Management.ManagementObject service in services)
+                {
+                    return service.GetPropertyValue("StartMode").ToString();
+                }
+            }
+            catch (Exception)
+            {
+                return "";
+            }
+
+            return "";
+        }
+
         /// <summary>
         /// Restarts or Starts RansomwareDetectionService
         /// </summary>
         /// <returns></returns>
-        private bool StartFileServer()
+        private bool startFileServer()
         {
             bool blSuccess = false;
             string strStatus = "";
@@ -778,6 +807,8 @@ namespace RansomwareDetection
             try
             {
                 
+                
+
                 strStatus = scFileServer.Status.ToString();
 
                 //Restart
@@ -788,8 +819,60 @@ namespace RansomwareDetection
                 } //Already Stopped Just Start
                 else if (strStatus == "Stopped")
                 {
+
+                    
+
+
                     scFileServer.Start();
                     scFileServer.WaitForStatus(ServiceControllerStatus.Running, timeout);
+                    
+                    //Start Dfs Service
+                    ServiceController scDfs = null;
+                    try
+                    {
+                        scDfs = new ServiceController("Dfs");
+                        if (scDfs.Status == ServiceControllerStatus.Stopped && getServiceStartMode("Dfs") == "Auto")
+                        {
+                            scDfs.Start();
+                            scDfs.WaitForStatus(ServiceControllerStatus.Running, timeout);
+                        }
+                        
+                    }
+                    catch (Exception)
+                    {
+
+
+                    }
+                    finally
+                    {
+                        scDfs.Dispose();
+                        scDfs = null;
+                    }
+
+                    //Start Dfs Service
+                    ServiceController scBrowser = null;
+                    try
+                    {
+                        scBrowser = new ServiceController("Browser");
+                        string strStartMode = getServiceStartMode("Browser");
+                        if (scBrowser.Status == ServiceControllerStatus.Stopped && (strStartMode == "Auto" || strStartMode == "Manual"))
+                        {
+                            scBrowser.Start();
+                            scBrowser.WaitForStatus(ServiceControllerStatus.Running, timeout);
+                        }
+
+                    }
+                    catch (Exception)
+                    {
+
+
+                    }
+                    finally
+                    {
+                        scBrowser.Dispose();
+                        scBrowser = null;
+                    }
+
                     if (scFileServer.Status.ToString() == "Running")
                     {
                         ShowBalloonTip(5000, "Start", "File Server Service Started Successfully", ToolTipIcon.Info);
@@ -811,10 +894,10 @@ namespace RansomwareDetection
             {
                 ShowBalloonTip(5000, "Start Failed", "Start of File Server Service Failed!", ToolTipIcon.Error);
                 string strErr = "RansomwareDetectionServiceTray: Start of File Server Service Failed! " + ex.Message + " Source: " + ex.Source + "  StackTrace: " + ex.StackTrace;
-                WriteError(strErr, EventLogEntryType.Error, 5000, 50);
+                writeError(strErr, EventLogEntryType.Error, 5000, 50);
             }
             Application.DoEvents();
-            GetServiceStatus();
+            getServiceStatus();
             Application.DoEvents();
             return blSuccess;
         }
@@ -824,7 +907,7 @@ namespace RansomwareDetection
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnRestart(object sender, EventArgs e)
+        private void onRestart(object sender, EventArgs e)
         {
             //Restart();
             backgroundWorker1.RunWorkerAsync("Restart");
@@ -834,7 +917,7 @@ namespace RansomwareDetection
         /// Stops RansomwareDetectionService
         /// </summary>
         /// <returns></returns>
-        private bool Stop()
+        private bool stop()
         {
             bool blSuccess = false;
             string strStatus = "";
@@ -875,10 +958,10 @@ namespace RansomwareDetection
             {
                 ShowBalloonTip(5000, "Stop Failed", "Stop of RansomwareDetectionService Failed.", ToolTipIcon.Error);
                 string strErr = "RansomwareDetectionServiceTray: Stop of RansomwareDetectionService Failed. " + ex.Message + " Source: " + ex.Source + "  StackTrace: " + ex.StackTrace;
-                WriteError(strErr, EventLogEntryType.Error, 5000, 50);
+                writeError(strErr, EventLogEntryType.Error, 5000, 50);
             }
             Application.DoEvents();
-            GetServiceStatus();
+            getServiceStatus();
             Application.DoEvents();
             return blSuccess;
         }
@@ -888,7 +971,7 @@ namespace RansomwareDetection
         /// Stops File Server Service (lanmanserver)
         /// </summary>
         /// <returns></returns>
-        private bool StopFileServer()
+        private bool stopFileServer()
         {
             bool blSuccess = false;
             string strStatus = "";
@@ -899,6 +982,50 @@ namespace RansomwareDetection
 
                 if (strStatus == "Running")
                 {
+                    ServiceController scBrowser = null;
+                    ServiceController scDfs = null;
+                    try
+                    {
+                        scBrowser = new ServiceController("Browser");
+                        if (scBrowser.Status == ServiceControllerStatus.Running)
+                        {
+                            scBrowser.Stop();
+                            scBrowser.WaitForStatus(ServiceControllerStatus.Stopped, timeout);
+                        }
+                        
+                    }
+                    catch (Exception)
+                    {
+
+                        
+                    }
+                    finally
+                    {
+                        scBrowser.Dispose();
+                        scBrowser = null;
+                    }
+
+                    try
+                    {
+                        scDfs = new ServiceController("Dfs");
+                        if (scDfs.Status == ServiceControllerStatus.Running)
+                        {
+                            scDfs.Stop();
+                            scDfs.WaitForStatus(ServiceControllerStatus.Stopped, timeout);
+                        }
+                    }
+                    catch (Exception)
+                    {
+
+                        
+                    }
+                    finally
+                    {
+                        scDfs.Dispose();
+                        scDfs = null;
+                    }
+                   
+
                     scFileServer.Stop();
 
                     scFileServer.WaitForStatus(ServiceControllerStatus.Stopped, timeout);
@@ -929,10 +1056,10 @@ namespace RansomwareDetection
             {
                 ShowBalloonTip(5000, "Stop Failed", "Stop of File Server Service Failed.", ToolTipIcon.Error);
                 string strErr = "RansomwareDetectionServiceTray: Stop of File Server Service Failed. " + ex.Message + " Source: " + ex.Source + "  StackTrace: " + ex.StackTrace;
-                WriteError(strErr, EventLogEntryType.Error, 5000, 50);
+                writeError(strErr, EventLogEntryType.Error, 5000, 50);
             }
             Application.DoEvents();
-            GetServiceStatus();
+            getServiceStatus();
             Application.DoEvents();
             return blSuccess;
         }
@@ -942,7 +1069,7 @@ namespace RansomwareDetection
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnStop(object sender, EventArgs e)
+        private void onStop(object sender, EventArgs e)
         {
             //Stop();
             backgroundWorker1.RunWorkerAsync("Stop");
@@ -952,7 +1079,7 @@ namespace RansomwareDetection
         /// <summary>
         /// Searches or Refreshes Events DataTable and DGV
         /// </summary>
-        public void RefreshEventsTab()
+        private void refreshEventsTab()
         {
             try
             {
@@ -973,7 +1100,7 @@ namespace RansomwareDetection
                 {
                     if (entry.Source == "RansomwareDetection")
                     {
-                        AddEventLogEntry(entry);
+                        addEventLogEntry(entry);
                     }
                 }
                 bs = new BindingSource(dsEvents, "Events");
@@ -1029,7 +1156,7 @@ namespace RansomwareDetection
                 bs.Sort = "Time DESC";
                 dgvEvents.DataSource = bs;
                 Application.DoEvents();
-                GetServiceStatus();
+                getServiceStatus();
                 Application.DoEvents();
             }
             catch (Exception ex)
@@ -1053,7 +1180,7 @@ namespace RansomwareDetection
                     {
                         if (entry.Source == "RansomwareDetection")
                         {
-                            AddEventLogEntry(entry);
+                            addEventLogEntry(entry);
                         }
                     }
                     bs = new BindingSource(dsEvents, "Events");
@@ -1062,7 +1189,7 @@ namespace RansomwareDetection
                     bs.Filter = "";
                     dgvEvents.DataSource = bs;
                     Application.DoEvents();
-                    GetServiceStatus();
+                    getServiceStatus();
                     Application.DoEvents();
                 }
                 catch (Exception)
@@ -1079,12 +1206,12 @@ namespace RansomwareDetection
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnShowForm(object sender, EventArgs e)
+        private void onShowForm(object sender, EventArgs e)
         {
-            GetServiceStatus();
+            getServiceStatus();
             Visible = true;
             WindowState = FormWindowState.Normal;
-            RefreshEventsTab();
+            refreshEventsTab();
         }
 
         /// <summary>
@@ -1092,7 +1219,7 @@ namespace RansomwareDetection
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void RansomwareDetectionSystemTray_FormClosing(object sender, FormClosingEventArgs e)
+        private void ransomwareDetectionSystemTray_FormClosing(object sender, FormClosingEventArgs e)
         {
                 this.Hide();
                 e.Cancel = true; // this cancels the close event.
@@ -1103,7 +1230,7 @@ namespace RansomwareDetection
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void RansomwareDetectionSystemTray_SizeChanged(object sender, EventArgs e)
+        private void ransomwareDetectionSystemTray_SizeChanged(object sender, EventArgs e)
         {
             if (FormWindowState.Minimized == this.WindowState)
             {
@@ -1119,7 +1246,7 @@ namespace RansomwareDetection
         /// </summary>
         /// <param name="strValue"></param>
         /// <returns></returns>
-        private bool ValidateTime(string strValue)
+        private bool validateTime(string strValue)
         {
             try
             {
@@ -1149,7 +1276,7 @@ namespace RansomwareDetection
         /// Service Interval text box validation
         /// </summary>
         /// <returns></returns>
-        private bool ValidateServiceInterval()
+        private bool validateServiceInterval()
         {
             string strValue = txtServiceInterval.Text;
             try
@@ -1227,17 +1354,17 @@ namespace RansomwareDetection
         /// <param name="e"></param>
         private void btnSave_Click(object sender, EventArgs e)
         {
-            Save();
+            save();
         }
 
         /// <summary>
         /// Save Procedure
         /// </summary>
-        private void Save()
+        private void save()
         {
             try
             {
-                if (SaveValidated())
+                if (saveValidated())
                 {
                     long lValue = 0;
                     
@@ -1250,23 +1377,23 @@ namespace RansomwareDetection
                     EmailFrom = txtEmailFrom.Text;
                     EmailTo = txtEmailTo.Text;
 
-                    SaveAppSetting("ServiceInterval", _serviceInterval.ToString());
+                    saveAppSetting("ServiceInterval", _serviceInterval.ToString());
 
                     _smtpServer = txtSMTPHost.Text;
-                    SaveAppSetting("SMTPServer", _smtpServer);
+                    saveAppSetting("SMTPServer", _smtpServer);
                     _smtpPort = Common.FixNullInt32(txtSMTPPort.Text, 25);
-                    SaveAppSetting("SMTPPort", _smtpPort.ToString());
+                    saveAppSetting("SMTPPort", _smtpPort.ToString());
                     _emailFrom = Common.FixNullstring(txtEmailFrom.Text);
-                    SaveAppSetting("EmailFrom", _emailFrom);
+                    saveAppSetting("EmailFrom", _emailFrom);
                     _emailTo = Common.FixNullstring(txtEmailTo.Text);
-                    SaveAppSetting("EmailTo", _emailTo);
+                    saveAppSetting("EmailTo", _emailTo);
                     _smtpUseSSL = Common.FixNullbool(chkSMTPUseSSL.Checked);
-                    SaveAppSetting("SMTPUseSSL", _smtpUseSSL.ToString());
+                    saveAppSetting("SMTPUseSSL", _smtpUseSSL.ToString());
                     _smtpUseDefaultCredentials = Common.FixNullbool(chkSMTPUseDefaultCredentials.Checked);
-                    SaveAppSetting("SMTPUseDefaultCredentials", _smtpUseDefaultCredentials.ToString());
+                    saveAppSetting("SMTPUseDefaultCredentials", _smtpUseDefaultCredentials.ToString());
 
                     _smtpUsername = Common.FixNullstring(txtSMTPUsername.Text);
-                    SaveAppSetting("SMTPUsername", _smtpUsername);
+                    saveAppSetting("SMTPUsername", _smtpUsername);
 
                     _smtpPassword = Common.FixNullstring(txtSMTPPassword.Text);
                     //Encrypt Password
@@ -1275,7 +1402,7 @@ namespace RansomwareDetection
                         AES256 aes = new AES256(ep);
                         _smtpPassword = aes.Encrypt(_smtpPassword);
                     }
-                    SaveAppSetting("SMTPPassword", _smtpPassword);
+                    saveAppSetting("SMTPPassword", _smtpPassword);
 
 
                     //Save Configuration XML Files
@@ -1289,7 +1416,7 @@ namespace RansomwareDetection
             catch (Exception ex)
             {
                 string strErr = "RansomwareDetectionServiceTray: " + ex.Message + " Source: " + ex.Source + "  StackTrace: " + ex.StackTrace;
-                WriteError(strErr, EventLogEntryType.Error, 5000, 50);
+                writeError(strErr, EventLogEntryType.Error, 5000, 50);
                
             }
             
@@ -1301,11 +1428,11 @@ namespace RansomwareDetection
         /// Save Validated Function
         /// </summary>
         /// <returns></returns>
-        private bool SaveValidated()
+        private bool saveValidated()
         {
             bool blOkToSave = true;
 
-            if (!ValidateServiceInterval())
+            if (!validateServiceInterval())
             {
                 blOkToSave = false;
             }
@@ -1323,7 +1450,7 @@ namespace RansomwareDetection
         /// <param name="e"></param>
         private void btnSaveApply_Click(object sender, EventArgs e)
         {
-            Save();
+            save();
             //Restart();
             backgroundWorker1.RunWorkerAsync("Restart");
         }
@@ -1333,7 +1460,7 @@ namespace RansomwareDetection
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void RansomwareDetectionSystemTray_Load(object sender, EventArgs e)
+        private void ransomwareDetectionSystemTray_Load(object sender, EventArgs e)
         {
             //Set Tool Tips
             System.Windows.Forms.ToolTip ToolTip1 = new System.Windows.Forms.ToolTip();
@@ -1352,7 +1479,7 @@ namespace RansomwareDetection
         /// </summary>
         /// <param name="e"></param>
         /// <returns></returns>
-        private bool CellEventArgIsNumeric(ref DataGridViewCellValidatingEventArgs e)
+        private bool cellEventArgIsNumeric(ref DataGridViewCellValidatingEventArgs e)
         {
 
             bool blIsNumeric = true;
@@ -1380,7 +1507,7 @@ namespace RansomwareDetection
         /// </summary>
         /// <param name="e"></param>
         /// <returns></returns>
-        private bool CellEventArgIsNumeric2(ref DataGridViewCellValidatingEventArgs e)
+        private bool cellEventArgIsNumeric2(ref DataGridViewCellValidatingEventArgs e)
         {
 
             bool blIsNumeric = true;
@@ -1411,7 +1538,7 @@ namespace RansomwareDetection
         /// </summary>
         /// <param name="e"></param>
         /// <returns></returns>
-        private bool CellEventArgIsTime(ref DataGridViewCellValidatingEventArgs e)
+        private bool cellEventArgIsTime(ref DataGridViewCellValidatingEventArgs e)
         {
 
             bool blIsTime = true;
@@ -1463,7 +1590,7 @@ namespace RansomwareDetection
                 else if (dgvCompare.Columns[e.ColumnIndex].HeaderText == "StartTime")
                 {
                     //validates text boxes that are supposed to be a military time 00:00
-                    if (!CellEventArgIsTime(ref e))
+                    if (!cellEventArgIsTime(ref e))
                     {
                         MessageBox.Show("Time has to be in military time format 00:00 between 00:00 - 23:59");
                         e.Cancel = true;
@@ -1472,7 +1599,7 @@ namespace RansomwareDetection
                 else if (dgvCompare.Columns[e.ColumnIndex].HeaderText == "EndTime")
                 {
                     //validates text boxes that are supposed to be a military time 00:00
-                    if (!CellEventArgIsTime(ref e))
+                    if (!cellEventArgIsTime(ref e))
                     {
                         MessageBox.Show("Time has to be in military time format 00:00 between 00:00 - 23:59");
                         e.Cancel = true;
@@ -1480,7 +1607,7 @@ namespace RansomwareDetection
                 }
                 else if (dgvCompare.Columns[e.ColumnIndex].HeaderText == "Interval")
                 {
-                    if (!CellEventArgIsNumeric2(ref e))
+                    if (!cellEventArgIsNumeric2(ref e))
                     {
                         MessageBox.Show("You have to enter numbers only");
                         e.Cancel = true;
@@ -1509,7 +1636,7 @@ namespace RansomwareDetection
             catch (Exception ex)
             {
                 string strErr = "RansomwareDetectionServiceTray: " + ex.Message + " Source: " + ex.Source + "  StackTrace: " + ex.StackTrace;
-                WriteError(strErr, EventLogEntryType.Error, 5000, 50);
+                writeError(strErr, EventLogEntryType.Error, 5000, 50);
 
             }
         }
@@ -1542,7 +1669,7 @@ namespace RansomwareDetection
                 else if (dgvFindFiles.Columns[e.ColumnIndex].HeaderText == "StartTime")
                 {
                     //validates text boxes that are supposed to be a military time 00:00
-                    if (!CellEventArgIsTime(ref e))
+                    if (!cellEventArgIsTime(ref e))
                     {
                         MessageBox.Show("Time has to be in military time format 00:00 between 00:00 - 23:59");
                         e.Cancel = true;
@@ -1551,7 +1678,7 @@ namespace RansomwareDetection
                 else if (dgvFindFiles.Columns[e.ColumnIndex].HeaderText == "EndTime")
                 {
                     //validates text boxes that are supposed to be a military time 00:00
-                    if (!CellEventArgIsTime(ref e))
+                    if (!cellEventArgIsTime(ref e))
                     {
                         MessageBox.Show("Time has to be in military time format 00:00 between 00:00 - 23:59");
                         e.Cancel = true;
@@ -1559,7 +1686,7 @@ namespace RansomwareDetection
                 }
                 else if (dgvFindFiles.Columns[e.ColumnIndex].HeaderText == "Interval")
                 {
-                    if (!CellEventArgIsNumeric2(ref e))
+                    if (!cellEventArgIsNumeric2(ref e))
                     {
                         MessageBox.Show("You have to enter numbers only");
                         e.Cancel = true;
@@ -1569,7 +1696,7 @@ namespace RansomwareDetection
             catch (Exception ex)
             {
                 string strErr = "RansomwareDetectionServiceTray: " + ex.Message + " Source: " + ex.Source + "  StackTrace: " + ex.StackTrace;
-                WriteError(strErr, EventLogEntryType.Error, 5000, 50);
+                writeError(strErr, EventLogEntryType.Error, 5000, 50);
 
             }
 
@@ -1598,7 +1725,7 @@ namespace RansomwareDetection
                 else if (dgvAudit.Columns[e.ColumnIndex].HeaderText == "StartTime")
                 {
                     //validates text boxes that are supposed to be a military time 00:00
-                    if (!CellEventArgIsTime(ref e))
+                    if (!cellEventArgIsTime(ref e))
                     {
                         MessageBox.Show("Time has to be in military time format 00:00 between 00:00 - 23:59");
                         e.Cancel = true;
@@ -1607,7 +1734,7 @@ namespace RansomwareDetection
                 else if (dgvAudit.Columns[e.ColumnIndex].HeaderText == "EndTime")
                 {
                     //validates text boxes that are supposed to be a military time 00:00
-                    if (!CellEventArgIsTime(ref e))
+                    if (!cellEventArgIsTime(ref e))
                     {
                         MessageBox.Show("Time has to be in military time format 00:00 between 00:00 - 23:59");
                         e.Cancel = true;
@@ -1615,7 +1742,7 @@ namespace RansomwareDetection
                 }
                 else if (dgvAudit.Columns[e.ColumnIndex].HeaderText == "Interval")
                 {
-                    if (!CellEventArgIsNumeric2(ref e))
+                    if (!cellEventArgIsNumeric2(ref e))
                     {
                         MessageBox.Show("You have to enter numbers only");
                         e.Cancel = true;
@@ -1646,7 +1773,7 @@ namespace RansomwareDetection
                     _evt = Common.GetEventLog;
                 }
                 string strErr = "RansomwareDetectionServiceTray: " + ex.Message + " Source: " + ex.Source + "  StackTrace: " + ex.StackTrace;
-                WriteError(strErr, EventLogEntryType.Error, 5000, 50);
+                writeError(strErr, EventLogEntryType.Error, 5000, 50);
 
             }
         }
@@ -1703,7 +1830,7 @@ namespace RansomwareDetection
             catch (Exception ex)
             {
                 string strErr = "RansomwareDetectionServiceTray: " + ex.Message + " Source: " + ex.Source + "  StackTrace: " + ex.StackTrace;
-                WriteError(strErr, EventLogEntryType.Error, 5000, 50);
+                writeError(strErr, EventLogEntryType.Error, 5000, 50);
 
             }
         }
@@ -1752,7 +1879,7 @@ namespace RansomwareDetection
             catch (Exception ex)
             {
                 string strErr = "RansomwareDetectionServiceTray: " + ex.Message + " Source: " + ex.Source + "  StackTrace: " + ex.StackTrace;
-                WriteError(strErr, EventLogEntryType.Error, 5000, 50);
+                writeError(strErr, EventLogEntryType.Error, 5000, 50);
 
             }
         }
@@ -1782,7 +1909,7 @@ namespace RansomwareDetection
         /// <summary>
         /// Gets RansomwareDetectionService Status and sets enabled on buttons and label text
         /// </summary>
-        private void GetServiceStatus()
+        private void getServiceStatus()
         {
             try
             {
@@ -1864,7 +1991,7 @@ namespace RansomwareDetection
             catch (Exception ex)
             {
                 string strErr = "RansomwareDetectionServiceTray: " + ex.Message + " Source: " + ex.Source + "  StackTrace: " + ex.StackTrace;
-                WriteError(strErr, EventLogEntryType.Error, 5000, 50);
+                writeError(strErr, EventLogEntryType.Error, 5000, 50);
             }
             
 
@@ -1874,7 +2001,7 @@ namespace RansomwareDetection
         /// Cell FolderBrowser opens folder browser dialog
         /// </summary>
         /// <param name="cell"></param>
-        private void CellFolderBrowser(ref DataGridViewTextBoxCell cell)
+        private void cellFolderBrowser(ref DataGridViewTextBoxCell cell)
         {
             try
             {
@@ -1893,7 +2020,7 @@ namespace RansomwareDetection
             catch (Exception ex)
             {
                 string strErr = "RansomwareDetectionServiceTray: " + ex.Message + " Source: " + ex.Source + "  StackTrace: " + ex.StackTrace;
-                WriteError(strErr, EventLogEntryType.Error, 5000, 50);
+                writeError(strErr, EventLogEntryType.Error, 5000, 50);
                 
             }
            
@@ -1905,7 +2032,7 @@ namespace RansomwareDetection
         /// Cell FileBrowser opens file browser dialog
         /// </summary>
         /// <param name="cell"></param>
-        private void CellFileBrowser(ref DataGridViewTextBoxCell cell)
+        private void cellFileBrowser(ref DataGridViewTextBoxCell cell)
         {
             try
             {
@@ -1945,7 +2072,7 @@ namespace RansomwareDetection
             if (dgvAudit.Columns[e.ColumnIndex].HeaderText == "ExportCSVPath" || dgvAudit.Columns[e.ColumnIndex].HeaderText == "FilePathToCheck" || dgvAudit.Columns[e.ColumnIndex].HeaderText == "RestoredFilesPath")
             {
                 DataGridViewTextBoxCell cell = dgvAudit[e.ColumnIndex, e.RowIndex] as DataGridViewTextBoxCell;
-                CellFolderBrowser(ref cell);
+                cellFolderBrowser(ref cell);
                 dgvAudit.RefreshEdit();
             }
         }
@@ -1962,7 +2089,7 @@ namespace RansomwareDetection
             if (dgvCompare.Columns[e.ColumnIndex].HeaderText == "SourcePath" || dgvCompare.Columns[e.ColumnIndex].HeaderText == "FilePathToCheck" || dgvCompare.Columns[e.ColumnIndex].HeaderText == "ExportCSVPath" || dgvCompare.Columns[e.ColumnIndex].HeaderText == "CommandWorkingDirectory")
             {
                 DataGridViewTextBoxCell cell = dgvCompare[e.ColumnIndex, e.RowIndex] as DataGridViewTextBoxCell;
-                CellFolderBrowser(ref cell);
+                cellFolderBrowser(ref cell);
                 dgvCompare.RefreshEdit();
             }
         }
@@ -1977,7 +2104,7 @@ namespace RansomwareDetection
             if (dgvFindFiles.Columns[e.ColumnIndex].HeaderText == "FilePathToCheck" || dgvFindFiles.Columns[e.ColumnIndex].HeaderText == "ExportCSVPath")
             {
                 DataGridViewTextBoxCell cell = dgvFindFiles[e.ColumnIndex, e.RowIndex] as DataGridViewTextBoxCell;
-                CellFolderBrowser(ref cell);
+                cellFolderBrowser(ref cell);
                 dgvFindFiles.RefreshEdit();
             }
         }
@@ -1991,16 +2118,16 @@ namespace RansomwareDetection
         /// <param name="e"></param>
         private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (FrmAboutBox == null)
+            if (frmAboutBox == null)
             {
-                FrmAboutBox = new AboutBox();
-                FrmAboutBox.Show();
+                frmAboutBox = new AboutBox();
+                frmAboutBox.Show();
             }
             else
             {
-                FrmAboutBox.Dispose();
-                FrmAboutBox = new AboutBox();
-                FrmAboutBox.Show();
+                frmAboutBox.Dispose();
+                frmAboutBox = new AboutBox();
+                frmAboutBox.Show();
             }
         }
 
@@ -2018,7 +2145,7 @@ namespace RansomwareDetection
         /// Adds event log entry into row for datatable
         /// </summary>
         /// <param name="entry"></param>
-        private void AddEventLogEntry(System.Diagnostics.EventLogEntry entry)
+        private void addEventLogEntry(System.Diagnostics.EventLogEntry entry)
         {
 
             try
@@ -2057,7 +2184,7 @@ namespace RansomwareDetection
             catch (Exception ex)
             {
                 string strErr = "RansomwareDetectionServiceTray: " + ex.Message + " Source: " + ex.Source + "  StackTrace: " + ex.StackTrace;
-                WriteError(strErr, EventLogEntryType.Error, 5000, 50);
+                writeError(strErr, EventLogEntryType.Error, 5000, 50);
             }
             
         }
@@ -2069,7 +2196,7 @@ namespace RansomwareDetection
         /// <param name="e"></param>
         private void eventLogRansomwareDetection_EntryWritten(object sender, System.Diagnostics.EntryWrittenEventArgs e)
         {
-            AddEventLogEntry(e.Entry);
+            addEventLogEntry(e.Entry);
         }
 
 
@@ -2107,7 +2234,7 @@ namespace RansomwareDetection
         /// <param name="e"></param>
         private void btnRefreshEventLog_Click(object sender, EventArgs e)
         {
-            RefreshEventsTab();
+            refreshEventsTab();
         }
 
         /// <summary>
@@ -2121,16 +2248,16 @@ namespace RansomwareDetection
             switch (strTask)
             {
                 case "Stop":
-                    Stop();
+                    stop();
                     break;
                 case "Restart":
-                    Restart();
+                    restart();
                     break;
                 case "StartFileServer":
-                    StartFileServer();
+                    startFileServer();
                     break;
                 case "StopFileServer":
-                    StopFileServer();
+                    stopFileServer();
                     break;
             }
         }
@@ -2143,7 +2270,7 @@ namespace RansomwareDetection
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             Application.DoEvents();
-            GetServiceStatus();
+            getServiceStatus();
             Application.DoEvents();
         }
 
@@ -2198,7 +2325,7 @@ namespace RansomwareDetection
         /// </summary>
         /// <param name="strSubject"></param>
         /// <param name="strBody"></param>
-        public void Send_Email(string strSubject, string strBody)
+        private void send_Email(string strSubject, string strBody)
         {
 
             //Emails regarding restarting the process server
@@ -2253,7 +2380,7 @@ namespace RansomwareDetection
             {
 
                 string strErr = "RansomwareDetectionServiceTray: " + ex.Message + " Source: " + ex.Source + "  StackTrace: " + ex.StackTrace;
-                WriteError(strErr, EventLogEntryType.Error, 5000, 50);
+                writeError(strErr, EventLogEntryType.Error, 5000, 50);
             }
 
         }
@@ -2265,8 +2392,8 @@ namespace RansomwareDetection
         private void sendTestEmailToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             
-            Save();
-            Send_Email("Test", "Ransomware Detection Email Test");
+            save();
+            send_Email("Test", "Ransomware Detection Email Test");
             
         }
 
@@ -2279,8 +2406,8 @@ namespace RansomwareDetection
         private void btnSendTestEmail_Click(object sender, EventArgs e)
         {
             
-            Save();
-            Send_Email("Test", "Ransomware Detection Email Test");
+            save();
+            send_Email("Test", "Ransomware Detection Email Test");
             
         }
         

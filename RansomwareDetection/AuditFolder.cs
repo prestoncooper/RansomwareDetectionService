@@ -1038,16 +1038,16 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                 if (Common.FileExists(strFilePath) && Common.FileExists(strRestoredFile))
                 {
                     Delimon.Win32.IO.File.Copy(strRestoredFile, strFilePath, true);
-                    WriteError("Audit Folder: FixUnverifiedFileFromBackup: Success BackupFile \"" + strRestoredFile + "\" replaced \"" + strFilePath + "\"", System.Diagnostics.EventLogEntryType.Information, 7000, 70, true);
+                    writeError("Audit Folder: FixUnverifiedFileFromBackup: Success BackupFile \"" + strRestoredFile + "\" replaced \"" + strFilePath + "\"", System.Diagnostics.EventLogEntryType.Information, 7000, 70, true);
                 }
                 else
                 {
-                    WriteError("Audit Folder: FixUnverifiedFileFromBackup: Error BackupFile \"" + strRestoredFile + "\" FAILED TO replace \"" + strFilePath + "\"", System.Diagnostics.EventLogEntryType.Error, 7000, 70, false);
+                    writeError("Audit Folder: FixUnverifiedFileFromBackup: Error BackupFile \"" + strRestoredFile + "\" FAILED TO replace \"" + strFilePath + "\"", System.Diagnostics.EventLogEntryType.Error, 7000, 70, false);
                 }
             }
             catch (Exception ex)
             {
-                WriteError("Audit Folder: " + ex.Message + " Source: " + ex.Source + " StackTrace: " + ex.StackTrace, System.Diagnostics.EventLogEntryType.Error, 7000, 70, false);
+                writeError("Audit Folder: " + ex.Message + " Source: " + ex.Source + " StackTrace: " + ex.StackTrace, System.Diagnostics.EventLogEntryType.Error, 7000, 70, false);
             }
             
 
@@ -1070,7 +1070,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                 if (!(Common.FileExists(strFilePath) && Common.FileExists(strRestoredFile)))
                 {
                     differentFiles.Add(new ContentDetectorLib.FileResult(fileinShare, "File does not exist in Restored Backup, New File?"));
-                    WriteError("Audit Folder: Find Different Files: File does not exist is both backup location and share folder Backup File \"" + strRestoredFile + "\" vs shared file \"" + strFilePath + "\"", System.Diagnostics.EventLogEntryType.Information, 7000, 70, true);
+                    writeError("Audit Folder: Find Different Files: File does not exist is both backup location and share folder Backup File \"" + strRestoredFile + "\" vs shared file \"" + strFilePath + "\"", System.Diagnostics.EventLogEntryType.Information, 7000, 70, true);
                 }
                 else
                 {
@@ -1078,14 +1078,14 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                     if (fileinShare.Length != backupfile.Length || fileinShare.LastWriteTime != backupfile.LastWriteTime)
                     {
                         differentFiles.Add(new ContentDetectorLib.FileResult(fileinShare,"File Size or LastWriteTime is Different Compared with Restored Backup"));
-                        WriteError("Audit Folder: Find Different Files: File size different from backup file vs share file, backup File: \"" + strRestoredFile + "\" vs shared file: \"" + strFilePath + "\"", System.Diagnostics.EventLogEntryType.Information, 7000, 70, true);
+                        writeError("Audit Folder: Find Different Files: File size different from backup file vs share file, backup File: \"" + strRestoredFile + "\" vs shared file: \"" + strFilePath + "\"", System.Diagnostics.EventLogEntryType.Information, 7000, 70, true);
                     }
                     
                 }
             }
             catch (Exception ex)
             {
-                WriteError("Audit Folder: detectDifferentFiles: " + ex.Message + " Source: " + ex.Source + " StackTrace: " + ex.StackTrace, System.Diagnostics.EventLogEntryType.Error, 7000, 70, false);
+                writeError("Audit Folder: detectDifferentFiles: " + ex.Message + " Source: " + ex.Source + " StackTrace: " + ex.StackTrace, System.Diagnostics.EventLogEntryType.Error, 7000, 70, false);
             }
 
 
@@ -1108,7 +1108,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                 if (Enabled)
                 {
 
-                    WriteError("Ransomware Detection Service, File Audit Process: Started " + FilePathToCheck, System.Diagnostics.EventLogEntryType.Information, 7000, 70, true);
+                    writeError("Ransomware Detection Service, File Audit Process: Started " + FilePathToCheck, System.Diagnostics.EventLogEntryType.Information, 7000, 70, true);
 
                     FilesVerified = new List<ContentDetectorLib.FileResult>();
                     FilesUnVerified = new List<ContentDetectorLib.FileResult>();
@@ -1124,7 +1124,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                     }
                     catch (Exception ex)
                     {
-                        WriteError("Audit Folder: " + ex.Message + " Source: " + ex.Source + " StackTrace: " + ex.StackTrace, System.Diagnostics.EventLogEntryType.Error, 7000, 70, false);
+                        writeError("Audit Folder: " + ex.Message + " Source: " + ex.Source + " StackTrace: " + ex.StackTrace, System.Diagnostics.EventLogEntryType.Error, 7000, 70, false);
 
                     }
 
@@ -1136,7 +1136,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                             RestoredFilesPath = Common.WindowsPathClean(RestoredFilesPath);
                             if (Common.DirectoryExists(RestoredFilesPath))
                             {
-                                WriteError("Audit Folder: DetectNewFiles: Starting from  \"" + RestoredFilesPath + "\" to \"" + FilePathToCheck + "\"", System.Diagnostics.EventLogEntryType.Information, 7000, 70, true);
+                                writeError("Audit Folder: DetectNewFiles: Starting from  \"" + RestoredFilesPath + "\" to \"" + FilePathToCheck + "\"", System.Diagnostics.EventLogEntryType.Information, 7000, 70, true);
 
                                 foreach (ContentDetectorLib.FileResult unverifiedfile1 in FilesUnVerified)
                                 {
@@ -1162,12 +1162,12 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                                 {
                                     Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\" + Title + "DifferentFiles" + Guid.NewGuid().ToString() + ".csv", ContentDetectorLib.FileResult.FileResultCollectionToCSV(FilesDifferent));
                                 }
-                                WriteError("Audit Folder: DetectNewFiles: Finished from  \"" + RestoredFilesPath + "\" to \"" + FilePathToCheck + "\"", System.Diagnostics.EventLogEntryType.Information, 7000, 70, true);
+                                writeError("Audit Folder: DetectNewFiles: Finished from  \"" + RestoredFilesPath + "\" to \"" + FilePathToCheck + "\"", System.Diagnostics.EventLogEntryType.Information, 7000, 70, true);
 
                             }
                             else
                             {
-                                WriteError("Audit Folder: DetectNewFiles: Error RestoredFilesPath \"" + RestoredFilesPath + "\" does not exist", System.Diagnostics.EventLogEntryType.Error, 7000, 70, false);
+                                writeError("Audit Folder: DetectNewFiles: Error RestoredFilesPath \"" + RestoredFilesPath + "\" does not exist", System.Diagnostics.EventLogEntryType.Error, 7000, 70, false);
                             }
                         }
                         if (Common.FixNullstring(ExportCSVPath).Trim() != "" && Common.DirectoryExists(ExportCSVPath))
@@ -1199,18 +1199,18 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                                 RestoredFilesPath = Common.WindowsPathClean(RestoredFilesPath);
                                 if (Common.DirectoryExists(RestoredFilesPath))
                                 {
-                                    WriteError("Audit Folder: FixUnverifiedFileFromBackup: Starting Replace of Files from  \"" + RestoredFilesPath + "\" to \"" + FilePathToCheck + "\"", System.Diagnostics.EventLogEntryType.Information, 7000, 70, true);
+                                    writeError("Audit Folder: FixUnverifiedFileFromBackup: Starting Replace of Files from  \"" + RestoredFilesPath + "\" to \"" + FilePathToCheck + "\"", System.Diagnostics.EventLogEntryType.Information, 7000, 70, true);
 
                                     foreach (ContentDetectorLib.FileResult unverifiedfile1 in FilesUnVerified)
                                     {
                                         replaceCorruptedFile(FilePathToCheck, unverifiedfile1.FullPath, RestoredFilesPath);
                                     }
-                                    WriteError("Audit Folder: FixUnverifiedFileFromBackup: Finished Replace of Files from  \"" + RestoredFilesPath + "\" to \"" + FilePathToCheck + "\"", System.Diagnostics.EventLogEntryType.Information, 7000, 70, true);
+                                    writeError("Audit Folder: FixUnverifiedFileFromBackup: Finished Replace of Files from  \"" + RestoredFilesPath + "\" to \"" + FilePathToCheck + "\"", System.Diagnostics.EventLogEntryType.Information, 7000, 70, true);
 
                                 }
                                 else
                                 {
-                                    WriteError("Audit Folder: FixUnverifiedFileFromBackup: Error RestoredFilesPath \"" + RestoredFilesPath + "\" does not exist", System.Diagnostics.EventLogEntryType.Error, 7000, 70, false);
+                                    writeError("Audit Folder: FixUnverifiedFileFromBackup: Error RestoredFilesPath \"" + RestoredFilesPath + "\" does not exist", System.Diagnostics.EventLogEntryType.Error, 7000, 70, false);
                                 }
                             }
 
@@ -1278,7 +1278,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                     }
                     catch (Exception ex)
                     {
-                        WriteError(ex.Message + " source: " + ex.Source + " Stacktrace: " + ex.StackTrace, System.Diagnostics.EventLogEntryType.Error, 7000, 70, false);
+                        writeError(ex.Message + " source: " + ex.Source + " Stacktrace: " + ex.StackTrace, System.Diagnostics.EventLogEntryType.Error, 7000, 70, false);
                     }
 
 
@@ -1354,11 +1354,11 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                             sbbody1.Clear();
                             if (SendEmailOnFailure)
                             {
-                                Send_Email(strSubject, strBody);
+                                send_Email(strSubject, strBody);
                             }
                             
 
-                            WriteError(strBody, System.Diagnostics.EventLogEntryType.Error, 7000, 70, false);
+                            writeError(strBody, System.Diagnostics.EventLogEntryType.Error, 7000, 70, false);
 
                         }
                         else
@@ -1403,23 +1403,23 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
                             //send email on success
                             if (SendEmailOnSuccess)
                             {
-                                Send_Email(strSubject, strBody);
+                                send_Email(strSubject, strBody);
                             }
                             
                             
 
-                            WriteError(strBody, System.Diagnostics.EventLogEntryType.Information, 7000, 70, true);
+                            writeError(strBody, System.Diagnostics.EventLogEntryType.Information, 7000, 70, true);
                         }
 
 
                     }
-                    WriteError("Ransomware Detection Service, File Audit Process: Finished " + FilePathToCheck, System.Diagnostics.EventLogEntryType.Information, 7000, 70, true);
+                    writeError("Ransomware Detection Service, File Audit Process: Finished " + FilePathToCheck, System.Diagnostics.EventLogEntryType.Information, 7000, 70, true);
                 }
 
             }
             catch (Exception ex)
             {
-                WriteError(ex.Message + " source: " + ex.Source + " Stacktrace: " + ex.StackTrace, System.Diagnostics.EventLogEntryType.Error, 7000, 70, false);
+                writeError(ex.Message + " source: " + ex.Source + " Stacktrace: " + ex.StackTrace, System.Diagnostics.EventLogEntryType.Error, 7000, 70, false);
             }
             finally
             {
@@ -1480,7 +1480,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
         /// <param name="eventid"></param>
         /// <param name="category"></param>
         /// <param name="blIsDetailedLoggingError"></param>
-        private void WriteError(string strErrorMessage, System.Diagnostics.EventLogEntryType entrytype, int eventid, short category, bool blIsDetailedLoggingError)
+        private void writeError(string strErrorMessage, System.Diagnostics.EventLogEntryType entrytype, int eventid, short category, bool blIsDetailedLoggingError)
         {
             //const int MaxEventLogMsgLength_VistaOrHigher = 31839;
 
@@ -1516,7 +1516,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
         /// </summary>
         /// <param name="strSubject"></param>
         /// <param name="strBody"></param>
-        public void Send_Email(string strSubject, string strBody)
+        private void send_Email(string strSubject, string strBody)
         {
 
             //Emails regarding restarting the process server

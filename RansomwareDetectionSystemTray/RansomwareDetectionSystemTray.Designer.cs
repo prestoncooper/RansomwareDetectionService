@@ -2951,9 +2951,9 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "RansomwareDetectionSystemTray";
             this.Text = "RansomwareDetectionSystemTray";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RansomwareDetectionSystemTray_FormClosing);
-            this.Load += new System.EventHandler(this.RansomwareDetectionSystemTray_Load);
-            this.SizeChanged += new System.EventHandler(this.RansomwareDetectionSystemTray_SizeChanged);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ransomwareDetectionSystemTray_FormClosing);
+            this.Load += new System.EventHandler(this.ransomwareDetectionSystemTray_Load);
+            this.SizeChanged += new System.EventHandler(this.ransomwareDetectionSystemTray_SizeChanged);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
