@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle( "ContentDetectorLib" )]
 [assembly: AssemblyDescription( "" )]
 [assembly: AssemblyConfiguration( "" )]
-[assembly: AssemblyCompany( "zeta software GmbH" )]
-[assembly: AssemblyProduct( "ContentDetectorLib" )]
-[assembly: AssemblyCopyright( "Copyright © zeta software GmbH 2007" )]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("RansomwareDetection")]
+[assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark( "" )]
 [assembly: AssemblyCulture( "" )]
 

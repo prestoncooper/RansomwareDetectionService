@@ -379,6 +379,149 @@ namespace RansomwareDetection.DetectionLib
         }
 
 
+        public static bool IsBadUsername(string strUsername)
+        {
+            bool blBadUsername = false;
+            strUsername = Common.FixNullstring(strUsername).ToLower().Trim();
+            switch (strUsername)
+            {
+                case "administrator":
+                    blBadUsername = true;
+                    break;
+                case "builtin\\administrator":
+                    blBadUsername = true;
+                    break;
+                case "builtin\\administrators":
+                    blBadUsername = true;
+                    break;
+                case "domain admins":
+                    blBadUsername = true;
+                    break;
+                case "administrators":
+                    blBadUsername = true;
+                    break;
+                case "mme":
+                    blBadUsername = true;
+                    break;
+                case "system":
+                    blBadUsername = true;
+                    break;
+                case "everyone":
+                    blBadUsername = true;
+                    break;
+                case "authenticated users":
+                    blBadUsername = true;
+                    break;
+                case "users":
+                    blBadUsername = true;
+                    break;
+                case "guests":
+                    blBadUsername = true;
+                    break;
+                case "backup operators":
+                    blBadUsername = true;
+                    break;
+                case "guest":
+                    blBadUsername = true;
+                    break;
+                case "iis_iusrs":
+                    blBadUsername = true;
+                    break;
+                case "network configuration operators":
+                    blBadUsername = true;
+                    break;
+                case "power users":
+                    blBadUsername = true;
+                    break;
+                case "remote desktop users":
+                    blBadUsername = true;
+                    break;
+                case "replicator":
+                    blBadUsername = true;
+                    break;
+                case "offer remote assistance helpers":
+                    blBadUsername = true;
+                    break;
+                case "performance monitor users":
+                    blBadUsername = true;
+                    break;
+                case "performance log users":
+                    blBadUsername = true;
+                    break;
+                case "distributed com users":
+                    blBadUsername = true;
+                    break;
+                case "cryptographic operators":
+                    blBadUsername = true;
+                    break;
+                case "server operators":
+                    blBadUsername = true;
+                    break;
+                case "remote management users":
+                    blBadUsername = true;
+                    break;
+                case "account operators":
+                    blBadUsername = true;
+                    break;
+                case "hyper-v administrators":
+                    blBadUsername = true;
+                    break;
+                case "access control assistance operators":
+                    blBadUsername = true;
+                    break;
+                case "certificate service dcom access":
+                    blBadUsername = true;
+                    break;
+                case "event log readers":
+                    blBadUsername = true;
+                    break;
+                case "incoming forest trust builders":
+                    blBadUsername = true;
+                    break;
+                case "print operators":
+                    blBadUsername = true;
+                    break;
+                case "creator owner id":
+                    blBadUsername = true;
+                    break;
+                case "local":
+                    blBadUsername = true;
+                    break;
+                case "world":
+                    blBadUsername = true;
+                    break;
+                case "creator group id":
+                    blBadUsername = true;
+                    break;
+                case "null sid":
+                    blBadUsername = true;
+                    break;
+                case "security_anonymous_logon_rid":
+                    blBadUsername = true;
+                    break;
+                case "security_authenticated_user_rid":
+                    blBadUsername = true;
+                    break;
+                case "security_local_system_rid":
+                    blBadUsername = true;
+                    break;
+                case "security_bultin_domain_rid":
+                    blBadUsername = true;
+                    break;
+                case "security_service_rid":
+                    blBadUsername = true;
+                    break;
+                case "security_network_rid":
+                    blBadUsername = true;
+                    break;
+                case "":
+                    blBadUsername = true;
+                    break;
+
+            }
+            return blBadUsername;
+        }
+
         public static List<string> GetAclUsernames(string strPath)
         {
             Microsoft.Win32.Security.SecurityDescriptor secDesc;
@@ -427,6 +570,41 @@ namespace RansomwareDetection.DetectionLib
             }
             
             return lUsernames;
+        }
+
+        /// <summary>
+        /// Get File Owner from FullFilePath works with long file paths
+        /// </summary>
+        /// <param name="strFileName"></param>
+        /// <returns></returns>
+        public static string GetFileOwnerUsername(string strFileName)
+        {
+            string strOwner = "";
+            string strLongFilePath = LongPathPrepend(strFileName);
+            Microsoft.Win32.Security.SecurityDescriptor secDesc = null;
+            try
+            {
+                if (Common.FileExists(strFileName))
+                {
+                    secDesc = Microsoft.Win32.Security.SecurityDescriptor.GetFileSecurity(strLongFilePath, Microsoft.Win32.Security.SECURITY_INFORMATION.OWNER_SECURITY_INFORMATION);
+                    strOwner = Common.FixNullstring(secDesc.Owner.AccountName);
+                }
+
+            }
+            catch (Exception)
+            {
+                strOwner = "";
+            }
+            finally
+            {
+                if (secDesc != null)
+                {
+                    secDesc.Dispose();
+                    secDesc = null;
+                }
+            }
+
+            return strOwner;
         }
 
         /// <summary>

@@ -1068,7 +1068,7 @@ namespace RansomwareDetection.DetectionLib
                         startInfo.FileName = Common.WindowsPathClean(Common.FixNullstring(CommandProgram));
                         if (Common.FixNullstring(CommandArguments).Trim().Length > 0)
                         {
-                            string strArguments = "";
+                            string strArguments = CommandArguments;
                             strArguments = strArguments.Replace("[Username]", strUsernameDetected);
                             strArguments = strArguments.Replace("[FullFilePath]", strFileName);
                             strArguments = Common.WindowsArgumentClean(strArguments.Replace("[FullFolderPath]", strParentFolder));
@@ -1086,9 +1086,23 @@ namespace RansomwareDetection.DetectionLib
 
                         process.WaitForExit(1000 * 60 * CommandTimeout);
                         process.Refresh();
+                        try
+                        {
+                            if (!process.HasExited)
+                            {
+                                process.Kill();
+                            }
 
-                        process.Kill();
-                        process.Close();
+                        }
+                        catch (Exception)
+                        {
+
+                        }
+                        finally
+                        {
+                            process.Close();
+                        }
+                        
                         process = null;
                     }
                 }
@@ -1180,7 +1194,6 @@ namespace RansomwareDetection.DetectionLib
         {
             string strUsername = "";
             Microsoft.Win32.Security.SecurityDescriptor secDesc;
-            List<string> lUsernames = new List<string>();
             strUsername = getUserFromPath(FilePathToCheck);
             if (Common.TestAcl(strPath, strUsername))
             {
@@ -1195,7 +1208,7 @@ namespace RansomwareDetection.DetectionLib
                 for (int i = 0; i < dacl.AceCount; i++)
                 {
                     Microsoft.Win32.Security.Ace ace = dacl.GetAce(i);
-                    if (ace.Sid.AccountName.ToLower() != "administrator" && ace.Sid.AccountName.ToLower() != "domain admins" && ace.Sid.AccountName.ToLower() != "administrators" && ace.Sid.AccountName.ToLower() != "mme" && ace.Sid.AccountName.ToLower() != "system" && ace.Sid.AccountName.ToLower() != "users" && ace.Sid.AccountName.ToLower() != "everyone" && ace.Sid.AccountName.ToLower() != "authenticated users" && ace.Sid.AccountName.ToLower() != "backup operators" && ace.Sid.AccountName.ToLower() != "guest" && ace.Sid.AccountName.ToLower() != "guests" && ace.Sid.AccountName.ToLower() != "iis_iusrs" && ace.Sid.AccountName.ToLower() != "network configuration operators" && ace.Sid.AccountName.ToLower() != "power users" && ace.Sid.AccountName.ToLower() != "remote desktop users" && ace.Sid.AccountName.ToLower() != "replicator" && ace.Sid.AccountName.ToLower() != "offer remote assistance helpers" && ace.Sid.AccountName.ToLower() != "performance monitor users" && ace.Sid.AccountName.ToLower() != "performance log users" && ace.Sid.AccountName.ToLower() != "distributed com users" && ace.Sid.AccountName.ToLower() != "cryptographic operators" && ace.Sid.AccountName.ToLower() != "server operators" && ace.Sid.AccountName.ToLower() != "remote management users" && ace.Sid.AccountName.ToLower() != "account operators" && ace.Sid.AccountName.ToLower() != "hyper-v administrators" && ace.Sid.AccountName.ToLower() != "access control assistance operators" && ace.Sid.AccountName.ToLower() != "certificate service dcom access" && ace.Sid.AccountName.ToLower() != "event log readers" && ace.Sid.AccountName.ToLower() != "incoming forest trust builders" && ace.Sid.AccountName.ToLower() != "print operators" && ace.Sid.AccountName.ToLower() != "remote management users" && ace.Sid.AccountName.ToLower() != "creator owner id" && ace.Sid.AccountName.ToLower() != "creator group id" && ace.Sid.AccountName.ToLower() != "local" && ace.Sid.AccountName.ToLower() != "world" && ace.Sid.AccountName.ToLower() != "null sid" && ace.Sid.AccountName.ToLower() != "security_anonymous_logon_rid" && ace.Sid.AccountName.ToLower() != "security_authenticated_user_rid" && ace.Sid.AccountName.ToLower() != "security_local_system_rid" && ace.Sid.AccountName.ToLower() != "security_bultin_domain_rid" && ace.Sid.AccountName.ToLower() != "security_service_rid" && ace.Sid.AccountName.ToLower() != "security_network_rid")
+                    if (!Common.IsBadUsername(ace.Sid.AccountName))
                     {
                         return ace.Sid.AccountName;
                     }
@@ -1205,6 +1218,7 @@ namespace RansomwareDetection.DetectionLib
             
             
         }
+
 
          /// <summary>
         /// Executes Compare of all files
@@ -1217,6 +1231,7 @@ namespace RansomwareDetection.DetectionLib
             List<Delimon.Win32.IO.FileInfo> AllFiles = null;
             List<ContentDetectorLib.FileResult> FilesDifferent = null;
             List<ContentDetectorLib.FileResult> FilesMissing = null;
+            HashSet<string> lUsernames = null;
             try
             {
                 if (Enabled)
@@ -1227,6 +1242,7 @@ namespace RansomwareDetection.DetectionLib
                     AllFiles = new List<Delimon.Win32.IO.FileInfo>();
                     FilesDifferent = new List<ContentDetectorLib.FileResult>();
                     FilesMissing = new List<ContentDetectorLib.FileResult>();
+                    lUsernames = new HashSet<string>();
 
                     if (!Common.DirectoryExists(SourcePath))
                     {
@@ -1303,7 +1319,13 @@ namespace RansomwareDetection.DetectionLib
 
                                                     if (ExecuteCommandOnDetectFileDifferent)
                                                     {
-                                                        ransomwareDetectedCommand(Common.GetFileOwner(FileToCheck),FileToCheck,new Delimon.Win32.IO.FileInfo(FileToCheck).Directory.FullName);
+                                                        string strUsername = Common.GetFileOwnerUsername(FileToCheck);
+                                                        if (Common.IsBadUsername(strUsername))
+                                                        {
+                                                            strUsername = getUsernameFromFolder(FileToCheck);
+                                                        }
+
+                                                        ransomwareDetectedCommand(strUsername,FileToCheck,new Delimon.Win32.IO.FileInfo(FileToCheck).Directory.FullName);
                                                     }
 
                                                     string strErr = "FileCompare: File Compare Failed! (Possible Ransomware Change Detected) SourceFile: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
@@ -1448,7 +1470,12 @@ namespace RansomwareDetection.DetectionLib
 
                                                                 if (ExecuteCommandOnDetectFileDifferent)
                                                                 {
-                                                                    ransomwareDetectedCommand(Common.GetFileOwner(FileToCheck),FileToCheck,new Delimon.Win32.IO.FileInfo(FileToCheck).Directory.FullName);
+                                                                    string strUsername = Common.GetFileOwnerUsername(FileToCheck);
+                                                                    if (Common.IsBadUsername(strUsername))
+                                                                    {
+                                                                        strUsername = getUsernameFromFolder(FileToCheck);
+                                                                    }
+                                                                    ransomwareDetectedCommand(strUsername,FileToCheck,new Delimon.Win32.IO.FileInfo(FileToCheck).Directory.FullName);
                                                                 }
 
                                                                 string strErr = "FileCompare: File Compare Failed! (Possible Ransomware Change Detected) SourceFile: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
@@ -1490,7 +1517,12 @@ namespace RansomwareDetection.DetectionLib
 
                                                                 if (ExecuteCommandOnDetectFileDifferent)
                                                                 {
-                                                                    ransomwareDetectedCommand(Common.GetFileOwner(FileToCheck), FileToCheck, new Delimon.Win32.IO.FileInfo(FileToCheck).Directory.FullName);
+                                                                    string strUsername = Common.GetFileOwnerUsername(FileToCheck);
+                                                                    if (Common.IsBadUsername(strUsername))
+                                                                    {
+                                                                        strUsername = getUsernameFromFolder(FileToCheck);
+                                                                    }
+                                                                    ransomwareDetectedCommand(strUsername, FileToCheck, new Delimon.Win32.IO.FileInfo(FileToCheck).Directory.FullName);
                                                                 }
 
                                                                 string strErr = "FileCompare: File Compare Failed! SourceFile: " + SourceFile + " Different than FileToCheck: " + FileToCheck;

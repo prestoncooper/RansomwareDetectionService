@@ -218,7 +218,8 @@ Copyright (C) 1995-2004 Jean-loup Gailly and Mark Adler
 //Added ByteOffset and FirstBytesToRead to HeaderSignature Stock Signature contructors 3-27-2016
 //Added more stock signatures 3-31-2016
 //Added Error Log write procedure and objects needed event log use 3-31-2016
-
+//Added more stock signatures 4-21-2016
+//Modifed code to all for reading of readonly files or open files 4-21-2016
 
 //Added more 
 namespace RansomwareDetection.ContentDetectorLib
