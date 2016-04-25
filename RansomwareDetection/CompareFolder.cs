@@ -1017,7 +1017,7 @@ namespace RansomwareDetection.DetectionLib
             dtCompareConfig.Columns["November"].DefaultValue = "true";
             dtCompareConfig.Columns["December"].DefaultValue = "true";
             dtCompareConfig.Columns["DayOfMonth"].DefaultValue = "0";
-            dtCompareConfig.Columns["SourcePath"].DefaultValue = "";
+            dtCompareConfig.Columns["SourcePath"].DefaultValue = "C:\\Program Files (x86)\\Ransomware Detection Service\\SourcePath";
             dtCompareConfig.Columns["FilePathToCheck"].DefaultValue = "";
             dtCompareConfig.Columns["CheckMainFolder"].DefaultValue = "true";
             dtCompareConfig.Columns["CheckSubFolders"].DefaultValue = "true";

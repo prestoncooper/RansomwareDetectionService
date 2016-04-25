@@ -548,6 +548,7 @@ namespace RansomwareDetection
             FileBrowserD = new OpenFileDialog();
             
             getServiceStatus();
+            showForm();
         }
 
 
@@ -1207,6 +1208,14 @@ namespace RansomwareDetection
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void onShowForm(object sender, EventArgs e)
+        {
+            getServiceStatus();
+            Visible = true;
+            WindowState = FormWindowState.Normal;
+            refreshEventsTab();
+        }
+
+        private void showForm()
         {
             getServiceStatus();
             Visible = true;

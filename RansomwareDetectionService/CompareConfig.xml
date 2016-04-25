@@ -27,7 +27,7 @@
     <November>true</November>
     <December>true</December>
     <DayOfMonth>0</DayOfMonth>
-    <SourcePath>C:\TEMP\source</SourcePath>
+    <SourcePath>C:\Program Files (x86)\Ransomware Detection Service\SourcePath</SourcePath>
     <FilePathToCheck>C:\TEMP\newtest</FilePathToCheck>
     <CheckSubFolders>True</CheckSubFolders>
     <ExportCSVPath>C:\TEMP\ExportCSV</ExportCSVPath>
