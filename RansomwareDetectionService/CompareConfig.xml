@@ -36,7 +36,7 @@
     <ExecuteCommandOnUserScopeOnly>True</ExecuteCommandOnUserScopeOnly>
     <CommandWorkingDirectory>C:\Program Files (x86)\Ransomware Detection Service</CommandWorkingDirectory>
     <CommandProgram>powershell.exe</CommandProgram>
-    <CommandArguments>-ExecutionPolicy UNRESTRICTED -File "C:\Program Files (x86)\Ransomware Detection Service\StopRansomwareInfectedComputerPublic.ps1" -username [Username]</CommandArguments>
+    <CommandArguments>-ExecutionPolicy UNRESTRICTED -File "C:\Program Files (x86)\Ransomware Detection Service\StopRansomwareInfectedUserPublic.ps1" -username [Username]</CommandArguments>
     <CommandTimeout>10</CommandTimeout>
     <SendEmailOnFailure>True</SendEmailOnFailure>
     <SendEmailOnSuccess>True</SendEmailOnSuccess>
