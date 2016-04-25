@@ -1,0 +1,1893 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <SignaturesConfig>
+    <ID>1</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
+    <HexPattern>FFD8FFFE00</HexPattern>
+    <SignatureName>JPG Image File</SignatureName>
+    <FileExtensions>.jpeg;.jpe;.jpg;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>3</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
+    <HexPattern>FFD8FFE000</HexPattern>
+    <SignatureName>JPG Image File</SignatureName>
+    <FileExtensions>.jpeg;.jpe;.jpg;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>4</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
+    <HexPattern>FFD8FFE128</HexPattern>
+    <SignatureName>JPG Image File</SignatureName>
+    <FileExtensions>.jpeg;.jpe;.jpg;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>5</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
+    <HexPattern>FFD8FFE1</HexPattern>
+    <SignatureName>JPG Image File</SignatureName>
+    <FileExtensions>.jpeg;.jpe;.jpg;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>6</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
+    <HexPattern>FFD8FFE0</HexPattern>
+    <SignatureName>JPG Image File</SignatureName>
+    <FileExtensions>.jpeg;.jpe;.jpg;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>7</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
+    <HexPattern>474946383961</HexPattern>
+    <SignatureName>GIF 89A</SignatureName>
+    <FileExtensions>.gif;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>8</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
+    <HexPattern>474946383761</HexPattern>
+    <SignatureName>GIF 87A</SignatureName>
+    <FileExtensions>.gif;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>9</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>424D</HexPattern>
+    <SignatureName>Windows Bitmap</SignatureName>
+    <FileExtensions>.bmp;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>13</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
+    <HexPattern>504B0304140006</HexPattern>
+    <SignatureName>Microsoft Office Open XML Format 1</SignatureName>
+    <FileExtensions>.doc;.docx;.pptx;.xlsx;.vsdx;.dotx;.dotm;.docm;.ppsx;.potx;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>14</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
+    <HexPattern>504B0304140002</HexPattern>
+    <SignatureName>Microsoft Office Open XML Format 2</SignatureName>
+    <FileExtensions>.doc;.docx;.pptx;.xlsx;.vsdx;.dotx;.dotm;.docm;.ppsx;.potx;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>15</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
+    <HexPattern>3A42617365</HexPattern>
+    <SignatureName>CNT</SignatureName>
+    <FileExtensions>.cnt;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>16</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
+    <HexPattern>D0CF11E0A1B11AE1</HexPattern>
+    <SignatureName>MS Compound Document v1 or Lotus Approach APR file</SignatureName>
+    <FileExtensions>.doc;.xls;.xlt;.ppt;.apr;.dot;.pps;.wps;.vsd;.qbm;.pub;.adp;.ade;.docm;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>17</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
+    <HexPattern>0100000058000000</HexPattern>
+    <SignatureName>EMF</SignatureName>
+    <FileExtensions>.emf;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>18</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
+    <HexPattern>03000000C466C456</HexPattern>
+    <SignatureName>EVT</SignatureName>
+    <FileExtensions>.evt;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>19</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
+    <HexPattern>3F5F0300</HexPattern>
+    <SignatureName>Windows Help File</SignatureName>
+    <FileExtensions>.gid;.hlp;.lhp;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>20</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>1F8B08</HexPattern>
+    <SignatureName>GZ Compressed File</SignatureName>
+    <FileExtensions>.gz;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>22</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
+    <HexPattern>28546869732066696C65</HexPattern>
+    <SignatureName>HQX</SignatureName>
+    <FileExtensions>.hqx;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>23</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>0000010000</HexPattern>
+    <SignatureName>Icon File</SignatureName>
+    <FileExtensions>.ico;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>24</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>000001000100</HexPattern>
+    <SignatureName>Icon File</SignatureName>
+    <FileExtensions>.ico;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>25</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
+    <HexPattern>4C000000011402</HexPattern>
+    <SignatureName>Windows Link File</SignatureName>
+    <FileExtensions>.lnk;.url;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>26</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
+    <HexPattern>25504446</HexPattern>
+    <SignatureName>Adobe PDF File</SignatureName>
+    <FileExtensions>.pdf</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>27</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
+    <HexPattern>5245474544495434</HexPattern>
+    <SignatureName>Windows Registry File</SignatureName>
+    <FileExtensions>.reg;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>28</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
+    <HexPattern>7B5C72746631</HexPattern>
+    <SignatureName>Rich Text</SignatureName>
+    <FileExtensions>.rtf;.doc;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>29</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
+    <HexPattern>7B5C727466</HexPattern>
+    <SignatureName>Rich Text</SignatureName>
+    <FileExtensions>.rtf;.doc;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>30</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>2D6C68</HexPattern>
+    <SignatureName>LZH Compressed archive file</SignatureName>
+    <FileExtensions>.lzh;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>31</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>4D546864</HexPattern>
+    <SignatureName>MID</SignatureName>
+    <FileExtensions>.mid;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>32</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>0A050108</HexPattern>
+    <SignatureName>pcx</SignatureName>
+    <FileExtensions>.pcx;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>33</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>25215053</HexPattern>
+    <SignatureName>Adobe EPS File</SignatureName>
+    <FileExtensions>.eps</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>34</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>2112</HexPattern>
+    <SignatureName>AIN Archive File</SignatureName>
+    <FileExtensions>.ain</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>35</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>1A02</HexPattern>
+    <SignatureName>ARC/PKPAK Compressed 1</SignatureName>
+    <FileExtensions>.arc;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>36</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>1A03</HexPattern>
+    <SignatureName>ARC/PKPAK Compressed 2</SignatureName>
+    <FileExtensions>.arc;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>37</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>1A04</HexPattern>
+    <SignatureName>ARC/PKPAK Compressed 3</SignatureName>
+    <FileExtensions>.arc;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>38</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>1A08</HexPattern>
+    <SignatureName>ARC/PKPAK Compressed 4</SignatureName>
+    <FileExtensions>.arc;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>39</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>1A09</HexPattern>
+    <SignatureName>ARC/PKPAK Compressed 5</SignatureName>
+    <FileExtensions>.arc;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>40</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>60EA</HexPattern>
+    <SignatureName>ARJ Compressed</SignatureName>
+    <FileExtensions>.arj;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>41</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
+    <HexPattern>41564920</HexPattern>
+    <SignatureName>Audio Video Interleave (AVI)</SignatureName>
+    <FileExtensions>.avi;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>42</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
+    <HexPattern>52494646</HexPattern>
+    <SignatureName>Audio Video Interleave (AVI)</SignatureName>
+    <FileExtensions>.avi;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>43</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>425A68</HexPattern>
+    <SignatureName>Bzip Archive</SignatureName>
+    <FileExtensions>.bz;.bz2;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>44</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>49536328</HexPattern>
+    <SignatureName>Cabinet File</SignatureName>
+    <FileExtensions>.cab;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>45</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>4C01</HexPattern>
+    <SignatureName>Compiled Object Module</SignatureName>
+    <FileExtensions>.obj</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>46</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>303730373037</HexPattern>
+    <SignatureName>CPIO Archive File</SignatureName>
+    <FileExtensions>.tar;.cpio;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>47</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>4352555348</HexPattern>
+    <SignatureName>CRUSH Archive File</SignatureName>
+    <FileExtensions>.cru;.crush;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>48</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>3ADE68B1</HexPattern>
+    <SignatureName>DCX Graphic File</SignatureName>
+    <FileExtensions>.dcx;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>49</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>1F8B</HexPattern>
+    <SignatureName>Gzip Archive File</SignatureName>
+    <FileExtensions>.gz;.tar;.tgz;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>50</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>91334846</HexPattern>
+    <SignatureName>HAP Archive File</SignatureName>
+    <FileExtensions>.hap;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>51</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>3C68746D6C3E</HexPattern>
+    <SignatureName>HyperText Markup Language 1</SignatureName>
+    <FileExtensions>.htm;.html;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>52</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>3C48544D4C3E</HexPattern>
+    <SignatureName>HyperText Markup Language 2</SignatureName>
+    <FileExtensions>.htm;.html;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>53</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>3C21444F4354</HexPattern>
+    <SignatureName>HyperText Markup Language 3</SignatureName>
+    <FileExtensions>.htm;.html;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>54</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>3C646976</HexPattern>
+    <SignatureName>HyperText Markup Language 4 Starts with div tag</SignatureName>
+    <FileExtensions>.htm;.html;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>55</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>3</FirstNumberOfBytesToRead>
+    <HexPattern>100</HexPattern>
+    <SignatureName>ICON File</SignatureName>
+    <FileExtensions>.ico;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>56</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
+    <HexPattern>5F27A889</HexPattern>
+    <SignatureName>JAR Archive File</SignatureName>
+    <FileExtensions>.jar;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>57</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>2D6C68352D</HexPattern>
+    <SignatureName>LHA Compressed</SignatureName>
+    <FileExtensions>.lha;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>58</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>20006040600</HexPattern>
+    <SignatureName>Lotus 123 v1 Worksheet</SignatureName>
+    <FileExtensions>.wk1;.wks;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>59</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>00001A0007800100</HexPattern>
+    <SignatureName>Lotus 123 v3 FMT file</SignatureName>
+    <FileExtensions>.fm3;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>60</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>00001A0000100400</HexPattern>
+    <SignatureName>Lotus 123 v3 Worksheet</SignatureName>
+    <FileExtensions>.wk3;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>61</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>20006800200</HexPattern>
+    <SignatureName>Lotus 123 v4 FMT file</SignatureName>
+    <FileExtensions>.fmt;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>62</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>00001A0002100400</HexPattern>
+    <SignatureName>Lotus 123 v5</SignatureName>
+    <FileExtensions>.wk4;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>63</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>5B7665725D</HexPattern>
+    <SignatureName>Lotus Ami Pro</SignatureName>
+    <FileExtensions>.ami;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>64</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>300000041505052</HexPattern>
+    <SignatureName>Lotus Approach ADX file</SignatureName>
+    <FileExtensions>.adx;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>65</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>1A0000030000</HexPattern>
+    <SignatureName>Lotus Notes Database/Template</SignatureName>
+    <FileExtensions>.nsf;.ntf;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>66</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>4D47582069747064</HexPattern>
+    <SignatureName>Micrografix Designer 4</SignatureName>
+    <FileExtensions>.ds4;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>67</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>4D534346</HexPattern>
+    <SignatureName>Microsoft CAB File Format</SignatureName>
+    <FileExtensions>.cab;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>68</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>4D546864</HexPattern>
+    <SignatureName>Midi Audio File</SignatureName>
+    <FileExtensions>.mid;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>69</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>000001B3</HexPattern>
+    <SignatureName>MPEG Video</SignatureName>
+    <FileExtensions>.mpg;.mpeg;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>70</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
+    <HexPattern>0902060000001000B9045C00</HexPattern>
+    <SignatureName>MS Excel v2</SignatureName>
+    <FileExtensions>.xls;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>71</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
+    <HexPattern>0904060000001000F6055C00</HexPattern>
+    <SignatureName>MS Excel v4</SignatureName>
+    <FileExtensions>.xls;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>72</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
+    <HexPattern>7FFE340A</HexPattern>
+    <SignatureName>MS Word</SignatureName>
+    <FileExtensions>.doc;.xls;.xlt;.ppt;.apr;.dot;.pps;.wps;.vsd;.qbm;.pub;.adp;.ade;.docm;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>73</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
+    <HexPattern>1234567890FF</HexPattern>
+    <SignatureName>MS Word 6.0</SignatureName>
+    <FileExtensions>.doc;.xls;.xlt;.ppt;.apr;.dot;.pps;.wps;.vsd;.qbm;.pub;.adp;.ade;.docm;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>74</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
+    <HexPattern>31BE000000AB0000</HexPattern>
+    <SignatureName>MS Word for DOS 6.0</SignatureName>
+    <FileExtensions>.doc;.xls;.xlt;.ppt;.apr;.dot;.pps;.wps;.vsd;.qbm;.pub;.adp;.ade;.docm;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>75</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>1A00000300001100</HexPattern>
+    <SignatureName>Notes Database</SignatureName>
+    <FileExtensions>.nsf;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>76</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>7E424B00</HexPattern>
+    <SignatureName>PaintShop Pro Image File</SignatureName>
+    <FileExtensions>.psp</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>77</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
+    <HexPattern>504B0304</HexPattern>
+    <SignatureName>PKZIP Compressed</SignatureName>
+    <FileExtensions>.zip;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>78</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>89504E470D0A</HexPattern>
+    <SignatureName>PNG Image File</SignatureName>
+    <FileExtensions>.png;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>79</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>6D646174</HexPattern>
+    <SignatureName>QuickTime Movie 1</SignatureName>
+    <FileExtensions>.mov;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>80</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>6D6F6F76</HexPattern>
+    <SignatureName>QuickTime Movie 2</SignatureName>
+    <FileExtensions>.mov;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>81</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>71742020</HexPattern>
+    <SignatureName>QuickTime Movie 3</SignatureName>
+    <FileExtensions>.mov;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>82</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>0000001466747970</HexPattern>
+    <SignatureName>QuickTime Movie 4</SignatureName>
+    <FileExtensions>.mov;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>83</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>6D646174</HexPattern>
+    <SignatureName>Quicktime Movie File</SignatureName>
+    <FileExtensions>.qt;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>84</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>526172211A07</HexPattern>
+    <SignatureName>RAR Archive File</SignatureName>
+    <FileExtensions>.rar;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>85</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>2E7261FD</HexPattern>
+    <SignatureName>Real Audio File</SignatureName>
+    <FileExtensions>.ra;.ram;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>86</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>EDABEEDB</HexPattern>
+    <SignatureName>RPM Archive File</SignatureName>
+    <FileExtensions>.rpm;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>87</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>2E736E64</HexPattern>
+    <SignatureName>SoundMachine Audio File</SignatureName>
+    <FileExtensions>.au;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>89</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>53495421</HexPattern>
+    <SignatureName>Stuffit v1 Archive File</SignatureName>
+    <FileExtensions>.sit;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>90</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>53747566664974</HexPattern>
+    <SignatureName>Stuffit v5 Archive File</SignatureName>
+    <FileExtensions>.sit;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>91</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>4</FirstNumberOfBytesToRead>
+    <HexPattern>1F9D</HexPattern>
+    <SignatureName>TAR Compressed Archive File</SignatureName>
+    <FileExtensions>.z;.tar;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>92</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>6</FirstNumberOfBytesToRead>
+    <HexPattern>49492A</HexPattern>
+    <SignatureName>TIFF (Intel)</SignatureName>
+    <FileExtensions>.tif;.tiff;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>93</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>6</FirstNumberOfBytesToRead>
+    <HexPattern>4D4D2A</HexPattern>
+    <SignatureName>TIFF (Motorola)</SignatureName>
+    <FileExtensions>.tif;.tiff;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>94</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>4D4D002A</HexPattern>
+    <SignatureName>TIFF (Adobe)</SignatureName>
+    <FileExtensions>.tif;.tiff;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>95</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>6</FirstNumberOfBytesToRead>
+    <HexPattern>554641</HexPattern>
+    <SignatureName>UFA Archive File</SignatureName>
+    <FileExtensions>.ufa;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>96</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>57415645666D74</HexPattern>
+    <SignatureName>Wave File</SignatureName>
+    <FileExtensions>.wav;.cda;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>97</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>D7CDC69A</HexPattern>
+    <SignatureName>Windows Meta File</SignatureName>
+    <FileExtensions>.wmf</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>98</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>4C000000</HexPattern>
+    <SignatureName>Windows Shortcut (Link File)</SignatureName>
+    <FileExtensions>.lnk;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>99</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
+    <HexPattern>504B3030504B0304</HexPattern>
+    <SignatureName>WINZIP Compressed</SignatureName>
+    <FileExtensions>.zip;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>100</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>FF575047</HexPattern>
+    <SignatureName>WordPerfect Graphics</SignatureName>
+    <FileExtensions>.wpg;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>101</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>FF575043</HexPattern>
+    <SignatureName>WordPerfect v5 or v6</SignatureName>
+    <FileExtensions>.wp;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>102</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>3C3F786D6C</HexPattern>
+    <SignatureName>XML </SignatureName>
+    <FileExtensions>.xml;.config;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>103</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>FFFE3C0052004F004F0054005300540055004200</HexPattern>
+    <SignatureName>XML</SignatureName>
+    <FileExtensions>.xml;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>105</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>3C21454E54495459</HexPattern>
+    <SignatureName>XML DTD</SignatureName>
+    <FileExtensions>.dtd;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>106</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
+    <HexPattern>5A4F4F20</HexPattern>
+    <SignatureName>ZOO Archive File</SignatureName>
+    <FileExtensions>.zoo;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>107</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>01766F72626973</HexPattern>
+    <SignatureName>Ogg Vorbis</SignatureName>
+    <FileExtensions>.ogg;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>108</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>4</FirstNumberOfBytesToRead>
+    <HexPattern>4D5A</HexPattern>
+    <SignatureName>Executable File</SignatureName>
+    <FileExtensions>.exe;.com;.386;.ax;.acm;.sys;.dll;.drv;.flt;.fon;.ocx;.scr;.lrc;.vxd;.cpl;.x32</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>109</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>D0CF11E0A1B11AE1</HexPattern>
+    <SignatureName>Microsoft Installer</SignatureName>
+    <FileExtensions>.msi;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>110</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>D0CF11E0A1B11AE1</HexPattern>
+    <SignatureName>Outlook Message File</SignatureName>
+    <FileExtensions>.msg;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>111</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>8</FirstNumberOfBytesToRead>
+    <HexPattern>DBA52D00</HexPattern>
+    <SignatureName>MS Word 2.0</SignatureName>
+    <FileExtensions>.doc;.xls;.xlt;.ppt;.apr;.dot;.pps;.wps;.vsd;.qbm;.pub;.adp;.ade;.docm;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>112</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>6</FirstNumberOfBytesToRead>
+    <HexPattern>464C56</HexPattern>
+    <SignatureName>Flash Video</SignatureName>
+    <FileExtensions>.flv;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>113</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>6</FirstNumberOfBytesToRead>
+    <HexPattern>465753</HexPattern>
+    <SignatureName>Flash Shockwave</SignatureName>
+    <FileExtensions>.swf;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>114</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>3026B2758E66CF</HexPattern>
+    <SignatureName>Windows Video File</SignatureName>
+    <FileExtensions>.wmv;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>115</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>3026B2758E66CF</HexPattern>
+    <SignatureName>Windows Audio File</SignatureName>
+    <FileExtensions>.wma;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>116</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>2142444E42</HexPattern>
+    <SignatureName>Outlook Post Office File</SignatureName>
+    <FileExtensions>.pst;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>117</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>4</FirstNumberOfBytesToRead>
+    <HexPattern>FFF1</HexPattern>
+    <SignatureName>MPEG-4 Advanced Audio Coding (AAC) Low Complexity</SignatureName>
+    <FileExtensions>.aac</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>118</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>4</FirstNumberOfBytesToRead>
+    <HexPattern>FFF9</HexPattern>
+    <SignatureName>MPEG-2 Advanced Audio Coding (AAC) Low Complexity</SignatureName>
+    <FileExtensions>.aac</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>119</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>D0CF11E0A1B11AE1</HexPattern>
+    <SignatureName>Windows Thumbs.db</SignatureName>
+    <FileExtensions>.db</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>120</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>377ABCAF271C</HexPattern>
+    <SignatureName>7zip</SignatureName>
+    <FileExtensions>.7z</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>121</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>4D344120</HexPattern>
+    <SignatureName>Apple Lossless Audio Codec file</SignatureName>
+    <FileExtensions>.m4a</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>122</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>0000002066747970</HexPattern>
+    <SignatureName>Apple Lossless Audio Codec file</SignatureName>
+    <FileExtensions>.m4a</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>124</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>000001BA</HexPattern>
+    <SignatureName>MPEG Movie</SignatureName>
+    <FileExtensions>.mpg;.mpeg;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>125</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>000001B</HexPattern>
+    <SignatureName>MPEG Movie</SignatureName>
+    <FileExtensions>.mpg;.mpeg;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>126</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>52494646</HexPattern>
+    <SignatureName>Wave File</SignatureName>
+    <FileExtensions>.wav;.cda;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>127</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>53514C6974652066</HexPattern>
+    <SignatureName>SQL Lite Database</SignatureName>
+    <FileExtensions>.db;.sqlite;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>128</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>6F726D6174203300</HexPattern>
+    <SignatureName>SQL Lite Database</SignatureName>
+    <FileExtensions>.db;.sqlite;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>129</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>636F6E6563746978</HexPattern>
+    <SignatureName>Virtual PC Virtual HD image</SignatureName>
+    <FileExtensions>.vhd;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>130</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>4B444D56</HexPattern>
+    <SignatureName>VMWare Disk file</SignatureName>
+    <FileExtensions>.vmdk</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>131</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>504B0304140000000000</HexPattern>
+    <SignatureName>epub book</SignatureName>
+    <FileExtensions>.epub;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>132</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>504B0304140008000800</HexPattern>
+    <SignatureName>Java JAR File</SignatureName>
+    <FileExtensions>.jar;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>133</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>4A4152435300</HexPattern>
+    <SignatureName>JARCS compressed archive</SignatureName>
+    <FileExtensions>.jar;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>134</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
+    <HexPattern>504B0506</HexPattern>
+    <SignatureName>PKZip Compressed</SignatureName>
+    <FileExtensions>.zip;.jar;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>135</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
+    <HexPattern>504B0708</HexPattern>
+    <SignatureName>PKZip Compressed</SignatureName>
+    <FileExtensions>.zip;.jar;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>136</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
+    <HexPattern>504B0304</HexPattern>
+    <SignatureName>Zip Compressed</SignatureName>
+    <FileExtensions>.zip;.jar;.odt;.kwd;.sxc;.sxd;.sxi;.sxw;.xps;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>137</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>EFBBBF3C</HexPattern>
+    <SignatureName>XML Document</SignatureName>
+    <FileExtensions>.xml;.config;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>138</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>46726F6D3A</HexPattern>
+    <SignatureName>Web Archive</SignatureName>
+    <FileExtensions>.mht;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>139</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>D0CF11E0A1B11AE1</HexPattern>
+    <SignatureName>msp Installer</SignatureName>
+    <FileExtensions>.msp;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>140</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>4D534346</HexPattern>
+    <SignatureName>Microsoft Update Installer Package</SignatureName>
+    <FileExtensions>.msu;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>141</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>454E49474D412042494E415259</HexPattern>
+    <SignatureName>Finale Music File</SignatureName>
+    <FileExtensions>.mus;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>142</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>504B0304140000</HexPattern>
+    <SignatureName>Make Music File</SignatureName>
+    <FileExtensions>.musx;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>143</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>5B7B3030303231344130</HexPattern>
+    <SignatureName>URL Shortcut File</SignatureName>
+    <FileExtensions>.url;.lnk;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>144</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>2F2F5468697320697320517569636B</HexPattern>
+    <SignatureName>Quickbooks configuration file</SignatureName>
+    <FileExtensions>.nd;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>145</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>D0CF11E0A1B11AE1</HexPattern>
+    <SignatureName>Quickbooks backup file</SignatureName>
+    <FileExtensions>.qbb;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>146</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>5B44454641554C545D</HexPattern>
+    <SignatureName>URL Shortcut File</SignatureName>
+    <FileExtensions>.url;.lnk;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>147</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>20</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>5EBA7ADAC9</HexPattern>
+    <SignatureName>Quickbooks file</SignatureName>
+    <FileExtensions>.qbw;.tlg;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>148</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
+    <HexPattern>000100005374616E</HexPattern>
+    <SignatureName>MS Access 1</SignatureName>
+    <FileExtensions>.mdb;.accdb;.accde;.accdr;.accdt;.accdt;.adp;.ade;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>149</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
+    <HexPattern>6461726420414345</HexPattern>
+    <SignatureName>MS Access 2</SignatureName>
+    <FileExtensions>.mdb;.accdb;.accde;.accdr;.accdt;.accdt;.adp;.ade;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>150</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>204442</HexPattern>
+    <SignatureName>MS Access 3</SignatureName>
+    <FileExtensions>.mdb;.accdb;.accde;.accdr;.accdt;.accdt;.adp;.ade;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>151</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
+    <HexPattern>000100005374616E</HexPattern>
+    <SignatureName>MS Access 4</SignatureName>
+    <FileExtensions>.mdb;.accdb;.accde;.accdr;.accdt;.accdt;.adp;.ade;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>152</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
+    <HexPattern>64617264204A6574</HexPattern>
+    <SignatureName>MS Access 5</SignatureName>
+    <FileExtensions>.mdb;.accdb;.accde;.accdr;.accdt;.accdt;.adp;.ade;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>153</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
+    <HexPattern>5374616E64617264204A6574</HexPattern>
+    <SignatureName>MS Access 6</SignatureName>
+    <FileExtensions>.mdb;.accdb;.accde;.accdr;.accdt;.accdt;.adp;.ade;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>154</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>00000014667479706D7034</HexPattern>
+    <SignatureName>MP4 1</SignatureName>
+    <FileExtensions>.mp4;.m4v;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>155</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>00000018667479706D7034</HexPattern>
+    <SignatureName>MP4 2</SignatureName>
+    <FileExtensions>.mp4;.m4v;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>156</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>4</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>667479704D534E56</HexPattern>
+    <SignatureName>MP4 3</SignatureName>
+    <FileExtensions>.mp4;.m4v;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>157</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>4</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>6674797069736F6D</HexPattern>
+    <SignatureName>MP4 4</SignatureName>
+    <FileExtensions>.mp4;.m4v;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>158</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>4</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>667479706D7034</HexPattern>
+    <SignatureName>MP4 5</SignatureName>
+    <FileExtensions>.mp4;.m4v;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>159</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>4</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>6674797033677035</HexPattern>
+    <SignatureName>MP4 6</SignatureName>
+    <FileExtensions>.mp4;.m4v;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>160</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>4</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>667479704D3456</HexPattern>
+    <SignatureName>m4v</SignatureName>
+    <FileExtensions>.mp4;.m4v;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>161</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>6</FirstNumberOfBytesToRead>
+    <HexPattern>494433</HexPattern>
+    <SignatureName>mp3 Audio File IDT</SignatureName>
+    <FileExtensions>.mp3;.mpeg;.mpg;</FileExtensions>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>162</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>2</FirstNumberOfBytesToRead>
+    <HexPattern>FF</HexPattern>
+    <SignatureName>mp3 Audio File</SignatureName>
+    <FileExtensions>.mp3;.mpeg;.mpg;</FileExtensions>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>163</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>8</FirstNumberOfBytesToRead>
+    <HexPattern>FF575043</HexPattern>
+    <SignatureName>MS Office</SignatureName>
+    <FileExtensions>.doc;.xls;.xlt;.ppt;.apr;.dot;.pps;.wps;.vsd;.qbm;.pub;.adp;.ade;.docm;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>165</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
+    <HexPattern>3C003F0078006D006C</HexPattern>
+    <SignatureName>XML File</SignatureName>
+    <FileExtensions>.xml;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>166</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
+    <HexPattern>0000000041000000EC</HexPattern>
+    <SignatureName>db file</SignatureName>
+    <FileExtensions>.db;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>167</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
+    <HexPattern>5B496E7465726E657453686F7274</HexPattern>
+    <SignatureName>URL Shortcut File</SignatureName>
+    <FileExtensions>.url;.lnk;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>168</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
+    <HexPattern>504B0304140006000800000021</HexPattern>
+    <SignatureName>MS Access 7</SignatureName>
+    <FileExtensions>.mdb;.accdb;.accde;.accdr;.accdt;.accdt;.adp;.ade;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>169</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>8</FirstNumberOfBytesToRead>
+    <HexPattern>49545346</HexPattern>
+    <SignatureName>chm help file</SignatureName>
+    <FileExtensions>.chm;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>170</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>504B0304</HexPattern>
+    <SignatureName>Open Document format</SignatureName>
+    <FileExtensions>.odt;ods;odp;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>171</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
+    <HexPattern>5374616E6461726420</HexPattern>
+    <SignatureName>MS Access 8</SignatureName>
+    <FileExtensions>.mdb;.accdb;.accde;.accdr;.accdt;.accdt;.adp;.ade;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>172</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>690000000000000000</HexPattern>
+    <SignatureName>bm2 board maker</SignatureName>
+    <FileExtensions>.bm2;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>173</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
+    <HexPattern>0A020101000000009F0697</HexPattern>
+    <SignatureName>pcx survey</SignatureName>
+    <FileExtensions>.pcx;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>174</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>00000100</HexPattern>
+    <SignatureName>Icon File</SignatureName>
+    <FileExtensions>.ico;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>175</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
+    <HexPattern>770000000000000000</HexPattern>
+    <SignatureName>Board Maker</SignatureName>
+    <FileExtensions>.bm2;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>176</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>30</FirstNumberOfBytesToRead>
+    <HexPattern>0101D430</HexPattern>
+    <SignatureName>Board Maker</SignatureName>
+    <FileExtensions>.bm2;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>177</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>20</FirstNumberOfBytesToRead>
+    <HexPattern>B168DE3A0410</HexPattern>
+    <SignatureName>dcx survey</SignatureName>
+    <FileExtensions>.dcx;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>178</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>10</FirstNumberOfBytesToRead>
+    <HexPattern>FE37001C00</HexPattern>
+    <SignatureName>MS Office</SignatureName>
+    <FileExtensions>.doc;.xls;.xlt;.ppt;.apr;.dot;.pps;.wps;.vsd;.qbm;.pub;.adp;.ade;.docm;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>179</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>2</FirstNumberOfBytesToRead>
+    <HexPattern>3C</HexPattern>
+    <SignatureName>XML</SignatureName>
+    <FileExtensions>.xml;.config;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>181</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>504B03040A00</HexPattern>
+    <SignatureName>Microsoft Office Open XML Format 3</SignatureName>
+    <FileExtensions>.doc;.docx;.pptx;.xlsx;.vsdx;.dotx;.dotm;.docm;.ppsx;.potx;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+  <SignaturesConfig>
+    <ID>182</ID>
+    <Enabled>true</Enabled>
+    <ByteOffset>0</ByteOffset>
+    <FirstNumberOfBytesToRead>0</FirstNumberOfBytesToRead>
+    <HexPattern>C5D0D3C6</HexPattern>
+    <SignatureName>EPS Image</SignatureName>
+    <FileExtensions>.eps;</FileExtensions>
+    <Prohibited>False</Prohibited>
+    <Comment />
+  </SignaturesConfig>
+</DocumentElement>
