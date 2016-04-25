@@ -2048,7 +2048,7 @@ namespace RansomwareDetection
                 if (cell != null)
                 {
                     FileBrowserD.FileName = "";
-                    if (Common.FileExists(cell.Value.ToString()))
+                    if (System.IO.File.Exists(cell.Value.ToString()))
                     {
                         Delimon.Win32.IO.FileInfo f = new Delimon.Win32.IO.FileInfo(cell.Value.ToString());
                         FileBrowserD.InitialDirectory = f.Directory.FullName;
