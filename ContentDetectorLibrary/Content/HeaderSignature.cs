@@ -411,7 +411,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 				new HeaderSignature(0,30,@"3C21454E54495459", "XML DTD", new string[] { @".dtd" }, ProhibitionMode.Allowed ),
 				new HeaderSignature(0,10,@"5A4F4F20", "ZOO Archive File", new string[] { @".zoo" }, ProhibitionMode.Allowed ),
                 new HeaderSignature(0,30,@"01766F72626973", "Ogg Vorbis", new string[] { @".ogg" }, ProhibitionMode.Allowed ),
-                new HeaderSignature(0,6,@"4D5A", "Executable File",new string[] { @".exe", @".com", @".386", @".ax", @".acm", @".sys", @".dll", @".drv", @".flt", @".fon", @".ocx", @".scr", @".lrc", @".vxd", @".cpl", @".x32" }, ProhibitionMode.Allowed ),
+                new HeaderSignature(0,6,@"4D5A", "Executable File",new string[] { @".exe", @".com", @".386", @".ax", @".acm", @".sys", @".dll", @".drv", @".flt", @".fon", @".ocx", @".scr", @".lrc", @".vxd", @".cpl", @".x32" }, ProhibitionMode.Prohibited ),
                 new HeaderSignature( new Mp3SignatureChecker(), "MPEG 3", new string[] { @".mp3" }, ProhibitionMode.Allowed ),
                 
                 // My own.
