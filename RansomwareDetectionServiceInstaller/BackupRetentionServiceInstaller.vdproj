@@ -696,7 +696,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:RansomwareDetection.DetectionLib, Version=2.0.4.4, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:RansomwareDetection.DetectionLib, Version=2.0.4.5, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_7433492E05EDD4F5D4FF2DD379DC7105"
@@ -858,7 +858,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:RansomwareDetection.ContentDetectorLib, Version=2.0.4.4, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:RansomwareDetection.ContentDetectorLib, Version=2.0.4.5, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_B62AE2CA661019300A2297579A7D06BA"
@@ -1157,7 +1157,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Ransomware Detection Service"
         "ProductCode" = "8:{323E6824-FA02-4E70-AF21-FB8172D0875E}"
-        "PackageCode" = "8:{8C1960E2-B46D-4FD0-A616-50BBF3D76B49}"
+        "PackageCode" = "8:{87DF089D-0AA5-4777-9B4D-0047975E8084}"
         "UpgradeCode" = "8:{13942A01-A7FC-4553-AC0C-A2A82F17C5F3}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -1562,7 +1562,7 @@
                             "ContextData" = "8:"
                             "Attributes" = "3:0"
                             "Setting" = "3:2"
-                            "Value" = "8:Install [ProductName] onto your computer.  Specify the service user account as an existing domain account that has read write permissions to needed file shares.  Username must be in DOMAIN\\Username or COMPUTERNAME\\Username format.  The Set Service Login screen is a form from the Windows operating system.  The username and password entered is not stored or known by this program, but in the windows service and can be changed at any time using services.msc.  The settings application will be in the system tray with a light blue icon."
+                            "Value" = "8:This setup program installs [ProductName] onto your computer.  Specify the service user account as an existing domain account that has read write permissions to needed file shares.  Username must be in DOMAIN\\Username or COMPUTERNAME\\Username format.  The Set Service Login screen is a form from the Windows operating system.  The username and password entered is not stored or known by this program, but in the windows service and can be changed at any time using services.msc.  The settings application will be in the system tray with a light blue icon."
                             "DefaultValue" = "8:#1203"
                             "UsePlugInResources" = "11:TRUE"
                             }
@@ -1685,7 +1685,7 @@
                             "ContextData" = "8:"
                             "Attributes" = "3:0"
                             "Setting" = "3:2"
-                            "Value" = "8:Install [ProductName] onto your computer.  Specify the service user account as an existing domain account that has read write permissions to needed file shares.  Username must be in DOMAIN\\Username or COMPUTERNAME\\Username format.  The Set Service Login screen is a form from the Windows operating system.  The username and password entered is not stored or known by this program, but in the windows service and can be changed at any time using services.msc.  The settings application will be in the system tray with a light blue icon."
+                            "Value" = "8:This setup program installs [ProductName] onto your computer.  Specify the service user account as an existing domain account that has read write permissions to needed file shares.  Username must be in DOMAIN\\Username or COMPUTERNAME\\Username format.  The Set Service Login screen is a form from the Windows operating system.  The username and password entered is not stored or known by this program, but in the windows service and can be changed at any time using services.msc.  The settings application will be in the system tray with a light blue icon."
                             "DefaultValue" = "8:#1203"
                             "UsePlugInResources" = "11:TRUE"
                             }
