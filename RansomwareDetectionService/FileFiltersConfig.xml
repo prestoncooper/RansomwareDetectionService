@@ -1398,16 +1398,6 @@
     <Comment />
   </FileFiltersConfig>
   <FileFiltersConfig>
-    <ID>219</ID>
-    <Enabled>true</Enabled>
-    <Title />
-    <FileFilter>*_UNLOCK.TXT</FileFilter>
-    <ExcludeFiles />
-    <DeleteFilesFound>false</DeleteFilesFound>
-    <ObjectType>File</ObjectType>
-    <Comment />
-  </FileFiltersConfig>
-  <FileFiltersConfig>
     <ID>220</ID>
     <Enabled>true</Enabled>
     <Title />
@@ -1482,6 +1472,276 @@
     <Enabled>true</Enabled>
     <Title />
     <FileFilter>*.PoAr2w</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>228</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>last_chance.*</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>229</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>readme_decrypt*</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>230</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>readme_for_decrypt*</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>231</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>restore_fi*</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>232</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>vault.hta</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>233</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>vault.key</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>234</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>vault.txt</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>235</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>install_tor*</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>236</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>instructions_*.png</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>237</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>helpdecrypt*</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>238</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>djqfu*</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>239</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>*ukr.net*</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>240</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>*qq_com*</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>241</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>*keemail.me*</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>242</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>*@india.com*</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>243</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>*@gmail_com_*</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>245</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>*_UNLOCK.TXT</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>247</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>*.gws</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>249</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>*obleep</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>250</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>*.hydracrypt*</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>251</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>*.kb15</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>252</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>*.kraken</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>253</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>*.nochance</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>255</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>*.SPORT</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>257</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>*!recover!*.html</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>258</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>*!recover!*.png</FileFilter>
+    <ExcludeFiles />
+    <DeleteFilesFound>false</DeleteFilesFound>
+    <ObjectType>File</ObjectType>
+    <Comment />
+  </FileFiltersConfig>
+  <FileFiltersConfig>
+    <ID>261</ID>
+    <Enabled>true</Enabled>
+    <Title />
+    <FileFilter>*!recover!*.txt</FileFilter>
     <ExcludeFiles />
     <DeleteFilesFound>false</DeleteFilesFound>
     <ObjectType>File</ObjectType>

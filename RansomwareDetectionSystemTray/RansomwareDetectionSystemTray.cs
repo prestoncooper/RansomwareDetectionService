@@ -826,7 +826,9 @@ namespace RansomwareDetection
 
                     scFileServer.Start();
                     scFileServer.WaitForStatus(ServiceControllerStatus.Running, timeout);
+
                     
+
                     //Start Dfs Service
                     ServiceController scDfs = null;
                     try
@@ -848,6 +850,29 @@ namespace RansomwareDetection
                     {
                         scDfs.Dispose();
                         scDfs = null;
+                    }
+
+                    //Start DfsR Service
+                    ServiceController scDFSR = null;
+                    try
+                    {
+                        scDFSR = new ServiceController("DFSR");
+                        if (scDFSR.Status == ServiceControllerStatus.Stopped && getServiceStartMode("DFSR") == "Auto")
+                        {
+                            scDFSR.Start();
+                            scDFSR.WaitForStatus(ServiceControllerStatus.Running, timeout);
+                        }
+
+                    }
+                    catch (Exception)
+                    {
+
+
+                    }
+                    finally
+                    {
+                        scDFSR.Dispose();
+                        scDFSR = null;
                     }
 
                     //Start Dfs Service
@@ -985,6 +1010,7 @@ namespace RansomwareDetection
                 {
                     ServiceController scBrowser = null;
                     ServiceController scDfs = null;
+                    ServiceController scDFSR = null;
                     try
                     {
                         scBrowser = new ServiceController("Browser");
@@ -1004,6 +1030,26 @@ namespace RansomwareDetection
                     {
                         scBrowser.Dispose();
                         scBrowser = null;
+                    }
+
+                    try
+                    {
+                        scDFSR = new ServiceController("DFSR");
+                        if (scDFSR.Status == ServiceControllerStatus.Running)
+                        {
+                            scDFSR.Stop();
+                            scDFSR.WaitForStatus(ServiceControllerStatus.Stopped, timeout);
+                        }
+                    }
+                    catch (Exception)
+                    {
+
+
+                    }
+                    finally
+                    {
+                        scDFSR.Dispose();
+                        scDFSR = null;
                     }
 
                     try

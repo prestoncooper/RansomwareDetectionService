@@ -23,12 +23,8 @@ REM ----------------------------------------------------------------------------
 
 REM Repeat these uncommented commands below for each Windows File Server and if LanmanServer has any other services that need to be shutdown prior add them
 REM change the options below as you see fit for your windows file servers
-REM sc \\[WINDOWS_FILE_SERVER_NAME] config Dfs start=disabled
-REM timeout 5
-REM sc \\[WINDOWS_FILE_SERVER_NAME] config Browser start=disabled
-REM timeout 5
-REM sc \\[WINDOWS_FILE_SERVER_NAME] config LanmanServer start=disabled
-REM timeout 10
+sc \\[WINDOWS_FILE_SERVER_NAME] stop DFSR
+timeout 5
 sc \\[WINDOWS_FILE_SERVER_NAME] stop Dfs
 timeout 5
 sc \\[WINDOWS_FILE_SERVER_NAME] stop Browser
