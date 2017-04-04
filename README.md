@@ -31,7 +31,6 @@ When staff members get ransomware, you need to respond quickly to get their comp
 
 File servers do not get the virus, the virus encrypts the files stored on the file server. This makes knowing the damage caused by a ransomware difficult. If you do not notice an encrypted file share, you can lose your opportunity to restore from backup or cause your users to use a much older backup than necessary.  Anti-virus programs are always a few days behind in detecting new viruses.   
 
-Full Documentation [https://ransomwaredetectionservice.codeplex.com/documentation](https://ransomwaredetectionservice.codeplex.com/documentation)
 
 
 **There are additional uses for this software that are not related to ransomware:**
@@ -46,10 +45,27 @@ Full Documentation [https://ransomwaredetectionservice.codeplex.com/documentatio
 
 These tasks can help with damage control after an infection, or help keep your file shares maintained.
 
+**Prerequisites
+At least .Net 4.0 installed
+Windows 7 or Windows Server 2008 R2 or newer
+A valid local or domain user account to install the service logon account
 
-### Feedback
+## Installing:
+Download the zip file and extract installer Files (setup.exe and RansomwareDetectionServiceInstaller.msi) into the same directory and run setup.exe as administrator  Download link: [http://ransomwaredetectionservice.codeplex.com](http://ransomwaredetectionservice.codeplex.com)
+Run the installation setup.exe downloaded from step 1 (Username for the service will be requested while installing the Windows service (username must to be in “Username@DOMAIN”, “DOMAIN\Username”, “Username@COMPUTERNAME”, “COMPUTERNAME\Username” format.)
+ 
+If you specified the username correctly and clicked on OK, then the install will show success.  This domain username will need at least read access to the files shares you want to monitor.  The copy options require read/write access to the file share.
 
-If you have any strange errors please make an issue, or if your tests succeed let me know by posting a comment to the beta testing thread on the discussion tab [https://ransomwaredetectionservice.codeplex.com/discussions](https://ransomwaredetectionservice.codeplex.com/discussions) on this codeplex site.
+After install launch the system tray application then right click on it.   (You might have to click on the little arrow on the left of the system tray to show hidden system tray icons)
+
+![](Documentation_RansomwareDetectionServiceTray.png) 
+
+##Built With
+ * Visual Studio 2010 SP1
+ * C#
+ 
+##Authors
+ * Preston Cooper 
 
 ##### Author's article regarding this project [http://www.questiondriven.com/2016/02/18/beta-testing-for-ransomware-detection-in-file-share/](http://www.questiondriven.com/2016/02/18/beta-testing-for-ransomware-detection-in-file-share/)
 
