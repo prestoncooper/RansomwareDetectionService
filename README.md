@@ -64,14 +64,10 @@ After install launch the system tray application then right click on it.   (You 
  * Visual Studio 2010 SP1
  * C#
  
-### Authors
+### Author
  * Preston Cooper 
-
-##### Author's article regarding this project [http://www.questiondriven.com/2016/02/18/beta-testing-for-ransomware-detection-in-file-share/](http://www.questiondriven.com/2016/02/18/beta-testing-for-ransomware-detection-in-file-share/)
-
-##### Author's Information Technology blog: [http://www.questiondriven.com](http://www.questiondriven.com)
-
-
+ * Author's article regarding this project [http://www.questiondriven.com/2016/02/18/beta-testing-for-ransomware-detection-in-file-share/](http://www.questiondriven.com/2016/02/18/beta-testing-for-ransomware-detection-in-file-share/)
+ * Author's Information Technology blog: [http://www.questiondriven.com](http://www.questiondriven.com)
 
 ### Resources
 [http://www.questiondriven.com/2016/03/07/how-to-prevent-ransomware-infections/](http://www.questiondriven.com/2016/03/07/how-to-prevent-ransomware-infections/)
