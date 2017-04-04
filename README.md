@@ -23,7 +23,7 @@ Username and password requested upon install are a domain account or local compu
  * How do I find out what files have file permissions corrupted or files that are inaccessible?   (Audit Files tab - ExportUnknownToCSV)
  * What files were created or modified when compared to a previous backup?  (Audit Files tab or Compare tab for full comparison)
 
-![](Home_RansomwareDetectionServiceMain.png)
+![](https://github.com/prestoncooper/RansomwareDetectionService/blob/master/docs/Documentation_RansomwareDetectionServiceMain.png)
 
 This program detects when/where ransomware has hit Windows file shares or local drives.  This program doesn't prevent ransomware infection see [http://www.questiondriven.com/2016/03/07/how-to-prevent-ransomware-infections/](http://www.questiondriven.com/2016/03/07/how-to-prevent-ransomware-infections/) for prevention recommendations.
 
