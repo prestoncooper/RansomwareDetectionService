@@ -51,7 +51,7 @@ These tasks can help with damage control after an infection, or help keep your f
  * A valid local or domain user account to install the service logon account
 
 ### Installing:
-Download the zip file and extract installer Files (setup.exe and RansomwareDetectionServiceInstaller.msi) into the same directory and run setup.exe as administrator  Download link: [https://github.com/prestoncooper/RansomwareDetectionService](https://github.com/prestoncooper/RansomwareDetectionService)
+Download the zip file and extract installer Files (setup.exe and RansomwareDetectionServiceInstaller.msi) into the same directory and run setup.exe as administrator  Download link: [https://github.com/prestoncooper/RansomwareDetectionService/blob/master/RansomwareDetectionService2.0.4.6.zip](https://github.com/prestoncooper/RansomwareDetectionService/blob/master/RansomwareDetectionService2.0.4.6.zip)
 Run the installation setup.exe downloaded from step 1 (Username for the service will be requested while installing the Windows service (username must to be in “Username@DOMAIN”, “DOMAIN\Username”, “Username@COMPUTERNAME”, “COMPUTERNAME\Username” format.)
  
 If you specified the username correctly and clicked on OK, then the install will show success.  This domain username will need at least read access to the files shares you want to monitor.  The copy options require read/write access to the file share.
