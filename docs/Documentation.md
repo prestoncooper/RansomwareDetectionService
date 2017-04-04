@@ -46,8 +46,8 @@ Both 32 and 64 bit operating systems are supported.
 
 
 ## Installation:
-# Download the zip file and extract installer Files (setup.exe and RansomwareDetectionServiceInstaller.msi) into the same directory and run setup.exe as administrator  Download link: [http://ransomwaredetectionservice.codeplex.com](http://ransomwaredetectionservice.codeplex.com)
-# Run the installation setup.exe downloaded from step 1 (Username for the service will be requested while installing the Windows service (username must to be in “Username@DOMAIN”, “DOMAIN\Username”, “Username@COMPUTERNAME”, “COMPUTERNAME\Username” format.)
+Download the zip file and extract installer Files (setup.exe and RansomwareDetectionServiceInstaller.msi) into the same directory and run setup.exe as administrator  Download link: [http://ransomwaredetectionservice.codeplex.com](http://ransomwaredetectionservice.codeplex.com)
+Run the installation setup.exe downloaded from step 1 (Username for the service will be requested while installing the Windows service (username must to be in “Username@DOMAIN”, “DOMAIN\Username”, “Username@COMPUTERNAME”, “COMPUTERNAME\Username” format.)
  
 If you specified the username correctly and clicked on OK, then the install will show success.  This domain username will need at least read access to the files shares you want to monitor.  The copy options require read/write access to the file share.
 
