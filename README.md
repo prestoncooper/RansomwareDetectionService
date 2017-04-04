@@ -1,13 +1,13 @@
 # RansomwareDetectionService
 This program detects all present and future ransomware in Windows file shares or local drives.
-**Project Description**
+###Project Description
 This program detects all present and future ransomware in Windows file shares or local drives.
 
 I made this service to monitor Windows file servers or NAS file shares. For early detection of ransomware you expect the ransomware to encrypt your sample files and you catch it in the act. This entraps ransomware because the sample files that ordinarily would be left alone become encrypted by the ransomware. **I made this program to aide system administrators monitor file servers.** I didn't make this for  average users to monitor individual computers. 
 
 Username and password requested upon install are a domain account or local computer account for the windows service to install and run under.   The account specified will need read/write access to the file shares you want to monitor.   The user account can be changed later using the services.msc console.  Find the service called "RansomwareDetectionService".
 
-**This program solves the following issues:**
+####This program solves the following issues:
 * How do I monitor my windows file shares for ransomware with minimal performance impact?  (Compare tab and a few example files in the SourcePath)
 * How do I detect a ransomware that does not create a ransom note in the file share or modify the file names in the share? (Compare tab)
 * How do I automatically stop an infection from encrypting more files and only stop the user that was infected? (Compare tab - CommandProgram and the StopRansomwareInfectedUserPublic.ps1 script)
@@ -33,7 +33,7 @@ File servers do not get the virus, the virus encrypts the files stored on the fi
 
 
 
-**There are additional uses for this software that are not related to ransomware:**
+#### There are additional uses for this software that are not related to ransomware:
 
 * Search for corrupted or encrypted office documents in file shares. (Audit Files tab)
 * File change email notification (Compare tab)
@@ -45,12 +45,12 @@ File servers do not get the virus, the virus encrypts the files stored on the fi
 
 These tasks can help with damage control after an infection, or help keep your file shares maintained.
 
-**Prerequisites**
+### Prerequisites
 At least .Net 4.0 installed
 Windows 7 or Windows Server 2008 R2 or newer
 A valid local or domain user account to install the service logon account
 
-**Installing:**
+### Installing:
 Download the zip file and extract installer Files (setup.exe and RansomwareDetectionServiceInstaller.msi) into the same directory and run setup.exe as administrator  Download link: [http://ransomwaredetectionservice.codeplex.com](http://ransomwaredetectionservice.codeplex.com)
 Run the installation setup.exe downloaded from step 1 (Username for the service will be requested while installing the Windows service (username must to be in “Username@DOMAIN”, “DOMAIN\Username”, “Username@COMPUTERNAME”, “COMPUTERNAME\Username” format.)
  
@@ -60,11 +60,11 @@ After install launch the system tray application then right click on it.   (You 
 
 ![](Documentation_RansomwareDetectionServiceTray.png) 
 
-**Built With**
+### Built With
  * Visual Studio 2010 SP1
  * C#
  
-**Authors**
+### Authors
  * Preston Cooper 
 
 ##### Author's article regarding this project [http://www.questiondriven.com/2016/02/18/beta-testing-for-ransomware-detection-in-file-share/](http://www.questiondriven.com/2016/02/18/beta-testing-for-ransomware-detection-in-file-share/)
