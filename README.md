@@ -58,7 +58,7 @@ If you specified the username correctly and clicked on OK, then the install will
 
 After install launch the system tray application then right click on it.   (You might have to click on the little arrow on the left of the system tray to show hidden system tray icons)
 
-![](Documentation_RansomwareDetectionServiceTray.png) 
+![](https://github.com/prestoncooper/RansomwareDetectionService/blob/master/docs/Documentation_RansomwareDetectionServiceTray.png) 
 
 ### Built With
  * Visual Studio 2010 SP1
