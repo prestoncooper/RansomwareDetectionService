@@ -25,7 +25,7 @@ Username and password requested upon install are a domain account or local compu
 
 ![](https://github.com/prestoncooper/RansomwareDetectionService/blob/master/docs/Documentation_RansomwareDetectionServiceMain.png)
 
-This program detects when/where ransomware has hit Windows file shares or local drives.  This program doesn't prevent ransomware infection see [http://www.questiondriven.com/2016/03/07/how-to-prevent-ransomware-infections/](http://www.questiondriven.com/2016/03/07/how-to-prevent-ransomware-infections/) for prevention recommendations.
+This program detects when/where ransomware has hit Windows file shares or local drives, and can stop the further spread of encrypted files if a script to stop the user's computer or to stop the FileServer filesharing services is specified.  This program doesn't prevent the initial ransomware infection see [http://www.questiondriven.com/2016/03/07/how-to-prevent-ransomware-infections/](http://www.questiondriven.com/2016/03/07/how-to-prevent-ransomware-infections/) for further prevention recommendations.
 
 When staff members get ransomware, you need to respond quickly to get their computer shutdown as soon as possible.  If you respond quickly enough, you can shut down the offending computer before other file shares become encrypted.  Anti-virus programs currently do not detect encrypted files written by ransomware.  Not knowing that a ransomware virus is on your network is a big problem.  The sooner you get the offending computer shutdown and restore your backups of files shares the better.  
 
