@@ -46,6 +46,9 @@ When staff members get ransomware, you need to respond quickly to get their comp
 
 File servers do not get the virus, the virus encrypts the files stored on the file server. This makes knowing the damage caused by a ransomware difficult. If you do not notice an encrypted file share, you can lose your opportunity to restore from backup or cause your users to use a much older backup than necessary.  Anti-virus programs are always a few days behind in detecting new viruses.   
 
+### Documentation
+For full documentation see the link below:
+![](https://github.com/prestoncooper/RansomwareDetectionService/blob/master/docs/Documentation.md)
 
 
 #### There are additional uses for this software that are not related to ransomware:
