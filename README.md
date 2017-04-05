@@ -48,7 +48,7 @@ File servers do not get the virus, the virus encrypts the files stored on the fi
 
 ### Documentation
 For full documentation see the link below:
-![](https://github.com/prestoncooper/RansomwareDetectionService/blob/master/docs/Documentation.md)
+[https://github.com/prestoncooper/RansomwareDetectionService/blob/master/docs/Documentation.md](https://github.com/prestoncooper/RansomwareDetectionService/blob/master/docs/Documentation.md)
 
 
 #### There are additional uses for this software that are not related to ransomware:
