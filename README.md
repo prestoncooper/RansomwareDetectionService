@@ -1,4 +1,4 @@
-# RansomwareDetectionService
+# Ransomware Detection Service
 This program detects all present and future ransomware in Windows file shares or local drives.
 ### Project Description
 This program detects all present and future ransomware in Windows file shares or local drives.
