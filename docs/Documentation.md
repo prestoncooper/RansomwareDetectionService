@@ -108,20 +108,23 @@ SourceFiles: Source Folder with a few example files that will copy and compare l
 The service will copy source files if missing into the FilePathToCheck and then on a schedule check to see if the source files have changed or went missing. First, create a folder in the SourcePath with a few small files with files of the type that you are concerned (XLS, XLSX, DOC, DOCX, PDF, JPG, PNG, TXT, etc.).  Copy this directory to each folder that you want to monitor or use CopySourceFiles or CopySourceFilesSubFolders options in order to copy the SourcePath files (only needs to run once with these options).  If these files change or get encrypted then you will receive an error in the error log and possibly an email if setup.  
 
 SourceFiles: Source Folder with a few example files that will copy and compare later.  Make sure this path is not shared.
+
 ### Example Options (Entrapment):
 Example Files for Comparison Later:
 ![](Documentation_RansomwareDetectionServiceExampleFiles.png)
  
-First level of immediate sub folders are compared but not the main folder, SourcePath folders and files are copied; If they go missing an error is logged/emailed and the files are copied again. FilePathToCheck should be a windows file share, but SourcePath should not be a file share.
+First level of immediate sub folders are compared but not the main folder, SourcePath folders and files are copied; If they go missing an error is logged/emailed and the files are copied again. FilePathToCheck should be a windows file share, but SourcePath should not be a file share. Usually at least one of the copy options are selected for entrapment (CopySourceFiles, and CopySourceFilesSubFolders).
 
 ![](Documentation_RansomwareDetectionServiceExampleCompareSettings.png)
 
-### Example Options (Full Binary/Text Compare vs Most Recent Backup):
+
+
+### Secondary Example Options (Full Binary/Text Compare vs Most Recent Backup):
 
 The secondary purpose is to completely Audit a file share vs a full backup. This will compare files using binary differences and text differences and give you a list of changed files and files new since the backup that should be in the share. Set the backup path as the FilePathToCheck and the File Share to the SourcePath to do this. Make sure to uncheck copy options when comparing most recent backup (CopySourceFiles, and CopySourceFilesSubFolders). This full binary/text compare process is slow and should only be run during off hours. The CSV files are saved in the ExportCSVPath. The new files will be in the Missing csv file because the backup won't have a copy of the new files. Review the missing files csv and verify that the files are good and not viruses or documents that deployed the virus. Viruses can wait a few days before encrypting files so running using a backup more than a week old is important.  For further auditing see the Audit Files tab.  This full compare completely compares two files and reports any differences to the csv file lists.  This is more resource intensive than the file auditing tab, but the Audit tab only compares file signatures where this option compares the entire file looking for any differences.
 
 
-### Compare Options:
+### Compare tab Options :
 * SourcePath:  Folder where files that will be used as the source for comparison (A file path that cannot be reached via a file share, and non-admin users do not have rights to modify are recommended.)  I recommend creating a few simple files with extensions you care to monitor.  These files will be copied to your FilePathToCheck Main folder for immediate sub folders and if these files are modified or the files are missing, then you can be notified of the problem.
 * FilePathToCheck:  This is the file share that you want to monitor for ransomware or monitor the files for changes
 * CheckMainFolder: Check the main FilePathToCheck to see if it has the SourcePath files exist in FilePathToCheck directory and are not changed.
