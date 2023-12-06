@@ -9,7 +9,7 @@ Username and password requested upon install are a domain account or local compu
 
 ### Prerequisites
  * At least .Net 4.0 installed
- * Windows 7 or Windows Server 2008 R2 or newer
+ * Windows 7 or Windows Server 2008 R2 or Windows Server 2012 or Windows Server 2012 R2
  * A valid local or domain user account to install the service logon account
 
 ### Installing:
