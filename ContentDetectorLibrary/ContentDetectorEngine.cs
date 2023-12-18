@@ -322,7 +322,7 @@ namespace RansomwareDetection.ContentDetectorLib
         /// <param name="filePath">The file path.</param>
         /// <returns></returns>
         private bool ContainsProhibitedFileContent(
-            Delimon.Win32.IO.FileInfo filePath, HeaderSignature[] sigs, bool ignoreExtension)
+            Alphaleonis.Win32.Filesystem.FileInfo filePath, HeaderSignature[] sigs, bool ignoreExtension)
         {
             WriteError(string.Format(
                 @"Audit Folder ContentDetectorEngine: Processing content of file '{0}' ({1:0,0} bytes).",
@@ -355,7 +355,7 @@ namespace RansomwareDetection.ContentDetectorLib
         }
 
         public void ContainsFolderVerifyContent(
-            Delimon.Win32.IO.DirectoryInfo folderPath,
+            Alphaleonis.Win32.Filesystem.DirectoryInfo folderPath,
             bool recursive,
             ref List<FileResult> verifiedFiles,
             ref List<FileResult> unVerifiedFiles,
@@ -383,7 +383,7 @@ namespace RansomwareDetection.ContentDetectorLib
         /// [the specified folder path]; otherwise, <c>false</c>.
         /// </returns>
         public void ContainsFolderVerifyContent(
-            Delimon.Win32.IO.DirectoryInfo folderPath,
+            Alphaleonis.Win32.Filesystem.DirectoryInfo folderPath,
             bool recursive,
             ref List<FileResult> verifiedFiles,
             ref List<FileResult> unVerifiedFiles,
@@ -450,7 +450,7 @@ namespace RansomwareDetection.ContentDetectorLib
         /// [the specified folder path]; otherwise, <c>false</c>.
         /// </returns>
         private void containsFolderVerifyContent(
-            Delimon.Win32.IO.DirectoryInfo folderPath,
+            Alphaleonis.Win32.Filesystem.DirectoryInfo folderPath,
             bool recursive,
             ref List<FileResult> verifiedFiles,
             ref List<FileResult> unVerifiedFiles,
@@ -475,17 +475,17 @@ namespace RansomwareDetection.ContentDetectorLib
             {
                 sigs = HeaderSignature.StockSignatures;
             }
-            
 
-            
-            Delimon.Win32.IO.FileInfo[] filePaths = folderPath.GetFiles();
+
+
+            Alphaleonis.Win32.Filesystem.FileInfo[] filePaths = folderPath.GetFiles();
 
             int index = 0;
             //Load either default signatures or custom for determining ExtensionSupported?
 
 
 
-            foreach (Delimon.Win32.IO.FileInfo filePath in filePaths)
+            foreach (Alphaleonis.Win32.Filesystem.FileInfo filePath in filePaths)
             {
                 if (blShuttingDown)
                 {
@@ -517,7 +517,7 @@ namespace RansomwareDetection.ContentDetectorLib
                     {
                         if (blValidateZipFiles && HeaderSignature.ZipRelatedExtension(filePath.Extension))
                         {
-                            using (Stream filestream1 = filePath.Open(Delimon.Win32.IO.FileMode.Open, Delimon.Win32.IO.FileAccess.Read, Delimon.Win32.IO.FileShare.ReadWrite))
+                            using (Stream filestream1 = filePath.Open(System.IO.FileMode.Open, System.IO.FileAccess.Read, System.IO.FileShare.ReadWrite))
                             {
                                 
                                 try
@@ -605,9 +605,9 @@ namespace RansomwareDetection.ContentDetectorLib
 
             if (recursive)
             {
-                Delimon.Win32.IO.DirectoryInfo[] folderPaths = folderPath.GetDirectories();
+                Alphaleonis.Win32.Filesystem.DirectoryInfo[] folderPaths = folderPath.GetDirectories();
 
-                foreach (Delimon.Win32.IO.DirectoryInfo childFolderPath in folderPaths)
+                foreach (Alphaleonis.Win32.Filesystem.DirectoryInfo childFolderPath in folderPaths)
                 {
                     bool blIgnoreDirectory = false;
                     if (blShuttingDown)
@@ -668,7 +668,7 @@ namespace RansomwareDetection.ContentDetectorLib
         /// <param name="indentLevel">The nesting depth.</param>
         /// <returns></returns>
         private bool DoVerifyFileHeader(
-            Delimon.Win32.IO.FileInfo filePath, HeaderSignature[] sigs, bool ignoreExtension)
+            Alphaleonis.Win32.Filesystem.FileInfo filePath, HeaderSignature[] sigs, bool ignoreExtension)
         {
             if (filePath == null || !filePath.Exists || filePath.Length <= 0)
             {
@@ -697,7 +697,7 @@ namespace RansomwareDetection.ContentDetectorLib
         /// <returns>
         /// 	<c>true</c> if [is prohibited content] [the specified file path]; otherwise, <c>false</c>.
         /// </returns>
-        private bool IsVerifiedContent(Delimon.Win32.IO.FileInfo filePath, HeaderSignature[] sigs, bool ignoreExtension)
+        private bool IsVerifiedContent(Alphaleonis.Win32.Filesystem.FileInfo filePath, HeaderSignature[] sigs, bool ignoreExtension)
         {
 
                 return CoreVerifyFileContent(filePath, sigs,ignoreExtension);
@@ -713,7 +713,7 @@ namespace RansomwareDetection.ContentDetectorLib
         /// <param name="filePath">The file path.</param>
         /// <returns></returns>
         private bool CoreVerifyFileContent(
-            Delimon.Win32.IO.FileInfo filePath, HeaderSignature[] sigs, bool ignoreExtension)
+            Alphaleonis.Win32.Filesystem.FileInfo filePath, HeaderSignature[] sigs, bool ignoreExtension)
         {
             WriteError(
                 string.Format(

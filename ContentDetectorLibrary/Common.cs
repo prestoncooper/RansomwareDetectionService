@@ -56,17 +56,17 @@ namespace RansomwareDetection.ContentDetectorLib
             Deleted = false;
         }
 
-        public FileResult(Delimon.Win32.IO.DirectoryInfo ddir)
+        public FileResult(Alphaleonis.Win32.Filesystem.DirectoryInfo ddir)
         {
             FileResultContructor(ddir, "", "");
         }
 
-        public FileResult(Delimon.Win32.IO.DirectoryInfo ddir, string strComment)
+        public FileResult(Alphaleonis.Win32.Filesystem.DirectoryInfo ddir, string strComment)
         {
             FileResultContructor(ddir, strComment, "");
         }
 
-        private void FileResultContructor(Delimon.Win32.IO.DirectoryInfo ddir, string strComment, string strFileFilterSearched)
+        private void FileResultContructor(Alphaleonis.Win32.Filesystem.DirectoryInfo ddir, string strComment, string strFileFilterSearched)
         {
             Name = ddir.Name;
             FullPath = ddir.FullName;
@@ -82,22 +82,22 @@ namespace RansomwareDetection.ContentDetectorLib
             Deleted = false;
         }
 
-        public FileResult(Delimon.Win32.IO.DirectoryInfo ddir, string strComment, string strFileFilterSearched)
+        public FileResult(Alphaleonis.Win32.Filesystem.DirectoryInfo ddir, string strComment, string strFileFilterSearched)
         {
             FileResultContructor(ddir, strComment, strFileFilterSearched);
         }
 
-        public FileResult(Delimon.Win32.IO.FileInfo dfile)
+        public FileResult(Alphaleonis.Win32.Filesystem.FileInfo dfile)
         {
             FileResultContructor(dfile, "", "");
         }
 
-        public FileResult(Delimon.Win32.IO.FileInfo dfile, string strComment)
+        public FileResult(Alphaleonis.Win32.Filesystem.FileInfo dfile, string strComment)
         {
             FileResultContructor(dfile, strComment, "");
         }
 
-        private void FileResultContructor(Delimon.Win32.IO.FileInfo dfile, string strComment, string strFileFilterSearched)
+        private void FileResultContructor(Alphaleonis.Win32.Filesystem.FileInfo dfile, string strComment, string strFileFilterSearched)
         {
             Name = dfile.Name;
             FullPath = dfile.FullName;
@@ -113,7 +113,7 @@ namespace RansomwareDetection.ContentDetectorLib
             Deleted = false;
         }
 
-        public FileResult(Delimon.Win32.IO.FileInfo dfile, string strComment, string strFileFilterSearched)
+        public FileResult(Alphaleonis.Win32.Filesystem.FileInfo dfile, string strComment, string strFileFilterSearched)
         {
             FileResultContructor(dfile, strComment, strFileFilterSearched);
             
@@ -339,7 +339,7 @@ namespace RansomwareDetection.ContentDetectorLib
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
-        public static bool IsFileLocked(Delimon.Win32.IO.FileInfo file)
+        public static bool IsFileLocked(Alphaleonis.Win32.Filesystem.FileInfo file)
         {
             FileStream stream = null;
             try
@@ -383,7 +383,7 @@ namespace RansomwareDetection.ContentDetectorLib
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
-        public static Delimon.Win32.IO.FileInfo RefreshFileInfo(Delimon.Win32.IO.FileInfo file)
+        public static Alphaleonis.Win32.Filesystem.FileInfo RefreshFileInfo(Alphaleonis.Win32.Filesystem.FileInfo file)
         {
             FileStream fs = null;
             try
@@ -435,7 +435,7 @@ namespace RansomwareDetection.ContentDetectorLib
             try
             {
                 strPath = WindowsPathClean(strPath);
-                blSuccess = Delimon.Win32.IO.Directory.Exists(strPath);
+                blSuccess = Alphaleonis.Win32.Filesystem.Directory.Exists(strPath);
             }
             catch (Exception)
             {
@@ -450,7 +450,7 @@ namespace RansomwareDetection.ContentDetectorLib
             try
             {
                 strPath = WindowsPathClean(strPath);
-                blSuccess = Delimon.Win32.IO.File.Exists(strPath);
+                blSuccess = Alphaleonis.Win32.Filesystem.File.Exists(strPath);
             }
             catch (Exception)
             {
