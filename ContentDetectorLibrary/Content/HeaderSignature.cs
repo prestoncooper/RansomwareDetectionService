@@ -204,7 +204,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 		/// <param name="filePath">The file path.</param>
 		/// <returns></returns>
 		public bool MatchesFile(
-            Delimon.Win32.IO.FileInfo filePath)
+            Alphaleonis.Win32.Filesystem.FileInfo filePath)
 		{
 			// By default, don't care about the extension.
 			return MatchesFile( filePath, true );
@@ -218,7 +218,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 		/// [ignore extension].</param>
 		/// <returns></returns>
 		public bool MatchesFile(
-            Delimon.Win32.IO.FileInfo filePath,
+            Alphaleonis.Win32.Filesystem.FileInfo filePath,
 			bool ignoreExtension )
 		{
 			if ( filePath == null || !filePath.Exists || filePath.Length <= 0 )
@@ -230,7 +230,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 				if ( ignoreExtension ||
 					MatchesFileExtension( filePath.Extension ) )
 				{
-                    using (FileStream fs = filePath.Open(Delimon.Win32.IO.FileMode.Open,Delimon.Win32.IO.FileAccess.Read,Delimon.Win32.IO.FileShare.ReadWrite))
+                    using (FileStream fs = filePath.Open(System.IO.FileMode.Open, System.IO.FileAccess.Read, System.IO.FileShare.ReadWrite))
 					{
 						return MatchesStream( fs );
 					}
@@ -492,6 +492,9 @@ namespace RansomwareDetection.ContentDetectorLib.Content
                 new HeaderSignature(0,20,"770000000000000000", "bm2 board maker", new string[] { @".bm2"}, ProhibitionMode.Allowed ),
                 new HeaderSignature(0,30,"0101D430", "bm2 board maker", new string[] { @".bm2"}, ProhibitionMode.Allowed ),
                 new HeaderSignature(0,30,"0A020101000000009F0697", "pcx survey", new string[] { @".pcx"}, ProhibitionMode.Allowed ),
+                new HeaderSignature(0,20,"E4525C7B8CD8A74DAEB1", "Microsoft One Note", new string[] { @".one"}, ProhibitionMode.Allowed ),
+                new HeaderSignature(0,20,"A12FFF43D9EF764C9EE210", "Microsoft One Note", new string[] { @".onetoc2"}, ProhibitionMode.Allowed ),
+                
                 //new HeaderSignature(3,"000019000E", "POG File", new string[] { @".pog"}, ProhibitionMode.Allowed ),
                 /*new HeaderSignature( @"", "Windows Media", new string[] { @".wmv", @".asf" }, ProhibitionMode.Prohibited ),*/
 				
@@ -658,7 +661,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 
         }
 
-        public static bool IsZipRelatedFile(Delimon.Win32.IO.FileInfo file1)
+        public static bool IsZipRelatedFile(Alphaleonis.Win32.Filesystem.FileInfo file1)
         {
             bool blZipExtension = false;
 
@@ -666,7 +669,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
             //504B
 
 
-            using (FileStream fs = file1.Open(Delimon.Win32.IO.FileMode.Open, Delimon.Win32.IO.FileAccess.Read, Delimon.Win32.IO.FileShare.ReadWrite))
+            using (FileStream fs = file1.Open(System.IO.FileMode.Open, System.IO.FileAccess.Read, System.IO.FileShare.ReadWrite))
             {
                 if (fs == null)
                 {

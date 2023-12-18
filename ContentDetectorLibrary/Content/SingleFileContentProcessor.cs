@@ -24,7 +24,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 		/// </summary>
 		/// <param name="filePath">The file path.</param>
 		public SingleFileContentProcessor(
-            Delimon.Win32.IO.FileInfo filePath)
+            Alphaleonis.Win32.Filesystem.FileInfo filePath)
 		{
 			_filePath = filePath;
 		}
@@ -81,7 +81,7 @@ namespace RansomwareDetection.ContentDetectorLib.Content
 		#region Private variables.
 		// ------------------------------------------------------------------
 
-        private Delimon.Win32.IO.FileInfo _filePath;
+        private Alphaleonis.Win32.Filesystem.FileInfo _filePath;
 
 		// ------------------------------------------------------------------
 		#endregion
