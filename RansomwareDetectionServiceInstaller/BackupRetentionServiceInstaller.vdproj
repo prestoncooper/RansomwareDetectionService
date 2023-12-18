@@ -15,30 +15,6 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_051275FFA381708AFD73CA766F1B3DDC"
-        "OwnerKey" = "8:_89F62414D2934618B7F3EDB520403314"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_051275FFA381708AFD73CA766F1B3DDC"
-        "OwnerKey" = "8:_1839C751573444A68729B56F0AEE3EC7"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_051275FFA381708AFD73CA766F1B3DDC"
-        "OwnerKey" = "8:_7433492E05EDD4F5D4FF2DD379DC7105"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_051275FFA381708AFD73CA766F1B3DDC"
-        "OwnerKey" = "8:_B62AE2CA661019300A2297579A7D06BA"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_05FA37ABEFF846B0AC14D4826A24D1B8"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -47,6 +23,30 @@
         {
         "MsmKey" = "8:_0A592EBE9DF84360AE2EBFF26306687A"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_0D4A213366CCE4D8F33CD8C19AFB3398"
+        "OwnerKey" = "8:_1839C751573444A68729B56F0AEE3EC7"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_0D4A213366CCE4D8F33CD8C19AFB3398"
+        "OwnerKey" = "8:_89F62414D2934618B7F3EDB520403314"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_0D4A213366CCE4D8F33CD8C19AFB3398"
+        "OwnerKey" = "8:_488E852CC67C283C4E5315E4517192AB"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_0D4A213366CCE4D8F33CD8C19AFB3398"
+        "OwnerKey" = "8:_C340C51C0F244E6F3F21966AF4776FBD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -75,14 +75,62 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_24F3186210164623AE412BFE8F6FC9F7"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_23FEFEFD379E3639C13A23E31203F49D"
+        "OwnerKey" = "8:_1839C751573444A68729B56F0AEE3EC7"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_23FEFEFD379E3639C13A23E31203F49D"
+        "OwnerKey" = "8:_89F62414D2934618B7F3EDB520403314"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_23FEFEFD379E3639C13A23E31203F49D"
+        "OwnerKey" = "8:_C340C51C0F244E6F3F21966AF4776FBD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3B143A732C2FEEC54B2AED8A984220AA"
+        "OwnerKey" = "8:_C340C51C0F244E6F3F21966AF4776FBD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3B143A732C2FEEC54B2AED8A984220AA"
+        "OwnerKey" = "8:_89F62414D2934618B7F3EDB520403314"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3B143A732C2FEEC54B2AED8A984220AA"
+        "OwnerKey" = "8:_1839C751573444A68729B56F0AEE3EC7"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3B143A732C2FEEC54B2AED8A984220AA"
+        "OwnerKey" = "8:_488E852CC67C283C4E5315E4517192AB"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_3DC6B27FB7344F5B9F30CB96F7DF823C"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_488E852CC67C283C4E5315E4517192AB"
+        "OwnerKey" = "8:_1839C751573444A68729B56F0AEE3EC7"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_488E852CC67C283C4E5315E4517192AB"
+        "OwnerKey" = "8:_89F62414D2934618B7F3EDB520403314"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -101,36 +149,6 @@
         {
         "MsmKey" = "8:_6BCB12B286124360BBDF443A393C51B3"
         "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_7433492E05EDD4F5D4FF2DD379DC7105"
-        "OwnerKey" = "8:_89F62414D2934618B7F3EDB520403314"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_7433492E05EDD4F5D4FF2DD379DC7105"
-        "OwnerKey" = "8:_1839C751573444A68729B56F0AEE3EC7"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_7681965DD927DB5932CB3FD242CF0CE3"
-        "OwnerKey" = "8:_89F62414D2934618B7F3EDB520403314"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_7681965DD927DB5932CB3FD242CF0CE3"
-        "OwnerKey" = "8:_1839C751573444A68729B56F0AEE3EC7"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_7681965DD927DB5932CB3FD242CF0CE3"
-        "OwnerKey" = "8:_B62AE2CA661019300A2297579A7D06BA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -171,26 +189,26 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_B62AE2CA661019300A2297579A7D06BA"
-        "OwnerKey" = "8:_89F62414D2934618B7F3EDB520403314"
+        "MsmKey" = "8:_BB90886B4AC94759835AC36363FD0C07"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_B62AE2CA661019300A2297579A7D06BA"
+        "MsmKey" = "8:_C340C51C0F244E6F3F21966AF4776FBD"
         "OwnerKey" = "8:_1839C751573444A68729B56F0AEE3EC7"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_B62AE2CA661019300A2297579A7D06BA"
-        "OwnerKey" = "8:_7433492E05EDD4F5D4FF2DD379DC7105"
+        "MsmKey" = "8:_C340C51C0F244E6F3F21966AF4776FBD"
+        "OwnerKey" = "8:_89F62414D2934618B7F3EDB520403314"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_BB90886B4AC94759835AC36363FD0C07"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_C340C51C0F244E6F3F21966AF4776FBD"
+        "OwnerKey" = "8:_488E852CC67C283C4E5315E4517192AB"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -225,30 +243,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_EDB36376F6CB9D9B72DD4D1F28DD9550"
-        "OwnerKey" = "8:_B62AE2CA661019300A2297579A7D06BA"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_EDB36376F6CB9D9B72DD4D1F28DD9550"
-        "OwnerKey" = "8:_89F62414D2934618B7F3EDB520403314"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_EDB36376F6CB9D9B72DD4D1F28DD9550"
-        "OwnerKey" = "8:_1839C751573444A68729B56F0AEE3EC7"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_EDB36376F6CB9D9B72DD4D1F28DD9550"
-        "OwnerKey" = "8:_7433492E05EDD4F5D4FF2DD379DC7105"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_F0B835EB44BF4809971393F2EA3ABF3A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -268,31 +262,31 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_7433492E05EDD4F5D4FF2DD379DC7105"
+        "OwnerKey" = "8:_488E852CC67C283C4E5315E4517192AB"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B62AE2CA661019300A2297579A7D06BA"
+        "OwnerKey" = "8:_C340C51C0F244E6F3F21966AF4776FBD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_EDB36376F6CB9D9B72DD4D1F28DD9550"
+        "OwnerKey" = "8:_3B143A732C2FEEC54B2AED8A984220AA"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_7681965DD927DB5932CB3FD242CF0CE3"
+        "OwnerKey" = "8:_23FEFEFD379E3639C13A23E31203F49D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_051275FFA381708AFD73CA766F1B3DDC"
+        "OwnerKey" = "8:_0D4A213366CCE4D8F33CD8C19AFB3398"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -461,37 +455,6 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_051275FFA381708AFD73CA766F1B3DDC"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Delimon.Win32.IO, Version=4.0.4764.1936, Culture=neutral, PublicKeyToken=6f601db60ebd9657, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_051275FFA381708AFD73CA766F1B3DDC"
-                    {
-                    "Name" = "8:Delimon.Win32.IO.dll"
-                    "Attributes" = "3:516"
-                    }
-                }
-            "SourcePath" = "8:Delimon.Win32.IO.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_C5AF46734EA14A1AA9497D39D1F34E0A"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:TRUE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_05FA37ABEFF846B0AC14D4826A24D1B8"
             {
             "SourcePath" = "8:..\\RansomwareDetectionSystemTray\\BlueExternalDrive.ico"
@@ -530,6 +493,37 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0D4A213366CCE4D8F33CD8C19AFB3398"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:AlphaFS, Version=2.2.0.0, Culture=neutral, PublicKeyToken=4d31a58f7d7ad5c9, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_0D4A213366CCE4D8F33CD8C19AFB3398"
+                    {
+                    "Name" = "8:AlphaFS.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:AlphaFS.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_C5AF46734EA14A1AA9497D39D1F34E0A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0DA7DB4DE9F64645ABCD84489C49B5CC"
@@ -592,10 +586,21 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_24F3186210164623AE412BFE8F6FC9F7"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_23FEFEFD379E3639C13A23E31203F49D"
             {
-            "SourcePath" = "8:..\\RansomwareDetectionService\\Delimon License.txt"
-            "TargetName" = "8:Delimon License.txt"
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Ionic.Zip.Reduced, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_23FEFEFD379E3639C13A23E31203F49D"
+                    {
+                    "Name" = "8:Ionic.Zip.Reduced.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Ionic.Zip.Reduced.dll"
+            "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_C5AF46734EA14A1AA9497D39D1F34E0A"
             "Condition" = "8:"
@@ -609,7 +614,38 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3B143A732C2FEEC54B2AED8A984220AA"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Win32Security, Version=0.3.4372.20280, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_3B143A732C2FEEC54B2AED8A984220AA"
+                    {
+                    "Name" = "8:Win32Security.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Win32Security.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_C5AF46734EA14A1AA9497D39D1F34E0A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3DC6B27FB7344F5B9F30CB96F7DF823C"
@@ -630,6 +666,37 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_488E852CC67C283C4E5315E4517192AB"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:RansomwareDetection.DetectionLib, Version=2.0.5.1, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_488E852CC67C283C4E5315E4517192AB"
+                    {
+                    "Name" = "8:RansomwareDetection.DetectionLib.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:RansomwareDetection.DetectionLib.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_C5AF46734EA14A1AA9497D39D1F34E0A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_55AA3D85609941CAB87D03B8B54AA45B"
@@ -690,68 +757,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7433492E05EDD4F5D4FF2DD379DC7105"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:RansomwareDetection.DetectionLib, Version=2.0.4.5, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_7433492E05EDD4F5D4FF2DD379DC7105"
-                    {
-                    "Name" = "8:RansomwareDetection.DetectionLib.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:RansomwareDetection.DetectionLib.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_C5AF46734EA14A1AA9497D39D1F34E0A"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7681965DD927DB5932CB3FD242CF0CE3"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Ionic.Zip.Reduced, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_7681965DD927DB5932CB3FD242CF0CE3"
-                    {
-                    "Name" = "8:Ionic.Zip.Reduced.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Ionic.Zip.Reduced.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_C5AF46734EA14A1AA9497D39D1F34E0A"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_81C64D3634D548EBB4082158505E91FD"
@@ -854,14 +859,34 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B62AE2CA661019300A2297579A7D06BA"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BB90886B4AC94759835AC36363FD0C07"
+            {
+            "SourcePath" = "8:..\\RansomwareDetectionService\\CompareConfig.xml"
+            "TargetName" = "8:CompareConfig.xml"
+            "Tag" = "8:"
+            "Folder" = "8:_C5AF46734EA14A1AA9497D39D1F34E0A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:TRUE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C340C51C0F244E6F3F21966AF4776FBD"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:RansomwareDetection.ContentDetectorLib, Version=2.0.4.5, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:RansomwareDetection.ContentDetectorLib, Version=2.0.5.1, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_B62AE2CA661019300A2297579A7D06BA"
+                    "_C340C51C0F244E6F3F21966AF4776FBD"
                     {
                     "Name" = "8:RansomwareDetection.ContentDetectorLib.dll"
                     "Attributes" = "3:512"
@@ -883,26 +908,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BB90886B4AC94759835AC36363FD0C07"
-            {
-            "SourcePath" = "8:..\\RansomwareDetectionService\\CompareConfig.xml"
-            "TargetName" = "8:CompareConfig.xml"
-            "Tag" = "8:"
-            "Folder" = "8:_C5AF46734EA14A1AA9497D39D1F34E0A"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:TRUE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C56D8CCAD04141B5BE1DE7D4A18DF376"
@@ -1003,37 +1008,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_EDB36376F6CB9D9B72DD4D1F28DD9550"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Win32Security, Version=0.3.4372.20280, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_EDB36376F6CB9D9B72DD4D1F28DD9550"
-                    {
-                    "Name" = "8:Win32Security.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Win32Security.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_C5AF46734EA14A1AA9497D39D1F34E0A"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F0B835EB44BF4809971393F2EA3ABF3A"
@@ -1156,18 +1130,18 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Ransomware Detection Service"
-        "ProductCode" = "8:{323E6824-FA02-4E70-AF21-FB8172D0875E}"
-        "PackageCode" = "8:{87DF089D-0AA5-4777-9B4D-0047975E8084}"
+        "ProductCode" = "8:{985F71F4-1D20-4263-9545-E7422FB6B3BA}"
+        "PackageCode" = "8:{49173208-F4A7-4E4C-9486-67FF1ABD7E43}"
         "UpgradeCode" = "8:{13942A01-A7FC-4553-AC0C-A2A82F17C5F3}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:2.0.4"
+        "ProductVersion" = "8:2.0.5"
         "Manufacturer" = "8:HESD"
         "ARPHELPTELEPHONE" = "8:"
-        "ARPHELPLINK" = "8:http://www.questiondriven.com"
+        "ARPHELPLINK" = "8:https://github.com/prestoncooper/RansomwareDetectionService"
         "Title" = "8:RansomwareDetectionServiceInstaller"
         "Subject" = "8:"
         "ARPCONTACT" = "8:Preston Cooper"
@@ -1178,7 +1152,7 @@
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
-        "TargetPlatform" = "3:0"
+        "TargetPlatform" = "3:2"
         "PreBuildEvent" = "8:"
         "PostBuildEvent" = "8:"
         "RunPostBuildEvent" = "3:0"
