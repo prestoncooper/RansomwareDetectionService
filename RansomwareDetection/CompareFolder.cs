@@ -11,7 +11,7 @@ using System.Net.Mail;
 /*
 BSD License:
 Copyright (c) 2016, Preston Cooper – HESD Ransomware Detection Service
-http://www.questiondriven.com
+
 All rights reserved.
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
@@ -20,19 +20,7 @@ Redistribution and use in source and binary forms, with or without modification,
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-/*
-Delimon.Win32.IO Class License
-Copyright © 2012, Johan Delimon
-http://bit.ly/delimon 
-All rights reserved.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
-*/
 namespace RansomwareDetection.DetectionLib
 {
     public class CompareFolder : IFolderConfig   
@@ -1228,7 +1216,7 @@ namespace RansomwareDetection.DetectionLib
             bool blFileSame = false;
             string SourceFile = "";
             string FileToCheck = "";
-            List<Delimon.Win32.IO.FileInfo> AllFiles = null;
+            List<Alphaleonis.Win32.Filesystem.FileInfo> AllFiles = null;
             List<ContentDetectorLib.FileResult> FilesDifferent = null;
             List<ContentDetectorLib.FileResult> FilesMissing = null;
             HashSet<string> lUsernames = null;
@@ -1239,7 +1227,7 @@ namespace RansomwareDetection.DetectionLib
                     
                     writeError("Ransomware Detection Service, File Compare Process: Started " + FilePathToCheck, System.Diagnostics.EventLogEntryType.Information, 8000, 80, true);
 
-                    AllFiles = new List<Delimon.Win32.IO.FileInfo>();
+                    AllFiles = new List<Alphaleonis.Win32.Filesystem.FileInfo>();
                     FilesDifferent = new List<ContentDetectorLib.FileResult>();
                     FilesMissing = new List<ContentDetectorLib.FileResult>();
                     lUsernames = new HashSet<string>();
@@ -1255,7 +1243,7 @@ namespace RansomwareDetection.DetectionLib
                         if (AllFiles != null)
                         {
                             //loop through all source files and folders
-                            foreach (Delimon.Win32.IO.FileInfo file1 in AllFiles)
+                            foreach (Alphaleonis.Win32.Filesystem.FileInfo file1 in AllFiles)
                             {
 
                                 //if the service is shutting down we need to stop looping through the source files
@@ -1301,7 +1289,7 @@ namespace RansomwareDetection.DetectionLib
                                             }
                                             //this only copies the file if it does not exist
                                             //We are coping files for detection of changes we do not want.
-                                            Delimon.Win32.IO.File.Copy(SourceFile, FileToCheck, false);
+                                            Alphaleonis.Win32.Filesystem.File.Copy(SourceFile, FileToCheck, false);
                                             string strErr = "FileCompare: File Compare Failed! (Possible Ransomware Change Detected, user delete or new sub folder) FileToCheck File Did Not Exist Yet, File Copied: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
                                             writeError(strErr, System.Diagnostics.EventLogEntryType.Error, 8003, 80, false);
                                         }
@@ -1325,7 +1313,7 @@ namespace RansomwareDetection.DetectionLib
                                                             strUsername = getUsernameFromFolder(FileToCheck);
                                                         }
 
-                                                        ransomwareDetectedCommand(strUsername,FileToCheck,new Delimon.Win32.IO.FileInfo(FileToCheck).Directory.FullName);
+                                                        ransomwareDetectedCommand(strUsername,FileToCheck,new Alphaleonis.Win32.Filesystem.FileInfo(FileToCheck).Directory.FullName);
                                                     }
 
                                                     string strErr = "FileCompare: File Compare Failed! (Possible Ransomware Change Detected) SourceFile: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
@@ -1364,11 +1352,11 @@ namespace RansomwareDetection.DetectionLib
                                         //Loops through the first layer of subfolders and compares current source file in each sub folder of FilePathToCheck
                                         if (CheckSubFolders && Common.DirectoryExists(FilePathToCheck))
                                         {
-                                            System.Collections.Generic.List<Delimon.Win32.IO.DirectoryInfo> dirs;
-                                            Delimon.Win32.IO.DirectoryInfo dirToCheck = new Delimon.Win32.IO.DirectoryInfo(FilePathToCheck);
+                                            System.Collections.Generic.List<Alphaleonis.Win32.Filesystem.DirectoryInfo> dirs;
+                                            Alphaleonis.Win32.Filesystem.DirectoryInfo dirToCheck = new Alphaleonis.Win32.Filesystem.DirectoryInfo(FilePathToCheck);
                                             dirs = Common.GetDirsInDirectory(dirToCheck);
 
-                                            foreach (Delimon.Win32.IO.DirectoryInfo dir1 in dirs)
+                                            foreach (Alphaleonis.Win32.Filesystem.DirectoryInfo dir1 in dirs)
                                             {
 
                                                 blIgnoreSourceDirectory = false;
@@ -1389,10 +1377,10 @@ namespace RansomwareDetection.DetectionLib
                                                             //Check if SourceFolder is one of the sub folders.  (would create extra source directories inside a source directory if not ignored)
                                                             if (CheckMainFolder && CheckSubFolders)
                                                             {
-                                                                System.Collections.Generic.List<Delimon.Win32.IO.DirectoryInfo> Sourcedirs;
-                                                                Delimon.Win32.IO.DirectoryInfo dirSourceToCheck = new Delimon.Win32.IO.DirectoryInfo(SourcePath);
+                                                                System.Collections.Generic.List<Alphaleonis.Win32.Filesystem.DirectoryInfo> Sourcedirs;
+                                                                Alphaleonis.Win32.Filesystem.DirectoryInfo dirSourceToCheck = new Alphaleonis.Win32.Filesystem.DirectoryInfo(SourcePath);
                                                                 Sourcedirs = Common.GetDirsInDirectory(dirSourceToCheck);
-                                                                foreach (Delimon.Win32.IO.DirectoryInfo sdir1 in Sourcedirs)
+                                                                foreach (Alphaleonis.Win32.Filesystem.DirectoryInfo sdir1 in Sourcedirs)
                                                                 {
 
                                                                     if (sdir1.Name == dir1.Name)
@@ -1454,7 +1442,7 @@ namespace RansomwareDetection.DetectionLib
                                                             //Create Source Folder Structure in each immediate subfolder in FilePathToCheck
                                                             Common.CreateDestinationFolders(SourcePath, dir1.FullName);
                                                             //Only copy the file to a 1st layer sub folder if it does not exist.  (We want to keep source files there for checking of changes)
-                                                            Delimon.Win32.IO.File.Copy(SourceFile, FileToCheck, false);
+                                                            Alphaleonis.Win32.Filesystem.File.Copy(SourceFile, FileToCheck, false);
 
                                                             string strErr = "FileCompare: File Compare Failed! FileToCheck in subfolder, File Did Not Exist! (Possible Ransomware, unless user deleted) and File Copied: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
                                                             writeError(strErr, System.Diagnostics.EventLogEntryType.Error, 8003, 80, false);
@@ -1475,7 +1463,7 @@ namespace RansomwareDetection.DetectionLib
                                                                     {
                                                                         strUsername = getUsernameFromFolder(FileToCheck);
                                                                     }
-                                                                    ransomwareDetectedCommand(strUsername,FileToCheck,new Delimon.Win32.IO.FileInfo(FileToCheck).Directory.FullName);
+                                                                    ransomwareDetectedCommand(strUsername,FileToCheck,new Alphaleonis.Win32.Filesystem.FileInfo(FileToCheck).Directory.FullName);
                                                                 }
 
                                                                 string strErr = "FileCompare: File Compare Failed! (Possible Ransomware Change Detected) SourceFile: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
@@ -1522,7 +1510,7 @@ namespace RansomwareDetection.DetectionLib
                                                                     {
                                                                         strUsername = getUsernameFromFolder(FileToCheck);
                                                                     }
-                                                                    ransomwareDetectedCommand(strUsername, FileToCheck, new Delimon.Win32.IO.FileInfo(FileToCheck).Directory.FullName);
+                                                                    ransomwareDetectedCommand(strUsername, FileToCheck, new Alphaleonis.Win32.Filesystem.FileInfo(FileToCheck).Directory.FullName);
                                                                 }
 
                                                                 string strErr = "FileCompare: File Compare Failed! SourceFile: " + SourceFile + " Different than FileToCheck: " + FileToCheck;
@@ -1593,13 +1581,13 @@ namespace RansomwareDetection.DetectionLib
                             {
                                 if (Common.FileExists(ExportCSVPath + "\\" + Title + "DifferentFiles.csv"))
                                 {
-                                    Delimon.Win32.IO.File.Delete(ExportCSVPath + "\\" + Title + "DifferentFiles.csv");
+                                    Alphaleonis.Win32.Filesystem.File.Delete(ExportCSVPath + "\\" + Title + "DifferentFiles.csv");
                                 }
-                                Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\" + Title + "DifferentFiles.csv", ContentDetectorLib.FileResult.FileResultCollectionToCSV(FilesDifferent));
+                                Alphaleonis.Win32.Filesystem.File.WriteAllText(ExportCSVPath + "\\" + Title + "DifferentFiles.csv", ContentDetectorLib.FileResult.FileResultCollectionToCSV(FilesDifferent));
                             }
                             catch (Exception)
                             {
-                                Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\" + Title + "DifferentFiles" + Guid.NewGuid().ToString() + ".csv", ContentDetectorLib.FileResult.FileResultCollectionToCSV(FilesDifferent));
+                                Alphaleonis.Win32.Filesystem.File.WriteAllText(ExportCSVPath + "\\" + Title + "DifferentFiles" + Guid.NewGuid().ToString() + ".csv", ContentDetectorLib.FileResult.FileResultCollectionToCSV(FilesDifferent));
 
                             }
                         }
@@ -1610,13 +1598,13 @@ namespace RansomwareDetection.DetectionLib
                             {
                                 if (Common.FileExists(ExportCSVPath + "\\" + Title + "MissingFiles.csv"))
                                 {
-                                    Delimon.Win32.IO.File.Delete(ExportCSVPath + "\\" + Title + "MissingFiles.csv");
+                                    Alphaleonis.Win32.Filesystem.File.Delete(ExportCSVPath + "\\" + Title + "MissingFiles.csv");
                                 }
-                                Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\" + Title + "MissingFiles.csv", ContentDetectorLib.FileResult.FileResultCollectionToCSV(FilesMissing));
+                                Alphaleonis.Win32.Filesystem.File.WriteAllText(ExportCSVPath + "\\" + Title + "MissingFiles.csv", ContentDetectorLib.FileResult.FileResultCollectionToCSV(FilesMissing));
                             }
                             catch (Exception)
                             {
-                                Delimon.Win32.IO.File.WriteAllText(ExportCSVPath + "\\" + Title + "MissingFiles" + Guid.NewGuid().ToString() + ".csv", ContentDetectorLib.FileResult.FileResultCollectionToCSV(FilesMissing));
+                                Alphaleonis.Win32.Filesystem.File.WriteAllText(ExportCSVPath + "\\" + Title + "MissingFiles" + Guid.NewGuid().ToString() + ".csv", ContentDetectorLib.FileResult.FileResultCollectionToCSV(FilesMissing));
 
                             }
                         }
@@ -1829,8 +1817,8 @@ namespace RansomwareDetection.DetectionLib
         /// <returns>a value indicateing weather the file are identical</returns>
         public static bool Compare_Files(string fileName1, string fileName2)
         {
-            Delimon.Win32.IO.FileInfo info1 = new Delimon.Win32.IO.FileInfo(Common.WindowsPathClean(fileName1));
-            Delimon.Win32.IO.FileInfo info2 = new Delimon.Win32.IO.FileInfo(Common.WindowsPathClean(fileName2));
+            Alphaleonis.Win32.Filesystem.FileInfo info1 = new Alphaleonis.Win32.Filesystem.FileInfo(Common.WindowsPathClean(fileName1));
+            Alphaleonis.Win32.Filesystem.FileInfo info2 = new Alphaleonis.Win32.Filesystem.FileInfo(Common.WindowsPathClean(fileName2));
             Common.RefreshFileInfo(info1);
             Common.RefreshFileInfo(info2);
             bool blSame = info1.Length == info2.Length;
@@ -1863,8 +1851,8 @@ namespace RansomwareDetection.DetectionLib
             fileName1 = Common.WindowsPathClean(fileName1);
             fileName2 = Common.WindowsPathClean(fileName2);
 
-            Delimon.Win32.IO.FileInfo info1 = new Delimon.Win32.IO.FileInfo(fileName1);
-            Delimon.Win32.IO.FileInfo info2 = new Delimon.Win32.IO.FileInfo(fileName2);
+            Alphaleonis.Win32.Filesystem.FileInfo info1 = new Alphaleonis.Win32.Filesystem.FileInfo(fileName1);
+            Alphaleonis.Win32.Filesystem.FileInfo info2 = new Alphaleonis.Win32.Filesystem.FileInfo(fileName2);
             Common.RefreshFileInfo(info1);
             Common.RefreshFileInfo(info2);
             blSame = info1.Length == info2.Length;

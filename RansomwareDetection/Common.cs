@@ -16,7 +16,7 @@ using System.Text.RegularExpressions;
 /*
 BSD License:
 Copyright (c) 2016, Preston Cooper – HESD Ransomware Detection Service
-http://www.questiondriven.com
+
 All rights reserved.
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
@@ -25,19 +25,7 @@ Redistribution and use in source and binary forms, with or without modification,
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-/*
-Delimon.Win32.IO Class License
-Copyright © 2012, Johan Delimon
-http://bit.ly/delimon 
-All rights reserved.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
-*/
 namespace RansomwareDetection.DetectionLib
 {
 
@@ -701,16 +689,16 @@ namespace RansomwareDetection.DetectionLib
                 {
                     try
                     {
-                        foreach (string file in Delimon.Win32.IO.Directory.GetFiles(folder))
+                        foreach (string file in Alphaleonis.Win32.Filesystem.Directory.GetFiles(folder))
                         {
-                            if (Delimon.Win32.IO.File.Exists(file))
+                            if (Alphaleonis.Win32.Filesystem.File.Exists(file))
                             {
-                                Delimon.Win32.IO.FileInfo finfo = new Delimon.Win32.IO.FileInfo(file);
+                                Alphaleonis.Win32.Filesystem.FileInfo finfo = new Alphaleonis.Win32.Filesystem.FileInfo(file);
                                 folderSize += (float) finfo.Length;
                             }
                         }
 
-                        foreach (string dir in Delimon.Win32.IO.Directory.GetDirectories(folder))
+                        foreach (string dir in Alphaleonis.Win32.Filesystem.Directory.GetDirectories(folder))
                         {
                             folderSize += CalculateFolderSize(dir);
                         }
@@ -746,15 +734,15 @@ namespace RansomwareDetection.DetectionLib
                 {
                     try
                     {
-                        foreach (string file in Delimon.Win32.IO.Directory.GetFiles(folder))
+                        foreach (string file in Alphaleonis.Win32.Filesystem.Directory.GetFiles(folder))
                         {
-                            if (Delimon.Win32.IO.File.Exists(file))
+                            if (Alphaleonis.Win32.Filesystem.File.Exists(file))
                             {
                                 lFileCount++;
                             }
                         }
 
-                        foreach (string dir in Delimon.Win32.IO.Directory.GetDirectories(folder))
+                        foreach (string dir in Alphaleonis.Win32.Filesystem.Directory.GetDirectories(folder))
                         {
                             lFileCount += GetFolderFileCount(dir);
                         }
@@ -843,7 +831,7 @@ namespace RansomwareDetection.DetectionLib
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
-        public static bool IsFileLocked(Delimon.Win32.IO.FileInfo file)
+        public static bool IsFileLocked(Alphaleonis.Win32.Filesystem.FileInfo file)
         {
             FileStream stream = null;
             try
@@ -887,7 +875,7 @@ namespace RansomwareDetection.DetectionLib
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
-        public static Delimon.Win32.IO.FileInfo RefreshFileInfo(Delimon.Win32.IO.FileInfo file)
+        public static Alphaleonis.Win32.Filesystem.FileInfo RefreshFileInfo(Alphaleonis.Win32.Filesystem.FileInfo file)
         {
             FileStream fs = null;
             try
@@ -1016,7 +1004,7 @@ namespace RansomwareDetection.DetectionLib
                 if (strPath != null && strPath.Length > 0)
                 {
                     strPath = WindowsPathClean(strPath);
-                    blSuccess = Delimon.Win32.IO.Directory.Exists(strPath);
+                    blSuccess = Alphaleonis.Win32.Filesystem.Directory.Exists(strPath);
                 }
             }
             catch (Exception)
@@ -1034,7 +1022,7 @@ namespace RansomwareDetection.DetectionLib
                 if (strPath != null && strPath.Length > 0)
                 {
                     strPath = WindowsPathClean(strPath);
-                    blSuccess = Delimon.Win32.IO.File.Exists(strPath);
+                    blSuccess = Alphaleonis.Win32.Filesystem.File.Exists(strPath);
                 }
             }
             catch (Exception)
@@ -1444,13 +1432,13 @@ namespace RansomwareDetection.DetectionLib
         /// <param name="strPath"></param>
         /// <param name="blShuttingDown"></param>
         /// <returns></returns>
-        public static System.Collections.Generic.List<Delimon.Win32.IO.FileInfo> WalkDirectory(string strPath, ref bool blShuttingDown)
+        public static System.Collections.Generic.List<Alphaleonis.Win32.Filesystem.FileInfo> WalkDirectory(string strPath, ref bool blShuttingDown)
         {
             if (DirectoryExists(strPath))
             {
-                System.Collections.Generic.List<Delimon.Win32.IO.FileInfo> Files;
-                Files = new System.Collections.Generic.List<Delimon.Win32.IO.FileInfo>();
-                Delimon.Win32.IO.DirectoryInfo rootDir = new Delimon.Win32.IO.DirectoryInfo(strPath);
+                System.Collections.Generic.List<Alphaleonis.Win32.Filesystem.FileInfo> Files;
+                Files = new System.Collections.Generic.List<Alphaleonis.Win32.Filesystem.FileInfo>();
+                Alphaleonis.Win32.Filesystem.DirectoryInfo rootDir = new Alphaleonis.Win32.Filesystem.DirectoryInfo(strPath);
                 WalkDirectoryTree(rootDir, ref Files, ref blShuttingDown);
                 return Files;
             }
@@ -1501,10 +1489,10 @@ namespace RansomwareDetection.DetectionLib
         /// </summary>
         /// <param name="strPath"></param>
         /// <returns>System.Collections.Generic.List of DirectoryInfo</returns>
-        public static System.Collections.Generic.List<Delimon.Win32.IO.DirectoryInfo> GetAllDirectories(string strPath)
+        public static System.Collections.Generic.List<Alphaleonis.Win32.Filesystem.DirectoryInfo> GetAllDirectories(string strPath)
         {
-            System.Collections.Generic.List<Delimon.Win32.IO.DirectoryInfo> Directories = new List<Delimon.Win32.IO.DirectoryInfo>();
-            Delimon.Win32.IO.DirectoryInfo rootDir = new Delimon.Win32.IO.DirectoryInfo(strPath);
+            System.Collections.Generic.List<Alphaleonis.Win32.Filesystem.DirectoryInfo> Directories = new List<Alphaleonis.Win32.Filesystem.DirectoryInfo>();
+            Alphaleonis.Win32.Filesystem.DirectoryInfo rootDir = new Alphaleonis.Win32.Filesystem.DirectoryInfo(strPath);
             DirectoryList(rootDir, ref Directories);
             return Directories;
         }
@@ -1531,7 +1519,7 @@ namespace RansomwareDetection.DetectionLib
         public static System.Collections.Generic.List<RemoteFile> GetAllDirectoriesR(string strPath)
         {
             System.Collections.Generic.List<RemoteFile> Directories = new List<RemoteFile>();
-            Delimon.Win32.IO.DirectoryInfo rootDir = new Delimon.Win32.IO.DirectoryInfo(strPath);
+            Alphaleonis.Win32.Filesystem.DirectoryInfo rootDir = new Alphaleonis.Win32.Filesystem.DirectoryInfo(strPath);
             DirectoryList(rootDir, ref Directories, strPath);
             return Directories;
         }
@@ -1541,12 +1529,12 @@ namespace RansomwareDetection.DetectionLib
         /// </summary>
         /// <param name="dir"></param>
         /// <param name="folders"></param>
-        private static void DirectoryList(Delimon.Win32.IO.DirectoryInfo dir, ref List<Delimon.Win32.IO.DirectoryInfo> folders)
+        private static void DirectoryList(Alphaleonis.Win32.Filesystem.DirectoryInfo dir, ref List<Alphaleonis.Win32.Filesystem.DirectoryInfo> folders)
         {
 
             try
             {
-                foreach (Delimon.Win32.IO.DirectoryInfo d in dir.GetDirectories())
+                foreach (Alphaleonis.Win32.Filesystem.DirectoryInfo d in dir.GetDirectories())
                 {
                         folders.Add(d);
                         DirectoryList(d, ref folders);
@@ -1563,12 +1551,12 @@ namespace RansomwareDetection.DetectionLib
         /// <param name="dir"></param>
         /// <param name="folders"></param>
         /// <param name="strParentPathRemove"></param>
-        private static void DirectoryList(Delimon.Win32.IO.DirectoryInfo dir, ref List<RemoteFile> folders, string strParentPathRemove)
+        private static void DirectoryList(Alphaleonis.Win32.Filesystem.DirectoryInfo dir, ref List<RemoteFile> folders, string strParentPathRemove)
         {
 
             try
             {
-                foreach (Delimon.Win32.IO.DirectoryInfo d in dir.GetDirectories())
+                foreach (Alphaleonis.Win32.Filesystem.DirectoryInfo d in dir.GetDirectories())
                 {
                     RemoteFile RD1 = new RemoteFile(d);
                     RD1.ParentDirectory = WindowsPathClean(d.Parent.FullName).Replace(WindowsPathClean(strParentPathRemove), "");
@@ -1587,12 +1575,12 @@ namespace RansomwareDetection.DetectionLib
         /// </summary>
         /// <param name="dir"></param>
         /// <returns></returns>
-        public static System.Collections.Generic.List<Delimon.Win32.IO.FileInfo> GetFilesInDirectory(Delimon.Win32.IO.DirectoryInfo dir)
+        public static System.Collections.Generic.List<Alphaleonis.Win32.Filesystem.FileInfo> GetFilesInDirectory(Alphaleonis.Win32.Filesystem.DirectoryInfo dir)
         {
-            System.Collections.Generic.List<Delimon.Win32.IO.FileInfo> files = new System.Collections.Generic.List<Delimon.Win32.IO.FileInfo>();
+            System.Collections.Generic.List<Alphaleonis.Win32.Filesystem.FileInfo> files = new System.Collections.Generic.List<Alphaleonis.Win32.Filesystem.FileInfo>();
             try
             {
-                foreach (Delimon.Win32.IO.FileInfo f in dir.GetFiles())
+                foreach (Alphaleonis.Win32.Filesystem.FileInfo f in dir.GetFiles())
                 {
                     files.Add(f);
                 }
@@ -1608,12 +1596,12 @@ namespace RansomwareDetection.DetectionLib
         /// </summary>
         /// <param name="dir"></param>
         /// <returns></returns>
-        public static System.Collections.Generic.List<Delimon.Win32.IO.DirectoryInfo> GetDirsInDirectory(Delimon.Win32.IO.DirectoryInfo dir)
+        public static System.Collections.Generic.List<Alphaleonis.Win32.Filesystem.DirectoryInfo> GetDirsInDirectory(Alphaleonis.Win32.Filesystem.DirectoryInfo dir)
         {
-            System.Collections.Generic.List<Delimon.Win32.IO.DirectoryInfo> dirs = new System.Collections.Generic.List<Delimon.Win32.IO.DirectoryInfo>();
+            System.Collections.Generic.List<Alphaleonis.Win32.Filesystem.DirectoryInfo> dirs = new System.Collections.Generic.List<Alphaleonis.Win32.Filesystem.DirectoryInfo>();
             try
             {
-                foreach (Delimon.Win32.IO.DirectoryInfo dir1 in dir.GetDirectories())
+                foreach (Alphaleonis.Win32.Filesystem.DirectoryInfo dir1 in dir.GetDirectories())
                 {
                     dirs.Add(dir1);
                 }
@@ -1662,7 +1650,7 @@ namespace RansomwareDetection.DetectionLib
                     ////PathToNewFolder = Path.Combine(dlpath + Files[i].ParentDirectory, Files[i].Name).Replace("/", "\\").Replace("\\\\", "\\");
                     if (!DirectoryExists(PathToNewFolder))
                     {
-                        Delimon.Win32.IO.Directory.CreateDirectory(PathToNewFolder);
+                        Alphaleonis.Win32.Filesystem.Directory.CreateDirectory(PathToNewFolder);
                         _evt.WriteEntry("Local Directory Created: " + PathToNewFolder,EventLogEntryType.Information, 1, 1);
                     }
                 }
@@ -1678,10 +1666,10 @@ namespace RansomwareDetection.DetectionLib
         /// <param name="root"></param>
         /// <param name="AllFiles"></param>
         /// <param name="blShuttingDown"></param>
-        private static void WalkDirectoryTree(Delimon.Win32.IO.DirectoryInfo root, ref System.Collections.Generic.List<Delimon.Win32.IO.FileInfo> AllFiles, ref bool blShuttingDown)
+        private static void WalkDirectoryTree(Alphaleonis.Win32.Filesystem.DirectoryInfo root, ref System.Collections.Generic.List<Alphaleonis.Win32.Filesystem.FileInfo> AllFiles, ref bool blShuttingDown)
         {
-            Delimon.Win32.IO.FileInfo[] files = null;
-            Delimon.Win32.IO.DirectoryInfo[] subDirs = null;
+            Alphaleonis.Win32.Filesystem.FileInfo[] files = null;
+            Alphaleonis.Win32.Filesystem.DirectoryInfo[] subDirs = null;
             EventLog _evt = GetEventLog;
             
             // First, process all the files directly under this folder 
@@ -1698,7 +1686,7 @@ namespace RansomwareDetection.DetectionLib
 
             if (files != null)
             {
-                foreach (Delimon.Win32.IO.FileInfo fi in files)
+                foreach (Alphaleonis.Win32.Filesystem.FileInfo fi in files)
                 {
                     if (blShuttingDown)
                     {
@@ -1718,7 +1706,7 @@ namespace RansomwareDetection.DetectionLib
                 // Now find all the subdirectories under this directory.
                 subDirs = root.GetDirectories();
 
-                foreach (Delimon.Win32.IO.DirectoryInfo dirInfo in subDirs)
+                foreach (Alphaleonis.Win32.Filesystem.DirectoryInfo dirInfo in subDirs)
                 {
                     if (blShuttingDown)
                     {
@@ -1818,7 +1806,7 @@ namespace RansomwareDetection.DetectionLib
             this.LastWriteTimeUtc = file1.LastWriteTimeUtc;
         }
 
-        public RemoteFile(Delimon.Win32.IO.FileInfo file1)
+        public RemoteFile(Alphaleonis.Win32.Filesystem.FileInfo file1)
         {
             this.Name = file1.Name;
             this.FullName = file1.FullName;
@@ -1842,7 +1830,7 @@ namespace RansomwareDetection.DetectionLib
             this.SourceFolderMD5 = Common.GetMD5HashFromString(strSource);
         }
 
-        public RemoteFile(Delimon.Win32.IO.FileInfo file1, string strSource)
+        public RemoteFile(Alphaleonis.Win32.Filesystem.FileInfo file1, string strSource)
         {
             this.Name = file1.Name;
             this.FullName = file1.FullName;
@@ -1868,7 +1856,7 @@ namespace RansomwareDetection.DetectionLib
             this.SourceFolderMD5 = Common.GetMD5HashFromString(strSource);
         }
         
-        public RemoteFile(Delimon.Win32.IO.DirectoryInfo dir, string strSource)
+        public RemoteFile(Alphaleonis.Win32.Filesystem.DirectoryInfo dir, string strSource)
         {
             this.Name = dir.Name;
             this.FullName = dir.FullName;
@@ -1915,7 +1903,7 @@ namespace RansomwareDetection.DetectionLib
             this.FileOperation = fileOp;
         }
 
-        public RemoteFile(Delimon.Win32.IO.FileInfo file1, FileOperations fileOp)
+        public RemoteFile(Alphaleonis.Win32.Filesystem.FileInfo file1, FileOperations fileOp)
         {
             this.Name = file1.Name;
             this.FullName = file1.FullName;
@@ -1940,7 +1928,7 @@ namespace RansomwareDetection.DetectionLib
             this.NewFullName = newFullName;
         }
 
-        public RemoteFile(Delimon.Win32.IO.FileInfo file1, FileOperations fileOp, string newFullName)
+        public RemoteFile(Alphaleonis.Win32.Filesystem.FileInfo file1, FileOperations fileOp, string newFullName)
         {
             this.Name = file1.Name;
             this.FullName = file1.FullName;
@@ -1965,7 +1953,7 @@ namespace RansomwareDetection.DetectionLib
             //this.FileOperation = FileOperations.Modified;
         }
 
-        public RemoteFile(Delimon.Win32.IO.DirectoryInfo dir1)
+        public RemoteFile(Alphaleonis.Win32.Filesystem.DirectoryInfo dir1)
         {
             this.Name = dir1.Name;
             this.FullName = dir1.FullName;
@@ -1989,7 +1977,7 @@ namespace RansomwareDetection.DetectionLib
             this.FileOperation = fileOp;
         }
 
-        public RemoteFile(Delimon.Win32.IO.DirectoryInfo dir1, FileOperations fileOp)
+        public RemoteFile(Alphaleonis.Win32.Filesystem.DirectoryInfo dir1, FileOperations fileOp)
         {
             this.Name = dir1.Name;
             this.FullName = dir1.FullName;
@@ -2014,7 +2002,7 @@ namespace RansomwareDetection.DetectionLib
             this.NewFullName = newFullName;
         }
 
-        public RemoteFile(Delimon.Win32.IO.DirectoryInfo dir1, FileOperations fileOp, string newFullName)
+        public RemoteFile(Alphaleonis.Win32.Filesystem.DirectoryInfo dir1, FileOperations fileOp, string newFullName)
         {
             this.Name = dir1.Name;
             this.FullName = dir1.FullName;
